@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "autori")
-public class Autori {
+public class Autore {
 
     // === ATTRIBUTI ===
 
@@ -27,10 +27,10 @@ public class Autori {
 
     // === COSTRUTTORI ===
 
-    public Autori() {
+    public Autore() {
     }
 
-    public Autori(String nome, String secondoNome, String cognome, String dataDiNascita, String nazionalita) {
+    public Autore(String nome, String secondoNome, String cognome, String dataDiNascita, String nazionalita) {
         this.nome = nome;
         this.secondoNome = secondoNome;
         this.cognome = cognome;

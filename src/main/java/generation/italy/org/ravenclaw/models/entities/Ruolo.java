@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ruoli")
-public class Ruoli {
+public class Ruolo {
 
     // === ATTRIBUTI ===
 
@@ -17,10 +17,10 @@ public class Ruoli {
 
     // === COSTRUTTORI ===
 
-    public Ruoli() {
+    public Ruolo() {
     }
 
-    public Ruoli(String nome) {
+    public Ruolo(String nome) {
         this.nome = nome;
     }
 
