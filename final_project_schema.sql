@@ -1,24 +1,9 @@
-DROP TABLE IF EXISTS public.casa CASCADE;
-DROP TABLE IF EXISTS public.autori CASCADE;
-DROP TABLE IF EXISTS public.ruoli CASCADE;
-DROP TABLE IF EXISTS public.libri CASCADE;
-DROP TABLE IF EXISTS public.film CASCADE;
-DROP TABLE IF EXISTS public.videogiochi CASCADE;
-DROP TABLE IF EXISTS public.scritto_da CASCADE;
-DROP TABLE IF EXISTS public.film_prodotto_da CASCADE;
-DROP TABLE IF EXISTS public.videogioco_prodotto_da CASCADE;
-DROP TABLE IF EXISTS public.tag CASCADE;
-DROP TABLE IF EXISTS public.libri_assegnamento_tag CASCADE;
-DROP TABLE IF EXISTS public.film_assegnamento_tag CASCADE;
-DROP TABLE IF EXISTS public.videogiochi_assegnamento_tag CASCADE;
-
 --
 -- PostgreSQL database dump
 --
 
 -- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
 -- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
-
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -75,17 +60,17 @@ ALTER SEQUENCE public.autori_autore_id_seq OWNED BY public.autori.autore_id;
 
 
 --
--- Name: casa; Type: TABLE; Schema: public; Owner: postgresMaster
+-- Name: case; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
-CREATE TABLE public.casa (
+CREATE TABLE public."case" (
     casa_id integer NOT NULL,
     nome text NOT NULL,
     nazionalita text NOT NULL
 );
 
 
-ALTER TABLE public.casa OWNER TO "postgresMaster";
+ALTER TABLE public."case" OWNER TO "postgresMaster";
 
 --
 -- Name: casa_casa_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
@@ -106,7 +91,7 @@ ALTER SEQUENCE public.casa_casa_id_seq OWNER TO "postgresMaster";
 -- Name: casa_casa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
 --
 
-ALTER SEQUENCE public.casa_casa_id_seq OWNED BY public.casa.casa_id;
+ALTER SEQUENCE public.casa_casa_id_seq OWNED BY public."case".casa_id;
 
 
 --
@@ -236,6 +221,42 @@ ALTER SEQUENCE public.film_prodotto_da_prodotto_da_id_seq OWNED BY public.crew_f
 
 
 --
+-- Name: film_visti; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.film_visti (
+    film_visto_id integer NOT NULL,
+    film_id integer NOT NULL,
+    utente_id integer NOT NULL,
+    recensione_id integer
+);
+
+
+ALTER TABLE public.film_visti OWNER TO "postgresMaster";
+
+--
+-- Name: film_visti_film_visti_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.film_visti_film_visti_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.film_visti_film_visti_id_seq OWNER TO "postgresMaster";
+
+--
+-- Name: film_visti_film_visti_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
+--
+
+ALTER SEQUENCE public.film_visti_film_visti_id_seq OWNED BY public.film_visti.film_visto_id;
+
+
+--
 -- Name: libri; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
@@ -289,6 +310,42 @@ ALTER SEQUENCE public.libri_assegnamento_tag_assegnamento_id_seq OWNED BY public
 
 
 --
+-- Name: libri_letti; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.libri_letti (
+    libro_letto_id integer NOT NULL,
+    libro_id integer NOT NULL,
+    utente_id integer NOT NULL,
+    recensione_id integer
+);
+
+
+ALTER TABLE public.libri_letti OWNER TO "postgresMaster";
+
+--
+-- Name: libri_letti_libri_letti_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.libri_letti_libri_letti_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.libri_letti_libri_letti_id_seq OWNER TO "postgresMaster";
+
+--
+-- Name: libri_letti_libri_letti_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
+--
+
+ALTER SEQUENCE public.libri_letti_libri_letti_id_seq OWNED BY public.libri_letti.libro_letto_id;
+
+
+--
 -- Name: libri_libro_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
 --
 
@@ -308,6 +365,42 @@ ALTER SEQUENCE public.libri_libro_id_seq OWNER TO "postgresMaster";
 --
 
 ALTER SEQUENCE public.libri_libro_id_seq OWNED BY public.libri.libro_id;
+
+
+--
+-- Name: recensioni; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.recensioni (
+    recensione_id integer NOT NULL,
+    voto integer NOT NULL,
+    recensione text NOT NULL,
+    CONSTRAINT "voto valido" CHECK ((voto <= 100))
+);
+
+
+ALTER TABLE public.recensioni OWNER TO "postgresMaster";
+
+--
+-- Name: recensioni_recensioni_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.recensioni_recensioni_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.recensioni_recensioni_id_seq OWNER TO "postgresMaster";
+
+--
+-- Name: recensioni_recensioni_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
+--
+
+ALTER SEQUENCE public.recensioni_recensioni_id_seq OWNED BY public.recensioni.recensione_id;
 
 
 --
@@ -416,6 +509,42 @@ ALTER SEQUENCE public.tag_tag_id_seq OWNED BY public.tag.tag_id;
 
 
 --
+-- Name: utenti; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.utenti (
+    utente_id integer NOT NULL,
+    nome text NOT NULL,
+    password text NOT NULL,
+    email text NOT NULL
+);
+
+
+ALTER TABLE public.utenti OWNER TO "postgresMaster";
+
+--
+-- Name: utente_utente_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.utente_utente_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.utente_utente_id_seq OWNER TO "postgresMaster";
+
+--
+-- Name: utente_utente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
+--
+
+ALTER SEQUENCE public.utente_utente_id_seq OWNED BY public.utenti.utente_id;
+
+
+--
 -- Name: videogiochi; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
@@ -470,6 +599,42 @@ ALTER SEQUENCE public.videogiochi_assegnamento_tag_assegnamento_id_seq OWNED BY 
 
 
 --
+-- Name: videogiochi_giocati; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.videogiochi_giocati (
+    "videogioco_giocato_id<" integer NOT NULL,
+    videogioco_id integer NOT NULL,
+    utente_id integer NOT NULL,
+    recensione_id integer
+);
+
+
+ALTER TABLE public.videogiochi_giocati OWNER TO "postgresMaster";
+
+--
+-- Name: videogiochi_giocati_videogiochi_giocati_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq OWNER TO "postgresMaster";
+
+--
+-- Name: videogiochi_giocati_videogiochi_giocati_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
+--
+
+ALTER SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq OWNED BY public.videogiochi_giocati."videogioco_giocato_id<";
+
+
+--
 -- Name: videogiochi_videogioco_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
 --
 
@@ -521,10 +686,10 @@ ALTER TABLE ONLY public.autori ALTER COLUMN autore_id SET DEFAULT nextval('publi
 
 
 --
--- Name: casa casa_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+-- Name: case casa_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.casa ALTER COLUMN casa_id SET DEFAULT nextval('public.casa_casa_id_seq'::regclass);
+ALTER TABLE ONLY public."case" ALTER COLUMN casa_id SET DEFAULT nextval('public.casa_casa_id_seq'::regclass);
 
 
 --
@@ -556,6 +721,13 @@ ALTER TABLE ONLY public.film_assegnamento_tag ALTER COLUMN assegnamento_id SET D
 
 
 --
+-- Name: film_visti film_visto_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.film_visti ALTER COLUMN film_visto_id SET DEFAULT nextval('public.film_visti_film_visti_id_seq'::regclass);
+
+
+--
 -- Name: libri libro_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
 --
 
@@ -567,6 +739,20 @@ ALTER TABLE ONLY public.libri ALTER COLUMN libro_id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.libri_assegnamento_tag ALTER COLUMN assegnamento_id SET DEFAULT nextval('public.libri_assegnamento_tag_assegnamento_id_seq'::regclass);
+
+
+--
+-- Name: libri_letti libro_letto_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.libri_letti ALTER COLUMN libro_letto_id SET DEFAULT nextval('public.libri_letti_libri_letti_id_seq'::regclass);
+
+
+--
+-- Name: recensioni recensione_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.recensioni ALTER COLUMN recensione_id SET DEFAULT nextval('public.recensioni_recensioni_id_seq'::regclass);
 
 
 --
@@ -591,6 +777,13 @@ ALTER TABLE ONLY public.tag ALTER COLUMN tag_id SET DEFAULT nextval('public.tag_
 
 
 --
+-- Name: utenti utente_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.utenti ALTER COLUMN utente_id SET DEFAULT nextval('public.utente_utente_id_seq'::regclass);
+
+
+--
 -- Name: videogiochi videogioco_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
 --
 
@@ -605,6 +798,13 @@ ALTER TABLE ONLY public.videogiochi_assegnamento_tag ALTER COLUMN assegnamento_i
 
 
 --
+-- Name: videogiochi_giocati videogioco_giocato_id<; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.videogiochi_giocati ALTER COLUMN "videogioco_giocato_id<" SET DEFAULT nextval('public.videogiochi_giocati_videogiochi_giocati_id_seq'::regclass);
+
+
+--
 -- Name: autori autori_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
@@ -613,10 +813,10 @@ ALTER TABLE ONLY public.autori
 
 
 --
--- Name: casa casa_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: case casa_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.casa
+ALTER TABLE ONLY public."case"
     ADD CONSTRAINT casa_pkey PRIMARY KEY (casa_id);
 
 
@@ -669,6 +869,14 @@ ALTER TABLE ONLY public.crew_film
 
 
 --
+-- Name: film_visti film_visto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.film_visti
+    ADD CONSTRAINT film_visto_pkey PRIMARY KEY (film_visto_id);
+
+
+--
 -- Name: libri_assegnamento_tag libri_assegnamento_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
@@ -685,11 +893,27 @@ ALTER TABLE ONLY public.libri
 
 
 --
+-- Name: libri_letti libro_letto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.libri_letti
+    ADD CONSTRAINT libro_letto_pkey PRIMARY KEY (libro_letto_id);
+
+
+--
 -- Name: libri numero_di_pagine_sopra_0; Type: CHECK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
 ALTER TABLE public.libri
     ADD CONSTRAINT numero_di_pagine_sopra_0 CHECK ((numero_di_pagine > 0)) NOT VALID;
+
+
+--
+-- Name: recensioni recensioni_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.recensioni
+    ADD CONSTRAINT recensioni_pkey PRIMARY KEY (recensione_id);
 
 
 --
@@ -717,6 +941,14 @@ ALTER TABLE ONLY public.tag
 
 
 --
+-- Name: utenti utente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.utenti
+    ADD CONSTRAINT utente_pkey PRIMARY KEY (utente_id);
+
+
+--
 -- Name: videogiochi_assegnamento_tag videogiochi_assegnamento_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
@@ -730,6 +962,14 @@ ALTER TABLE ONLY public.videogiochi_assegnamento_tag
 
 ALTER TABLE ONLY public.videogiochi
     ADD CONSTRAINT videogiochi_pkey PRIMARY KEY (videogioco_id);
+
+
+--
+-- Name: videogiochi_giocati videogioco_giocato_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.videogiochi_giocati
+    ADD CONSTRAINT videogioco_giocato_pkey PRIMARY KEY ("videogioco_giocato_id<");
 
 
 --
@@ -785,7 +1025,7 @@ ALTER TABLE ONLY public.film_assegnamento_tag
 --
 
 ALTER TABLE ONLY public.film
-    ADD CONSTRAINT film_casa_di_produzione_fkey FOREIGN KEY (casa_di_produzione) REFERENCES public.casa(casa_id);
+    ADD CONSTRAINT film_casa_di_produzione_fkey FOREIGN KEY (casa_di_produzione) REFERENCES public."case"(casa_id);
 
 
 --
@@ -813,6 +1053,30 @@ ALTER TABLE ONLY public.crew_film
 
 
 --
+-- Name: film_visti film_visti_film_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.film_visti
+    ADD CONSTRAINT film_visti_film_id_fkey FOREIGN KEY (film_id) REFERENCES public.film(film_id) NOT VALID;
+
+
+--
+-- Name: film_visti film_visti_recensione_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.film_visti
+    ADD CONSTRAINT film_visti_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id) NOT VALID;
+
+
+--
+-- Name: film_visti film_visti_utente_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.film_visti
+    ADD CONSTRAINT film_visti_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id) NOT VALID;
+
+
+--
 -- Name: libri_assegnamento_tag libri_assegnamento_tag_libro_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
@@ -833,7 +1097,31 @@ ALTER TABLE ONLY public.libri_assegnamento_tag
 --
 
 ALTER TABLE ONLY public.libri
-    ADD CONSTRAINT libri_casa_produttrice_id_fkey FOREIGN KEY (casa_produttrice_id) REFERENCES public.casa(casa_id);
+    ADD CONSTRAINT libri_casa_produttrice_id_fkey FOREIGN KEY (casa_produttrice_id) REFERENCES public."case"(casa_id);
+
+
+--
+-- Name: libri_letti libri_letti_libro_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.libri_letti
+    ADD CONSTRAINT libri_letti_libro_id_fkey FOREIGN KEY (libro_id) REFERENCES public.libri(libro_id);
+
+
+--
+-- Name: libri_letti libri_letti_recensione_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.libri_letti
+    ADD CONSTRAINT libri_letti_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id) NOT VALID;
+
+
+--
+-- Name: libri_letti libri_letti_utente_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.libri_letti
+    ADD CONSTRAINT libri_letti_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id) NOT VALID;
 
 
 --
@@ -873,7 +1161,31 @@ ALTER TABLE ONLY public.videogiochi_assegnamento_tag
 --
 
 ALTER TABLE ONLY public.videogiochi
-    ADD CONSTRAINT videogiochi_casa_produttrice_fkey FOREIGN KEY (casa_produttrice) REFERENCES public.casa(casa_id);
+    ADD CONSTRAINT videogiochi_casa_produttrice_fkey FOREIGN KEY (casa_produttrice) REFERENCES public."case"(casa_id);
+
+
+--
+-- Name: videogiochi_giocati videogiochi_giocati_recensione_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.videogiochi_giocati
+    ADD CONSTRAINT videogiochi_giocati_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id) NOT VALID;
+
+
+--
+-- Name: videogiochi_giocati videogiochi_giocati_utente_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.videogiochi_giocati
+    ADD CONSTRAINT videogiochi_giocati_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id) NOT VALID;
+
+
+--
+-- Name: videogiochi_giocati videogiochi_giocati_videogioco_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.videogiochi_giocati
+    ADD CONSTRAINT videogiochi_giocati_videogioco_id_fkey FOREIGN KEY (videogioco_id) REFERENCES public.videogiochi(videogioco_id) NOT VALID;
 
 
 --
