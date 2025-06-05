@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
--- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
-
 DROP TABLE IF EXISTS public.casa CASCADE;
 DROP TABLE IF EXISTS public.autori CASCADE;
 DROP TABLE IF EXISTS public.ruoli CASCADE;
@@ -18,6 +11,14 @@ DROP TABLE IF EXISTS public.tag CASCADE;
 DROP TABLE IF EXISTS public.libri_assegnamento_tag CASCADE;
 DROP TABLE IF EXISTS public.film_assegnamento_tag CASCADE;
 DROP TABLE IF EXISTS public.videogiochi_assegnamento_tag CASCADE;
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
+-- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
+
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -109,6 +110,34 @@ ALTER SEQUENCE public.casa_casa_id_seq OWNED BY public.casa.casa_id;
 
 
 --
+-- Name: crew_film; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.crew_film (
+    crew_id integer NOT NULL,
+    film_id integer NOT NULL,
+    autore_id integer NOT NULL,
+    ruolo_id integer NOT NULL
+);
+
+
+ALTER TABLE public.crew_film OWNER TO "postgresMaster";
+
+--
+-- Name: crew_videogioco; Type: TABLE; Schema: public; Owner: postgresMaster
+--
+
+CREATE TABLE public.crew_videogioco (
+    crew_id integer NOT NULL,
+    videogioco_id integer NOT NULL,
+    autore_id integer NOT NULL,
+    ruolo_id integer NOT NULL
+);
+
+
+ALTER TABLE public.crew_videogioco OWNER TO "postgresMaster";
+
+--
 -- Name: film; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
@@ -185,20 +214,6 @@ ALTER SEQUENCE public.film_film_id_seq OWNED BY public.film.film_id;
 
 
 --
--- Name: film_prodotto_da; Type: TABLE; Schema: public; Owner: postgresMaster
---
-
-CREATE TABLE public.film_prodotto_da (
-    prodotto_da_id integer NOT NULL,
-    film_id integer NOT NULL,
-    autore_id integer NOT NULL,
-    ruolo_id integer NOT NULL
-);
-
-
-ALTER TABLE public.film_prodotto_da OWNER TO "postgresMaster";
-
---
 -- Name: film_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
 --
 
@@ -217,7 +232,7 @@ ALTER SEQUENCE public.film_prodotto_da_prodotto_da_id_seq OWNER TO "postgresMast
 -- Name: film_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
 --
 
-ALTER SEQUENCE public.film_prodotto_da_prodotto_da_id_seq OWNED BY public.film_prodotto_da.prodotto_da_id;
+ALTER SEQUENCE public.film_prodotto_da_prodotto_da_id_seq OWNED BY public.crew_film.crew_id;
 
 
 --
@@ -477,20 +492,6 @@ ALTER SEQUENCE public.videogiochi_videogioco_id_seq OWNED BY public.videogiochi.
 
 
 --
--- Name: videogioco_prodotto_da; Type: TABLE; Schema: public; Owner: postgresMaster
---
-
-CREATE TABLE public.videogioco_prodotto_da (
-    prodotto_da_id integer NOT NULL,
-    videogioco_id integer NOT NULL,
-    autore_id integer NOT NULL,
-    ruolo_id integer NOT NULL
-);
-
-
-ALTER TABLE public.videogioco_prodotto_da OWNER TO "postgresMaster";
-
---
 -- Name: videogioco_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
 --
 
@@ -509,7 +510,7 @@ ALTER SEQUENCE public.videogioco_prodotto_da_prodotto_da_id_seq OWNER TO "postgr
 -- Name: videogioco_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
 --
 
-ALTER SEQUENCE public.videogioco_prodotto_da_prodotto_da_id_seq OWNED BY public.videogioco_prodotto_da.prodotto_da_id;
+ALTER SEQUENCE public.videogioco_prodotto_da_prodotto_da_id_seq OWNED BY public.crew_videogioco.crew_id;
 
 
 --
@@ -527,6 +528,20 @@ ALTER TABLE ONLY public.casa ALTER COLUMN casa_id SET DEFAULT nextval('public.ca
 
 
 --
+-- Name: crew_film crew_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.crew_film ALTER COLUMN crew_id SET DEFAULT nextval('public.film_prodotto_da_prodotto_da_id_seq'::regclass);
+
+
+--
+-- Name: crew_videogioco crew_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.crew_videogioco ALTER COLUMN crew_id SET DEFAULT nextval('public.videogioco_prodotto_da_prodotto_da_id_seq'::regclass);
+
+
+--
 -- Name: film film_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
 --
 
@@ -538,13 +553,6 @@ ALTER TABLE ONLY public.film ALTER COLUMN film_id SET DEFAULT nextval('public.fi
 --
 
 ALTER TABLE ONLY public.film_assegnamento_tag ALTER COLUMN assegnamento_id SET DEFAULT nextval('public.film_assegnamento_tag_assegnamento_id_seq'::regclass);
-
-
---
--- Name: film_prodotto_da prodotto_da_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
---
-
-ALTER TABLE ONLY public.film_prodotto_da ALTER COLUMN prodotto_da_id SET DEFAULT nextval('public.film_prodotto_da_prodotto_da_id_seq'::regclass);
 
 
 --
@@ -594,13 +602,6 @@ ALTER TABLE ONLY public.videogiochi ALTER COLUMN videogioco_id SET DEFAULT nextv
 --
 
 ALTER TABLE ONLY public.videogiochi_assegnamento_tag ALTER COLUMN assegnamento_id SET DEFAULT nextval('public.videogiochi_assegnamento_tag_assegnamento_id_seq'::regclass);
-
-
---
--- Name: videogioco_prodotto_da prodotto_da_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
---
-
-ALTER TABLE ONLY public.videogioco_prodotto_da ALTER COLUMN prodotto_da_id SET DEFAULT nextval('public.videogioco_prodotto_da_prodotto_da_id_seq'::regclass);
 
 
 --
@@ -660,11 +661,11 @@ ALTER TABLE ONLY public.film
 
 
 --
--- Name: film_prodotto_da film_prodotto_da_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_film film_prodotto_da_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.film_prodotto_da
-    ADD CONSTRAINT film_prodotto_da_pkey PRIMARY KEY (prodotto_da_id);
+ALTER TABLE ONLY public.crew_film
+    ADD CONSTRAINT film_prodotto_da_pkey PRIMARY KEY (crew_id);
 
 
 --
@@ -732,11 +733,11 @@ ALTER TABLE ONLY public.videogiochi
 
 
 --
--- Name: videogioco_prodotto_da videogioco_prodotto_da_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_videogioco videogioco_prodotto_da_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.videogioco_prodotto_da
-    ADD CONSTRAINT videogioco_prodotto_da_pkey PRIMARY KEY (prodotto_da_id);
+ALTER TABLE ONLY public.crew_videogioco
+    ADD CONSTRAINT videogioco_prodotto_da_pkey PRIMARY KEY (crew_id);
 
 
 --
@@ -788,26 +789,26 @@ ALTER TABLE ONLY public.film
 
 
 --
--- Name: film_prodotto_da film_prodotto_da_autore_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_film film_prodotto_da_autore_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.film_prodotto_da
+ALTER TABLE ONLY public.crew_film
     ADD CONSTRAINT film_prodotto_da_autore_id_fkey FOREIGN KEY (autore_id) REFERENCES public.autori(autore_id);
 
 
 --
--- Name: film_prodotto_da film_prodotto_da_film_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_film film_prodotto_da_film_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.film_prodotto_da
+ALTER TABLE ONLY public.crew_film
     ADD CONSTRAINT film_prodotto_da_film_id_fkey FOREIGN KEY (film_id) REFERENCES public.film(film_id);
 
 
 --
--- Name: film_prodotto_da film_prodotto_da_ruolo_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_film film_prodotto_da_ruolo_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.film_prodotto_da
+ALTER TABLE ONLY public.crew_film
     ADD CONSTRAINT film_prodotto_da_ruolo_id_fkey FOREIGN KEY (ruolo_id) REFERENCES public.ruoli(ruolo_id);
 
 
@@ -876,26 +877,26 @@ ALTER TABLE ONLY public.videogiochi
 
 
 --
--- Name: videogioco_prodotto_da videogioco_prodotto_da_autore_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_videogioco videogioco_prodotto_da_autore_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.videogioco_prodotto_da
+ALTER TABLE ONLY public.crew_videogioco
     ADD CONSTRAINT videogioco_prodotto_da_autore_id_fkey FOREIGN KEY (autore_id) REFERENCES public.autori(autore_id);
 
 
 --
--- Name: videogioco_prodotto_da videogioco_prodotto_da_ruolo_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_videogioco videogioco_prodotto_da_ruolo_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.videogioco_prodotto_da
+ALTER TABLE ONLY public.crew_videogioco
     ADD CONSTRAINT videogioco_prodotto_da_ruolo_id_fkey FOREIGN KEY (ruolo_id) REFERENCES public.ruoli(ruolo_id);
 
 
 --
--- Name: videogioco_prodotto_da videogioco_prodotto_da_videogioco_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
+-- Name: crew_videogioco videogioco_prodotto_da_videogioco_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
-ALTER TABLE ONLY public.videogioco_prodotto_da
+ALTER TABLE ONLY public.crew_videogioco
     ADD CONSTRAINT videogioco_prodotto_da_videogioco_id_fkey FOREIGN KEY (videogioco_id) REFERENCES public.videogiochi(videogioco_id);
 
 
