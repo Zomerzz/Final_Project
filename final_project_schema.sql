@@ -5,6 +5,20 @@
 -- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
 -- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
 
+DROP TABLE IF EXISTS public.casa CASCADE;
+DROP TABLE IF EXISTS public.autori CASCADE;
+DROP TABLE IF EXISTS public.ruoli CASCADE;
+DROP TABLE IF EXISTS public.libri CASCADE;
+DROP TABLE IF EXISTS public.film CASCADE;
+DROP TABLE IF EXISTS public.videogiochi CASCADE;
+DROP TABLE IF EXISTS public.scritto_da CASCADE;
+DROP TABLE IF EXISTS public.film_prodotto_da CASCADE;
+DROP TABLE IF EXISTS public.videogioco_prodotto_da CASCADE;
+DROP TABLE IF EXISTS public.tag CASCADE;
+DROP TABLE IF EXISTS public.libri_assegnamento_tag CASCADE;
+DROP TABLE IF EXISTS public.film_assegnamento_tag CASCADE;
+DROP TABLE IF EXISTS public.videogiochi_assegnamento_tag CASCADE;
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
