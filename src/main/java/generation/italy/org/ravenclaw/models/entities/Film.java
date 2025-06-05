@@ -2,6 +2,11 @@ package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table (name = "film")
 public class Film {
@@ -33,6 +38,11 @@ public class Film {
 
     @Column(name = "immagine_di_copertina")
     private String imgUrl;
+
+    // === ONE TO MANY ===
+
+    @OneToMany(mappedBy = "film_id")
+    private List<CrewFilm> crew = new ArrayList<>();
 
     // === COSTRUTTORI ===
 

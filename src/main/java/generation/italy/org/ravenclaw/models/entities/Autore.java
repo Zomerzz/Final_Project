@@ -2,6 +2,11 @@ package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "autori")
 public class Autore {
@@ -24,6 +29,24 @@ public class Autore {
     private String dataDiNascita;
 
     private String nazionalita;
+
+    // === ONE TO MANY ===
+
+    @OneToMany(mappedBy = "autore_id")
+    private List<CrewFilm> crewFilms = new ArrayList<>();
+
+    @OneToMany(mappedBy = "autore_id")
+    private List<CrewVideogioco> crewVideogioco = new ArrayList<>();
+
+    // === MANY TO MANY ===
+
+    @ManyToMany
+    @JoinTable(
+            name = "scritto_da",
+            joinColumns = @JoinColumn(name = "autore_id"),
+            inverseJoinColumns = @JoinColumn(name = "libro_id")
+    )
+    private Set<Libro> libroSet = new HashSet<>();
 
     // === COSTRUTTORI ===
 

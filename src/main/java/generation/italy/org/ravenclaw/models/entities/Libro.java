@@ -2,6 +2,9 @@ package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "libri")
 public class Libro {
@@ -20,7 +23,7 @@ public class Libro {
 
     @ManyToOne
     @JoinColumn(name = "casa_id")
-    private Casa casaEditrice;
+    private Casa casaDiProduzione;
 
     private String descrizione;
 
@@ -32,22 +35,29 @@ public class Libro {
     @Column(name = "immagine_di_copertina")
     private String imgUrl;
 
+    // === MANY TO MANY ===
+
+    @ManyToMany(mappedBy = "libroSet")
+    private Set<Autore> autoreSet = new HashSet<>();
+
+
+
     // === CONSTRUTTORI ===
 
     public Libro() {
     }
 
-    public Libro(String titolo, int numeroPagine, Casa casaEditrice, String descrizione, String dataDiPubblicazione, int voto, String imgUrl) {
+    public Libro(String titolo, int numeroPagine, Casa casaDiProduzione, String descrizione, String dataDiPubblicazione, int voto, String imgUrl) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
-        this.casaEditrice = casaEditrice;
+        this.casaDiProduzione = casaDiProduzione;
         this.descrizione = descrizione;
         this.dataDiPubblicazione = dataDiPubblicazione;
         this.voto = voto;
         this.imgUrl = imgUrl;
     }
 
-    // === GETTER ===
+// === GETTER ===
 
     public int getLibroId() {
         return libroId;
@@ -61,8 +71,8 @@ public class Libro {
         return numeroPagine;
     }
 
-    public Casa getCasaEditrice() {
-        return casaEditrice;
+    public Casa casaDiProduzione() {
+        return casaDiProduzione;
     }
 
     public String getDescrizione() {

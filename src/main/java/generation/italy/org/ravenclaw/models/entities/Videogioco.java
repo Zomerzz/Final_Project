@@ -3,6 +3,9 @@ package generation.italy.org.ravenclaw.models.entities;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "videogiochi")
 public class Videogioco {
@@ -36,6 +39,12 @@ public class Videogioco {
 
     @Column(name = "immagine_di_copertina")
     private String imgUrl;
+
+    // === ONE TO MANY ===
+
+    @OneToMany(mappedBy = "videogioco_id")
+    private List<CrewVideogioco> crew = new ArrayList<>();
+
 
     // === COSTRUTTORI ===
 

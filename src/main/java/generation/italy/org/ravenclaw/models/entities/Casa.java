@@ -28,8 +28,8 @@ public class Casa {
     private List<Film> listaFilmProduzione=new ArrayList<>();
 
     // ===LISTE DI LIBRI===
-    @OneToMany(mappedBy = "casaEditrice" )
-    private List<Libro> listaLibriPubblicati=new ArrayList<>();
+    @OneToMany(mappedBy = "casaDiProduzione" )
+    private List<Libro> listaLibriProduzione=new ArrayList<>();
 
     // ===LISTE DI GIOCHI===
     @OneToMany(mappedBy = "casaDiPubblicazione" )
@@ -72,8 +72,8 @@ public class Casa {
         return listaFilmProduzione;
     }
 
-    public List<Libro> getListaLibriPubblicati() {
-        return listaLibriPubblicati;
+    public List<Libro> getListaLibriProdotti() {
+        return listaLibriProduzione;
     }
 
     public List<Videogioco> getListaGiochiPubblicati() {
