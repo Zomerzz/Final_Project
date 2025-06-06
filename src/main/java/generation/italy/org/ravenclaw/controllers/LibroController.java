@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/libro")
-public class LibroController {
+public class  LibroController {
     private LibroService libroService;
 
     @Autowired
