@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface AutoreService {
     Optional<Autore> findAutoreById(int id);
 
-    List<Autore> finAllAutori();
+    List<Autore> findAllAutori(); //mancava una d
 
     Autore saveAutore(Autore autore);
 
