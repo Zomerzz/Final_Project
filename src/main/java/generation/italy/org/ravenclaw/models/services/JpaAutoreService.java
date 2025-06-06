@@ -18,7 +18,7 @@ public class JpaAutoreService implements AutoreService{
     }
 
     @Override
-    public List<Autore> finAllAutori() {
+    public List<Autore> findAllAutori() { // mancava una d
         return autoreRepo.findAll();
     }
 
