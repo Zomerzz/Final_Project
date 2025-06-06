@@ -1,3 +1,24 @@
+DROP TABLE IF EXISTS public.case CASCADE;
+DROP TABLE IF EXISTS public.autori CASCADE;
+DROP TABLE IF EXISTS public.ruoli CASCADE;
+DROP TABLE IF EXISTS public.libri CASCADE;
+DROP TABLE IF EXISTS public.film CASCADE;
+DROP TABLE IF EXISTS public.videogiochi CASCADE;
+DROP TABLE IF EXISTS public.scritto_da CASCADE;
+DROP TABLE IF EXISTS public.crew_film CASCADE;
+DROP TABLE IF EXISTS public.crew_videogioco CASCADE;
+DROP TABLE IF EXISTS public.tag CASCADE;
+DROP TABLE IF EXISTS public.libri_assegnamento_tag CASCADE;
+DROP TABLE IF EXISTS public.film_assegnamento_tag CASCADE;
+DROP TABLE IF EXISTS public.videogiochi_assegnamento_tag CASCADE;
+DROP TABLE IF EXISTS public.utenti CASCADE;
+DROP TABLE IF EXISTS public.videogiochi_giocati CASCADE;
+DROP TABLE IF EXISTS public.libri_letti CASCADE;
+DROP TABLE IF EXISTS public.film_visti CASCADE;
+DROP TABLE IF EXISTS public.recensioni CASCADE;
+
+
+
 --
 -- PostgreSQL database dump
 --
