@@ -26,6 +26,8 @@ public class Film {
 
     private String descrizione;
 
+    // === MANY TO MANY ===
+
     @ManyToOne
     @JoinColumn(name = "casa_id")
     private Casa casaDiProduzione;

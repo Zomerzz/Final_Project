@@ -8,6 +8,9 @@ import java.util.List;
 @Entity
 @Table(name = "recensioni")
 public class Recensione {
+
+    // === ATTRIBUTI ===
+
     @Id
     @Column(name = "recensione_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +18,18 @@ public class Recensione {
 
     private int voto;
     private String recensione;
+
+    // === CONSTRUTTORI ===
+
+    public Recensione() {
+    }
+
+    public Recensione(int voto, String recensione) {
+        this.voto = voto;
+        this.recensione = recensione;
+    }
+
+    // === GETTERS ===
 
     public String getRecensione() {
         return recensione;
