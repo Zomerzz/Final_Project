@@ -5,10 +5,15 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "videogiochi_giocati")
 public class VideogiocoGiocato {
+
+    // === ATTRIBUTI ===
+
     @Id
     @Column(name = "videogioco_giocato_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int videogiocoGiocatoId;
+
+    // === MANY TO MANY ===
 
     @ManyToOne
     @JoinColumn( name = "videogioco_id")
@@ -18,9 +23,24 @@ public class VideogiocoGiocato {
     @JoinColumn( name = "utente_id")
     private Utente utente;
 
+    // === ONE TO MANY ===
+
     @OneToOne
     @JoinColumn( name = "recensione_id")
     private Recensione recensione;
+
+    // === CONSTRUCTOR ===
+
+    public VideogiocoGiocato() {
+    }
+
+    public VideogiocoGiocato(Videogioco videogioco, Utente utente, Recensione recensione) {
+        this.videogioco = videogioco;
+        this.utente = utente;
+        this.recensione = recensione;
+    }
+
+    // === GETTERS ===
 
     public int getVideogiocoGiocatoId() {
         return videogiocoGiocatoId;

@@ -8,6 +8,9 @@ import java.util.List;
 @Entity
 @Table(name = "utenti")
 public class Utente {
+
+    // === ATTRIBUTI ===
+
     @Id
     @Column(name = "utente_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +18,8 @@ public class Utente {
     private String nome;
     private String password;
     private String email;
+
+    // === ONE TO MANY ===
 
     @OneToMany(mappedBy = "utente_id")
     private List<VideogiocoGiocato> videogiochiGiocati = new ArrayList<>();
@@ -24,6 +29,19 @@ public class Utente {
 
     @OneToMany(mappedBy = "utente_id")
     private List<FilmVisto> filmVisti = new ArrayList<>();
+
+    // === CONSTRUCTORS ===
+
+    public Utente() {
+    }
+
+    public Utente(String nome, String password, String email) {
+        this.nome = nome;
+        this.password = password;
+        this.email = email;
+    }
+
+    // === GETTERS ===
 
     public int getUtenteId() {
         return utenteId;
