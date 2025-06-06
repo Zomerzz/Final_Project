@@ -31,7 +31,12 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public void deleteById(int id){}
+    public void deleteById(int id){
+        if(!videogiocoRepository.existsById(id)){
+            throw new EntityNotFoundException("Videogioco non trovato");
+        }
+        videogiocoRepository.deleteById(id);
+    }
 
 
     //Fare da DTO a Videogioco prima di salvare
