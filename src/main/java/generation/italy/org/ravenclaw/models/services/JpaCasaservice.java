@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class JpaCasaService implements CasaService{
+public class JpaCasaservice implements CasaService{
     private CasaRepository casaRepository;
 
-    public JpaCasaService(CasaRepository casaRepository) {
+    public JpaCasaservice(CasaRepository casaRepository) {
         this.casaRepository = casaRepository;
     }
 
