@@ -90,4 +90,10 @@ public class Libro {
     public String getImgUrl() {
         return imgUrl;
     }
+
+    // === SETTER ===
+
+    public void setCasaDiProduzione(Casa casaDiProduzione) {
+        this.casaDiProduzione = casaDiProduzione;
+    }
 }

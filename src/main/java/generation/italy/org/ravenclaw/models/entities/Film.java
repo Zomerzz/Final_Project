@@ -99,4 +99,14 @@ public class Film {
     public String getImgUrl() {
         return imgUrl;
     }
+
+    // === SETTER ===
+
+    public void setCasaDiProduzione(Casa casaDiProduzione) {
+        this.casaDiProduzione = casaDiProduzione;
+    }
+
+    public void setCasaDiPubblicazione(Casa casaDiPubblicazione) {
+        this.casaDiPubblicazione = casaDiPubblicazione;
+    }
 }
