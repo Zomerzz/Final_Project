@@ -42,7 +42,7 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public Libro updateLibro(Libro libro, int casaDiProduzioneId, int casaDiPubblicazioneId) {
+    public Libro updateLibro(Libro libro, int casaDiProduzioneId) {
         Optional<Libro> optLibro = libroRepo.findById(libro.getLibroId());
         if(optLibro.isEmpty()){
             throw new EntityNotFoundException(); //AL MOMENTO L'EXCEPTION è QUELLA DI JAKARTA

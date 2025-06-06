@@ -14,7 +14,7 @@ public interface LibroService {
 
     Libro saveLibro(Libro libro, int casaDiProduzioneId);
 
-    Libro updateLibro(Libro libro, int casaDiProduzioneId, int casaDiPubblicazioneId);
+    Libro updateLibro(Libro libro, int casaDiProduzioneId);
 
     boolean deleteLibro(int id);
 }
