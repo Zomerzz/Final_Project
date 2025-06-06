@@ -4,5 +4,17 @@ import generation.italy.org.ravenclaw.models.entities.Autore;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface AutoreService {
+    Optional<Autore> findAutoreById(int id);
+
+    List<Autore> finAllAutori();
+
+    Autore saveAutore(Autore autore);
+
+    Autore updateAutore(Autore autore);
+
+    boolean deleteAutore(int id);
 }
