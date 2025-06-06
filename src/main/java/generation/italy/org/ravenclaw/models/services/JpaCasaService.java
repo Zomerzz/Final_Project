@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class JpaCasaservice implements CasaService{
+public class JpaCasaService implements CasaService{
     private CasaRepository casaRepository;
 
-    public JpaCasaservice(CasaRepository casaRepository) {
+    public JpaCasaService(CasaRepository casaRepository) {
         this.casaRepository = casaRepository;
     }
 
@@ -28,7 +28,7 @@ public class JpaCasaservice implements CasaService{
     @Override
     public void deleteById(int id){
         if(!casaRepository.existsById(id)){
-            throw new EntityNotFoundException("Casa produttrice non trovata")
+            throw new EntityNotFoundException("Casa produttrice non trovata");
         }
         casaRepository.deleteById(id);
     }
