@@ -33,7 +33,12 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public void deleteById(int id){}
+    public void deleteById(int id){
+        if(!videogiocoRepository.existsById(id)){
+            throw new EntityNotFoundException("Videogioco non trovato");
+        }
+        videogiocoRepository.deleteById(id);
+    }
 
 
     //Fare da DTO a Videogioco prima di salvare
@@ -53,8 +58,7 @@ public class JpaVideogiocoService implements VideogiocoService{
 
     @Override
     public Videogioco updateVideogioco(Videogioco videogioco, int casaDiProduzioneId, int casaDiPubblicazioneId) {
-        videogiocoRepository.findById(videogioco.getVideogiocoId())
-                .orElseThrow(EntityNotFoundException::new);
+        videogiocoRepository.findById(videogioco.getVideogiocoId()).orElseThrow(EntityNotFoundException::new);
         return save(videogioco, casaDiProduzioneId, casaDiPubblicazioneId);
     }
 

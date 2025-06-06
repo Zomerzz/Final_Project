@@ -43,7 +43,7 @@ public class Film {
 
     // === ONE TO MANY ===
 
-    @OneToMany(mappedBy = "film_id")
+    @OneToMany(mappedBy = "film")
     private List<CrewFilm> crew = new ArrayList<>();
 
     // === COSTRUTTORI ===

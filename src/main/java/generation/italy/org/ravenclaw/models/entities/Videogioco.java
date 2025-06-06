@@ -42,7 +42,7 @@ public class Videogioco {
 
     // === ONE TO MANY ===
 
-    @OneToMany(mappedBy = "videogioco_id")
+    @OneToMany(mappedBy = "videogioco")
     private List<CrewVideogioco> crew = new ArrayList<>();
 
 
