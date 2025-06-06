@@ -99,4 +99,50 @@ public class Videogioco {
     public String getImgUrl() {
         return imgUrl;
     }
+
+
+    // === SETTER ===
+
+    public void setVideogiocoId(int videogiocoId) {
+        this.videogiocoId = videogiocoId;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
+    public void setCasaDiProduzione(Casa casaDiProduzione) {
+        this.casaDiProduzione = casaDiProduzione;
+    }
+
+    public void setCasaDiPubblicazione(Casa casaDiPubblicazione) {
+        this.casaDiPubblicazione = casaDiPubblicazione;
+    }
+
+    public void setDataDiPubblicazione(String dataDiPubblicazione) {
+        this.dataDiPubblicazione = dataDiPubblicazione;
+    }
+
+    public void setOreStoriaPrincipale(Integer oreStoriaPrincipale) {
+        this.oreStoriaPrincipale = oreStoriaPrincipale;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public void setVoto(int voto) {
+        this.voto = voto;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setCrew(List<CrewVideogioco> crew) {
+        this.crew = crew;
+    }
+
+
 }
+
