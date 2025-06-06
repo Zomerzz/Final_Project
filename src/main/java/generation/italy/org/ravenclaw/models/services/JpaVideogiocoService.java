@@ -5,6 +5,7 @@ import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.repositories.CasaRepository;
 import generation.italy.org.ravenclaw.models.repositories.VideogiocoRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class JpaVideogiocoService implements VideogiocoService{
     private VideogiocoRepository videogiocoRepository;
     private CasaRepository casaRepository;
 
+    @Autowired
     public JpaVideogiocoService(VideogiocoRepository videogiocoRepository, CasaRepository casaRepository) {
         this.videogiocoRepository = videogiocoRepository;
         this.casaRepository = casaRepository;
