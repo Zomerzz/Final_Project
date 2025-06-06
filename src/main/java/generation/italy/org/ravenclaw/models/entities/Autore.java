@@ -32,10 +32,10 @@ public class Autore {
 
     // === ONE TO MANY ===
 
-    @OneToMany(mappedBy = "autore_id")
+    @OneToMany(mappedBy = "autore")
     private List<CrewFilm> crewFilms = new ArrayList<>();
 
-    @OneToMany(mappedBy = "autore_id")
+    @OneToMany(mappedBy = "autore")
     private List<CrewVideogioco> crewVideogioco = new ArrayList<>();
 
     // === MANY TO MANY ===

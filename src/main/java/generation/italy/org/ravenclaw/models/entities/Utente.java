@@ -21,13 +21,13 @@ public class Utente {
 
     // === ONE TO MANY ===
 
-    @OneToMany(mappedBy = "utente_id")
+    @OneToMany(mappedBy = "utente")
     private List<VideogiocoGiocato> videogiochiGiocati = new ArrayList<>();
 
-    @OneToMany(mappedBy = "utente_id")
+    @OneToMany(mappedBy = "utente")
     private List<LibroLetto> libriLetti = new ArrayList<>();
 
-    @OneToMany(mappedBy = "utente_id")
+    @OneToMany(mappedBy = "utente")
     private List<FilmVisto> filmVisti = new ArrayList<>();
 
     // === CONSTRUCTORS ===

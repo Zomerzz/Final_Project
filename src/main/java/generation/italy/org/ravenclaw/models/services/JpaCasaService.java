@@ -35,6 +35,7 @@ public class JpaCasaService implements CasaService{
 
     @Override
     public Casa save(Casa casa){
+        Casa casaEsistente = casaRepository.findByNome(casa.getNome());
         return casaRepository.save(casa);
     }
 

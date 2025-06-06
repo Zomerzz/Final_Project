@@ -58,8 +58,7 @@ public class JpaVideogiocoService implements VideogiocoService{
 
     @Override
     public Videogioco updateVideogioco(Videogioco videogioco, int casaDiProduzioneId, int casaDiPubblicazioneId) {
-        videogiocoRepository.findById(videogioco.getVideogiocoId())
-                .orElseThrow(EntityNotFoundException::new);
+        videogiocoRepository.findById(videogioco.getVideogiocoId()).orElseThrow(EntityNotFoundException::new);
         return save(videogioco, casaDiProduzioneId, casaDiPubblicazioneId);
     }
 
