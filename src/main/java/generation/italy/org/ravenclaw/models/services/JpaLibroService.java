@@ -1,10 +1,11 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.DataException;
 import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.repositories.CasaRepository;
 import generation.italy.org.ravenclaw.models.repositories.LibroRepository;
-import jakarta.persistence.EntityNotFoundException;
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,38 +24,37 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public Optional<Libro> findLibroById(int id) {
+    public Optional<Libro> findLibroById(int id) throws DataException {
         return libroRepo.findById(id);
     }
 
     @Override
-    public List<Libro> findAllLibri() {
+    public List<Libro> findAllLibri() throws DataException {
         return libroRepo.findAll();
     }
 
     @Override
-    public Libro saveLibro(Libro libro, int casaEditriceId) {
-        //TODO CAMBIARE LE ECCEZIONI, AL MOMENTO SONO QUELLE DI JAKARTA
+    public Libro saveLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
         Optional<Casa> optCDPub = casaRepo.findById(casaEditriceId);
-        Casa casaDiPubblicazione = optCDPub.orElseThrow(EntityNotFoundException::new);
+        Casa casaDiPubblicazione = optCDPub.orElseThrow(() -> new EntityNotFoundException(Casa.class));
         libro.setCasaEditrice(casaDiPubblicazione);
         return libroRepo.save(libro);
     }
 
     @Override
-    public Libro updateLibro(Libro libro, int casaEditriceId) {
+    public Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
         Optional<Libro> optLibro = libroRepo.findById(libro.getLibroId());
         if(optLibro.isEmpty()){
-            throw new EntityNotFoundException(); //AL MOMENTO L'EXCEPTION è QUELLA DI JAKARTA
+            throw new EntityNotFoundException(Libro.class);
         }
         return saveLibro(libro, casaEditriceId);
     }
 
     @Override
-    public boolean deleteLibro(int id) {
+    public boolean deleteLibro(int id) throws DataException, EntityNotFoundException {
         Optional<Libro> optLibro = libroRepo.findById(id);
         if(optLibro.isEmpty()){
-            throw new EntityNotFoundException(); //AL MOMENTO L'EXCEPTION è QUELLA DI JAKARTA
+            throw new EntityNotFoundException(Libro.class);
         }
         libroRepo.deleteById(id);
         return true;
