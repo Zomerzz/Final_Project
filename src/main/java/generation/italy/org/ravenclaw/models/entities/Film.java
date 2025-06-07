@@ -33,7 +33,7 @@ public class Film {
     private Casa casaDiProduzione;
 
     @ManyToOne
-    @JoinColumn(name = "casa_id")
+    @JoinColumn(name = "casa_di_pubblicazione")
     private Casa casaDiPubblicazione;
 
     private int voto;
