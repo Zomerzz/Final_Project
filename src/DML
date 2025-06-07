@@ -77,17 +77,19 @@ INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES
   (10, 10, 'Terribile. Evitatelo a tutti i costi.');
 
 -- 7. Popola i film ("film")
-INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione_id, descrizione, casa_di_produzione, anno_di_pubblicazione_id, voto, immagine_di_copertina) VALUES
-  (1, 'Inception', 148, '2010-07-16', 'Un thriller che piega la mente sui sogni dentro i sogni.', 1, '2010-07-16', 92, 'http://example.com/inception.jpg'),
-  (2, 'Il Padrino', 175, '1972-03-24', 'Il patriarca di un impero criminale passa il controllo al figlio riluttante.', 7, '1972-03-24', 98, 'http://example.com/godfather.jpg'),
-  (3, 'Pulp Fiction', 154, '1994-10-14', 'Le vite di due sicari, un pugile e altri si intrecciano in una serie di eventi violenti.', 4, '1994-10-14', 94, 'http://example.com/pulpfiction.jpg'),
-  (4, 'Il Cavaliere Oscuro', 152, '2008-07-18', 'Batman alza la posta nella sua guerra contro il crimine.', 1, '2008-07-18', 94, 'http://example.com/darkknight.jpg'),
-  (5, 'Fight Club', 139, '1999-10-15', 'Un impiegato insonne forma un club di combattimento sotterraneo.', 4, '1999-10-15', 89, 'http://example.com/fightclub.jpg'),
-  (6, 'Forrest Gump', 142, '1994-07-06', 'Le presidenze di Kennedy e Johnson raccontate attraverso gli occhi di un uomo con un QI basso.', 7, '1994-07-06', 88, 'http://example.com/forrestgump.jpg'),
-  (7, 'Matrix', 136, '1999-03-31', 'Un hacker scopre che la realtà è una simulazione.', 1, '1999-03-31', 92, 'http://example.com/matrix.jpg'),
-  (8, 'Interstellar', 169, '2014-11-07', 'Esploratori attraversano un wormhole nello spazio per salvare l’umanità.', 1, '2014-11-07', 91, 'http://example.com/interstellar.jpg'),
-  (9, 'Il Gladiatore', 155, '2000-05-05', 'Un ex generale romano cerca vendetta contro l’imperatore corrotto.', 7, '2000-05-05', 87, 'http://example.com/gladiator.jpg'),
-  (10, 'Le Ali della Libertà', 142, '1994-09-23', 'Due prigionieri stringono un legame nel corso di molti anni.', 7, '1994-09-23', 98, 'http://example.com/shawshank.jpg');
+INSERT INTO public.film (
+  film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id
+) VALUES
+  (1, 'Inception', 148, '2010-07-16', 'Un thriller che piega la mente sui sogni dentro i sogni.', 1, 92, 'http://example.com/inception.jpg', 1),
+  (2, 'Il Padrino', 175, '1972-03-24', 'Il patriarca di un impero criminale passa il controllo al figlio riluttante.', 7, 98, 'http://example.com/godfather.jpg', 7),
+  (3, 'Pulp Fiction', 154, '1994-10-14', 'Le vite di due sicari, un pugile e altri si intrecciano in una serie di eventi violenti.', 4, 94, 'http://example.com/pulpfiction.jpg', 4),
+  (4, 'Il Cavaliere Oscuro', 152, '2008-07-18', 'Batman alza la posta nella sua guerra contro il crimine.', 1, 94, 'http://example.com/darkknight.jpg', 1),
+  (5, 'Fight Club', 139, '1999-10-15', 'Un impiegato insonne forma un club di combattimento sotterraneo.', 4, 89, 'http://example.com/fightclub.jpg', 4),
+  (6, 'Forrest Gump', 142, '1994-07-06', 'Le presidenze di Kennedy e Johnson raccontate attraverso gli occhi di un uomo con un QI basso.', 7, 88, 'http://example.com/forrestgump.jpg', 7),
+  (7, 'Matrix', 136, '1999-03-31', 'Un hacker scopre che la realtà è una simulazione.', 1, 92, 'http://example.com/matrix.jpg', 1),
+  (8, 'Interstellar', 169, '2014-11-07', 'Esploratori attraversano un wormhole nello spazio per salvare l’umanità.', 1, 91, 'http://example.com/interstellar.jpg', 1),
+  (9, 'Il Gladiatore', 155, '2000-05-05', 'Un ex generale romano cerca vendetta contro l’imperatore corrotto.', 7, 87, 'http://example.com/gladiator.jpg', 7),
+  (10, 'Le Ali della Libertà', 142, '1994-09-23', 'Due prigionieri stringono un legame nel corso di molti anni.', 7, 98, 'http://example.com/shawshank.jpg', 7);
 
 -- 8. Popola i libri ("libri")
 INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES
@@ -103,7 +105,7 @@ INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, 
   (10, 'Orgoglio e Pregiudizio', 279, 8, 'Le maniere e le macchinazioni matrimoniali tra la nobiltà inglese.', '1813-01-28', 96, 'http://example.com/prideprejudice.jpg');
 
 -- 9. Popola i videogiochi ("videogiochi")
-INSERT INTO public.videogiochi (videogioco_id, titolo, casa_produttrice, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES
   (1, 'The Witcher 3: Wild Hunt', 9, 9, '2015-05-19', '50+', 'Geralt di Rivia intraprende un viaggio per trovare sua figlia adottiva.', 97, 'http://example.com/witcher3.jpg'),
   (2, 'Super Mario Bros.', 6, 6, '1985-09-13', '10', 'Mario deve salvare la Principessa Peach da Bowser.', 90, 'http://example.com/mariobros.jpg'),
   (3, 'Assassin’s Creed II', 9, 9, '2009-11-17', '20', 'Ezio Auditore diventa un assassino nel Rinascimento italiano.', 89, 'http://example.com/ac2.jpg'),
