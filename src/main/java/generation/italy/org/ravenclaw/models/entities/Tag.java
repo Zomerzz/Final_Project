@@ -13,6 +13,7 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tagId;
 
+    @Column(name = "tag_name")
     private String nome;
 
     @Column(name = "genere")

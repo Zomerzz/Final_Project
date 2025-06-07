@@ -20,14 +20,15 @@ public class Videogioco {
     private String titolo;
 
     @ManyToOne
-    @JoinColumn(name = "casa_id")
+    @JoinColumn(name = "casa_produttrice")
     private Casa casaDiProduzione;
 
     @ManyToOne
     @JoinColumn(name = "casa_id")
     private Casa casaDiPubblicazione;
 
-    @Column(name = "data_di_pubblicazione")
+    //LASCIO IL TYPO NEL NOME DELLA COLONNA PER FARLO MATCHARE CON IL DATABASE
+    @Column(name = "data_di_publicazione")
     private String dataDiPubblicazione;
 
     @Column(name = "ore_storia_principale")

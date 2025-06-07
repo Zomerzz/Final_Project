@@ -22,12 +22,12 @@ public class Libro {
     private int numeroPagine;
 
     @ManyToOne
-    @JoinColumn(name = "casa_id")
+    @JoinColumn(name = "casa_produttrice_id")
     private Casa casaDiProduzione;
 
     private String descrizione;
 
-    @Column(name = "data_di_pubblicazione")
+    @Column(name = "anno_di_pubblicazione")
     private String dataDiPubblicazione;
 
     private int voto;

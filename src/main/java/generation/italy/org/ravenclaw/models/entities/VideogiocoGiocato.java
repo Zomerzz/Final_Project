@@ -15,8 +15,9 @@ public class VideogiocoGiocato {
 
     // === MANY TO MANY ===
 
+    //LASCIO IL TYPO NEL NOME DELLA COLONNA PER FARLO MATCHARE CON IL DATABASE
     @ManyToOne
-    @JoinColumn( name = "videogioco_id")
+    @JoinColumn( name = "videogioco_id<")
     private Videogioco videogioco;
 
     @ManyToOne
