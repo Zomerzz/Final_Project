@@ -8,16 +8,16 @@ public class VideogiocoGiocato {
 
     // === ATTRIBUTI ===
 
+    //LASCIO IL TYPO NEL NOME DELLA COLONNA PER FARLO MATCHARE CON IL DATABASE
     @Id
-    @Column(name = "videogioco_giocato_id")
+    @Column(name = "videogioco_giocato_id<")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int videogiocoGiocatoId;
 
     // === MANY TO MANY ===
 
-    //LASCIO IL TYPO NEL NOME DELLA COLONNA PER FARLO MATCHARE CON IL DATABASE
     @ManyToOne
-    @JoinColumn( name = "videogioco_id<")
+    @JoinColumn( name = "videogioco_id")
     private Videogioco videogioco;
 
     @ManyToOne
