@@ -1,5 +1,5 @@
 -- 1. Popola le case di produzione ("case")
-INSERT INTO public."case" (casa_id, nome, nazionalita) VALUES
+INSERT INTO public."case_p" (casa_id, nome, nazionalita) VALUES
   (1, 'Warner Bros.', 'USA'),
   (2, 'Penguin Books', 'Regno Unito'),
   (3, 'Electronic Arts', 'USA'),
@@ -77,7 +77,7 @@ INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES
   (10, 10, 'Terribile. Evitatelo a tutti i costi.');
 
 -- 7. Popola i film ("film")
-INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione_id, descrizione, casa_di_produzione, anno_di_pubblicazione_id, voto, immagine_di_copertina) VALUES
   (1, 'Inception', 148, '2010-07-16', 'Un thriller che piega la mente sui sogni dentro i sogni.', 1, '2010-07-16', 92, 'http://example.com/inception.jpg'),
   (2, 'Il Padrino', 175, '1972-03-24', 'Il patriarca di un impero criminale passa il controllo al figlio riluttante.', 7, '1972-03-24', 98, 'http://example.com/godfather.jpg'),
   (3, 'Pulp Fiction', 154, '1994-10-14', 'Le vite di due sicari, un pugile e altri si intrecciano in una serie di eventi violenti.', 4, '1994-10-14', 94, 'http://example.com/pulpfiction.jpg'),
@@ -90,7 +90,7 @@ INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descriz
   (10, 'Le Ali della Libertà', 142, '1994-09-23', 'Due prigionieri stringono un legame nel corso di molti anni.', 7, '1994-09-23', 98, 'http://example.com/shawshank.jpg');
 
 -- 8. Popola i libri ("libri")
-INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_produttrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES
   (1, 'Harry Potter e la Pietra Filosofale', 309, 2, 'Un giovane mago scopre il suo retaggio magico.', '1997-06-26', 95, 'http://example.com/hp1.jpg'),
   (2, 'Shining', 447, 5, 'Una famiglia si dirige in un hotel isolato per l’inverno dove una presenza sinistra influenza il padre.', '1977-01-28', 88, 'http://example.com/shining.jpg'),
   (3, 'Il Trono di Spade', 694, 8, 'Famiglie nobili gareggiano per il controllo del Trono di Spade.', '1996-08-06', 92, 'http://example.com/got1.jpg'),
@@ -103,7 +103,7 @@ INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_produttrice_i
   (10, 'Orgoglio e Pregiudizio', 279, 8, 'Le maniere e le macchinazioni matrimoniali tra la nobiltà inglese.', '1813-01-28', 96, 'http://example.com/prideprejudice.jpg');
 
 -- 9. Popola i videogiochi ("videogiochi")
-INSERT INTO public.videogiochi (videogioco_id, titolo, casa_produttrice, casa_di_pubblicazione, data_di_publicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_produttrice, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES
   (1, 'The Witcher 3: Wild Hunt', 9, 9, '2015-05-19', '50+', 'Geralt di Rivia intraprende un viaggio per trovare sua figlia adottiva.', 97, 'http://example.com/witcher3.jpg'),
   (2, 'Super Mario Bros.', 6, 6, '1985-09-13', '10', 'Mario deve salvare la Principessa Peach da Bowser.', 90, 'http://example.com/mariobros.jpg'),
   (3, 'Assassin’s Creed II', 9, 9, '2009-11-17', '20', 'Ezio Auditore diventa un assassino nel Rinascimento italiano.', 89, 'http://example.com/ac2.jpg'),
@@ -220,7 +220,7 @@ INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_
   (10, 10, 10, 10);
 
 -- 18. Popola videogiochi giocati ("videogiochi_giocati")
-INSERT INTO public.videogiochi_giocati ("videogioco_giocato_id<", videogioco_id, utente_id, recensione_id) VALUES
+INSERT INTO public.videogiochi_giocati ("videogioco_giocato_id", videogioco_id, utente_id, recensione_id) VALUES
   (1, 1, 1, 1),
   (2, 2, 2, 2),
   (3, 3, 3, 3),
