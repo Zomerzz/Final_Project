@@ -70,5 +70,7 @@ public class AutoreController {
         Autore autore = autoreService.updateAutore(optionalAutore.get());
         return ResponseEntity.ok(AutoreDto.toDto(autore));
     }
+
+
 }
 

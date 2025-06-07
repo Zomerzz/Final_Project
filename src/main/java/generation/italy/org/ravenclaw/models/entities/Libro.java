@@ -2,6 +2,7 @@ package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,7 +29,7 @@ public class Libro {
     private String descrizione;
 
     @Column(name = "anno_di_pubblicazione")
-    private String dataDiPubblicazione;
+    private LocalDate dataDiPubblicazione;
 
     private int voto;
 
@@ -47,7 +48,7 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(String titolo, int numeroPagine, Casa casaEditrice, String descrizione, String dataDiPubblicazione, int voto, String imgUrl) {
+    public Libro(String titolo, int numeroPagine, Casa casaEditrice, String descrizione, LocalDate dataDiPubblicazione, int voto, String imgUrl) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
         this.casaEditrice = casaEditrice;
@@ -79,7 +80,7 @@ public class Libro {
         return descrizione;
     }
 
-    public String getDataDiPubblicazione() {
+    public LocalDate getDataDiPubblicazione() {
         return dataDiPubblicazione;
     }
 

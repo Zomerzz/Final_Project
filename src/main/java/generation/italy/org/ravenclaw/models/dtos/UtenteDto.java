@@ -4,13 +4,13 @@ package generation.italy.org.ravenclaw.models.dtos;
 import generation.italy.org.ravenclaw.models.entities.Utente;
 
 public class UtenteDto {
-    private int utenteId;
+    private int id;
     private String nome;
     private String password;
     private String email;
 
-    public UtenteDto(int utenteId, String nome, String password, String email) {
-        this.utenteId = utenteId;
+    public UtenteDto(int id, String nome, String password, String email) {
+        this.id = id;
         this.nome = nome;
         this.password = password;
         this.email = email;
@@ -24,12 +24,12 @@ public class UtenteDto {
         return new UtenteDto(u.getUtenteId(), u.getNome(), u.getPassword(), u.getEmail());
     }
 
-    public int getUtenteId() {
-        return utenteId;
+    public int getId() {
+        return id;
     }
 
-    public void setUtenteId(int utenteId) {
-        this.utenteId = utenteId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -56,3 +56,4 @@ public class UtenteDto {
         this.email = email;
     }
 }
+

@@ -1,12 +1,9 @@
 package generation.italy.org.ravenclaw.controllers;
 
-import generation.italy.org.ravenclaw.models.dtos.AutoreDto;
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.UtenteDto;
 import generation.italy.org.ravenclaw.models.entities.Utente;
-import generation.italy.org.ravenclaw.models.services.TagService;
 import generation.italy.org.ravenclaw.models.services.UtenteService;
-import jakarta.persistence.EntityNotFoundException;
-import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,22 +24,30 @@ public class UtenteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Utente>> searchUtenti(){
+    public ResponseEntity<List<UtenteDto>> searchUtenti() throws EntityNotFoundException {
         List<Utente> utenti = utenteService.findAllUtenti();
-        return ResponseEntity.ok(utenti);
+        if (utenti.isEmpty()) {
+            throw new EntityNotFoundException(utenti.getClass());
+        }
+        List<UtenteDto> utentiDto = utenti.stream().map(UtenteDto::toDto).toList();
+        return ResponseEntity.ok(utentiDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> searchById(@PathVariable int id){
+    public ResponseEntity<?> searchById(@PathVariable int id) throws EntityNotFoundException{
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
-        if(utenteOpt.isEmpty()){
-            return ResponseEntity.notFound().build();
+        if(utenteOpt.isEmpty()) {
+            throw new EntityNotFoundException(Utente.class);
         }
         return ResponseEntity.ok(UtenteDto.toDto(utenteOpt.get()));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id){
+    public ResponseEntity<Void> deleteById(@PathVariable int id) throws EntityNotFoundException{
+        Optional<Utente> optUtente = utenteService.findUtenteById(id);
+        if(optUtente.isEmpty()){
+            throw new EntityNotFoundException(Utente.class);
+        }
         boolean deleted = utenteService.deleteUtente(id);
         if(!deleted){
             return ResponseEntity.notFound().build();
@@ -58,19 +63,19 @@ public class UtenteController {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newDto.getUtenteId() )
+                .buildAndExpand(newDto.getId() )
                 .toUri();
 
         return ResponseEntity.created(location).body(newDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUtente(@PathVariable int id , @RequestBody UtenteDto utenteDto){
+    public ResponseEntity<?> updateUtente(@PathVariable int id , @RequestBody UtenteDto utenteDto) throws EntityNotFoundException {
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
         if(utenteOpt.isEmpty()){
-            ResponseEntity.notFound();
+            ResponseEntity.badRequest().body("L'id non corrisponde a nessun utente");
         }
-        if(id != utenteDto.getUtenteId()){
+        if(id != utenteDto.getId()){
             ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
         }
         Utente utente = utenteService.updateUtente(utenteOpt.get());
@@ -78,4 +83,3 @@ public class UtenteController {
     }
 
 }
-
