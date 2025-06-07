@@ -4,7 +4,7 @@ export interface Libro {
     id:number;
     titolo:string;
     numeroDiPagine:number;
-    casaDiProduzione:Casa;
+    casaDiProduzioneId:number;
     descrizione:string;
     annoDiPubblicazione:string;
     voto:number;

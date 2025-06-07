@@ -6,7 +6,7 @@ export interface Film {
     durata:number;
     dataDiPubblicazione:string;
     descrizione:string;
-    casaDiProduzione:Casa;
+    casaDiProduzioneId:number;
     annoDiPubblicazione:string;
     voto:number;
     imgUrl:string;
