@@ -118,17 +118,17 @@ INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, ca
   (10, 'Fortnite', 3, 3, '2017-07-21', '∞', 'Gioco Battle Royale con meccaniche di costruzione.', 75, 'http://example.com/fortnite.jpg');
 
 -- 10. Popola la scrittura dei libri ("scritto_da")
-INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id, autore_primario) VALUES
-  (1, 1, 1, TRUE),
-  (2, 2, 2, TRUE),
-  (3, 3, 3, TRUE),
-  (4, 4, 4, TRUE),
-  (5, 5, 5, TRUE),
-  (6, 6, 6, TRUE),
-  (7, 7, 7, TRUE),
-  (8, 8, 8, TRUE),
-  (9, 9, 9, TRUE),
-  (10, 10, 10, TRUE);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES
+  (1, 1, 1),
+  (2, 2, 2),
+  (3, 3, 3),
+  (4, 4, 4),
+  (5, 5, 5),
+  (6, 6, 6),
+  (7, 7, 7),
+  (8, 8, 8),
+  (9, 9, 9),
+  (10, 10, 10);
 
 -- 11. Popola il cast dei film ("crew_film") — **crew_id unici**
 INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES
