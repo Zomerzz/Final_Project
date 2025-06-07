@@ -23,6 +23,7 @@ public class AutoreDto {
     public Autore toAutore(){
         return new Autore(nome,secondoNome,cognome,dataDiNascita,nationalita);
     }
+
     static public AutoreDto toDto(Autore a){
         return new AutoreDto(a.getAutoreId(), a.getNome(), a.getSecondoNome(),a.getCognome(), a.getDataDiNascita(), a.getNazionalita());
     }
