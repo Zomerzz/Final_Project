@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "case")
+@Table(name = "case_p")
 public class Casa {
 
     //=== ATTRIBUTI ===
@@ -28,7 +28,7 @@ public class Casa {
     private List<Film> listaFilmProduzione=new ArrayList<>();
 
     // ===LISTE DI LIBRI===
-    @OneToMany(mappedBy = "casaDiProduzione" )
+    @OneToMany(mappedBy = "casaEditrice" )
     private List<Libro> listaLibriProduzione=new ArrayList<>();
 
     // ===LISTE DI GIOCHI===

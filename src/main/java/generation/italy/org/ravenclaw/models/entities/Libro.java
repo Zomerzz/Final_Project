@@ -22,8 +22,8 @@ public class Libro {
     private int numeroPagine;
 
     @ManyToOne
-    @JoinColumn(name = "casa_produttrice_id")
-    private Casa casaDiProduzione;
+    @JoinColumn(name = "casa_editrice_id")
+    private Casa casaEditrice;
 
     private String descrizione;
 
@@ -47,10 +47,10 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(String titolo, int numeroPagine, Casa casaDiProduzione, String descrizione, String dataDiPubblicazione, int voto, String imgUrl) {
+    public Libro(String titolo, int numeroPagine, Casa casaEditrice, String descrizione, String dataDiPubblicazione, int voto, String imgUrl) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
-        this.casaDiProduzione = casaDiProduzione;
+        this.casaEditrice = casaEditrice;
         this.descrizione = descrizione;
         this.dataDiPubblicazione = dataDiPubblicazione;
         this.voto = voto;
@@ -72,7 +72,7 @@ public class Libro {
     }
 
     public Casa casaDiProduzione() {
-        return casaDiProduzione;
+        return casaEditrice;
     }
 
     public String getDescrizione() {
@@ -93,7 +93,7 @@ public class Libro {
 
     // === SETTER ===
 
-    public void setCasaDiProduzione(Casa casaDiProduzione) {
-        this.casaDiProduzione = casaDiProduzione;
+    public void setCasaEditrice(Casa casaEditrice) {
+        this.casaEditrice = casaEditrice;
     }
 }

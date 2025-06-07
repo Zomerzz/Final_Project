@@ -8,9 +8,8 @@ public class VideogiocoGiocato {
 
     // === ATTRIBUTI ===
 
-    //LASCIO IL TYPO NEL NOME DELLA COLONNA PER FARLO MATCHARE CON IL DATABASE
     @Id
-    @Column(name = "videogioco_giocato_id<")
+    @Column(name = "videogioco_giocato_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int videogiocoGiocatoId;
 

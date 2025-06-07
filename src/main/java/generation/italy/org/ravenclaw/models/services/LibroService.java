@@ -12,9 +12,9 @@ public interface LibroService {
 
     List<Libro> findAllLibri();
 
-    Libro saveLibro(Libro libro, int casaDiProduzioneId);
+    Libro saveLibro(Libro libro, int casaEditriceId);
 
-    Libro updateLibro(Libro libro, int casaDiProduzioneId);
+    Libro updateLibro(Libro libro, int casaEditriceId);
 
     boolean deleteLibro(int id);
 }

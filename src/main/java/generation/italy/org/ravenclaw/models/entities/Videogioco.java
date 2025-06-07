@@ -27,8 +27,7 @@ public class Videogioco {
     @JoinColumn(name = "casa_id")
     private Casa casaDiPubblicazione;
 
-    //LASCIO IL TYPO NEL NOME DELLA COLONNA PER FARLO MATCHARE CON IL DATABASE
-    @Column(name = "data_di_publicazione")
+    @Column(name = "data_di_pubblicazione")
     private String dataDiPubblicazione;
 
     @Column(name = "ore_storia_principale")

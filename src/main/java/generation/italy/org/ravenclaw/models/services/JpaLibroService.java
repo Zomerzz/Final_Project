@@ -33,21 +33,21 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public Libro saveLibro(Libro libro, int casaDiProduzioneId) {
+    public Libro saveLibro(Libro libro, int casaEditriceId) {
         //TODO CAMBIARE LE ECCEZIONI, AL MOMENTO SONO QUELLE DI JAKARTA
-        Optional<Casa> optCDPub = casaRepo.findById(casaDiProduzioneId);
+        Optional<Casa> optCDPub = casaRepo.findById(casaEditriceId);
         Casa casaDiPubblicazione = optCDPub.orElseThrow(EntityNotFoundException::new);
-        libro.setCasaDiProduzione(casaDiPubblicazione);
+        libro.setCasaEditrice(casaDiPubblicazione);
         return libroRepo.save(libro);
     }
 
     @Override
-    public Libro updateLibro(Libro libro, int casaDiProduzioneId) {
+    public Libro updateLibro(Libro libro, int casaEditriceId) {
         Optional<Libro> optLibro = libroRepo.findById(libro.getLibroId());
         if(optLibro.isEmpty()){
             throw new EntityNotFoundException(); //AL MOMENTO L'EXCEPTION è QUELLA DI JAKARTA
         }
-        return saveLibro(libro, casaDiProduzioneId);
+        return saveLibro(libro, casaEditriceId);
     }
 
     @Override

@@ -29,11 +29,11 @@ public class Film {
     // === MANY TO MANY ===
 
     @ManyToOne
-    @JoinColumn(name = "casa_di_produzione")
+    @JoinColumn(name = "casa_di_produzione_id")
     private Casa casaDiProduzione;
 
     @ManyToOne
-    @JoinColumn(name = "casa_di_pubblicazione")
+    @JoinColumn(name = "casa_di_pubblicazione_id")
     private Casa casaDiPubblicazione;
 
     private int voto;
