@@ -1,10 +1,21 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.DataException;
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+import generation.italy.org.ravenclaw.models.dtos.LibroDto;
+import generation.italy.org.ravenclaw.models.entities.Libro;
+import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.FilmService;
 import generation.italy.org.ravenclaw.models.services.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/libro")
@@ -14,5 +25,63 @@ public class  LibroController {
     @Autowired
     public LibroController(LibroService libroService){
         this.libroService = libroService;
+    }
+
+    //DEVO AGGIUNGERE lo status NOTFOUND o al max torna la lista vuota?
+    @GetMapping
+    public ResponseEntity<List<LibroDto>> searchLibri(@RequestParam(required = false) String titolo,
+                                                      @RequestParam(required = false) Integer numeroPagine,
+                                                      @RequestParam(required = false) Integer autoreId,
+                                                      @RequestParam(required = false) String autoreNome,
+                                                      @RequestParam(required = false) Integer casaEditriceId,
+                                                      @RequestParam(required = false) Date minData,
+                                                      @RequestParam(required = false) Date maxData,
+                                                      @RequestParam(required = false) Integer minVoto,
+                                                      @RequestParam(required = false) Integer maxVoto) {
+        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreId, autoreNome, casaEditriceId, minData, maxData, minVoto, maxVoto);
+        List<Libro> libri = libroService.searchProducts(lfc);
+        return ResponseEntity.ok(libri.stream().map(LibroDto::toDto).toList());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> searchById(@PathVariable Integer id) throws DataException {
+        Optional<Libro> opt = libroService.findLibroById(id);
+        return opt.map(libro -> ResponseEntity.ok().body(LibroDto.toDto(libro)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<URI> createLibro(@RequestBody LibroDto libroDto) throws DataException, EntityNotFoundException {
+        Libro libro = libroDto.toLibro();
+        Libro newLibro = libroService.saveLibro(libro, libroDto.getCasaEditriceId());
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newLibro.getLibroId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateLibro(@PathVariable int id, @RequestBody LibroDto updatedDto) throws DataException, EntityNotFoundException {
+        if(id != updatedDto.getLibroId()){
+            return ResponseEntity.badRequest().body("Id del path e Id del dto non corrispondono");
+        }
+        Optional<Libro> opt = libroService.findLibroById(id);
+        if (opt.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        Libro updatedLibro = libroService.updateLibro(opt.get(), updatedDto.getCasaEditriceId());
+        return ResponseEntity.ok(LibroDto.toDto(updatedLibro));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Integer id) throws DataException, EntityNotFoundException {
+        Optional<Libro> opt = libroService.findLibroById(id);
+        if(opt.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        libroService.deleteLibro(id);
+        return ResponseEntity.noContent().build();
     }
 }
