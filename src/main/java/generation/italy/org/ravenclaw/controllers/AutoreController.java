@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.AutoreDto;
 import generation.italy.org.ravenclaw.models.entities.Autore;
 import generation.italy.org.ravenclaw.models.services.AutoreService;
@@ -23,8 +24,12 @@ public class AutoreController {
     public AutoreController(AutoreService autoreService){
         this.autoreService = autoreService;
     }
-    public ResponseEntity<List<AutoreDto>> searchAutore(){//manca da lanciare errore
+    @GetMapping
+    public ResponseEntity<List<AutoreDto>> searchAutori() throws EntityNotFoundException {
         List<Autore> autori = autoreService.findAllAutori();
+        if(autori.isEmpty()){
+            throw new EntityNotFoundException(autori.getClass());
+        }
         List<AutoreDto> autoriDto = autori.stream().map(AutoreDto::toDto).toList();
         return ResponseEntity.ok(autoriDto);
     }
@@ -38,7 +43,11 @@ public class AutoreController {
 
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable int id){//manca da lanciare errore
+    public ResponseEntity<?> deleteById(@PathVariable int id) throws EntityNotFoundException {
+        Optional<Autore> optUtente = autoreService.findAutoreById(id);
+        if(optUtente.isEmpty()){
+            throw new EntityNotFoundException(Autore.class);
+        }
         boolean deleted = autoreService.deleteAutore(id);
         if(deleted){
             return ResponseEntity.noContent().build();
@@ -46,7 +55,7 @@ public class AutoreController {
         return ResponseEntity.notFound().build();
     }
     @PostMapping
-    public ResponseEntity<AutoreDto> createAutore(@RequestBody AutoreDto autoreDto){//manca da lanciare errore
+    public ResponseEntity<AutoreDto> createAutore(@RequestBody AutoreDto autoreDto){
         Autore autore = autoreDto.toAutore();
         Autore newAut = autoreService.saveAutore(autore);
         AutoreDto newAutoreDto = AutoreDto.toDto(newAut);
@@ -59,16 +68,16 @@ public class AutoreController {
         return ResponseEntity.created(location).body(newAutoreDto);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAutore(@PathVariable int id , @RequestBody AutoreDto autoreDto){//manca da lanciare errore
+    public ResponseEntity<?> updateAutore(@PathVariable int id , @RequestBody AutoreDto autoreDto)  {
         Optional<Autore> optionalAutore = autoreService.findAutoreById(id);
         if(optionalAutore.isEmpty()){
-            ResponseEntity.notFound();
+            return ResponseEntity.badRequest().body("L'id non corrisponde a nessun autore");
         }
         if(id != autoreDto.getId()){
-            ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
+            return ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
         }
         Autore autore = autoreService.updateAutore(optionalAutore.get());
-        return ResponseEntity.ok(AutoreDto.toDto(autore));
+        return ResponseEntity.ok(autoreDto);
     }
 
 
