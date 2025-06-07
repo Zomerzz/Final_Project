@@ -1,11 +1,10 @@
 package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
+import org.springframework.cglib.core.Local;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 @Entity
 @Table (name = "film")
@@ -22,7 +21,7 @@ public class Film {
 
     private int durata;
     @Column(name = "data_di_pubblicazione")
-    private String dataDiPubblicazione;
+    private LocalDate dataDiPubblicazione;
 
     private String descrizione;
 
@@ -51,7 +50,7 @@ public class Film {
     public Film() {
     }
 
-    public Film(String titolo, int durata, String dataDiPubblicazione, String descrizione, Casa casaDiProduzione, Casa casaDiPubblicazione, int voto, String imgUrl) {
+    public Film(String titolo, int durata, LocalDate dataDiPubblicazione, String descrizione, Casa casaDiProduzione, Casa casaDiPubblicazione, int voto, String imgUrl) {
         this.titolo = titolo;
         this.durata = durata;
         this.dataDiPubblicazione = dataDiPubblicazione;
@@ -76,7 +75,7 @@ public class Film {
         return durata;
     }
 
-    public String getDataDiPubblicazione() {
+    public LocalDate getDataDiPubblicazione() {
         return dataDiPubblicazione;
     }
 

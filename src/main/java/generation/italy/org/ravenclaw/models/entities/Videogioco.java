@@ -3,6 +3,7 @@ package generation.italy.org.ravenclaw.models.entities;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,18 +21,18 @@ public class Videogioco {
     private String titolo;
 
     @ManyToOne
-    @JoinColumn(name = "casa_produttrice")
+    @JoinColumn(name = "casa_di_produzione_id")
     private Casa casaDiProduzione;
 
     @ManyToOne
-    @JoinColumn(name = "casa_id")
+    @JoinColumn(name = "casa_di_pubblicazione_id")
     private Casa casaDiPubblicazione;
 
     @Column(name = "data_di_pubblicazione")
-    private String dataDiPubblicazione;
+    private LocalDate dataDiPubblicazione;
 
     @Column(name = "ore_storia_principale")
-    private Integer oreStoriaPrincipale;
+    private String oreStoriaPrincipale;
 
     private String descrizione;
 
@@ -51,7 +52,7 @@ public class Videogioco {
     public Videogioco() {
     }
 
-    public Videogioco(String titolo, Casa casaDiProduzione, Casa casaDiPubblicazione, String dataDiPubblicazione, Integer oreStoriaPrincipale, String descrizione, int voto, String imgUrl) {
+    public Videogioco(String titolo, Casa casaDiProduzione, Casa casaDiPubblicazione, LocalDate dataDiPubblicazione, String oreStoriaPrincipale, String descrizione, int voto, String imgUrl) {
         this.titolo = titolo;
         this.casaDiProduzione = casaDiProduzione;
         this.casaDiPubblicazione = casaDiPubblicazione;
@@ -80,11 +81,11 @@ public class Videogioco {
         return casaDiPubblicazione;
     }
 
-    public String getDataDiPubblicazione() {
+    public LocalDate getDataDiPubblicazione() {
         return dataDiPubblicazione;
     }
 
-    public Integer getOreStoriaPrincipale() {
+    public String getOreStoriaPrincipale() {
         return oreStoriaPrincipale;
     }
 
@@ -119,11 +120,11 @@ public class Videogioco {
         this.casaDiPubblicazione = casaDiPubblicazione;
     }
 
-    public void setDataDiPubblicazione(String dataDiPubblicazione) {
+    public void setDataDiPubblicazione(LocalDate dataDiPubblicazione) {
         this.dataDiPubblicazione = dataDiPubblicazione;
     }
 
-    public void setOreStoriaPrincipale(Integer oreStoriaPrincipale) {
+    public void setOreStoriaPrincipale(String oreStoriaPrincipale) {
         this.oreStoriaPrincipale = oreStoriaPrincipale;
     }
 
