@@ -2,15 +2,17 @@ package generation.italy.org.ravenclaw.models.dtos;
 
 import generation.italy.org.ravenclaw.models.entities.Autore;
 
+import java.time.LocalDate;
+
 public class AutoreDto {
     private int id;
     private String nome;
     private String secondoNome;
     private String cognome;
-    private String dataDiNascita;
+    private LocalDate dataDiNascita;
     private String nationalita;
 
-    public AutoreDto(int id, String nome, String secondoNome, String cognome, String dataDiNascita, String nazionalita){
+    public AutoreDto(int id, String nome, String secondoNome, String cognome, LocalDate dataDiNascita, String nazionalita){
         this.id = id;
         this.nome = nome;
         this.secondoNome = secondoNome;
@@ -57,11 +59,11 @@ public class AutoreDto {
         this.cognome = cognome;
     }
 
-    public String getDataDiNascita() {
+    public LocalDate getDataDiNascita() {
         return dataDiNascita;
     }
 
-    public void setDataDiNascita(String dataDiNascita) {
+    public void setDataDiNascita(LocalDate dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
     }
 

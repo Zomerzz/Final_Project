@@ -2,6 +2,7 @@ package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Autore {
     private String cognome;
 
     @Column(name = "data_di_nascita")
-    private String dataDiNascita;
+    private LocalDate dataDiNascita;
 
     private String nazionalita;
 
@@ -53,7 +54,7 @@ public class Autore {
     public Autore() {
     }
 
-    public Autore(String nome, String secondoNome, String cognome, String dataDiNascita, String nazionalita) {
+    public Autore(String nome, String secondoNome, String cognome, LocalDate dataDiNascita, String nazionalita) {
         this.nome = nome;
         this.secondoNome = secondoNome;
         this.cognome = cognome;
@@ -79,7 +80,7 @@ public class Autore {
         return cognome;
     }
 
-    public String getDataDiNascita() {
+    public LocalDate getDataDiNascita() {
         return dataDiNascita;
     }
 
