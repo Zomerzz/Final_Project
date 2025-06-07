@@ -9,12 +9,8 @@ import java.util.Optional;
 
 public interface FilmService {
     Optional<Film> findFilmById(int id);
-
     List<Film> findAllFilms();
-
-    Film saveFilm(Film film, int casaDiProduzioneId, int casaDiPubblicazioneId);
-
-    Film updateFilm(Film film, int casaDiProduzioneId, int casaDiPubblicazioneId);
-
+    Film saveFilm(Film film);
+    Film updateFilm(Film film);
     boolean deleteFilm(int id);
 }

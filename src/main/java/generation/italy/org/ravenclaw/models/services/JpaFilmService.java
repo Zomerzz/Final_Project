@@ -33,24 +33,17 @@ public class JpaFilmService implements FilmService{
     }
 
     @Override
-    public Film saveFilm(Film film, int casaDiProduzioneId, int casaDiPubblicazioneId) {
-        Optional<Casa> optCDP = casaRepo.findById(casaDiProduzioneId);
-        //TODO CAMBIARE LE ECCEZIONI, AL MOMENTO SONO QUELLE DI JAKARTA
-        Casa casaDiProduzione = optCDP.orElseThrow(EntityNotFoundException::new);
-        Optional<Casa> optCDPub = casaRepo.findById(casaDiProduzioneId);
-        Casa casaDiPubblicazione = optCDPub.orElseThrow(EntityNotFoundException::new);
-        film.setCasaDiProduzione(casaDiProduzione);
-        film.setCasaDiPubblicazione(casaDiPubblicazione);
+    public Film saveFilm(Film film) {
         return filmRepo.save(film);
     }
 
     @Override
-    public Film updateFilm(Film film, int casaDiProduzioneId, int casaDiPubblicazioneId) {
+    public Film updateFilm(Film film) {
         Optional<Film> optFilm = filmRepo.findById(film.getFilmId());
         if(optFilm.isEmpty()){
             throw new EntityNotFoundException(); //AL MOMENTO L'EXCEPTION è QUELLA DI JAKARTA
         }
-        return saveFilm(film, casaDiProduzioneId, casaDiPubblicazioneId);
+        return saveFilm(film);
     }
 
     @Override
