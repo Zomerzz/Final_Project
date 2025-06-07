@@ -3,12 +3,14 @@ package generation.italy.org.ravenclaw.models.dtos;
 import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Film;
 
+import java.time.LocalDate;
+
 public class FilmDto {
 
     private int id;
     private String titolo;
     private int durata;
-    private String dataDiPubblicazione;
+    private LocalDate dataDiPubblicazione;
     private String descrizione;
     private int casaDiProduzioneId;
     private int casaDiPubblicazioneId;

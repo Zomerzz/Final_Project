@@ -6,6 +6,8 @@ import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.repositories.CasaRepository;
 import generation.italy.org.ravenclaw.models.repositories.LibroRepository;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaLibroRepositoryImpl;
+import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,13 @@ import java.util.Optional;
 public class JpaLibroService implements LibroService{
     private LibroRepository libroRepo;
     private CasaRepository casaRepo;
+    private CriteriaLibroRepositoryImpl criteriaLibroRepo;
 
     @Autowired
-    public JpaLibroService(LibroRepository libroRepo, CasaRepository casaRepo){
+    public JpaLibroService(LibroRepository libroRepo, CasaRepository casaRepo, CriteriaLibroRepositoryImpl criteriaLibroRepo){
         this.libroRepo = libroRepo;
         this.casaRepo = casaRepo;
+        this.criteriaLibroRepo = criteriaLibroRepo;
     }
 
     @Override
@@ -58,5 +62,10 @@ public class JpaLibroService implements LibroService{
         }
         libroRepo.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<Libro> searchProducts(LibroFilterCriteria filters) {
+        return criteriaLibroRepo.searchLibroByFilters(filters);
     }
 }
