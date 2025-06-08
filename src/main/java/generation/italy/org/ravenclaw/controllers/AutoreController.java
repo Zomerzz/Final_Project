@@ -43,18 +43,6 @@ public class AutoreController {
     }
 
 
-
-
-
-//    @GetMapping
-//    public ResponseEntity<List<AutoreDto>> searchAutori() {
-//        List<Autore> autori = autoreService.findAllAutori();
-//        if(autori.isEmpty()){
-//            return ResponseEntity.notFound().build();
-//        }
-//        List<AutoreDto> autoriDto = autori.stream().map(AutoreDto::toDto).toList();
-//        return ResponseEntity.ok(autoriDto);
-//    }
     @GetMapping("/{id}")
     public ResponseEntity<?> searchById(@PathVariable int id){//manca da lanciare errore
         Optional<Autore> optionalAutore = autoreService.findAutoreById(id);

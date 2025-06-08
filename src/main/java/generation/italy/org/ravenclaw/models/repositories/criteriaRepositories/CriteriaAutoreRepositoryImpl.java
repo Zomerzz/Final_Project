@@ -38,7 +38,7 @@ public class CriteriaAutoreRepositoryImpl implements CriteriaAutoreRepository{
             Expression<String> secondName = cb.coalesce(root.get("secondoNome"), "");
             Expression<String> lastName = cb.coalesce(root.get("cognome"), "");
 
-            //
+            //la query concatenera i nomi, i secondi nomi e i cognomi
             Expression<String> fullName = cb.lower(
                     cb.concat(
                             cb.concat(
@@ -48,6 +48,7 @@ public class CriteriaAutoreRepositoryImpl implements CriteriaAutoreRepository{
                             cb.concat(cb.literal(" "), lastName)
                     )
             );
+            //controlla se ciascuna parola è inclusa nella concatenazione
             for (String kw : keywords) {
                 predicates.add(cb.like(fullName, "%" + kw + "%"));
             }
