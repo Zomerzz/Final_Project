@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "videogiochi")
@@ -46,6 +48,10 @@ public class Videogioco {
     @OneToMany(mappedBy = "videogioco")
     private List<CrewVideogioco> crew = new ArrayList<>();
 
+    // === MANY TO MANY ===
+
+    @ManyToMany(mappedBy = "videogiocoSet")
+    private Set<Tag> tagSet = new HashSet<>();
 
     // === COSTRUTTORI ===
 
