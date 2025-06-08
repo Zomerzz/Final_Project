@@ -17,11 +17,14 @@ public class FilmDto {
     private int voto;
     private String imgUrl;
 
-    public FilmDto(int id, String titolo, int durata, String descrizione, int voto, String imgUrl) {
+    public FilmDto(int id, String titolo, int durata, LocalDate dataDiPubblicazione, String descrizione, int casaDiProduzioneId, int casaDiPubblicazioneId, int voto, String imgUrl) {
         this.id = id;
         this.titolo = titolo;
         this.durata = durata;
+        this.dataDiPubblicazione = dataDiPubblicazione;
         this.descrizione = descrizione;
+        this.casaDiProduzioneId = casaDiProduzioneId;
+        this.casaDiPubblicazioneId = casaDiPubblicazioneId;
         this.voto = voto;
         this.imgUrl = imgUrl;
     }
@@ -31,7 +34,7 @@ public class FilmDto {
     }
 
     static public FilmDto toDto(Film f){
-        return new FilmDto(f.getFilmId(),f.getTitolo(),f.getDurata(),f.getDescrizione(),f.getVoto(),f.getImgUrl());
+        return new FilmDto(f.getFilmId(),f.getTitolo(),f.getDurata(),f.getDataDiPubblicazione(),f.getDescrizione(),f.getCasaDiProduzione().getCasaId(),f.getCasaDiPubblicazione().getCasaId(),f.getVoto(),f.getImgUrl());
     }
 
     public int getId() {

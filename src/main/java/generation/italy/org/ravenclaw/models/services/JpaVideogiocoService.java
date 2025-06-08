@@ -23,8 +23,8 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public Videogioco findById(int id) {
-        return videogiocoRepository.findById(id).orElseThrow();
+    public Optional<Videogioco> findById(int id) {
+        return videogiocoRepository.findById(id);
     }
 
     @Override
@@ -33,11 +33,12 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public void deleteById(int id){
+    public boolean deleteById(int id){
         if(!videogiocoRepository.existsById(id)){
             throw new EntityNotFoundException("Videogioco non trovato");
         }
         videogiocoRepository.deleteById(id);
+        return true;
     }
 
 
