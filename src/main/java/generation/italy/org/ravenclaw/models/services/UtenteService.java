@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UtenteService {
-    Optional<Utente> findUtenteById(int id) throws EntityNotFoundException;
+    Optional<Utente> findUtenteById(int id) ;
 
-    List<Utente> findAllUtenti() throws EntityNotFoundException; //mancava una d
+    List<Utente> findAllUtenti() ; //mancava una d
 
     Utente saveUtente(Utente utente);
 
-    Utente updateUtente(Utente utente) throws EntityNotFoundException;
+    Utente updateUtente(Utente utente);
 
-    boolean deleteUtente(int id) throws EntityNotFoundException;
+    boolean deleteUtente(int id);
 }

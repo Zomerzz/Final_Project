@@ -24,6 +24,8 @@ public class UtenteDto {
         return new UtenteDto(u.getUtenteId(), u.getNome(), u.getPassword(), u.getEmail());
     }
 
+    //GETTER & SETTER
+
     public int getId() {
         return id;
     }

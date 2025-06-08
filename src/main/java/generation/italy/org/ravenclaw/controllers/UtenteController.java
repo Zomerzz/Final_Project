@@ -24,7 +24,7 @@ public class UtenteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UtenteDto>> searchUtenti() throws EntityNotFoundException {
+    public ResponseEntity<List<UtenteDto>> searchUtenti() {
         List<Utente> utenti = utenteService.findAllUtenti();
         if (utenti.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -34,7 +34,7 @@ public class UtenteController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> searchById(@PathVariable int id) throws EntityNotFoundException{
+    public ResponseEntity<?> searchById(@PathVariable int id) {
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
         if(utenteOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -43,7 +43,7 @@ public class UtenteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id) throws EntityNotFoundException{
+    public ResponseEntity<Void> deleteById(@PathVariable int id) {
         Optional<Utente> optUtente = utenteService.findUtenteById(id);
         if(optUtente.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -70,7 +70,7 @@ public class UtenteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUtente(@PathVariable int id , @RequestBody UtenteDto utenteDto) throws EntityNotFoundException {
+    public ResponseEntity<?> updateUtente(@PathVariable int id , @RequestBody UtenteDto utenteDto) {
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
         if(id != utenteDto.getId()){
             ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
