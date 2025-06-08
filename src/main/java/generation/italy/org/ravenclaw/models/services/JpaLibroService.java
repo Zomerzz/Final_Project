@@ -48,18 +48,12 @@ public class JpaLibroService implements LibroService{
     @Override
     public Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
         Optional<Libro> optLibro = libroRepo.findById(libro.getLibroId());
-        if(optLibro.isEmpty()){
-            throw new EntityNotFoundException(Libro.class);
-        }
         return saveLibro(libro, casaEditriceId);
     }
 
     @Override
     public boolean deleteLibro(int id) throws DataException, EntityNotFoundException {
         Optional<Libro> optLibro = libroRepo.findById(id);
-        if(optLibro.isEmpty()){
-            throw new EntityNotFoundException(Libro.class);
-        }
         libroRepo.deleteById(id);
         return true;
     }

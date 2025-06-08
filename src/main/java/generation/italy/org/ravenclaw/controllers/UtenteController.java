@@ -27,7 +27,7 @@ public class UtenteController {
     public ResponseEntity<List<UtenteDto>> searchUtenti() throws EntityNotFoundException {
         List<Utente> utenti = utenteService.findAllUtenti();
         if (utenti.isEmpty()) {
-            throw new EntityNotFoundException(utenti.getClass());
+            return ResponseEntity.notFound().build();
         }
         List<UtenteDto> utentiDto = utenti.stream().map(UtenteDto::toDto).toList();
         return ResponseEntity.ok(utentiDto);
@@ -37,7 +37,7 @@ public class UtenteController {
     public ResponseEntity<?> searchById(@PathVariable int id) throws EntityNotFoundException{
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
         if(utenteOpt.isEmpty()) {
-            throw new EntityNotFoundException(Utente.class);
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(UtenteDto.toDto(utenteOpt.get()));
     }
@@ -46,7 +46,7 @@ public class UtenteController {
     public ResponseEntity<Void> deleteById(@PathVariable int id) throws EntityNotFoundException{
         Optional<Utente> optUtente = utenteService.findUtenteById(id);
         if(optUtente.isEmpty()){
-            throw new EntityNotFoundException(Utente.class);
+            return ResponseEntity.notFound().build();
         }
         boolean deleted = utenteService.deleteUtente(id);
         if(!deleted){
@@ -72,12 +72,13 @@ public class UtenteController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUtente(@PathVariable int id , @RequestBody UtenteDto utenteDto) throws EntityNotFoundException {
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
-        if(utenteOpt.isEmpty()){
-            ResponseEntity.badRequest().body("L'id non corrisponde a nessun utente");
-        }
         if(id != utenteDto.getId()){
             ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
         }
+        if(utenteOpt.isEmpty()){
+            ResponseEntity.notFound().build();
+        }
+
         Utente utente = utenteService.updateUtente(utenteOpt.get());
         return ResponseEntity.ok(UtenteDto.toDto(utente));
     }
