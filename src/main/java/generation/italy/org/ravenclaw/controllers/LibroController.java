@@ -41,6 +41,9 @@ public class  LibroController {
                                                       @RequestParam(required = false) List<Integer> tags) {
         LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreId, autoreNome, casaEditriceId, minData, maxData, minVoto, maxVoto, tags);
         List<Libro> libri = libroService.searchProducts(lfc);
+        if(libri.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(libri.stream().map(LibroDto::toDto).toList());
     }
 
