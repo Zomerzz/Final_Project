@@ -2,6 +2,7 @@ package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
 
 import generation.italy.org.ravenclaw.models.entities.Autore;
 import generation.italy.org.ravenclaw.models.entities.Libro;
+import generation.italy.org.ravenclaw.models.entities.Tag;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository {
+public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
     private EntityManager em;
 
     @Autowired
@@ -28,8 +29,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository {
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){
-            Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
-            predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
+            predicates.add(cb.like(root.get("titolo"), "%" + filters.getTitolo() + "%"));
         }
         if(filters.getNumeroPagine() != null){
             predicates.add(cb.lessThanOrEqualTo(root.get("numeroPagine"), filters.getNumeroPagine()));
@@ -52,12 +52,8 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository {
             Root<Libro> subqueryLibro = subquery.from(Libro.class);
             Join<Libro, Autore> subqueryAutore = subqueryLibro.join("autoreSet");
 
-
-            Expression<String> lowerNome = cb.lower(subqueryAutore.get("nome"));
-            Expression<String> lowerCognome = cb.lower(subqueryAutore.get("cognome"));
-
-            Predicate nome = cb.like(lowerNome, "%" + filters.getAutoreNome().toLowerCase() + "%");
-            Predicate cognome = cb.like(lowerCognome, "%" + filters.getAutoreNome().toLowerCase() + "%");
+            Predicate nome = cb.like(subqueryAutore.get("nome"), "%" + filters.getAutoreNome() + "%");
+            Predicate cognome = cb.like(subqueryAutore.get("cognome"), "%" + filters.getAutoreNome() + "%");
 
             // Select the Libro ID where one of their autore matches
             subquery.select(subqueryLibro.get("libroId")).where(
@@ -86,6 +82,20 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository {
         }
         if(filters.getMinVoto() == null && filters.getMaxVoto() != null){
             predicates.add(cb.lessThan(root.get("voto"), filters.getMaxVoto()));
+        }
+        if(filters.getTags() != null){
+            for(int tagId : filters.getTags()) {
+                Subquery<Integer> subquery = query.subquery(Integer.class);
+                Root<Libro> subqueryLibro = subquery.from(Libro.class);
+                Join<Libro, Tag> subqueryTag = subqueryLibro.join("tagSet");
+
+                // Select the Libro ID where one of their autore matches
+                subquery.select(subqueryLibro.get("libroId")).where(
+                        cb.equal(subqueryTag.get("tagId"), tagId));
+
+                // Filter by Libro that match one of the Libro found in the subquery
+                predicates.add(cb.in(root.get("libroId")).value(subquery));
+            }
         }
 
         query.where(predicates.toArray(new Predicate[0]));

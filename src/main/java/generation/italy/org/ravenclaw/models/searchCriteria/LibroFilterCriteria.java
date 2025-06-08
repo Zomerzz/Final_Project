@@ -1,6 +1,7 @@
 package generation.italy.org.ravenclaw.models.searchCriteria;
 
 import java.util.Date;
+import java.util.List;
 
 public class LibroFilterCriteria {
     private String titolo;
@@ -12,8 +13,9 @@ public class LibroFilterCriteria {
     private Date maxData;
     private Integer minVoto;
     private Integer maxVoto;
+    private List<Integer> tags;
 
-    public LibroFilterCriteria(String titolo, Integer numeroPagine, Integer autoreId, String autoreNome, Integer casaEditriceId, Date minData, Date maxData, Integer minVoto, Integer maxVoto) {
+    public LibroFilterCriteria(String titolo, Integer numeroPagine, Integer autoreId, String autoreNome, Integer casaEditriceId, Date minData, Date maxData, Integer minVoto, Integer maxVoto, List<Integer> tags) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
         this.autoreId = autoreId;
@@ -23,6 +25,7 @@ public class LibroFilterCriteria {
         this.maxData = maxData;
         this.minVoto = minVoto;
         this.maxVoto = maxVoto;
+        this.tags = tags;
     }
 
     // === GETTER ===
@@ -59,5 +62,9 @@ public class LibroFilterCriteria {
 
     public Integer getMaxVoto() {
         return maxVoto;
+    }
+
+    public List<Integer> getTags() {
+        return tags;
     }
 }

@@ -37,8 +37,9 @@ public class  LibroController {
                                                       @RequestParam(required = false) Date minData,
                                                       @RequestParam(required = false) Date maxData,
                                                       @RequestParam(required = false) Integer minVoto,
-                                                      @RequestParam(required = false) Integer maxVoto) {
-        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreId, autoreNome, casaEditriceId, minData, maxData, minVoto, maxVoto);
+                                                      @RequestParam(required = false) Integer maxVoto,
+                                                      @RequestParam(required = false) List<Integer> tags) {
+        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreId, autoreNome, casaEditriceId, minData, maxData, minVoto, maxVoto, tags);
         List<Libro> libri = libroService.searchProducts(lfc);
         return ResponseEntity.ok(libri.stream().map(LibroDto::toDto).toList());
     }
