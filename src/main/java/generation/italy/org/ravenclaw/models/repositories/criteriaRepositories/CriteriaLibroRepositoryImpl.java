@@ -39,7 +39,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             Root<Libro> subqueryLibro = subquery.from(Libro.class);
             Join<Libro, Autore> subqueryAutore = subqueryLibro.join("autoreSet");
 
-            // Select the Libro ID where one of their autore matches
+            // Select the Libro ID where one of their Autori del set di autori matches
             subquery.select(subqueryLibro.get("libroId")).where(
                     cb.equal(subqueryAutore.get("autoreId"), filters.getAutoreId()));
 
@@ -55,11 +55,9 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             Predicate nome = cb.like(subqueryAutore.get("nome"), "%" + filters.getAutoreNome() + "%");
             Predicate cognome = cb.like(subqueryAutore.get("cognome"), "%" + filters.getAutoreNome() + "%");
 
-            // Select the Libro ID where one of their autore matches
             subquery.select(subqueryLibro.get("libroId")).where(
                     cb.or(nome, cognome));
 
-            // Filter by Libro that match one of the Libro found in the subquery
             predicates.add(cb.in(root.get("libroId")).value(subquery));
         }
         if(filters.getCasaEditriceId() != null){
@@ -89,11 +87,9 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
                 Root<Libro> subqueryLibro = subquery.from(Libro.class);
                 Join<Libro, Tag> subqueryTag = subqueryLibro.join("tagSet");
 
-                // Select the Libro ID where one of their autore matches
                 subquery.select(subqueryLibro.get("libroId")).where(
                         cb.equal(subqueryTag.get("tagId"), tagId));
 
-                // Filter by Libro that match one of the Libro found in the subquery
                 predicates.add(cb.in(root.get("libroId")).value(subquery));
             }
         }
