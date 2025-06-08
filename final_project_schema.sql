@@ -572,7 +572,7 @@ DROP TABLE IF EXISTS public.recensioni CASCADE;
       casa_di_produzione_id integer NOT NULL,
       casa_di_pubblicazione_id integer NOT NULL,
       data_di_pubblicazione date NOT NULL,
-      ore_storia_principale text,
+      ore_storia_principale INTEGER,
       descrizione text NOT NULL,
       voto integer NOT NULL,
       immagine_di_copertina text NOT NULL
