@@ -21,5 +21,5 @@ public interface LibroService {
 
     boolean deleteLibro(int id) throws DataException, EntityNotFoundException;
 
-    List<Libro> searchProducts(LibroFilterCriteria filters);
+    List<Libro> searchLibro(LibroFilterCriteria filters);
 }

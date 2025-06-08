@@ -59,7 +59,7 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public List<Libro> searchProducts(LibroFilterCriteria filters) {
+    public List<Libro> searchLibro(LibroFilterCriteria filters) {
         return criteriaLibroRepo.searchLibroByFilters(filters);
     }
 }
