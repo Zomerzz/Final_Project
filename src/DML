@@ -106,16 +106,16 @@ INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, 
 
 -- 9. Popola i videogiochi ("videogiochi")
 INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES
-  (1, 'The Witcher 3: Wild Hunt', 9, 9, '2015-05-19', '50+', 'Geralt di Rivia intraprende un viaggio per trovare sua figlia adottiva.', 97, 'http://example.com/witcher3.jpg'),
+  (1, 'The Witcher 3: Wild Hunt', 9, 9, '2015-05-19', '50', 'Geralt di Rivia intraprende un viaggio per trovare sua figlia adottiva.', 97, 'http://example.com/witcher3.jpg'),
   (2, 'Super Mario Bros.', 6, 6, '1985-09-13', '10', 'Mario deve salvare la Principessa Peach da Bowser.', 90, 'http://example.com/mariobros.jpg'),
   (3, 'Assassin’s Creed II', 9, 9, '2009-11-17', '20', 'Ezio Auditore diventa un assassino nel Rinascimento italiano.', 89, 'http://example.com/ac2.jpg'),
   (4, 'The Last of Us', 3, 3, '2013-06-14', '15', 'Joel scorta Ellie attraverso un’America post-apocalittica.', 95, 'http://example.com/lastofus.jpg'),
   (5, 'God of War', 6, 6, '2018-04-20', '25', 'Kratos intraprende un viaggio con suo figlio Atreus.', 94, 'http://example.com/godofwar.jpg'),
-  (6, 'Minecraft', 3, 3, '2011-11-18', 'Infinito', 'Gioco sandbox di costruzione e sopravvivenza.', 88, 'http://example.com/minecraft.jpg'),
+  (6, 'Minecraft', 3, 3, '2011-11-18', '0', 'Gioco sandbox di costruzione e sopravvivenza.', 88, 'http://example.com/minecraft.jpg'),
   (7, 'Red Dead Redemption 2', 3, 3, '2018-10-26', '60', 'Un fuorilegge intraprende una missione nel West morente.', 96, 'http://example.com/rdr2.jpg'),
   (8, 'The Legend of Zelda: Breath of the Wild', 6, 6, '2017-03-03', '50', 'Link si risveglia da un lungo sonno per salvare Hyrule.', 97, 'http://example.com/zelda.jpg'),
   (9, 'Cyberpunk 2077', 9, 9, '2020-12-10', '30', 'V si muove nella Night City alla ricerca dell’immortalità.', 70, 'http://example.com/cyberpunk2077.jpg'),
-  (10, 'Fortnite', 3, 3, '2017-07-21', '∞', 'Gioco Battle Royale con meccaniche di costruzione.', 75, 'http://example.com/fortnite.jpg');
+  (10, 'Fortnite', 3, 3, '2017-07-21', '0', 'Gioco Battle Royale con meccaniche di costruzione.', 75, 'http://example.com/fortnite.jpg');
 
 -- 10. Popola la scrittura dei libri ("scritto_da")
 INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES
