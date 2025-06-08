@@ -3,10 +3,10 @@ import { Casa } from "./Casa";
 export interface Libro {
     id:number;
     titolo:string;
-    numeroDiPagine:number;
-    casaDiProduzioneId:number;
+    numeroPagine:number;
     descrizione:string;
-    annoDiPubblicazione:string;
+    dataDiPubblicazione:number;
+    casaEditriceId:number;
     voto:number;
     imgUrl:string;
 }
