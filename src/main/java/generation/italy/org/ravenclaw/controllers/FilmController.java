@@ -34,7 +34,7 @@ public class FilmController {
     @PostMapping
     public ResponseEntity<?> addFilm(@RequestBody FilmDto fdto){
         Film film = fdto.toFilm();
-        filmService.saveFilm(film);
+        filmService.saveFilm(film,fdto.getCasaDiProduzione(),fdto.getCasaDiPubblicazione());
         FilmDto newFilm = FilmDto.toDto(film);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -52,14 +52,13 @@ public class FilmController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateFilm (@PathVariable int id, @RequestBody Film film){
-        if(!(id == film.getFilmId())){
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<?> updateFilm (@PathVariable int id, @RequestBody FilmDto fdto){
+        if(id != fdto.getId()) return ResponseEntity.badRequest().build();
+
         Optional<Film> oF = filmService.findFilmById(id);
         if(oF.isPresent()){
-            Film newFilm = filmService.saveFilm(film);
-            return ResponseEntity.ok().body(newFilm);
+            Film newFilm = filmService.saveFilm(fdto.toFilm(),fdto.getCasaDiProduzione(),fdto.getCasaDiPubblicazione());
+            return ResponseEntity.ok().body(FilmDto.toDto(newFilm));
         }
         return ResponseEntity.badRequest().build();
     }
