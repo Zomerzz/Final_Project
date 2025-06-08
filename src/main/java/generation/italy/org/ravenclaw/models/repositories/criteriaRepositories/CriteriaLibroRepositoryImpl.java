@@ -29,7 +29,8 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){
-            predicates.add(cb.like(root.get("titolo"), "%" + filters.getTitolo() + "%"));
+            Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
+            predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
         }
         if(filters.getNumeroPagine() != null){
             predicates.add(cb.lessThanOrEqualTo(root.get("numeroPagine"), filters.getNumeroPagine()));
@@ -52,8 +53,11 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             Root<Libro> subqueryLibro = subquery.from(Libro.class);
             Join<Libro, Autore> subqueryAutore = subqueryLibro.join("autoreSet");
 
-            Predicate nome = cb.like(subqueryAutore.get("nome"), "%" + filters.getAutoreNome() + "%");
-            Predicate cognome = cb.like(subqueryAutore.get("cognome"), "%" + filters.getAutoreNome() + "%");
+            Expression<String> lowerNome = cb.lower(subqueryAutore.get("nome"));
+            Expression<String> lowerCognome = cb.lower(subqueryAutore.get("cognome"));
+
+            Predicate nome = cb.like(lowerNome, "%" + filters.getAutoreNome().toLowerCase() + "%");
+            Predicate cognome = cb.like(lowerCognome, "%" + filters.getAutoreNome().toLowerCase() + "%");
 
             subquery.select(subqueryLibro.get("libroId")).where(
                     cb.or(nome, cognome));
