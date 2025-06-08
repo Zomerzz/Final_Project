@@ -53,7 +53,7 @@ public class VideogiocoController {
     public ResponseEntity<?> updateGioco(@PathVariable int id, @RequestBody VideogiocoDto vdto){
         if(id != vdto.getId()){return ResponseEntity.badRequest().build();}
         Optional<Videogioco> ov = videogiocoService.findById(id);
-        if(ov.isEmpty()){return ResponseEntity.badRequest().build();}
+        if(ov.isEmpty()){return ResponseEntity.notFound().build();}
         Videogioco newGioco = videogiocoService.save(vdto.toVideogioco(), vdto.getCasaDiPubblicazioneId(), vdto.getCasaDiProduzioneId());
         return ResponseEntity.ok().body(VideogiocoDto.toDto(newGioco));
     }

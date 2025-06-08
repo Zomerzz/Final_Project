@@ -28,11 +28,9 @@ public class JpaCasaService implements CasaService{
     }
 
     @Override
-    public void deleteById(int id){
-        if(!casaRepository.existsById(id)){
-            throw new EntityNotFoundException("Casa produttrice non trovata");
-        }
+    public boolean deleteById(int id){
         casaRepository.deleteById(id);
+        return true;
     }
 
     @Override

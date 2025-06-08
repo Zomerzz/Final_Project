@@ -25,7 +25,7 @@ public class AutoreController {
         this.autoreService = autoreService;
     }
     @GetMapping
-    public ResponseEntity<List<AutoreDto>> searchAutori() throws EntityNotFoundException {
+    public ResponseEntity<List<AutoreDto>> searchAutori() {
         List<Autore> autori = autoreService.findAllAutori();
         if(autori.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -43,7 +43,7 @@ public class AutoreController {
 
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable int id) throws EntityNotFoundException {
+    public ResponseEntity<?> deleteById(@PathVariable int id) {
         Optional<Autore> optUtente = autoreService.findAutoreById(id);
         if(optUtente.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -70,12 +70,13 @@ public class AutoreController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateAutore(@PathVariable int id , @RequestBody AutoreDto autoreDto)  {
         Optional<Autore> optionalAutore = autoreService.findAutoreById(id);
-        if(optionalAutore.isEmpty()){
-            return ResponseEntity.badRequest().body("L'id non corrisponde a nessun autore");
-        }
         if(id != autoreDto.getId()){
             return ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
         }
+        if(optionalAutore.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
         Autore autore = autoreService.updateAutore(optionalAutore.get());
         return ResponseEntity.ok(autoreDto);
     }

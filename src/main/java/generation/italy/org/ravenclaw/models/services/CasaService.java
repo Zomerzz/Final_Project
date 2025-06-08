@@ -14,7 +14,7 @@ public interface CasaService {
 
     List<Casa> findAll();
 
-    void deleteById(int id);
+    boolean deleteById(int id);
 
     Casa save(Casa casa);
 

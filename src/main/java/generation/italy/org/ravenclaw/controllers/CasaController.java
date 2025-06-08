@@ -11,7 +11,9 @@ import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +29,7 @@ public class CasaController {
     }
 
     @GetMapping
-    public ResponseEntity<?> searchCase() throws DataException, EntityNotFoundException {
+    public ResponseEntity<?> searchCase() {
         List<Casa> listCase = casaService.findAll();
         if(listCase.isEmpty()){
             return ResponseEntity.notFound().build();
@@ -37,12 +39,52 @@ public class CasaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> searchById(@PathVariable int id) throws EntityNotFoundException {
+    public ResponseEntity<?> searchById(@PathVariable int id) {
         Optional<Casa> casaOpt = casaService.findById(id);
         if(casaOpt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(CasaDto.toDto(casaOpt.get()));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable int id) {
+        Optional<Casa> casaOpt = casaService.findById(id);
+        if(casaOpt.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        boolean deleted = casaService.deleteById(id);
+        if(!deleted){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping
+    public ResponseEntity<CasaDto> createCasa (@RequestBody CasaDto casaDto){
+        Casa casa = casaDto.toCasa();
+        Casa savedCasa = casaService.save(casa);
+        CasaDto newCasaDto = CasaDto.toDto(savedCasa);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newCasaDto.getCasaId() )
+                .toUri();
+
+        return ResponseEntity.created(location).body(newCasaDto);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateCasa (@PathVariable int id , @RequestBody UtenteDto utenteDto){
+        Optional<Casa> casaOpt = casaService.findById(id);
+        if(id != utenteDto.getId()){
+            return ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
+        }
+        if(casaOpt.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Casa casa = casaService.updateCasa(casaOpt.get());
+        return ResponseEntity.ok(CasaDto.toDto(casa));
     }
 
 }

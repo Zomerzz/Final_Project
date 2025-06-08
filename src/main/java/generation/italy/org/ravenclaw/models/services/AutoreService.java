@@ -11,11 +11,11 @@ import java.util.Optional;
 public interface AutoreService {
     Optional<Autore> findAutoreById(int id);
 
-    List<Autore> findAllAutori() throws EntityNotFoundException; //mancava una d
+    List<Autore> findAllAutori() ; //mancava una d
 
     Autore saveAutore(Autore autore);
 
     Autore updateAutore(Autore autore) ;
 
-    boolean deleteAutore(int id) throws EntityNotFoundException;
+    boolean deleteAutore(int id);
 }

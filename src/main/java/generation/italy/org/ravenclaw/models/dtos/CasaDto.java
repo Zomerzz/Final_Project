@@ -18,4 +18,34 @@ public class CasaDto {
     public static CasaDto toDto(Casa casa) {
         return new CasaDto(casa.getCasaId(), casa.getNome(), casa.getNazionalita());
     }
+
+    public Casa toCasa(){
+        return new Casa(nome, nazionalita);
+    }
+
+    //GETTER & SETTER
+
+    public int getCasaId() {
+        return casaId;
+    }
+
+    public void setCasaId(int casaId) {
+        this.casaId = casaId;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNazionalita() {
+        return nazionalita;
+    }
+
+    public void setNazionalita(String nazionalita) {
+        this.nazionalita = nazionalita;
+    }
 }

@@ -72,12 +72,13 @@ public class UtenteController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUtente(@PathVariable int id , @RequestBody UtenteDto utenteDto) throws EntityNotFoundException {
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
-        if(utenteOpt.isEmpty()){
-            ResponseEntity.badRequest().body("L'id non corrisponde a nessun utente");
-        }
         if(id != utenteDto.getId()){
             ResponseEntity.badRequest().body("id dto e id del percorso non coincidono");
         }
+        if(utenteOpt.isEmpty()){
+            ResponseEntity.notFound().build();
+        }
+
         Utente utente = utenteService.updateUtente(utenteOpt.get());
         return ResponseEntity.ok(UtenteDto.toDto(utente));
     }
