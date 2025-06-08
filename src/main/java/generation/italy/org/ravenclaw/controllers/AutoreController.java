@@ -28,7 +28,7 @@ public class AutoreController {
     public ResponseEntity<List<AutoreDto>> searchAutori() throws EntityNotFoundException {
         List<Autore> autori = autoreService.findAllAutori();
         if(autori.isEmpty()){
-            throw new EntityNotFoundException(autori.getClass());
+            return ResponseEntity.notFound().build();
         }
         List<AutoreDto> autoriDto = autori.stream().map(AutoreDto::toDto).toList();
         return ResponseEntity.ok(autoriDto);
@@ -46,7 +46,7 @@ public class AutoreController {
     public ResponseEntity<?> deleteById(@PathVariable int id) throws EntityNotFoundException {
         Optional<Autore> optUtente = autoreService.findAutoreById(id);
         if(optUtente.isEmpty()){
-            throw new EntityNotFoundException(Autore.class);
+            return ResponseEntity.notFound().build();
         }
         boolean deleted = autoreService.deleteAutore(id);
         if(deleted){
