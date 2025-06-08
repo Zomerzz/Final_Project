@@ -2,6 +2,9 @@ package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "tag")
 public class Tag {
@@ -19,8 +22,33 @@ public class Tag {
     @Column(name = "genere")
     private boolean isGenere;
 
-    // === COSTRUTTORI ===
+    // ===MANY TO MANY ===
 
+    @ManyToMany
+    @JoinTable(
+            name = "libri_assegnamento_tag",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "libro_id")
+    )
+    private Set<Libro> libroSet = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "film_assegnamento_tag",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "film_id")
+    )
+    private Set<Film> filmSet = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "videogiochi_assegnamento_tag",
+            joinColumns = @JoinColumn(name = "tag_id"),
+            inverseJoinColumns = @JoinColumn(name = "videogioco_id")
+    )
+    private Set<Videogioco> videogiocoSet = new HashSet<>();
+
+    // === COSTRUTTORI ===
 
     public Tag() {
     }

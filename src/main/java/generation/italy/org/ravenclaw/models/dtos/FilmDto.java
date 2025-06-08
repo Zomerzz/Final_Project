@@ -3,23 +3,28 @@ package generation.italy.org.ravenclaw.models.dtos;
 import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Film;
 
+import java.time.LocalDate;
+
 public class FilmDto {
 
     private int id;
     private String titolo;
     private int durata;
-    private String dataDiPubblicazione;
+    private LocalDate dataDiPubblicazione;
     private String descrizione;
     private int casaDiProduzioneId;
     private int casaDiPubblicazioneId;
     private int voto;
     private String imgUrl;
 
-    public FilmDto(int id, String titolo, int durata, String descrizione, int voto, String imgUrl) {
+    public FilmDto(int id, String titolo, int durata, LocalDate dataDiPubblicazione, String descrizione, int casaDiProduzioneId, int casaDiPubblicazioneId, int voto, String imgUrl) {
         this.id = id;
         this.titolo = titolo;
         this.durata = durata;
+        this.dataDiPubblicazione = dataDiPubblicazione;
         this.descrizione = descrizione;
+        this.casaDiProduzioneId = casaDiProduzioneId;
+        this.casaDiPubblicazioneId = casaDiPubblicazioneId;
         this.voto = voto;
         this.imgUrl = imgUrl;
     }
@@ -29,7 +34,7 @@ public class FilmDto {
     }
 
     static public FilmDto toDto(Film f){
-        return new FilmDto(f.getFilmId(),f.getTitolo(),f.getDurata(),f.getDescrizione(),f.getVoto(),f.getImgUrl());
+        return new FilmDto(f.getFilmId(),f.getTitolo(),f.getDurata(),f.getDataDiPubblicazione(),f.getDescrizione(),f.getCasaDiProduzione().getCasaId(),f.getCasaDiPubblicazione().getCasaId(),f.getVoto(),f.getImgUrl());
     }
 
     public int getId() {

@@ -45,6 +45,11 @@ public class Film {
     @OneToMany(mappedBy = "film")
     private List<CrewFilm> crew = new ArrayList<>();
 
+    //=== MANY TO MANY ===
+
+    @ManyToMany(mappedBy = "filmSet")
+    private Set<Tag> tagSet = new HashSet<>();
+
     // === COSTRUTTORI ===
 
     public Film() {

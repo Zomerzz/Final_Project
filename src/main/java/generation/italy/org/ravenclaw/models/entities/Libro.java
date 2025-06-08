@@ -41,7 +41,8 @@ public class Libro {
     @ManyToMany(mappedBy = "libroSet")
     private Set<Autore> autoreSet = new HashSet<>();
 
-
+    @ManyToMany(mappedBy = "libroSet")
+    private Set<Tag> tagSet = new HashSet<>();
 
     // === CONSTRUTTORI ===
 

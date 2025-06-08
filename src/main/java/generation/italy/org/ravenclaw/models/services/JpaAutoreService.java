@@ -1,8 +1,8 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.Autore;
 import generation.italy.org.ravenclaw.models.repositories.AutoreRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Service
 public class JpaAutoreService implements AutoreService{
-
     private AutoreRepository autoreRepo;
 
     @Autowired
@@ -26,7 +25,8 @@ public class JpaAutoreService implements AutoreService{
 
     @Override
     public List<Autore> findAllAutori() { // mancava una d
-        return autoreRepo.findAll();
+        List<Autore> autori = autoreRepo.findAll();
+        return autori;
     }
 
     @Override
@@ -35,20 +35,12 @@ public class JpaAutoreService implements AutoreService{
     }
 
     @Override
-    public Autore updateAutore(Autore autore) {
-        Optional<Autore> optAutore = autoreRepo.findById(autore.getAutoreId());
-        if(optAutore.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
+    public Autore updateAutore(Autore autore)  {
         return saveAutore(autore);
     }
 
     @Override
-    public boolean deleteAutore(int id) {
-        Optional<Autore> optAutore = autoreRepo.findById(id);
-        if(optAutore.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
+    public boolean deleteAutore(int id){
         autoreRepo.deleteById(id);
         return true;
     }

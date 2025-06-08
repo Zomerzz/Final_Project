@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "videogiochi")
@@ -32,7 +34,7 @@ public class Videogioco {
     private LocalDate dataDiPubblicazione;
 
     @Column(name = "ore_storia_principale")
-    private String oreStoriaPrincipale;
+    private int oreStoriaPrincipale;
 
     private String descrizione;
 
@@ -46,13 +48,17 @@ public class Videogioco {
     @OneToMany(mappedBy = "videogioco")
     private List<CrewVideogioco> crew = new ArrayList<>();
 
+    // === MANY TO MANY ===
+
+    @ManyToMany(mappedBy = "videogiocoSet")
+    private Set<Tag> tagSet = new HashSet<>();
 
     // === COSTRUTTORI ===
 
     public Videogioco() {
     }
 
-    public Videogioco(String titolo, Casa casaDiProduzione, Casa casaDiPubblicazione, LocalDate dataDiPubblicazione, String oreStoriaPrincipale, String descrizione, int voto, String imgUrl) {
+    public Videogioco(String titolo, Casa casaDiProduzione, Casa casaDiPubblicazione, LocalDate dataDiPubblicazione, int oreStoriaPrincipale, String descrizione, int voto, String imgUrl) {
         this.titolo = titolo;
         this.casaDiProduzione = casaDiProduzione;
         this.casaDiPubblicazione = casaDiPubblicazione;
@@ -85,7 +91,7 @@ public class Videogioco {
         return dataDiPubblicazione;
     }
 
-    public String getOreStoriaPrincipale() {
+    public int getOreStoriaPrincipale() {
         return oreStoriaPrincipale;
     }
 
@@ -124,7 +130,7 @@ public class Videogioco {
         this.dataDiPubblicazione = dataDiPubblicazione;
     }
 
-    public void setOreStoriaPrincipale(String oreStoriaPrincipale) {
+    public void setOreStoriaPrincipale(int oreStoriaPrincipale) {
         this.oreStoriaPrincipale = oreStoriaPrincipale;
     }
 
