@@ -36,18 +36,12 @@ public class JpaTagService implements TagService{
     @Override
     public Tag updateTag(Tag tag){
         Optional<Tag> optTag = tagRepo.findById(tag.getTagId());
-        if(optTag.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
         return tagRepo.save(tag);
     }
 
     @Override
     public boolean deleteTag(int id){
         Optional<Tag> optTag = tagRepo.findById(id);
-        if(optTag.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
         tagRepo.deleteById(id);
         return true;
     }
