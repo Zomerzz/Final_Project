@@ -11,6 +11,5 @@ public interface FilmService {
     Optional<Film> findFilmById(int id);
     List<Film> findAllFilms();
     Film saveFilm(Film film, int casaProdId, int casaPubbId);
-    Film updateFilm(Film film);
     boolean deleteFilm(int id);
 }
