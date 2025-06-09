@@ -93,6 +93,18 @@ public class Libro {
         return imgUrl;
     }
 
+    public Casa getCasaEditrice() {
+        return casaEditrice;
+    }
+
+    public Set<Autore> getAutoreSet() {
+        return autoreSet;
+    }
+
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+
     // === SETTER ===
 
     public void setCasaEditrice(Casa casaEditrice) {

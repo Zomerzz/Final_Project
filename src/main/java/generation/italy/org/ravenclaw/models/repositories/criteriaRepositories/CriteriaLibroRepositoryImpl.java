@@ -1,8 +1,6 @@
 package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
 
-import generation.italy.org.ravenclaw.models.entities.Autore;
-import generation.italy.org.ravenclaw.models.entities.Libro;
-import generation.italy.org.ravenclaw.models.entities.Tag;
+import generation.italy.org.ravenclaw.models.entities.*;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
@@ -35,70 +33,76 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         if(filters.getNumeroPagine() != null){
             predicates.add(cb.lessThanOrEqualTo(root.get("numeroPagine"), filters.getNumeroPagine()));
         }
-        if(filters.getAutoreId() != null){
-            Subquery<Integer> subquery = query.subquery(Integer.class);
-            Root<Libro> subqueryLibro = subquery.from(Libro.class);
-            Join<Libro, Autore> subqueryAutore = subqueryLibro.join("autoreSet");
 
-            // Select the Libro ID where one of their Autori del set di autori matches
-            subquery.select(subqueryLibro.get("libroId")).where(
-                    cb.equal(subqueryAutore.get("autoreId"), filters.getAutoreId()));
+        if (filters.getAutoreNome() != null) {
+            // Join tra Libro e Autore
+            Join<Libro, Autore> autoreJoin = root.join("autoreSet");
 
-            // Filter by Libro that match one of the Libro found in the subquery
-            predicates.add(cb.in(root.get("libroId")).value(subquery));
+            // Split delle parole chiave inserite nel campo nome
+            String[] keywords = filters.getAutoreNome().trim().toLowerCase().split("\\s+");
+
+            // Coalesce per evitare null su nome, secondoNome e cognome
+            Expression<String> nome = cb.coalesce(cb.lower(autoreJoin.get("nome")), "");
+            Expression<String> secondoNome = cb.coalesce(cb.lower(autoreJoin.get("secondoNome")), "");
+            Expression<String> cognome = cb.coalesce(cb.lower(autoreJoin.get("cognome")), "");
+
+            // Concatenazione per costruire fullName = nome + " " + secondoNome + " " + cognome
+            Expression<String> fullName = cb.concat(
+                    cb.concat(
+                            cb.concat(nome, cb.literal(" ")),
+                            cb.concat(secondoNome, cb.literal(" "))
+                    ),
+                    cognome
+            );
+
+            // Lista di predicati LIKE per ciascuna keyword
+            List<Predicate> keywordPredicates = new ArrayList<>();
+            for (String kw : keywords) {
+                keywordPredicates.add(cb.like(fullName, "%" + kw + "%"));
+            }
+
+            // Unisci i predicati con OR (almeno una keyword deve essere contenuta)
+            Predicate autoreKeywordMatch = cb.or(keywordPredicates.toArray(new Predicate[0]));
+
+            // Aggiungi il predicato alla lista della query principale
+            predicates.add(autoreKeywordMatch);
         }
-        //LA RICERCA PER NOME CERCA O PER NOME O PER COGNOME PARTENDO DA UN UNICO INPUT, FORSE MEGLIO DIVIDERLA IN NOME E COGNOME SEPARATI
-        if(filters.getAutoreNome() != null){
-            Subquery<Integer> subquery = query.subquery(Integer.class);
-            Root<Libro> subqueryLibro = subquery.from(Libro.class);
-            Join<Libro, Autore> subqueryAutore = subqueryLibro.join("autoreSet");
 
-            Expression<String> lowerNome = cb.lower(subqueryAutore.get("nome"));
-            Expression<String> lowerCognome = cb.lower(subqueryAutore.get("cognome"));
 
-            Predicate nome = cb.like(lowerNome, "%" + filters.getAutoreNome().toLowerCase() + "%");
-            Predicate cognome = cb.like(lowerCognome, "%" + filters.getAutoreNome().toLowerCase() + "%");
-
-            subquery.select(subqueryLibro.get("libroId")).where(
-                    cb.or(nome, cognome));
-
-            predicates.add(cb.in(root.get("libroId")).value(subquery));
-        }
-        if(filters.getCasaEditriceId() != null){
-            predicates.add(cb.equal(root.get("casaDiProduzione").get("casaId"), filters.getCasaEditriceId()));
+        if(filters.getCasaEditriceNome() != null){
+            Join<Libro, Casa> casaJoin = root.join("casaEditrice", JoinType.INNER);
+            //predicates.add(cb.like(cb.lower(casaJoin.get("listaLibriProduzione")), "%" + filters.getCasaEditriceNome() + "%"));
+            predicates.add(cb.like(cb.lower(casaJoin.get("nome")), "%" + filters.getCasaEditriceNome().toLowerCase() + "%"));
         }
         if(filters.getMinData() != null && filters.getMaxData() != null){
             predicates.add(cb.between(root.get("dataDiPubblicazione"), filters.getMinData(), filters.getMaxData()));
         }
         if(filters.getMinData() != null && filters.getMaxData() == null){
-            predicates.add(cb.greaterThan(root.get("dataDiPubblicazione"), filters.getMinData()));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMinData()));
         }
         if(filters.getMinData() == null && filters.getMaxData() != null){
-            predicates.add(cb.lessThan(root.get("dataDiPubblicazione"), filters.getMaxData()));
+            predicates.add(cb.lessThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMaxData()));
         }
         if(filters.getMinVoto() != null && filters.getMaxVoto() != null){
             predicates.add(cb.between(root.get("voto"), filters.getMinVoto(), filters.getMaxVoto()));
         }
         if(filters.getMinVoto() != null && filters.getMaxVoto() == null){
-            predicates.add(cb.greaterThan(root.get("voto"), filters.getMinVoto()));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("voto"), filters.getMinVoto()));
         }
         if(filters.getMinVoto() == null && filters.getMaxVoto() != null){
-            predicates.add(cb.lessThan(root.get("voto"), filters.getMaxVoto()));
+            predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMaxVoto()));
         }
         if(filters.getTags() != null){
-            for(int tagId : filters.getTags()) {
-                Subquery<Integer> subquery = query.subquery(Integer.class);
-                Root<Libro> subqueryLibro = subquery.from(Libro.class);
-                Join<Libro, Tag> subqueryTag = subqueryLibro.join("tagSet");
+            // Join diretta tra Libro e Tag
+            Join<Libro, Tag> tagJoin = root.join("tagSet", JoinType.INNER);
 
-                subquery.select(subqueryLibro.get("libroId")).where(
-                        cb.equal(subqueryTag.get("tagId"), tagId));
+            // Predicate: il tagId è uno di quelli passati nella lista
+            predicates.add(tagJoin.get("tagId").in(filters.getTags()));
 
-                predicates.add(cb.in(root.get("libroId")).value(subquery));
-            }
         }
 
         query.where(predicates.toArray(new Predicate[0]));
+        query.distinct(true);
         return em.createQuery(query).getResultList();
     }
 }
