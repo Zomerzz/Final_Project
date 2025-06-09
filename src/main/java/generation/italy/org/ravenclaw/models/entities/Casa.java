@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "case")
+@Table(name = "case_p")
 public class Casa {
 
     //=== ATTRIBUTI ===
