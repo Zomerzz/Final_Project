@@ -4,6 +4,8 @@ import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.repositories.CasaRepository;
 import generation.italy.org.ravenclaw.models.repositories.VideogiocoRepository;
+import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaVideogiocoRepository;
+import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +17,13 @@ import java.util.Optional;
 public class JpaVideogiocoService implements VideogiocoService{
     private VideogiocoRepository videogiocoRepository;
     private CasaRepository casaRepository;
+    private CriteriaVideogiocoRepository criteriaVideogiocoRepository;
 
     @Autowired
-    public JpaVideogiocoService(VideogiocoRepository videogiocoRepository, CasaRepository casaRepository) {
+    public JpaVideogiocoService(VideogiocoRepository videogiocoRepository, CasaRepository casaRepository, CriteriaVideogiocoRepository criteriaVideogiocoRepository) {
         this.videogiocoRepository = videogiocoRepository;
         this.casaRepository = casaRepository;
+        this.criteriaVideogiocoRepository = criteriaVideogiocoRepository;
     }
 
     @Override
@@ -61,6 +65,11 @@ public class JpaVideogiocoService implements VideogiocoService{
     public Videogioco updateVideogioco(Videogioco videogioco, int casaDiProduzioneId, int casaDiPubblicazioneId) {
         videogiocoRepository.findById(videogioco.getVideogiocoId()).orElseThrow(EntityNotFoundException::new);
         return save(videogioco, casaDiProduzioneId, casaDiPubblicazioneId);
+    }
+
+    @Override
+    public List<Videogioco> searchProducts(VideogiocoFilterCriteria filters) {
+        return criteriaVideogiocoRepository.searchVideogiocoByFilter(filters);
     }
 
 }

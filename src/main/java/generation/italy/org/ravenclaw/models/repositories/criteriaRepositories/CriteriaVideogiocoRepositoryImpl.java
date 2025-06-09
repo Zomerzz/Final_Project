@@ -1,0 +1,83 @@
+package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
+
+import generation.italy.org.ravenclaw.models.entities.Casa;
+import generation.italy.org.ravenclaw.models.entities.Tag;
+import generation.italy.org.ravenclaw.models.entities.Videogioco;
+import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+@Repository
+public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepository {
+    private EntityManager em;
+
+    @Autowired
+    public CriteriaVideogiocoRepositoryImpl(EntityManager em) {
+        this.em = em;
+    }
+
+    @Override
+    public List<Videogioco> searchVideogiocoByFilter(VideogiocoFilterCriteria filters) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Videogioco> query = cb.createQuery(Videogioco.class);
+        Root<Videogioco> root = query.from(Videogioco.class);
+        List<Predicate> predicates = new ArrayList<>();
+
+        if(filters.getTitolo() != null){
+            Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
+            predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
+        }
+
+        if(filters.getNomeCasaProduzione() != null){
+            Join<Videogioco, Casa> casaJoin = root.join("casaDiProduzione", JoinType.INNER);
+            predicates.add(cb.like(cb.lower(casaJoin.get("nomeCasaProduzione")), "%" + filters.getNomeCasaProduzione() + "%"));
+        }
+
+        if(filters.getNomeCasaPubblicazione() != null){
+            Join<Videogioco, Casa> casaJoin = root.join("casaDiPubblicazione", JoinType.INNER);
+            predicates.add(cb.like(cb.lower(casaJoin.get("nomeCasaPubblicazione")), "%" + filters.getNomeCasaProduzione() + "%"));
+        }
+
+        if(filters.getMinDataDiPubblicazione() != null){
+            predicates.add(cb.greaterThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMinDataDiPubblicazione()));
+        }
+
+        if(filters.getMaxDataDiPubblicazione() != null){
+            predicates.add(cb.lessThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMaxDataDiPubblicazione()));
+
+        }
+
+        if(filters.getMinOreDiGiocoStoriaPrincipale() != null){
+            predicates.add(cb.greaterThanOrEqualTo(root.get("oreStoriaPrincipale"), filters.getMinOreDiGiocoStoriaPrincipale()));
+        }
+
+        if(filters.getMaxOreDiGiocoStoriaPrincipale() != null){
+            predicates.add(cb.lessThanOrEqualTo(root.get("oreStoriaPrincipale"), filters.getMaxOreDiGiocoStoriaPrincipale()));
+        }
+
+
+        if(filters.getMinVoto() != null){
+            predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMinVoto()));
+        }
+
+        if(filters.getMaxVoto() != null){
+            predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMaxVoto()));
+        }
+
+        if(filters.getTags() != null && !filters.getTags().isEmpty()){
+            Join<Videogioco, Tag> tagJoin = root.join("tags", JoinType.INNER);
+            predicates.add(tagJoin.get("id").in(filters.getTags()));
+            query.groupBy(root.get("id"));
+            query.having(cb.equal(cb.countDistinct(tagJoin.get("id")), filters.getTags().size()));
+        }
+
+        query.where(predicates.toArray(new Predicate[0]));
+        return em.createQuery(query).getResultList();
+    }
+}
