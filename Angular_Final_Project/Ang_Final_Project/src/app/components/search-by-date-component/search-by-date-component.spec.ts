@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchByDateComponentComponent } from './search-by-date-component';
+import { SearchByDateComponent } from './search-by-date-component';
 
 describe('SearchByDateComponentComponent', () => {
-  let component: SearchByDateComponentComponent;
-  let fixture: ComponentFixture<SearchByDateComponentComponent>;
+  let component: SearchByDateComponent;
+  let fixture: ComponentFixture<SearchByDateComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchByDateComponentComponent]
+      imports: [SearchByDateComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchByDateComponentComponent);
+    fixture = TestBed.createComponent(SearchByDateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

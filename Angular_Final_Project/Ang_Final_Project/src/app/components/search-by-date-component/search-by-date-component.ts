@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './search-by-date-component.html',
   styleUrl: './search-by-date-component.css'
 })
-export class SearchByDateComponentComponent {
+export class SearchByDateComponent {
 
 }

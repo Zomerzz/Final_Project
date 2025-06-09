@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './search-by-description-component.html',
   styleUrl: './search-by-description-component.css'
 })
-export class SearchByDescriptionComponentComponent {
+export class SearchByDescriptionComponent {
 
 }

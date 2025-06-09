@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchByDescriptionComponentComponent } from './search-by-description-component';
+import { SearchByDescriptionComponent } from './search-by-description-component';
 
 describe('SearchByDescriptionComponentComponent', () => {
-  let component: SearchByDescriptionComponentComponent;
-  let fixture: ComponentFixture<SearchByDescriptionComponentComponent>;
+  let component: SearchByDescriptionComponent;
+  let fixture: ComponentFixture<SearchByDescriptionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchByDescriptionComponentComponent]
+      imports: [SearchByDescriptionComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchByDescriptionComponentComponent);
+    fixture = TestBed.createComponent(SearchByDescriptionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
