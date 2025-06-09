@@ -23,7 +23,6 @@ public class AutoreFilterCriteria {
         this.nome = nome;
     }
 
-
     public LocalDate getMinData() {
         return minData;
     }
