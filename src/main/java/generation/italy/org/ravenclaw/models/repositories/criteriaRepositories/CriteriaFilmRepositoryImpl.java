@@ -49,7 +49,7 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
             predicates.add(cb.greaterThan(root.get("dataDiPubblicazione"), filmFilters.getMaxData()));
         }
         if (filmFilters.getDataDiPubblicazione() != null) {
-            predicates.add(cb.greaterThan(root.get("dataDiPubblicazione"), filmFilters.getDataDiPubblicazione())); //chiedere se va bene
+            predicates.add(cb.greaterThan(root.get("dataDiPubblicazione"), filmFilters.getDataDiPubblicazione()));      //chiedere se va bene
         }
         if(filmFilters.getMinVoto() != null && filmFilters.getMaxVoto() != null){
             predicates.add(cb.between(root.get("voto"), filmFilters.getMinVoto(), filmFilters.getMaxVoto()));
@@ -70,7 +70,7 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         CriteriaQuery<Autore> queryAutore = cb.createQuery(Autore.class);
         Root<Autore> rootAutore = query.from(Autore.class);
 
-        if(filmFilters.getAutoreNome() != null){                                   //chiedere se va bene
+        if(filmFilters.getAutoreNome() != null){                                                        //chiedere se va bene
             //array con le varie parole inserite nel campo nome dell'autore
             String[] keywords = filmFilters.getAutoreNome().
                     trim().
@@ -97,7 +97,7 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
                 predicates.add(cb.like(fullName, "%" + kw + "%"));
             }
             //subquery
-            Subquery<String> subquery = query.subquery(String.class);
+            Subquery<Integer> subquery = query.subquery(Integer.class);
             Root<Film> subqueryFilm = subquery.from(Film.class);
             Join<Film, Autore> subqueryAutore = subqueryFilm.join("autoreSet");
 
