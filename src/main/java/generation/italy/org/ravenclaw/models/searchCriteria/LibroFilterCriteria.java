@@ -1,26 +1,26 @@
 package generation.italy.org.ravenclaw.models.searchCriteria;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class LibroFilterCriteria {
     private String titolo;
     private Integer numeroPagine;
-    private Integer autoreId;
     private String autoreNome;
-    private Integer casaEditriceId;
-    private Date minData;
-    private Date maxData;
+    private String casaEditriceNome;
+    private LocalDate minData;
+    private LocalDate maxData;
     private Integer minVoto;
     private Integer maxVoto;
     private List<Integer> tags;
 
-    public LibroFilterCriteria(String titolo, Integer numeroPagine, Integer autoreId, String autoreNome, Integer casaEditriceId, Date minData, Date maxData, Integer minVoto, Integer maxVoto, List<Integer> tags) {
+    public LibroFilterCriteria(String titolo, Integer numeroPagine, String autoreNome, String casaEditriceNome, LocalDate minData,
+                               LocalDate maxData, Integer minVoto, Integer maxVoto, List<Integer> tags) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
-        this.autoreId = autoreId;
         this.autoreNome = autoreNome;
-        this.casaEditriceId = casaEditriceId;
+        this.casaEditriceNome = casaEditriceNome;
         this.minData = minData;
         this.maxData = maxData;
         this.minVoto = minVoto;
@@ -38,21 +38,17 @@ public class LibroFilterCriteria {
         return numeroPagine;
     }
 
-    public Integer getAutoreId(){
-        return autoreId;
-    }
-
     public String getAutoreNome() { return autoreNome; }
 
-    public Integer getCasaEditriceId() {
-        return casaEditriceId;
+    public String getCasaEditriceNome() {
+        return casaEditriceNome;
     }
 
-    public Date getMinData() {
+    public LocalDate getMinData() {
         return minData;
     }
 
-    public Date getMaxData() {
+    public LocalDate getMaxData() {
         return maxData;
     }
 

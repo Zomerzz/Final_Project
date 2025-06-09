@@ -35,19 +35,11 @@ public class JpaRecensioneService implements RecensioneService{
 
     @Override
     public Recensione updateRecensione(Recensione recensione){
-        Optional<Recensione> optRecensione = recensioneRepo.findById(recensione.getRecensioneId());
-        if(optRecensione.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
         return recensioneRepo.save(recensione);
     }
 
     @Override
     public boolean deleteRecensione(int id){
-        Optional<Recensione> optRecensione = recensioneRepo.findById(id);
-        if(optRecensione.isEmpty()) {
-            throw new EntityNotFoundException();
-        }
         recensioneRepo.deleteById(id);
         return true;
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,15 +33,14 @@ public class  LibroController {
     @GetMapping
     public ResponseEntity<List<LibroDto>> searchLibri(@RequestParam(required = false) String titolo,
                                                       @RequestParam(required = false) Integer numeroPagine,
-                                                      @RequestParam(required = false) Integer autoreId,
                                                       @RequestParam(required = false) String autoreNome,
-                                                      @RequestParam(required = false) Integer casaEditriceId,
-                                                      @RequestParam(required = false) Date minData,
-                                                      @RequestParam(required = false) Date maxData,
+                                                      @RequestParam(required = false) String casaEditriceNome,
+                                                      @RequestParam(required = false) LocalDate minData,
+                                                      @RequestParam(required = false) LocalDate maxData,
                                                       @RequestParam(required = false) Integer minVoto,
                                                       @RequestParam(required = false) Integer maxVoto,
                                                       @RequestParam(required = false) List<Integer> tags) {
-        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreId, autoreNome, casaEditriceId, minData, maxData, minVoto, maxVoto, tags);
+        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreNome, casaEditriceNome, minData, maxData, minVoto, maxVoto, tags);
         List<Libro> libri = libroService.searchLibro(lfc);
         if(libri.isEmpty()){
             return ResponseEntity.notFound().build();
