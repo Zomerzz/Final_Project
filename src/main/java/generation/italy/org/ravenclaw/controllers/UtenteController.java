@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/utente")
 public class UtenteController {
     private UtenteService utenteService;
