@@ -96,7 +96,6 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
                 predicates.add(cb.like(fullName, "%" + kw + "%"));
             }
 
-
         }
         query.where(predicates.toArray(new Predicate[0]));
         queryAutore.where(cb.equal(rootFilm.get("autoreNome"), rootAutore.get("autoreId")));
