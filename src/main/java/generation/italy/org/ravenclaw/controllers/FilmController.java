@@ -2,6 +2,7 @@ package generation.italy.org.ravenclaw.controllers;
 
 import generation.italy.org.ravenclaw.models.dtos.FilmDto;
 import generation.italy.org.ravenclaw.models.entities.Film;
+import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +26,22 @@ public class FilmController {
     }
 
     @GetMapping
-    public ResponseEntity<?> searchFilms(){
-        List<FilmDto> result = filmService.findAllFilms().stream().map(FilmDto::toDto).toList();
-        if(!result.isEmpty()){
-            return ResponseEntity.ok(result);
+    public ResponseEntity<List<FilmDto>> searchFilm(@RequestParam(required = false) String titolo,
+                                                    @RequestParam(required = false) String casaDiProduzione,
+                                                    @RequestParam(required = false) String casaDiPubblicazione,
+                                                    @RequestParam(required = false) LocalDate dataDiPubblicazione,
+                                                    @RequestParam(required = false) LocalDate minData,
+                                                    @RequestParam(required = false) LocalDate maxData,
+                                                    @RequestParam(required = false) List<Integer> tags,
+                                                    @RequestParam(required = false) Integer minVoto,
+                                                    @RequestParam(required = false) Integer maxVoto,
+                                                    @RequestParam(required = false) String autoreNome){
+        FilmFilterCriteria ffc = new FilmFilterCriteria(titolo, casaDiProduzione, casaDiPubblicazione, dataDiPubblicazione, minData, maxData, tags, minVoto, maxVoto, autoreNome);
+        List<Film> film = filmService.searchFilm(ffc);
+        if(film.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(film.stream().map(FilmDto::toDto).toList());
     }
 
     @PostMapping
