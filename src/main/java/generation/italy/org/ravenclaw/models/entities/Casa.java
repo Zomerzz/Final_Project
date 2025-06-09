@@ -29,7 +29,7 @@ public class Casa {
 
     // ===LISTE DI LIBRI===
     @OneToMany(mappedBy = "casaEditrice" )
-    private List<Libro> listaLibriProduzione=new ArrayList<>();
+    private List<Libro> listaLibriProduzione = new ArrayList<>();
 
     // ===LISTE DI GIOCHI===
     @OneToMany(mappedBy = "casaDiPubblicazione" )
