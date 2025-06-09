@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchByTagComponentComponent } from './search-by-tag-component';
+import { SearchByTagComponent } from './search-by-tag-component';
 
 describe('SearchByTagComponentComponent', () => {
-  let component: SearchByTagComponentComponent;
-  let fixture: ComponentFixture<SearchByTagComponentComponent>;
+  let component: SearchByTagComponent;
+  let fixture: ComponentFixture<SearchByTagComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchByTagComponentComponent]
+      imports: [SearchByTagComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchByTagComponentComponent);
+    fixture = TestBed.createComponent(SearchByTagComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './search-by-tag-component.html',
   styleUrl: './search-by-tag-component.css'
 })
-export class SearchByTagComponentComponent {
+export class SearchByTagComponent {
 
 }
