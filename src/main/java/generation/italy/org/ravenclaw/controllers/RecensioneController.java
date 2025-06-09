@@ -70,7 +70,7 @@ public class RecensioneController {
         return ResponseEntity.created(location).body(newRecensioneDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateRecensione (@PathVariable int id, @RequestBody RecensioneDto recensioneDto){
         Optional<Recensione> recensioneOptional = recensioneService.findRecensioneById(id);
         if(id != recensioneDto.getRecensioneId()){
