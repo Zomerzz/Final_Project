@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/libro")
 public class  LibroController {
     private LibroService libroService;
@@ -40,7 +41,7 @@ public class  LibroController {
                                                       @RequestParam(required = false) Integer maxVoto,
                                                       @RequestParam(required = false) List<Integer> tags) {
         LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreId, autoreNome, casaEditriceId, minData, maxData, minVoto, maxVoto, tags);
-        List<Libro> libri = libroService.searchProducts(lfc);
+        List<Libro> libri = libroService.searchLibro(lfc);
         if(libri.isEmpty()){
             return ResponseEntity.notFound().build();
         }

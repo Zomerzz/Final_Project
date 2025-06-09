@@ -2,6 +2,7 @@ package generation.italy.org.ravenclaw.models.services;
 
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.Autore;
+import generation.italy.org.ravenclaw.models.searchCriteria.AutoreFilterCriteria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,5 @@ public interface AutoreService {
     Autore updateAutore(Autore autore) ;
 
     boolean deleteAutore(int id);
+    List<Autore> searchCriteria(AutoreFilterCriteria autoreFilterCriteria);
 }
