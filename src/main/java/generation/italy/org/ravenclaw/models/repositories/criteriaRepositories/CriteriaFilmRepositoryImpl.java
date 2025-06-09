@@ -1,7 +1,6 @@
 package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
 
-import generation.italy.org.ravenclaw.models.entities.Autore;
-import generation.italy.org.ravenclaw.models.entities.Film;
+import generation.italy.org.ravenclaw.models.entities.*;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
@@ -30,75 +29,87 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         //=== FILM ========================
 
         if (filmFilters.getTitolo() != null) {
-            predicates.add(cb.like(rootFilm.get("titolo"), filmFilters.getTitolo()));
+            predicates.add(cb.like(rootFilm.get("titolo"), "%" + filmFilters.getTitolo() + "%"));
         }
         if (filmFilters.getCasaDiProduzioneNome() != null) {
-            predicates.add(cb.like(rootFilm.get("casaDiProduzioneNome"), filmFilters.getCasaDiProduzioneNome()));
+            predicates.add(cb.like(rootFilm.get("casaDiProduzioneNome"), "%" + filmFilters.getCasaDiProduzioneNome() + "%"));
         }
         if (filmFilters.getCasaDiPubblicazioneNome() != null) {
-            predicates.add(cb.like(rootFilm.get("casaDiPubblicazioneNome"), filmFilters.getCasaDiPubblicazioneNome()));
+            predicates.add(cb.like(rootFilm.get("casaDiPubblicazioneNome"), "%" + filmFilters.getCasaDiPubblicazioneNome() + "%"));
         }
         //date
         if (filmFilters.getMinData() != null && filmFilters.getMaxData() != null) {
-            predicates.add(cb.between(rootFilm.get("dataDiPubblicazione"), filmFilters.getMinData(), filmFilters.getMaxData()));
+            predicates.add(cb.between(rootFilm.get("dataDiPubblicazione"),  filmFilters.getMinData(), filmFilters.getMaxData()));
         }
         if (filmFilters.getMinData() != null && filmFilters.getMaxData() == null) {
-            predicates.add(cb.greaterThan(rootFilm.get("dataDiPubblicazione"), filmFilters.getMinData()));
+            predicates.add(cb.greaterThanOrEqualTo(rootFilm.get("dataDiPubblicazione"), filmFilters.getMinData()));
         }
         if (filmFilters.getMinData() == null && filmFilters.getMaxData() != null) {
-            predicates.add(cb.greaterThan(rootFilm.get("dataDiPubblicazione"), filmFilters.getMaxData()));
+            predicates.add(cb.greaterThanOrEqualTo(rootFilm.get("dataDiPubblicazione"), filmFilters.getMaxData()));
         }
         if (filmFilters.getDataDiPubblicazione() != null) {
-            predicates.add(cb.greaterThan(rootFilm.get("dataDiPubblicazione"), filmFilters.getDataDiPubblicazione()));      //chiedere se va bene
+            predicates.add(cb.equal(rootFilm.get("dataDiPubblicazione"), filmFilters.getDataDiPubblicazione()));
         }
         if (filmFilters.getMinVoto() != null && filmFilters.getMaxVoto() != null) {
             predicates.add(cb.between(rootFilm.get("voto"), filmFilters.getMinVoto(), filmFilters.getMaxVoto()));
         }
         if (filmFilters.getMinVoto() != null && filmFilters.getMaxVoto() == null) {
-            predicates.add(cb.greaterThan(rootFilm.get("voto"), filmFilters.getMinVoto()));
+            predicates.add(cb.greaterThanOrEqualTo(rootFilm.get("voto"), filmFilters.getMinVoto()));
         }
         if (filmFilters.getMinVoto() == null && filmFilters.getMaxVoto() != null) {
-            predicates.add(cb.lessThan(rootFilm.get("voto"), filmFilters.getMaxVoto()));
+            predicates.add(cb.lessThanOrEqualTo(rootFilm.get("voto"), filmFilters.getMaxVoto()));
         }
-        // Il voto lo metto in un if() solo per lui? O faccio come nella classe di Cami?  chiedere se va bene
 
 
         //=== AUTORE ===============================
 
         //per far arrivare dati dalla tabella autore
-        CriteriaQuery<Autore> queryAutore = cb.createQuery(Autore.class);
-        Root<Autore> rootAutore = query.from(Autore.class);
 
-        if (filmFilters.getAutoreNome() != null) {                                                        //chiedere se va bene
-            //array con le varie parole inserite nel campo nome dell'autore
-            String[] keywords = filmFilters.getAutoreNome().
-                    trim().
-                    toLowerCase().
-                    split("\\s+");
+        if (filmFilters.getAutoreNome() != null) {
+            // Join tra Film e Autore
+            Join<Film, CrewFilm> crewJoin = rootFilm.join("crew");
+            Join<Join<Film, CrewFilm>, Autore> autoreJoin = crewJoin.join("autore");
 
-            // il coalesce ci salva dal fatto che i valori potrebbero essere null
-            Expression<String> name = cb.coalesce(rootAutore.get("nome"), "");
-            Expression<String> secondName = cb.coalesce(rootAutore.get("secondoNome"), "");
-            Expression<String> lastName = cb.coalesce(rootAutore.get("cognome"), "");
+            // Split delle parole chiave inserite nel campo nome
+            String[] keywords = filmFilters.getAutoreNome().trim().toLowerCase().split("\\s+");
 
-            //la query concatenera i nomi, i secondi nomi e i cognomi
-            Expression<String> fullName = cb.lower(
+            // Coalesce per evitare null su nome, secondoNome e cognome
+            Expression<String> nome = cb.coalesce(cb.lower(autoreJoin.get("nome")), "");
+            Expression<String> secondoNome = cb.coalesce(cb.lower(autoreJoin.get("secondoNome")), "");
+            Expression<String> cognome = cb.coalesce(cb.lower(autoreJoin.get("cognome")), "");
+
+            // Concatenazione per costruire fullName = nome + " " + secondoNome + " " + cognome
+            Expression<String> fullName = cb.concat(
                     cb.concat(
-                            cb.concat(
-                                    cb.concat(name, cb.literal(" ")),
-                                    secondName
-                            ),
-                            cb.concat(cb.literal(" "), lastName)
-                    )
+                            cb.concat(nome, cb.literal(" ")),
+                            cb.concat(secondoNome, cb.literal(" "))
+                    ),
+                    cognome
             );
-            //controlla se ciascuna parola è inclusa nella concatenazione
+
+            // Lista di predicati LIKE per ciascuna keyword
+            List<Predicate> keywordPredicates = new ArrayList<>();
             for (String kw : keywords) {
-                predicates.add(cb.like(fullName, "%" + kw + "%"));
+                keywordPredicates.add(cb.like(fullName, "%" + kw + "%"));
             }
+
+            // Unisci i predicati con OR (almeno una keyword deve essere contenuta)
+            Predicate autoreKeywordMatch = cb.or(keywordPredicates.toArray(new Predicate[0]));
+
+            // Aggiungi il predicato alla lista della query principale
+            predicates.add(autoreKeywordMatch);
+        }
+
+        //=== TAGS ===
+        if(filmFilters.getTags() != null){
+            // Join diretta tra Libro e Tag
+            Join<Film, Tag> tagJoin = rootFilm.join("tagSet", JoinType.INNER);
+            // Predicate: il tagId è uno di quelli passati nella lista
+            predicates.add(tagJoin.get("tagId").in(filmFilters.getTags()));
 
         }
         query.where(predicates.toArray(new Predicate[0]));
-        queryAutore.where(cb.equal(rootFilm.get("autoreNome"), rootAutore.get("autoreId")));
+        query.distinct(true);
         return em.createQuery(query).getResultList();
     }
 }
