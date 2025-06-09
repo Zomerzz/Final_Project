@@ -70,7 +70,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
 
 
         if(filters.getCasaEditriceNome() != null){
-            Join<Libro, Casa> casaJoin = root.join("casaEditrice", JoinType.INNER);
+            Join<Libro, Casa> casaJoin = root.join("Casa", JoinType.INNER);
             //predicates.add(cb.like(cb.lower(casaJoin.get("listaLibriProduzione")), "%" + filters.getCasaEditriceNome() + "%"));
             predicates.add(cb.like(cb.lower(casaJoin.get("nome")), "%" + filters.getCasaEditriceNome().toLowerCase() + "%"));
         }
