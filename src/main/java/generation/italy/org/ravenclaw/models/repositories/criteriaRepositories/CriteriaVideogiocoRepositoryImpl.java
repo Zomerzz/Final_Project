@@ -34,14 +34,14 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
             predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
         }
 
-        if(filters.getNomeCasaProduzione() != null){
-            Join<Videogioco, Casa> casaJoin = root.join("casaDiProduzione", JoinType.INNER);
-            predicates.add(cb.like(cb.lower(casaJoin.get("nomeCasaProduzione")), "%" + filters.getNomeCasaProduzione() + "%"));
+        if(filters.getNomeCasaDiProduzione() != null && !filters.getNomeCasaDiProduzione().isEmpty()){
+            Join<Videogioco, Casa> casaProdJoin = root.join("casaDiProduzione", JoinType.INNER);
+            predicates.add(cb.like(cb.lower(casaProdJoin.get("nome")), "%" + filters.getNomeCasaDiProduzione() + "%"));
         }
 
-        if(filters.getNomeCasaPubblicazione() != null){
-            Join<Videogioco, Casa> casaJoin = root.join("casaDiPubblicazione", JoinType.INNER);
-            predicates.add(cb.like(cb.lower(casaJoin.get("nomeCasaPubblicazione")), "%" + filters.getNomeCasaProduzione() + "%"));
+        if(filters.getNomeCasaDiPubblicazione() != null && !filters.getNomeCasaDiPubblicazione().isEmpty()) {
+            Join<Videogioco, Casa> casaPubJoin = root.join("casaDiPubblicazione", JoinType.INNER);
+            predicates.add(cb.like(cb.lower(casaPubJoin.get("nome")), "%" + filters.getNomeCasaDiPubblicazione() + "%"));
         }
 
         if(filters.getMinDataDiPubblicazione() != null){

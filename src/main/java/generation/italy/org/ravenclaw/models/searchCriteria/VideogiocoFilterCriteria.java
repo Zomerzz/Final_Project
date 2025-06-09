@@ -5,8 +5,8 @@ import java.util.List;
 
 public class VideogiocoFilterCriteria {
     private String titolo;
-    private String nomeCasaProduzione;
-    private String nomeCasaPubblicazione;
+    private String nomeCasaDiProduzione;
+    private String nomeCasaDiPubblicazione;
     private LocalDate minDataDiPubblicazione;
     private LocalDate maxDataDiPubblicazione;
     private Integer minOreDiGiocoStoriaPrincipale;
@@ -15,10 +15,10 @@ public class VideogiocoFilterCriteria {
     private Integer maxVoto;
     private List<Integer> tags;
 
-    public VideogiocoFilterCriteria(String titolo, String nomeCasaProduzione, String nomeCasaPubblicazione, LocalDate minDataDiPubblicazione, LocalDate maxDataDiPubblicazione, Integer minOreDiGiocoStoriaPrincipale,Integer maxOreDiGiocoStoriaPrincipale,  Integer minVoto, Integer maxVoto, List<Integer> tags) {
+    public VideogiocoFilterCriteria(String titolo, String nomeCasaDiProduzione, String nomeCasaDiPubblicazione, LocalDate minDataDiPubblicazione, LocalDate maxDataDiPubblicazione, Integer minOreDiGiocoStoriaPrincipale,Integer maxOreDiGiocoStoriaPrincipale,  Integer minVoto, Integer maxVoto, List<Integer> tags) {
         this.titolo = titolo;
-        this.nomeCasaProduzione = nomeCasaProduzione;
-        this.nomeCasaPubblicazione = nomeCasaPubblicazione;
+        this.nomeCasaDiProduzione = nomeCasaDiProduzione;
+        this.nomeCasaDiPubblicazione = nomeCasaDiPubblicazione;
         this.minDataDiPubblicazione = minDataDiPubblicazione;
         this.maxDataDiPubblicazione = maxDataDiPubblicazione;
         this.minOreDiGiocoStoriaPrincipale = minOreDiGiocoStoriaPrincipale;
@@ -36,12 +36,12 @@ public class VideogiocoFilterCriteria {
         return titolo;
     }
 
-    public String getNomeCasaProduzione() {
-        return nomeCasaProduzione;
+    public String getNomeCasaDiProduzione() {
+        return nomeCasaDiProduzione;
     }
 
-    public String getNomeCasaPubblicazione() {
-        return nomeCasaPubblicazione;
+    public String getNomeCasaDiPubblicazione() {
+        return nomeCasaDiPubblicazione;
     }
 
     public LocalDate getMinDataDiPubblicazione() {
