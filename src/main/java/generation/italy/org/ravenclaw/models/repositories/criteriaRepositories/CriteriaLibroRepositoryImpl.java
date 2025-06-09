@@ -71,19 +71,19 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             predicates.add(cb.between(root.get("dataDiPubblicazione"), filters.getMinData(), filters.getMaxData()));
         }
         if(filters.getMinData() != null && filters.getMaxData() == null){
-            predicates.add(cb.greaterThan(root.get("dataDiPubblicazione"), filters.getMinData()));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMinData()));
         }
         if(filters.getMinData() == null && filters.getMaxData() != null){
-            predicates.add(cb.lessThan(root.get("dataDiPubblicazione"), filters.getMaxData()));
+            predicates.add(cb.lessThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMaxData()));
         }
         if(filters.getMinVoto() != null && filters.getMaxVoto() != null){
             predicates.add(cb.between(root.get("voto"), filters.getMinVoto(), filters.getMaxVoto()));
         }
         if(filters.getMinVoto() != null && filters.getMaxVoto() == null){
-            predicates.add(cb.greaterThan(root.get("voto"), filters.getMinVoto()));
+            predicates.add(cb.greaterThanOrEqualTo(root.get("voto"), filters.getMinVoto()));
         }
         if(filters.getMinVoto() == null && filters.getMaxVoto() != null){
-            predicates.add(cb.lessThan(root.get("voto"), filters.getMaxVoto()));
+            predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMaxVoto()));
         }
         if(filters.getTags() != null){
             for(int tagId : filters.getTags()) {
