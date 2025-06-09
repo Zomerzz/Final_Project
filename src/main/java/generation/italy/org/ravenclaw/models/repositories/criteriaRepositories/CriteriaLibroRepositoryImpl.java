@@ -70,7 +70,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
 
 
         if(filters.getCasaEditriceNome() != null){
-            Join<Libro, Casa> casaJoin = root.join("Casa", JoinType.INNER);
+            Join<Libro, Casa> casaJoin = root.join("casaEditrice", JoinType.INNER);
             //predicates.add(cb.like(cb.lower(casaJoin.get("listaLibriProduzione")), "%" + filters.getCasaEditriceNome() + "%"));
             predicates.add(cb.like(cb.lower(casaJoin.get("nome")), "%" + filters.getCasaEditriceNome().toLowerCase() + "%"));
         }
@@ -93,19 +93,16 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMaxVoto()));
         }
         if(filters.getTags() != null){
-            for(int tagId : filters.getTags()) {
-                Subquery<Integer> subquery = query.subquery(Integer.class);
-                Root<Libro> subqueryLibro = subquery.from(Libro.class);
-                Join<Libro, Tag> subqueryTag = subqueryLibro.join("tagSet");
+            // Join diretta tra Libro e Tag
+            Join<Libro, Tag> tagJoin = root.join("tagSet", JoinType.INNER);
 
-                subquery.select(subqueryLibro.get("libroId")).where(
-                        cb.equal(subqueryTag.get("tagId"), tagId));
+            // Predicate: il tagId è uno di quelli passati nella lista
+            predicates.add(tagJoin.get("tagId").in(filters.getTags()));
 
-                predicates.add(cb.in(root.get("libroId")).value(subquery));
-            }
         }
 
         query.where(predicates.toArray(new Predicate[0]));
+        query.distinct(true);
         return em.createQuery(query).getResultList();
     }
 }
