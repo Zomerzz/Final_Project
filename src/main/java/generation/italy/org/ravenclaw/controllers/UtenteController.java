@@ -1,10 +1,12 @@
 package generation.italy.org.ravenclaw.controllers;
 
-import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.UtenteDto;
 import generation.italy.org.ravenclaw.models.entities.Utente;
 import generation.italy.org.ravenclaw.models.services.UtenteService;
+import generation.italy.org.ravenclaw.models.dtos.request.PasswordUpdateRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -24,6 +26,7 @@ public class UtenteController {
         this.utenteService = utenteService;
     }
 
+    @Deprecated
     @GetMapping
     public ResponseEntity<List<UtenteDto>> searchUtenti() {
         List<Utente> utenti = utenteService.findAllUtenti();
@@ -34,6 +37,7 @@ public class UtenteController {
         return ResponseEntity.ok(utentiDto);
     }
 
+    @Deprecated
     @GetMapping("/{id}")
     public ResponseEntity<?> searchById(@PathVariable int id) {
         Optional<Utente> utenteOpt = utenteService.findUtenteById(id);
@@ -57,6 +61,7 @@ public class UtenteController {
     }
 
     @PostMapping
+    @Deprecated
     public ResponseEntity<UtenteDto> createUtente (@RequestBody UtenteDto utenteDto){
         Utente utente = utenteDto.toUtente();
         Utente savedUtente = utenteService.saveUtente(utente);
@@ -84,4 +89,9 @@ public class UtenteController {
         return ResponseEntity.ok(UtenteDto.toDto(utente));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/password")
+    public void passwordUpdate(@Valid @RequestBody PasswordUpdateRequest passUpdateReq){
+        utenteService.updatePassword(passUpdateReq);
+    }
 }
