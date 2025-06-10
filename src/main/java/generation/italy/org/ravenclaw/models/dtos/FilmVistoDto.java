@@ -18,14 +18,14 @@ public class FilmVistoDto {
         this.recensioneId = recensioneId;
     }
 
-    private static FilmVistoDto toDto(FilmVisto filmVisto){
+    public static FilmVistoDto toDto(FilmVisto filmVisto){
         return new FilmVistoDto(filmVisto.getFilmVistoId(),
                 filmVisto.getFilm().getFilmId(),
                 filmVisto.getUtente().getUtenteId(),
                 filmVisto.getRecensione().getRecensioneId());
     }
 
-    private FilmVisto toFilmVisto(){
+    public FilmVisto toFilmVisto(){
         return new FilmVisto(filmVistoId, null, null, null);
     }
 
