@@ -6,7 +6,7 @@ import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.repositories.CasaRepository;
 import generation.italy.org.ravenclaw.models.repositories.LibroRepository;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
-import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaLibroRepositoryImpl;
+import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaLibroRepository;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import java.util.Optional;
 public class JpaLibroService implements LibroService{
     private LibroRepository libroRepo;
     private CasaRepository casaRepo;
-    private CriteriaLibroRepositoryImpl criteriaLibroRepo;
+    private CriteriaLibroRepository criteriaLibroRepo;
 
     @Autowired
-    public JpaLibroService(LibroRepository libroRepo, CasaRepository casaRepo, CriteriaLibroRepositoryImpl criteriaLibroRepo){
+    public JpaLibroService(LibroRepository libroRepo, CasaRepository casaRepo, CriteriaLibroRepository criteriaLibroRepo){
         this.libroRepo = libroRepo;
         this.casaRepo = casaRepo;
         this.criteriaLibroRepo = criteriaLibroRepo;
@@ -47,13 +47,11 @@ public class JpaLibroService implements LibroService{
 
     @Override
     public Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
-        Optional<Libro> optLibro = libroRepo.findById(libro.getLibroId());
         return saveLibro(libro, casaEditriceId);
     }
 
     @Override
     public boolean deleteLibro(int id) throws DataException, EntityNotFoundException {
-        Optional<Libro> optLibro = libroRepo.findById(id);
         libroRepo.deleteById(id);
         return true;
     }

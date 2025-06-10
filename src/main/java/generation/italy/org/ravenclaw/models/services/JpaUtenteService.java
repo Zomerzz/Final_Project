@@ -61,8 +61,6 @@ public class JpaUtenteService implements UtenteService{
 
     @Override
     public Utente updateUtente(Utente utente) {
-        Optional<Utente> optUtente = utenteRepo.findById(utente.getUtenteId());
-
         return utenteRepo.save(utente);
     }
 
