@@ -4,6 +4,8 @@ import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.repositories.CasaRepository;
 import generation.italy.org.ravenclaw.models.repositories.FilmRepository;
+import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaFilmRepository;
+import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +14,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JpaFilmService implements FilmService{
+public class JpaFilmService implements FilmService {
     private FilmRepository filmRepo;
     private CasaRepository casaRepo;
+    private CriteriaFilmRepository criteriaFRepo;
 
     @Autowired
-    public JpaFilmService(FilmRepository filmRepo, CasaRepository casaRepo){
+    public JpaFilmService(FilmRepository filmRepo, CasaRepository casaRepo, CriteriaFilmRepository criteriaFRepo){
         this.filmRepo = filmRepo;
         this.casaRepo = casaRepo;
+        this.criteriaFRepo = criteriaFRepo;
     }
 
     @Override
@@ -53,5 +57,10 @@ public class JpaFilmService implements FilmService{
         }
         filmRepo.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<Film> searchFilm(FilmFilterCriteria ffc) {
+        return criteriaFRepo.searchFilmByFilters(ffc);
     }
 }

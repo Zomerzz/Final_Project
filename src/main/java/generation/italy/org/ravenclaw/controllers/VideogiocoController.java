@@ -28,7 +28,7 @@ public class VideogiocoController {
 
     @GetMapping
     public ResponseEntity<List<VideogiocoDto>> filteredSearch(@RequestParam(required = false) String titolo,
-                                                              @RequestParam(required = false) String nomeCasaProduzione,
+                                                              @RequestParam(required = false) String nomeCasaDiProduzione,
                                                               @RequestParam(required = false) String nomeCasaDiPubblicazione,
                                                               @RequestParam(required = false) LocalDate minDataDiPubblicazione,
                                                               @RequestParam(required = false) LocalDate maxDataDiPubblicazione,
@@ -38,7 +38,7 @@ public class VideogiocoController {
                                                               @RequestParam(required = false) Integer maxVoto,
                                                               @RequestParam(required = false) List<Integer> tags
                                                               ) {
-        VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaProduzione, nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione, minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags);
+        VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaDiProduzione, nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione, minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags);
         List<Videogioco> videogiochi = videogiocoService.searchProducts(vfc);
         if(videogiochi.isEmpty()){
             return ResponseEntity.notFound().build();
