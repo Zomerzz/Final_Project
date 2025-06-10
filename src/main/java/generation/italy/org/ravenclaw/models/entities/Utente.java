@@ -1,13 +1,16 @@
 package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "utenti")
-public class Utente {
+public class Utente implements UserDetails {
 
     // === ATTRIBUTI ===
 
@@ -30,6 +33,10 @@ public class Utente {
     @OneToMany(mappedBy = "utente")
     private List<FilmVisto> filmVisti = new ArrayList<>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "utenti_authorities", joinColumns = @JoinColumn(name = "utente_id"))
+    private List<Authority> authorities;
+
     // === CONSTRUCTORS ===
 
     public Utente() {
@@ -41,6 +48,27 @@ public class Utente {
         this.email = email;
     }
 
+    // === METODI USER ===
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
+
     // === GETTERS ===
 
     public int getUtenteId() {
@@ -48,9 +76,6 @@ public class Utente {
     }
     public String getNome() {
         return nome;
-    }
-    public String getPassword() {
-        return password;
     }
     public String getEmail() {
         return email;
@@ -63,5 +88,48 @@ public class Utente {
     }
     public List<FilmVisto> getFilmVisti() {
         return filmVisti;
+    }
+    public String getPassword() {
+        return password;
+    }
+    @Override
+    public String getUsername() {
+        return email;
+    }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setUtenteId(int utenteId) {
+        this.utenteId = utenteId;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setVideogiochiGiocati(List<VideogiocoGiocato> videogiochiGiocati) {
+        this.videogiochiGiocati = videogiochiGiocati;
+    }
+
+    public void setLibriLetti(List<LibroLetto> libriLetti) {
+        this.libriLetti = libriLetti;
+    }
+
+    public void setFilmVisti(List<FilmVisto> filmVisti) {
+        this.filmVisti = filmVisti;
+    }
+
+    public void setAuthorities(List<Authority> authorities) {
+        this.authorities = authorities;
     }
 }
