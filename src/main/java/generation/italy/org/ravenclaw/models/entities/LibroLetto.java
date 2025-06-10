@@ -34,7 +34,8 @@ public class LibroLetto {
     public LibroLetto() {
     }
 
-    public LibroLetto(Libro libro, Utente utente, Recensione recensione) {
+    public LibroLetto(int libroLettoId, Libro libro, Utente utente, Recensione recensione) {
+        this.libroLettoId = libroLettoId;
         this.libro = libro;
         this.utente = utente;
         this.recensione = recensione;

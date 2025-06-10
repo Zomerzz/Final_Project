@@ -34,7 +34,8 @@ public class FilmVisto {
     public FilmVisto() {
     }
 
-    public FilmVisto(Film film, Utente utente, Recensione recensione) {
+    public FilmVisto(int filmVistoId, Film film, Utente utente, Recensione recensione) {
+        this.filmVistoId = filmVistoId;
         this.film = film;
         this.utente = utente;
         this.recensione = recensione;
