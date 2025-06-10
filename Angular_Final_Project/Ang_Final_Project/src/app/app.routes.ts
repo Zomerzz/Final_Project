@@ -6,4 +6,5 @@ import { RecensioniListComponent } from './components/recensioni-list/recensioni
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserPageComponent},
-  { path: 'recensioni-list/:type/:id', component: RecensioniListComponent}];
+  // prova per le liste di recensioni{ path: 'recensioni-list/:type/:id', component: RecensioniListComponent}
+];
