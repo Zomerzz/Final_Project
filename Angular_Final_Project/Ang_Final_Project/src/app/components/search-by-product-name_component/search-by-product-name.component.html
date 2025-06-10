@@ -1,6 +1,7 @@
 <!-- <form #f = "ng-form" (ngSubmit) = "onSubmit(f)"> -->
     <div>
-        <label for="titolo">Search titolo</label>
-        <input type="text" id="titolo" name="titolo">
+        <input type="text" id="titolo" #name="ngModel" name="titolo" placeholder="Titolo opera" [(ngModel)] = "searchModel.titolo"   >
+        <button (click)="send()">Invia</button>
+
     </div> 
 <!-- </form> -->
