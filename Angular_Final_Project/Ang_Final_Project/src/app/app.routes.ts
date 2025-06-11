@@ -4,4 +4,6 @@ import { UserPageComponent } from './components/user-page-component/user-page-co
 
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'user', component: UserPageComponent}];
+  { path: 'user', component: UserPageComponent}
+  
+];

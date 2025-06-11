@@ -15,8 +15,8 @@ public class RegisterRequest {
     @Size(min = 5, max = 30, message = "La password deve essere tra 5 e 30 caratteri")
     private String password;
 
-    public RegisterRequest(String firstName, String email, String password) {
-        this.name = firstName;
+    public RegisterRequest(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
     }
