@@ -62,9 +62,10 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults())
                 .authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers("/api/auth/**").denyAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("api/utente/**").denyAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+                        .anyRequest().anonymous()
                         );
 
         http.csrf(csrf -> csrf.disable());
