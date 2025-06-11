@@ -43,4 +43,27 @@ public class JpaRecensioneService implements RecensioneService{
         recensioneRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Recensione> findRecensioneByFilmId(int filmId) {
+        return recensioneRepo.findByFilmVistoFilmFilmId(filmId);
+    }
+
+    @Override
+    public List<Recensione> findRecensioneByLibroId(int libroId) {
+        return recensioneRepo.findByLibroLettoLibroLibroId(libroId);
+    }
+
+    @Override
+    public List<Recensione> findRecensioneByVideogiocoId(int videogiocoId) {
+        return recensioneRepo.findByVideogiocoGiocatoVideogiocoVideogiocoId(videogiocoId);
+    }
+//
+     //DA GESTIRE IL FATTO CHE NON COMPARE NEL DTO IL NOME DELL'OPERA, COSì NELLA PAG UTENTE SAREBBE UNA LISTA DI RECENSIONI A CASO
+//    @Override
+//    public List<Recensione> findRecensioneByUtenteId(int utenteId) {
+//        List<Recensione> recFilm = recensioneRepo.findByFilmVistoFilmUtenteId(utenteId);
+//        List<Recensione> recLibri = recensioneRepo.findByLibroLettoLibroUtenteId(utenteId);
+//        List<Recensione> recVideogiochi = recensioneRepo.findByVideogiocoGiocatoVideogiocoUtenteId(utenteId);
+//    }
 }

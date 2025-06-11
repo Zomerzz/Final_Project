@@ -34,7 +34,8 @@ public class FilmVisto {
     public FilmVisto() {
     }
 
-    public FilmVisto(Film film, Utente utente, Recensione recensione) {
+    public FilmVisto(int filmVistoId, Film film, Utente utente, Recensione recensione) {
+        this.filmVistoId = filmVistoId;
         this.film = film;
         this.utente = utente;
         this.recensione = recensione;
@@ -53,5 +54,23 @@ public class FilmVisto {
     }
     public Recensione getRecensione() {
         return recensione;
+    }
+
+    // === SETTER ===
+
+    public void setFilmVistoId(int filmVistoId) {
+        this.filmVistoId = filmVistoId;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setRecensione(Recensione recensione) {
+        this.recensione = recensione;
     }
 }

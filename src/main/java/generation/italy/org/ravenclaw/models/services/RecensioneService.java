@@ -17,4 +17,12 @@ public interface RecensioneService {
     Recensione updateRecensione(Recensione recensione);
 
     boolean deleteRecensione(int id);
+
+    List<Recensione> findRecensioneByFilmId(int filmId);
+
+    List<Recensione> findRecensioneByLibroId(int libroId);
+
+    List<Recensione> findRecensioneByVideogiocoId(int videogiocoId);
+
+    //List<Recensione> findRecensioneByUtenteId(int utenteId);
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchByDateComponent } from './search-by-date-component';
+import { AddRecensioneComponent } from './add-recensione.component';
 
-describe('SearchByDateComponentComponent', () => {
-  let component: SearchByDateComponent;
-  let fixture: ComponentFixture<SearchByDateComponent>;
+describe('AddRecensioneComponent', () => {
+  let component: AddRecensioneComponent;
+  let fixture: ComponentFixture<AddRecensioneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchByDateComponent]
+      imports: [AddRecensioneComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SearchByDateComponent);
+    fixture = TestBed.createComponent(AddRecensioneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
