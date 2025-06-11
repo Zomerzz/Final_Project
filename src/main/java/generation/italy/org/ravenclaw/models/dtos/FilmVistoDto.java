@@ -7,16 +7,16 @@ public class FilmVistoDto {
     private int filmVistoId;
     private FilmDto film;
     private int utenteId;
-    private RecensioneDto recensioneDto;
+    private RecensioneDto recensione;
 
     public FilmVistoDto() {
     }
 
-    public FilmVistoDto(int filmVistoId, FilmDto film, int utenteId, RecensioneDto recensioneDto) {
+    public FilmVistoDto(int filmVistoId, FilmDto film, int utenteId, RecensioneDto recensione) {
         this.filmVistoId = filmVistoId;
         this.film = film;
         this.utenteId = utenteId;
-        this.recensioneDto = recensioneDto;
+        this.recensione = recensione;
     }
 
     public static FilmVistoDto toDto(FilmVisto filmVisto){
@@ -53,11 +53,11 @@ public class FilmVistoDto {
         this.utenteId = utenteId;
     }
 
-    public RecensioneDto getRecensioneDto() {
-        return recensioneDto;
+    public RecensioneDto getRecensione() {
+        return recensione;
     }
 
-    public void setRecensioneDto(RecensioneDto recensioneDto) {
-        this.recensioneDto = recensioneDto;
+    public void setRecensioneDto(RecensioneDto recensione) {
+        this.recensione = recensione;
     }
 }

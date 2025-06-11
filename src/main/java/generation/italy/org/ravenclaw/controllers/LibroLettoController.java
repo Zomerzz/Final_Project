@@ -3,7 +3,7 @@ package generation.italy.org.ravenclaw.controllers;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.LibroLettoDto;
 import generation.italy.org.ravenclaw.models.entities.LibroLetto;
-import generation.italy.org.ravenclaw.models.services.LibroLettoService;
+import generation.italy.org.ravenclaw.models.services.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +15,18 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/libroletto")
+@RequestMapping("/api/libro-letto")
 public class LibroLettoController {
-    private LibroLettoService libroLettoService;
+    private LibroService libroService;
 
     @Autowired
-    public LibroLettoController(LibroLettoService libroLettoService){
-        this.libroLettoService = libroLettoService;
+    public LibroLettoController(LibroService libroService){
+        this.libroService = libroService;
     }
 
     @GetMapping
     private ResponseEntity<?> searchVLibriLettiByUtente(@RequestParam int utenteId){
-        List<LibroLetto> libriLetti = libroLettoService.findByUtente(utenteId);
+        List<LibroLetto> libriLetti = libroService.findLibroLettoByUtente(utenteId);
         if (libriLetti.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -36,7 +36,7 @@ public class LibroLettoController {
 
     @GetMapping("/{id}")
     private ResponseEntity<?> searchLibroLettoById(@PathVariable int id){
-        Optional<LibroLetto> opt = libroLettoService.findById(id);
+        Optional<LibroLetto> opt = libroService.findLibroLettoById(id);
         return opt.map(ll -> ResponseEntity.ok().body(LibroLettoDto.toDto(ll)))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -44,7 +44,18 @@ public class LibroLettoController {
     @PostMapping
     public ResponseEntity<?> createLibroLetto (@RequestBody LibroLettoDto dto) throws EntityNotFoundException {
         LibroLetto ll = dto.toLibroLetto();
-        LibroLetto saved = libroLettoService.save(ll, dto.getLibroId(), dto.getUtenteId(), dto.getRecensioneId());
+        LibroLetto saved = null;
+        if(dto.getRecensione() != null){
+            saved = libroService.saveLibroLetto(ll,
+                    dto.getLibro().toLibro(),
+                    dto.getUtenteId(),
+                    dto.getRecensione().toRecensione());
+        } else {
+            saved = libroService.saveLibroLetto(ll,
+                    dto.getLibro().toLibro(),
+                    dto.getUtenteId(),
+                    null);
+        }
         LibroLettoDto newDto = LibroLettoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -60,21 +71,32 @@ public class LibroLettoController {
         if(id != updatedDto.getLibroLettoId()){
             return ResponseEntity.badRequest().body("id dto e id del path non coincidono");
         }
-        Optional<LibroLetto> opt = libroLettoService.findById(id);
+        Optional<LibroLetto> opt = libroService.findLibroLettoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        LibroLetto libroLetto = libroLettoService.update(opt.get(), updatedDto.getLibroId(), updatedDto.getUtenteId(), updatedDto.getRecensioneId());
+        LibroLetto libroLetto = null;
+        if(updatedDto.getRecensione() != null){
+            libroLetto = libroService.updateLibroLetto(opt.get(),
+                    updatedDto.getLibro().toLibro(),
+                    updatedDto.getUtenteId(),
+                    updatedDto.getRecensione().toRecensione());
+        } else {
+            libroLetto = libroService.updateLibroLetto(opt.get(),
+                    updatedDto.getLibro().toLibro(),
+                    updatedDto.getUtenteId(),
+                    null);
+        }
         return ResponseEntity.ok(LibroLettoDto.toDto(libroLetto));
     }
 
     @DeleteMapping("/{id}")
     private ResponseEntity<?> deleteLibroLetto(@PathVariable int id){
-        Optional<LibroLetto> opt = libroLettoService.findById(id);
+        Optional<LibroLetto> opt = libroService.findLibroLettoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        libroLettoService.delete(id);
+        libroService.deleteLibroLetto(id);
         return ResponseEntity.noContent().build();
     }
 

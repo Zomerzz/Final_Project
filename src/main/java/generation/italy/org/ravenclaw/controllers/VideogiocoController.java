@@ -39,7 +39,7 @@ public class VideogiocoController {
                                                               @RequestParam(required = false) List<Integer> tags
                                                               ) {
         VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaDiProduzione, nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione, minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags);
-        List<Videogioco> videogiochi = videogiocoService.searchProducts(vfc);
+        List<Videogioco> videogiochi = videogiocoService.searchVideogiochi(vfc);
         if(videogiochi.isEmpty()){
             return ResponseEntity.notFound().build();
         }
@@ -49,7 +49,7 @@ public class VideogiocoController {
     @PostMapping
     public ResponseEntity<?> saveGioco (@RequestBody VideogiocoDto vdto){
         Videogioco v = vdto.toVideogioco();
-        videogiocoService.save(v,vdto.getCasaDiProduzioneId(),vdto.getCasaDiPubblicazioneId());
+        videogiocoService.saveVideogioco(v,vdto.getCasaDiProduzioneId(),vdto.getCasaDiPubblicazioneId());
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -60,7 +60,7 @@ public class VideogiocoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteGioco (@PathVariable int id){
-        boolean deleted = videogiocoService.deleteById(id);
+        boolean deleted = videogiocoService.deleteVideogiocoById(id);
         if(deleted){return ResponseEntity.noContent().build();}
         return ResponseEntity.badRequest().build();
     }
@@ -68,9 +68,9 @@ public class VideogiocoController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateGioco(@PathVariable int id, @RequestBody VideogiocoDto vdto){
         if(id != vdto.getId()){return ResponseEntity.badRequest().build();}
-        Optional<Videogioco> ov = videogiocoService.findById(id);
+        Optional<Videogioco> ov = videogiocoService.findVideogiocoById(id);
         if(ov.isEmpty()){return ResponseEntity.notFound().build();}
-        Videogioco newGioco = videogiocoService.save(vdto.toVideogioco(), vdto.getCasaDiPubblicazioneId(), vdto.getCasaDiProduzioneId());
+        Videogioco newGioco = videogiocoService.saveVideogioco(vdto.toVideogioco(), vdto.getCasaDiPubblicazioneId(), vdto.getCasaDiProduzioneId());
         return ResponseEntity.ok().body(VideogiocoDto.toDto(newGioco));
     }
 }
