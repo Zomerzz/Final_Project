@@ -1,28 +1,28 @@
 package generation.italy.org.ravenclaw.models.dtos;
 
 import generation.italy.org.ravenclaw.models.entities.FilmVisto;
+import generation.italy.org.ravenclaw.models.entities.Utente;
 
 public class FilmVistoDto {
     private int filmVistoId;
-    private int filmId;
+    private FilmDto film;
     private int utenteId;
-    private int recensioneId;
+    private RecensioneDto recensioneDto;
 
     public FilmVistoDto() {
     }
 
-    public FilmVistoDto(int filmVistoId, int filmId, int utenteId, int recensioneId) {
+    public FilmVistoDto(int filmVistoId, FilmDto film, int utenteId, RecensioneDto recensioneDto) {
         this.filmVistoId = filmVistoId;
-        this.filmId = filmId;
+        this.film = film;
         this.utenteId = utenteId;
-        this.recensioneId = recensioneId;
+        this.recensioneDto = recensioneDto;
     }
 
     public static FilmVistoDto toDto(FilmVisto filmVisto){
-        return new FilmVistoDto(filmVisto.getFilmVistoId(),
-                filmVisto.getFilm().getFilmId(),
-                filmVisto.getUtente().getUtenteId(),
-                filmVisto.getRecensione().getRecensioneId());
+        return new FilmVistoDto((filmVisto.getFilmVistoId()),
+                FilmDto.toDto(filmVisto.getFilm()), filmVisto.getUtente().getUtenteId(), RecensioneDto.toDto(filmVisto.getRecensione()));
+
     }
 
     public FilmVisto toFilmVisto(){
@@ -37,12 +37,12 @@ public class FilmVistoDto {
         this.filmVistoId = filmVistoId;
     }
 
-    public int getFilmId() {
-        return filmId;
+    public FilmDto getFilm() {
+        return film;
     }
 
-    public void setFilmId(int filmId) {
-        this.filmId = filmId;
+    public void setFilm(FilmDto film) {
+        this.film = film;
     }
 
     public int getUtenteId() {
@@ -53,11 +53,11 @@ public class FilmVistoDto {
         this.utenteId = utenteId;
     }
 
-    public int getRecensioneId() {
-        return recensioneId;
+    public RecensioneDto getRecensioneDto() {
+        return recensioneDto;
     }
 
-    public void setRecensioneId(int recensioneId) {
-        this.recensioneId = recensioneId;
+    public void setRecensioneDto(RecensioneDto recensioneDto) {
+        this.recensioneDto = recensioneDto;
     }
 }

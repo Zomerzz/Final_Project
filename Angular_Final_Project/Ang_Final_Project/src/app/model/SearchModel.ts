@@ -14,3 +14,4 @@ export interface SearchModel{
     maxOreDiGiocoStoriaPrincipale:number;
     tags:number[];
 }
+
