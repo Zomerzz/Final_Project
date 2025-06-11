@@ -27,7 +27,7 @@ export class RecensioneService{
     }
 
     updateRecensione(updatedRecensione: Partial<Recensione>): Observable<Recensione> {
-        return this._http.put<Recensione>(`${this._url}/${updatedRecensione.id}`, updatedRecensione);
+        return this._http.put<Recensione>(`${this._url}/${updatedRecensione.recensioneId}`, updatedRecensione);
     }
 
     deleteRecensione(id: number): Observable<void> {

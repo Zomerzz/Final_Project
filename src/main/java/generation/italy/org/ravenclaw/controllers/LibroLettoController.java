@@ -25,7 +25,7 @@ public class LibroLettoController {
     }
 
     @GetMapping
-    private ResponseEntity<?> searchVLibriLettiByUtente(@RequestBody int utenteId){
+    private ResponseEntity<?> searchVLibriLettiByUtente(@RequestParam int utenteId){
         List<LibroLetto> libriLetti = libroLettoService.findByUtente(utenteId);
         if (libriLetti.isEmpty()) {
             return ResponseEntity.notFound().build();

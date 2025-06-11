@@ -27,7 +27,7 @@ public class VideogiocoGiocatoController {
     }
 
     @GetMapping
-    private ResponseEntity<?> searchVideogiochiGiocatiByUtente(@RequestBody int utenteId){
+    private ResponseEntity<?> searchVideogiochiGiocatiByUtente(@RequestParam int utenteId){
         List<VideogiocoGiocato> videogiochiGiocati = videogiocoGiocatoService.findByUtente(utenteId);
         if (videogiochiGiocati.isEmpty()) {
             return ResponseEntity.notFound().build();
