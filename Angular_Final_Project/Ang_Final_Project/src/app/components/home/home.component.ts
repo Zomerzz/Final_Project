@@ -4,7 +4,7 @@ import { SearchByProductNameComponent } from '../search-by-product-name_componen
 
 @Component({
   selector: 'app-home',
-  imports: [RecensioniListComponentSearchByProductNameComponent],
+  imports: [RecensioniListComponent,SearchByProductNameComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
