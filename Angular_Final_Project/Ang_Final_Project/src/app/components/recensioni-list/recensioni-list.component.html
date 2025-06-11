@@ -1,1 +1,3 @@
-<p>recensioni-list works!</p>
+@for (r of list; track r.id) {
+    <app-recensione-card [recensione] = 'r' ></app-recensione-card>
+}

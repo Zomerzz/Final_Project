@@ -34,7 +34,8 @@ public class VideogiocoGiocato {
     public VideogiocoGiocato() {
     }
 
-    public VideogiocoGiocato(Videogioco videogioco, Utente utente, Recensione recensione) {
+    public VideogiocoGiocato(int videogiocoGiocatoId, Videogioco videogioco, Utente utente, Recensione recensione) {
+        this.videogiocoGiocatoId = videogiocoGiocatoId;
         this.videogioco = videogioco;
         this.utente = utente;
         this.recensione = recensione;
