@@ -6,6 +6,7 @@ import generation.italy.org.ravenclaw.models.entities.Recensione;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.entities.VideogiocoGiocato;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public interface VideogiocoService {
 
     Videogioco updateVideogioco(Videogioco videogioco, int casaDiPubblicazioneId, int casaDiProduzioneId) throws EntityNotFoundException;
 
-    List<Videogioco> searchVideogiochi(VideogiocoFilterCriteria filters);
+    Page<Videogioco> searchVideogiochi(VideogiocoFilterCriteria filters);
 
     List<VideogiocoGiocato> findVideogiocoGiocatoByUtente(int utenteId);
 

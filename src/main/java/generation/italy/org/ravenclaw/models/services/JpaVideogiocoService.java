@@ -6,6 +6,7 @@ import generation.italy.org.ravenclaw.models.repositories.*;
 import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaVideogiocoRepository;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,7 +72,7 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public List<Videogioco> searchVideogiochi(VideogiocoFilterCriteria filters) {
+    public Page<Videogioco> searchVideogiochi(VideogiocoFilterCriteria filters) {
         return criteriaVideogiocoRepository.searchVideogiocoByFilter(filters);
     }
 

@@ -1,12 +1,15 @@
 package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
 
 import generation.italy.org.ravenclaw.models.entities.Casa;
+import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.entities.Tag;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
+import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -23,10 +26,26 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
     }
 
     @Override
-    public List<Videogioco> searchVideogiocoByFilter(VideogiocoFilterCriteria filters) {
+    public Page<Videogioco> searchVideogiocoByFilter(VideogiocoFilterCriteria filters) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Videogioco> query = cb.createQuery(Videogioco.class);
         Root<Videogioco> root = query.from(Videogioco.class);
+        Predicate[] predicates = buildPredicate(cb, root, filters);
+        query.where(predicates);
+        List<Videogioco> videogiochi = em.createQuery(query).setFirstResult(filters.getPageSize()*filters.getNumPage()).setMaxResults(filters.getPageSize())
+                .getResultList();
+
+        CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
+        totalQuery.select(cb.count(totalQuery.from(Videogioco.class)));
+        totalQuery.where(predicates);
+
+        int totaleVideogiochi = Math.toIntExact(em.createQuery(totalQuery).getSingleResult());
+        //TODO CREARE IL PAGE E FARLO TORNARE
+
+        return null;
+    }
+
+    private Predicate[] buildPredicate(CriteriaBuilder cb, Root<Videogioco> root, VideogiocoFilterCriteria filters){
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){
@@ -73,11 +92,8 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
         if(filters.getTags() != null && !filters.getTags().isEmpty()){
             Join<Videogioco, Tag> tagJoin = root.join("tags", JoinType.INNER);
             predicates.add(tagJoin.get("id").in(filters.getTags()));
-            query.groupBy(root.get("id"));
-            query.having(cb.equal(cb.countDistinct(tagJoin.get("id")), filters.getTags().size()));
         }
 
-        query.where(predicates.toArray(new Predicate[0]));
-        return em.createQuery(query).getResultList();
+        return predicates.toArray(new Predicate[0]);
     }
 }

@@ -5,7 +5,6 @@ import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.LibroDto;
 import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
-import generation.italy.org.ravenclaw.models.services.FilmService;
 import generation.italy.org.ravenclaw.models.services.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,8 +42,7 @@ public class  LibroController {
                                                       @RequestParam(required = false) List<Integer> tags,
                                                       @RequestParam(defaultValue = "10") int pageSize,
                                                       @RequestParam(defaultValue = "0") int numPage,
-                                                      @RequestParam(defaultValue = "true") boolean orderByVoto
-    ) {
+                                                      @RequestParam(defaultValue = "true") boolean orderByVoto) {
         LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreNome, casaEditriceNome, minData, maxData, minVoto, maxVoto, tags,pageSize,numPage,orderByVoto);
         Page<Libro> libri = libroService.searchLibro(lfc);
         return ResponseEntity.ok(libri.map(LibroDto::toDto));

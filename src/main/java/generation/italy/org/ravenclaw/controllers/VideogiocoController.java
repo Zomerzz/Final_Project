@@ -6,6 +6,7 @@ import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.VideogiocoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,7 +29,7 @@ public class VideogiocoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<VideogiocoDto>> filteredSearch(@RequestParam(required = false) String titolo,
+    public ResponseEntity<Page<VideogiocoDto>> filteredSearch(@RequestParam(required = false) String titolo,
                                                               @RequestParam(required = false) String nomeCasaDiProduzione,
                                                               @RequestParam(required = false) String nomeCasaDiPubblicazione,
                                                               @RequestParam(required = false) LocalDate minDataDiPubblicazione,
@@ -37,11 +38,17 @@ public class VideogiocoController {
                                                               @RequestParam(required = false) Integer maxOreDiGiocoStoriaPrincipale,
                                                               @RequestParam(required = false) Integer minVoto,
                                                               @RequestParam(required = false) Integer maxVoto,
-                                                              @RequestParam(required = false) List<Integer> tags
+                                                              @RequestParam(required = false) List<Integer> tags,
+                                                              @RequestParam(defaultValue = "10") int pageSize,
+                                                              @RequestParam(defaultValue = "0") int numPage,
+                                                              @RequestParam(defaultValue = "true") boolean orderByVoto
                                                               ) {
-        VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaDiProduzione, nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione, minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags);
-        List<Videogioco> videogiochi = videogiocoService.searchVideogiochi(vfc);
-        return ResponseEntity.ok(videogiochi.stream().map(VideogiocoDto::toDto).toList());
+        VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaDiProduzione,
+                nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione,
+                minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags, pageSize,
+                numPage, orderByVoto);
+        Page<Videogioco> videogiochi = videogiocoService.searchVideogiochi(vfc);
+        return ResponseEntity.ok(videogiochi.map(VideogiocoDto::toDto));
     }
 
     @PostMapping

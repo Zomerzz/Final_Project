@@ -2,9 +2,11 @@ package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
 
 import generation.italy.org.ravenclaw.models.entities.*;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
+import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,10 +22,24 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
     }
 
     @Override
-    public List<Film> searchFilmByFilters(FilmFilterCriteria filmFilters) {
+    public Page<Film> searchFilmByFilters(FilmFilterCriteria filmFilters) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Film> query = cb.createQuery(Film.class);
         Root<Film> rootFilm = query.from(Film.class);
+        Predicate[] predicates = buildPredicates(cb, rootFilm, filmFilters);
+        query.where(predicates);
+        query.distinct(true);
+
+        CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
+        totalQuery.select(cb.count(totalQuery.from(Film.class)));
+        totalQuery.where(predicates);
+
+        int totaleFilm = Math.toIntExact(em.createQuery(totalQuery).getSingleResult());
+        //TODO CREARE IL PAGE E FARLO TORNARE
+        return null;
+    }
+
+    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Film> rootFilm, FilmFilterCriteria filmFilters){
         List<Predicate> predicates = new ArrayList<>();
 
         //=== FILM ========================
@@ -108,8 +124,6 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
             predicates.add(tagJoin.get("tagId").in(filmFilters.getTags()));
 
         }
-        query.where(predicates.toArray(new Predicate[0]));
-        query.distinct(true);
-        return em.createQuery(query).getResultList();
+        return predicates.toArray(new Predicate[0]);
     }
 }

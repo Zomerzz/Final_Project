@@ -14,8 +14,22 @@ public class VideogiocoFilterCriteria {
     private Integer minVoto;
     private Integer maxVoto;
     private List<Integer> tags;
+    private int pageSize;
+    private int numPage;
+    private boolean orderByVoto;
 
-    public VideogiocoFilterCriteria(String titolo, String nomeCasaDiProduzione, String nomeCasaDiPubblicazione, LocalDate minDataDiPubblicazione, LocalDate maxDataDiPubblicazione, Integer minOreDiGiocoStoriaPrincipale,Integer maxOreDiGiocoStoriaPrincipale,  Integer minVoto, Integer maxVoto, List<Integer> tags) {
+    public VideogiocoFilterCriteria(String titolo,
+                                    String nomeCasaDiProduzione,
+                                    String nomeCasaDiPubblicazione,
+                                    LocalDate minDataDiPubblicazione,
+                                    LocalDate maxDataDiPubblicazione,
+                                    Integer minOreDiGiocoStoriaPrincipale,
+                                    Integer maxOreDiGiocoStoriaPrincipale,
+                                    Integer minVoto, Integer maxVoto,
+                                    List<Integer> tags,
+                                    int pageSize,
+                                    int numPage,
+                                    boolean orderByVoto) {
         this.titolo = titolo;
         this.nomeCasaDiProduzione = nomeCasaDiProduzione;
         this.nomeCasaDiPubblicazione = nomeCasaDiPubblicazione;
@@ -26,11 +40,11 @@ public class VideogiocoFilterCriteria {
         this.minVoto = minVoto;
         this.maxVoto = maxVoto;
         this.tags = tags;
-
+        this.pageSize = pageSize;
+        this.numPage = numPage;
+        this.orderByVoto = orderByVoto;
     }
-
-
-    // === GETTER ===
+// === GETTER ===
 
     public String getTitolo() {
         return titolo;
@@ -70,5 +84,17 @@ public class VideogiocoFilterCriteria {
 
     public List<Integer> getTags() {
         return tags;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public int getNumPage() {
+        return numPage;
+    }
+
+    public boolean isOrderByVoto() {
+        return orderByVoto;
     }
 }

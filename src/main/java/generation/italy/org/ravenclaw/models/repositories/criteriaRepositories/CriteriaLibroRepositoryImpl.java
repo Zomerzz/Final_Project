@@ -30,11 +30,17 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         query.distinct(true);
         List<Libro> libri = em.createQuery(query).setFirstResult(filters.getPageSize()*filters.getNumPage()).setMaxResults(filters.getPageSize())
                 .getResultList();
-        // TODO FARE L'ALTRA QUERY CHE CALCOLA IL NUMERO TOTALE DEI PRODOTTI CHE ESCONO CON STI FILTRI DE MERDA
+
+        CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
+        totalQuery.select(cb.count(totalQuery.from(Libro.class)));
+        totalQuery.where(predicates);
+
+        int totaleLibri = Math.toIntExact(em.createQuery(totalQuery).getSingleResult());
+         //TODO CREARE IL PAGE E FARLO TORNARE
         return null;
     }
 
-    private Predicate[] buildPredicate(CriteriaBuilder cb,Root<Libro> root, LibroFilterCriteria filters){
+    private Predicate[] buildPredicate(CriteriaBuilder cb, Root<Libro> root, LibroFilterCriteria filters){
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){

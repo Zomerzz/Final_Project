@@ -6,6 +6,7 @@ import generation.italy.org.ravenclaw.models.repositories.*;
 import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaFilmRepository;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,7 +67,7 @@ public class JpaFilmService implements FilmService {
     }
 
     @Override
-    public List<Film> searchFilm(FilmFilterCriteria ffc) {
+    public Page<Film> searchFilm(FilmFilterCriteria ffc) {
         return criteriaFRepo.searchFilmByFilters(ffc);
     }
 

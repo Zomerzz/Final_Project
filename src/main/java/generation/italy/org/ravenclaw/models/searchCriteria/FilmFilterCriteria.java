@@ -15,9 +15,23 @@ public class FilmFilterCriteria {
     private Integer maxVoto;
     //crew
     private String autoreNome;
+    private int pageSize;
+    private int numPage;
+    private boolean orderByVoto;
 
-
-    public FilmFilterCriteria(String titolo, String casaDiProduzioneNome, String casaDiPubblicazioneNome, LocalDate dataDiPubblicazione, LocalDate minData, LocalDate maxData, List<Integer> tags, Integer minVoto, Integer maxVoto, String autoreNome) {
+    public FilmFilterCriteria(String titolo,
+                              String casaDiProduzioneNome,
+                              String casaDiPubblicazioneNome,
+                              LocalDate dataDiPubblicazione,
+                              LocalDate minData,
+                              LocalDate maxData,
+                              List<Integer> tags,
+                              Integer minVoto,
+                              Integer maxVoto,
+                              String autoreNome,
+                              int pageSize,
+                              int numPage,
+                              boolean orderByVoto) {
         this.titolo = titolo;
         this.casaDiProduzioneNome = casaDiProduzioneNome;
         this.casaDiPubblicazioneNome = casaDiPubblicazioneNome;
@@ -28,8 +42,10 @@ public class FilmFilterCriteria {
         this.minVoto = minVoto;
         this.maxVoto = maxVoto;
         this.autoreNome = autoreNome;
+        this.pageSize = pageSize;
+        this.numPage = numPage;
+        this.orderByVoto = orderByVoto;
     }
-
 
     //=== GETTER E SETTER ===
     public String getTitolo() {
@@ -112,4 +128,15 @@ public class FilmFilterCriteria {
         this.autoreNome = autoreNome;
     }
 
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public int getNumPage() {
+        return numPage;
+    }
+
+    public boolean isOrderByVoto() {
+        return orderByVoto;
+    }
 }

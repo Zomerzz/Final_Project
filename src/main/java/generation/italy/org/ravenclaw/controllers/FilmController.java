@@ -6,6 +6,7 @@ import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,7 +28,7 @@ public class FilmController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FilmDto>> searchFilm(@RequestParam(required = false) String titolo,
+    public ResponseEntity<Page<FilmDto>> searchFilm(@RequestParam(required = false) String titolo,
                                                     @RequestParam(required = false) String casaDiProduzione,
                                                     @RequestParam(required = false) String casaDiPubblicazione,
                                                     @RequestParam(required = false) LocalDate dataDiPubblicazione,
@@ -36,10 +37,15 @@ public class FilmController {
                                                     @RequestParam(required = false) List<Integer> tags,
                                                     @RequestParam(required = false) Integer minVoto,
                                                     @RequestParam(required = false) Integer maxVoto,
-                                                    @RequestParam(required = false) String autoreNome){
-        FilmFilterCriteria ffc = new FilmFilterCriteria(titolo, casaDiProduzione, casaDiPubblicazione, dataDiPubblicazione, minData, maxData, tags, minVoto, maxVoto, autoreNome);
-        List<Film> film = filmService.searchFilm(ffc);
-        return ResponseEntity.ok(film.stream().map(FilmDto::toDto).toList());
+                                                    @RequestParam(required = false) String autoreNome,
+                                                    @RequestParam(defaultValue = "10") int pageSize,
+                                                    @RequestParam(defaultValue = "0") int numPage,
+                                                    @RequestParam(defaultValue = "true") boolean orderByVoto){
+        FilmFilterCriteria ffc = new FilmFilterCriteria(titolo, casaDiProduzione,
+                casaDiPubblicazione, dataDiPubblicazione, minData, maxData,
+                tags, minVoto, maxVoto, autoreNome, pageSize, numPage, orderByVoto);
+        Page<Film> film = filmService.searchFilm(ffc);
+        return ResponseEntity.ok(film.map(FilmDto::toDto));
     }
 
     @PostMapping
