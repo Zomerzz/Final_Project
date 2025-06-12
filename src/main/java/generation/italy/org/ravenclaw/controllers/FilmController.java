@@ -47,7 +47,7 @@ public class FilmController {
     @PostMapping
     public ResponseEntity<?> addFilm(@RequestBody FilmDto fdto){
         Film film = fdto.toFilm();
-        filmService.saveFilm(film,fdto.getCasaDiProduzione(),fdto.getCasaDiPubblicazione());
+        filmService.saveFilm(film, fdto.getCasaDiProduzione().toCasa(), fdto.getCasaDiPubblicazione().toCasa());
         FilmDto newFilm = FilmDto.toDto(film);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -70,7 +70,9 @@ public class FilmController {
 
         Optional<Film> oF = filmService.findFilmById(id);
         if(oF.isPresent()){
-            Film newFilm = filmService.saveFilm(fdto.toFilm(),fdto.getCasaDiProduzione(),fdto.getCasaDiPubblicazione());
+            Film newFilm = filmService.saveFilm(fdto.toFilm(),
+                    fdto.getCasaDiProduzione().toCasa(),
+                    fdto.getCasaDiPubblicazione().toCasa());
             return ResponseEntity.ok().body(FilmDto.toDto(newFilm));
         }
         return ResponseEntity.badRequest().build();

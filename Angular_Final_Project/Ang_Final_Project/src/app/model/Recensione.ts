@@ -1,5 +1,5 @@
 export interface Recensione{
-    id: number;
+    recensioneId: number;
     voto: number;
     recensione: string;
 }

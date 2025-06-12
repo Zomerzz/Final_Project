@@ -2,7 +2,12 @@ package generation.italy.org.ravenclaw.models.services;
 
 import generation.italy.org.ravenclaw.exceptions.DataException;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+import generation.italy.org.ravenclaw.models.dtos.LibroDto;
+import generation.italy.org.ravenclaw.models.dtos.RecensioneDto;
+import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Libro;
+import generation.italy.org.ravenclaw.models.entities.LibroLetto;
+import generation.italy.org.ravenclaw.models.entities.Recensione;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -15,11 +20,21 @@ public interface LibroService {
 
     List<Libro> findAllLibri() throws DataException;
 
-    Libro saveLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
+    Libro saveLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
 
-    Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
+    Libro updateLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
 
     boolean deleteLibro(int id) throws DataException, EntityNotFoundException;
 
     List<Libro> searchLibro(LibroFilterCriteria filters);
+
+    List<LibroLetto> findLibroLettoByUtente(int utenteId);
+
+    Optional<LibroLetto> findLibroLettoById(int id);
+
+    LibroLetto updateLibroLetto(LibroLetto libroLetto, Libro libro, int utenteId, Recensione recensione) throws EntityNotFoundException;
+
+    LibroLetto saveLibroLetto(LibroLetto libroLetto, Libro libro, int utenteId, Recensione recensione) throws EntityNotFoundException;
+
+    boolean deleteLibroLetto(int id);
 }

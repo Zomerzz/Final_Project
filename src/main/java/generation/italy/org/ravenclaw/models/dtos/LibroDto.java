@@ -10,28 +10,33 @@ public class LibroDto {
     private int numeroPagine;
     private String descrizione;
     private LocalDate dataDiPubblicazione;
-    private int casaEditriceId;
+    private CasaDto casaEditrice;
     private int voto;
     private String imgUrl;
-
-    //NON SONO SICURA CHE SIA UGUALE AL FRONT, FORSE DA SISTEMARE QUI O NEL FRONT
 
     public LibroDto() {
     }
 
-    public LibroDto(int libroId, String titolo, int numeroPagine, String descrizione,LocalDate dataDiPubblicazione, int casaEditriceId, int voto, String imgUrl) {
+    public LibroDto(int libroId, String titolo, int numeroPagine, String descrizione,LocalDate dataDiPubblicazione, CasaDto casaEditrice, int voto, String imgUrl) {
         this.libroId = libroId;
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
         this.descrizione = descrizione;
         this.dataDiPubblicazione = dataDiPubblicazione;
         this.voto = voto;
-        this.casaEditriceId = casaEditriceId;
+        this.casaEditrice = casaEditrice;
         this.imgUrl = imgUrl;
     }
 
     public static LibroDto toDto(Libro libro){
-        return new LibroDto(libro.getLibroId(), libro.getTitolo(), libro.getNumeroPagine(), libro.getDescrizione(), libro.getDataDiPubblicazione(),libro.casaDiProduzione().getCasaId(), libro.getVoto(), libro.getImgUrl());
+        return new LibroDto(libro.getLibroId(),
+                libro.getTitolo(),
+                libro.getNumeroPagine(),
+                libro.getDescrizione(),
+                libro.getDataDiPubblicazione(),
+                CasaDto.toDto(libro.casaDiProduzione()),
+                libro.getVoto(),
+                libro.getImgUrl());
     }
 
     public Libro toLibro(){
@@ -70,12 +75,12 @@ public class LibroDto {
         this.descrizione = descrizione;
     }
 
-    public int getCasaEditriceId() {
-        return casaEditriceId;
+    public CasaDto getCasaEditrice() {
+        return casaEditrice;
     }
 
-    public void setCasaEditriceId(int casaEditriceId) {
-        this.casaEditriceId = casaEditriceId;
+    public void setCasaEditrice(CasaDto casaEditrice) {
+        this.casaEditrice = casaEditrice;
     }
 
     public int getVoto() {

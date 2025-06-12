@@ -1,1 +1,12 @@
-<p>add-recensione works!</p>
+<form [formGroup]="recensioneForm" (ngSubmit)="onSubmit()">
+    <div>
+        <input type="number" formControlName="voto" ngModel min="0" max="100">
+        @if(voto?.invalid && voto?.touched){
+            <div>
+                <u>Inserire un voto da 0 a 100</u>
+            </div>
+        }
+
+        <input type="text" formControlName="recensione" >
+    </div>
+     <button type="submit" [disabled]="recensioneForm.invalid">Submit</button>

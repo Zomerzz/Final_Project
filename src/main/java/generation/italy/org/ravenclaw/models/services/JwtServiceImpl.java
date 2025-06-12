@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.models.entities.Utente;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -57,6 +58,7 @@ public class JwtServiceImpl implements JwtService{
 
     @Override
     public String generateToken(Map<String, Object> claims, UserDetails userDetails) {
+        claims.put("userId",((Utente)userDetails).getUtenteId());
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())

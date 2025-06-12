@@ -31,12 +31,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     @Transactional
-    public void register(RegisterRequest input) throws Exception {
+    public AuthenticationResponse register(RegisterRequest input) throws Exception {
         if (isEmailTaken(input.getEmail())) {
             throw new Exception("Email already taken");
         }
         Utente user = buildNewUser(input);
         userRepository.save(user);
+
+        AuthenticationRequest authReq = new AuthenticationRequest(input.getEmail(), input.getPassword());
+        return login(authReq);
+
     }
 
     @Override

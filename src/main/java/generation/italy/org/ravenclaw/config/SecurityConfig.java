@@ -62,8 +62,11 @@ public class SecurityConfig {
         http.cors(Customizer.withDefaults())
                 .authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers("/api/auth/**").denyAll()
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/auth/**","/api/autore/**","/api/film/**","/api/filmvisto/**","/api/casa/**","/api/libro/**",
+                                "/api/libroletto/**","/api/recension/**","/api/tag/**","/api/videogioco/**","/api/videogiocogiocato/**").permitAll()
+                        .requestMatchers("api/utente/**").denyAll()
+                        //.requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/admin/**").permitAll()
                         .anyRequest().authenticated()
                         );
 

@@ -55,4 +55,22 @@ public class VideogiocoGiocato {
     public Recensione getRecensione() {
         return recensione;
     }
+
+    // === SETTER ===
+
+    public void setVideogiocoGiocatoId(int videogiocoGiocatoId) {
+        this.videogiocoGiocatoId = videogiocoGiocatoId;
+    }
+
+    public void setVideogioco(Videogioco videogioco) {
+        this.videogioco = videogioco;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setRecensione(Recensione recensione) {
+        this.recensione = recensione;
+    }
 }

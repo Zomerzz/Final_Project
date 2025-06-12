@@ -56,4 +56,22 @@ public class LibroLetto {
     public Recensione getRecensione() {
         return recensione;
     }
+
+    // === SETTER ===
+
+    public void setLibroLettoId(int libroLettoId) {
+        this.libroLettoId = libroLettoId;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setRecensione(Recensione recensione) {
+        this.recensione = recensione;
+    }
 }

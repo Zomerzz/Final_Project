@@ -4,22 +4,25 @@ import generation.italy.org.ravenclaw.models.entities.LibroLetto;
 
 public class LibroLettoDto {
     private int libroLettoId;
-    private int libroId;
+    private LibroDto libro;
     private int utenteId;
-    private int recensioneId;
+    private RecensioneDto recensione;
 
     public LibroLettoDto() {
     }
 
-    public LibroLettoDto(int libroLettoId, int libroId, int utenteId, int recensioneId) {
+    public LibroLettoDto(int libroLettoId, LibroDto libro, int utenteId, RecensioneDto recensione) {
         this.libroLettoId = libroLettoId;
-        this.libroId = libroId;
+        this.libro = libro;
         this.utenteId = utenteId;
-        this.recensioneId = recensioneId;
+        this.recensione = recensione;
     }
 
     public static LibroLettoDto toDto(LibroLetto libroLetto){
-        return new LibroLettoDto(libroLetto.getLibroLettoId(), libroLetto.getLibro().getLibroId(), libroLetto.getUtente().getUtenteId(), libroLetto.getRecensione().getRecensioneId());
+        return new LibroLettoDto(libroLetto.getLibroLettoId(),
+                LibroDto.toDto(libroLetto.getLibro()),
+                libroLetto.getUtente().getUtenteId(),
+                RecensioneDto.toDto(libroLetto.getRecensione()));
     }
 
     public LibroLetto toLibroLetto(){
@@ -34,12 +37,12 @@ public class LibroLettoDto {
         this.libroLettoId = libroLettoId;
     }
 
-    public int getLibroId() {
-        return libroId;
+    public LibroDto getLibro() {
+        return libro;
     }
 
-    public void setLibroId(int libroId) {
-        this.libroId = libroId;
+    public void setLibro(LibroDto libro) {
+        this.libro = libro;
     }
 
     public int getUtenteId() {
@@ -50,11 +53,11 @@ public class LibroLettoDto {
         this.utenteId = utenteId;
     }
 
-    public int getRecensioneId() {
-        return recensioneId;
+    public RecensioneDto getRecensione() {
+        return recensione;
     }
 
-    public void setRecensioneId(int recensioneId) {
-        this.recensioneId = recensioneId;
+    public void setRecensione(RecensioneDto recensione) {
+        this.recensione = recensione;
     }
 }

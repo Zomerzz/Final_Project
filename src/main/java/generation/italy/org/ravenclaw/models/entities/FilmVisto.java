@@ -55,4 +55,22 @@ public class FilmVisto {
     public Recensione getRecensione() {
         return recensione;
     }
+
+    // === SETTER ===
+
+    public void setFilmVistoId(int filmVistoId) {
+        this.filmVistoId = filmVistoId;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setRecensione(Recensione recensione) {
+        this.recensione = recensione;
+    }
 }
