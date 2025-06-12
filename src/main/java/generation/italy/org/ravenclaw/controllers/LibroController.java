@@ -8,6 +8,7 @@ import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.FilmService;
 import generation.italy.org.ravenclaw.models.services.LibroService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,7 +32,7 @@ public class  LibroController {
 
     //DEVO AGGIUNGERE lo status NOTFOUND o al max torna la lista vuota?
     @GetMapping
-    public ResponseEntity<List<LibroDto>> searchLibri(@RequestParam(required = false) String titolo,
+    public ResponseEntity<Page<LibroDto>> searchLibri(@RequestParam(required = false) String titolo,
                                                       @RequestParam(required = false) Integer numeroPagine,
                                                       @RequestParam(required = false) String autoreNome,
                                                       @RequestParam(required = false) String casaEditriceNome,
@@ -39,10 +40,14 @@ public class  LibroController {
                                                       @RequestParam(required = false) LocalDate maxData,
                                                       @RequestParam(required = false) Integer minVoto,
                                                       @RequestParam(required = false) Integer maxVoto,
-                                                      @RequestParam(required = false) List<Integer> tags) {
-        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreNome, casaEditriceNome, minData, maxData, minVoto, maxVoto, tags);
-        List<Libro> libri = libroService.searchLibro(lfc);
-        return ResponseEntity.ok(libri.stream().map(LibroDto::toDto).toList());
+                                                      @RequestParam(required = false) List<Integer> tags,
+                                                      @RequestParam(defaultValue = "10") int pageSize,
+                                                      @RequestParam(defaultValue = "0") int numPage,
+                                                      @RequestParam(defaultValue = "true") boolean orderByVoto
+    ) {
+        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreNome, casaEditriceNome, minData, maxData, minVoto, maxVoto, tags,pageSize,numPage,orderByVoto);
+        Page<Libro> libri = libroService.searchLibro(lfc);
+        return ResponseEntity.ok(libri.map(LibroDto::toDto));
     }
 
     @GetMapping("/{id}")

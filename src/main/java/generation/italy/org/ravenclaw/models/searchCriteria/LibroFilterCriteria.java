@@ -1,5 +1,7 @@
 package generation.italy.org.ravenclaw.models.searchCriteria;
 
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -14,9 +16,11 @@ public class LibroFilterCriteria {
     private Integer minVoto;
     private Integer maxVoto;
     private List<Integer> tags;
+    private int pageSize;
+    private int numPage;
+    private boolean orderByVoto;
 
-    public LibroFilterCriteria(String titolo, Integer numeroPagine, String autoreNome, String casaEditriceNome, LocalDate minData,
-                               LocalDate maxData, Integer minVoto, Integer maxVoto, List<Integer> tags) {
+    public LibroFilterCriteria(String titolo, Integer numeroPagine, String autoreNome, String casaEditriceNome, LocalDate minData, LocalDate maxData, Integer minVoto, Integer maxVoto, List<Integer> tags, int pageSize, int numPage, boolean orderByVoto) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
         this.autoreNome = autoreNome;
@@ -26,6 +30,9 @@ public class LibroFilterCriteria {
         this.minVoto = minVoto;
         this.maxVoto = maxVoto;
         this.tags = tags;
+        this.pageSize = pageSize;
+        this.numPage = numPage;
+        this.orderByVoto = orderByVoto;
     }
 
     // === GETTER ===
@@ -62,5 +69,17 @@ public class LibroFilterCriteria {
 
     public List<Integer> getTags() {
         return tags;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public int getNumPage() {
+        return numPage;
+    }
+
+    public boolean isOrderByVoto() {
+        return orderByVoto;
     }
 }

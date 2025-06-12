@@ -10,6 +10,7 @@ import { Videogioco } from '../../model/Videogioco';
 import { LibroListComponent } from '../home-lists/libro-list/libro-list.component';
 import { FilmListComponent } from "../home-lists/film-list/film-list.component";
 import { VideogiocoListComponent } from '../home-lists/videogioco-list/videogioco-list.component';
+import { AuthService } from '../../services/AuthService';
 
 @Component({
     selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
     private _libroService: LibroService = inject(LibroService);
     private _videogiocoService: VideogiocoService = inject(VideogiocoService);
     private _filmService: FilmService = inject(FilmService);
+    private _authService: AuthService = inject(AuthService);
 
     ngOnInit(): void {
         this._activatedRoute.queryParams.subscribe(params => {
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
                     },
                     error: e => {
                         console.log("|====================================================|");
-                        console.log("|la ricerca findByName libro non ha trovato risultati|");
+                        console.log("|la ricerca findByName ha dato degli errori|");
                         console.log("|====================================================|");
 
                     }
@@ -51,7 +53,7 @@ export class HomeComponent implements OnInit {
                     },
                     error: e => {
                         console.log("|=========================================================|");
-                        console.log("|la ricerca findByName videogioco non ha trovato risultati|");
+                        console.log("|la ricerca findByName ha dato degli errori|");
                         console.log("|=========================================================|");
 
                     }
@@ -62,11 +64,15 @@ export class HomeComponent implements OnInit {
                     },
                     error: e => {
                         console.log("|===================================================|");
-                        console.log("|la ricerca findByName film non ha trovato risultati|");
+                        console.log("|la ricerca findByName ha dato degli errori|");
                         console.log("|===================================================|");
 
                     }
                 })
+            }else if(this._authService.isLogged()){
+                // raccomandazione in base ai visti 
+            }else {
+                // raccomandazione in base al voto 
             }
         });
 

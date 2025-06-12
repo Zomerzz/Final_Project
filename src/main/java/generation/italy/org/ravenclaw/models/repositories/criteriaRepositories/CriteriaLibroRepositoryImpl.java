@@ -5,6 +5,7 @@ import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -20,14 +21,24 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
     }
 
     @Override
-    public List<Libro> searchLibroByFilters(LibroFilterCriteria filters) {
+    public Page<Libro> searchLibroByFilters(LibroFilterCriteria filters) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Libro> query = cb.createQuery(Libro.class);
         Root<Libro> root = query.from(Libro.class);
+        Predicate[] predicates = buildPredicate(cb,root,filters);
+        query.where(predicates);
+        query.distinct(true);
+        List<Libro> libri = em.createQuery(query).setFirstResult(filters.getPageSize()*filters.getNumPage()).setMaxResults(filters.getPageSize())
+                .getResultList();
+        // TODO FARE L'ALTRA QUERY CHE CALCOLA IL NUMERO TOTALE DEI PRODOTTI CHE ESCONO CON STI FILTRI DE MERDA
+        return null;
+    }
+
+    private Predicate[] buildPredicate(CriteriaBuilder cb,Root<Libro> root, LibroFilterCriteria filters){
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){
-           Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
+            Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
             predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
         }
         if(filters.getNumeroPagine() != null){
@@ -100,9 +111,6 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             predicates.add(tagJoin.get("tagId").in(filters.getTags()));
 
         }
-
-        query.where(predicates.toArray(new Predicate[0]));
-        query.distinct(true);
-        return em.createQuery(query).getResultList();
+        return predicates.toArray(new Predicate[0]);
     }
 }

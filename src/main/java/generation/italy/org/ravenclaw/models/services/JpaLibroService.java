@@ -9,6 +9,7 @@ import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaLibroRepository;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public List<Libro> searchLibro(LibroFilterCriteria filters) {
+    public Page<Libro> searchLibro(LibroFilterCriteria filters) {
         return criteriaLibroRepo.searchLibroByFilters(filters);
     }
 

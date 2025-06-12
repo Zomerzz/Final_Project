@@ -9,6 +9,7 @@ import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.entities.LibroLetto;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
 import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public interface LibroService {
 
     boolean deleteLibro(int id) throws DataException, EntityNotFoundException;
 
-    List<Libro> searchLibro(LibroFilterCriteria filters);
+    Page<Libro> searchLibro(LibroFilterCriteria filters);
 
     List<LibroLetto> findLibroLettoByUtente(int utenteId);
 
