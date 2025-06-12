@@ -14,7 +14,7 @@ export class LibroService{
     findAll(): Observable<Libro[]> {
         return this._http.get<Libro[]>(this._url);
     }
-    // deleteToDo(libroId: number): Observable<void>{
+    // deleteLibro(libroId: number): Observable<void>{
     //     return this._http.delete<void>(`${this._url}/${libroId}`);
     // }
     findByName(titolo:string|undefined):  Observable<Libro[]>{

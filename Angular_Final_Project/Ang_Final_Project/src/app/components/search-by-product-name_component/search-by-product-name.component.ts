@@ -9,9 +9,10 @@ import { LibroService } from '../../services/LibroService';
 import { ActivatedRoute } from '@angular/router';
 import { VideogiocoService } from '../../services/videogioco.service';
 import { FilmService } from '../../services/FilmService';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-search-by-product-name',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './search-by-product-name.component.html',
   styleUrl: './search-by-product-name.component.css'
 })
@@ -29,9 +30,9 @@ export class SearchByProductNameComponent {
   private _filmService: FilmService = inject(FilmService);
 
   private _route = inject(ActivatedRoute);
-  
 
-  
+
+
   send(){
     this._libroService.findByName(this.libro.titolo).subscribe({
       next: listaLibroDb =>{
@@ -43,7 +44,7 @@ export class SearchByProductNameComponent {
         console.log("la ricerca findByName libro non ha trovato risultati");
         console.log("====================================================");
 
-      }      
+      }
     });
     this._videogiocoService.getByName(this.film.titolo).subscribe({
       next: listaVideogiocoDb =>{
