@@ -41,9 +41,6 @@ public class VideogiocoController {
                                                               ) {
         VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaDiProduzione, nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione, minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags);
         List<Videogioco> videogiochi = videogiocoService.searchVideogiochi(vfc);
-        if(videogiochi.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(videogiochi.stream().map(VideogiocoDto::toDto).toList());
     }
 

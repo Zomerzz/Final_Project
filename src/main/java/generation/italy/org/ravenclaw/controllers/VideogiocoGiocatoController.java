@@ -25,9 +25,6 @@ public class VideogiocoGiocatoController {
     @GetMapping
     private ResponseEntity<?> searchVideogiochiGiocatiByUtente(@RequestParam int utenteId){
         List<VideogiocoGiocato> videogiochiGiocati = videogiocoService.findVideogiocoGiocatoByUtente(utenteId);
-        if (videogiochiGiocati.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         List<VideogiocoGiocatoDto> videogiocoGiocatoDto = videogiochiGiocati.stream().map(VideogiocoGiocatoDto::toDto).toList();
         return ResponseEntity.ok(videogiocoGiocatoDto);
     }

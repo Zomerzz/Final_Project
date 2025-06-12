@@ -31,9 +31,6 @@ public class CasaController {
     @GetMapping
     public ResponseEntity<?> searchCase() {
         List<Casa> listCase = casaService.findAll();
-        if(listCase.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
         List<CasaDto> caseDto = listCase.stream().map(CasaDto::toDto).toList();
         return ResponseEntity.ok(caseDto);
     }

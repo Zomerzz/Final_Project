@@ -27,9 +27,6 @@ public class LibroLettoController {
     @GetMapping
     private ResponseEntity<?> searchVLibriLettiByUtente(@RequestParam int utenteId){
         List<LibroLetto> libriLetti = libroService.findLibroLettoByUtente(utenteId);
-        if (libriLetti.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         List<LibroLettoDto> libroLettoDto = libriLetti.stream().map(LibroLettoDto::toDto).toList();
         return ResponseEntity.ok(libroLettoDto);
     }

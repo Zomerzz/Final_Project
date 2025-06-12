@@ -39,9 +39,6 @@ public class FilmController {
                                                     @RequestParam(required = false) String autoreNome){
         FilmFilterCriteria ffc = new FilmFilterCriteria(titolo, casaDiProduzione, casaDiPubblicazione, dataDiPubblicazione, minData, maxData, tags, minVoto, maxVoto, autoreNome);
         List<Film> film = filmService.searchFilm(ffc);
-        if(film.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(film.stream().map(FilmDto::toDto).toList());
     }
 

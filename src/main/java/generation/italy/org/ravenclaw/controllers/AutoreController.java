@@ -36,9 +36,6 @@ public class AutoreController {
 
         AutoreFilterCriteria aufc = new AutoreFilterCriteria(nome, minData, maxData);
         List<Autore> autori = autoreService.searchCriteria(aufc);
-        if(autori.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok(autori.stream().map(AutoreDto::toDto).toList());
 
     }

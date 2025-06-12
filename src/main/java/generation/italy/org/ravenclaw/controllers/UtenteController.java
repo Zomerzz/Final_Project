@@ -30,9 +30,6 @@ public class UtenteController {
     @GetMapping
     public ResponseEntity<List<UtenteDto>> searchUtenti() {
         List<Utente> utenti = utenteService.findAllUtenti();
-        if (utenti.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         List<UtenteDto> utentiDto = utenti.stream().map(UtenteDto::toDto).toList();
         return ResponseEntity.ok(utentiDto);
     }

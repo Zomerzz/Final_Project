@@ -28,9 +28,6 @@ public class TagController {
     @GetMapping
     public ResponseEntity<List<TagDto>> searchTags(){
         List<Tag> tagList = tagService.findAllTags();
-        if(tagList.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
         List<TagDto> tagDto = tagList.stream().map(TagDto::toDto).toList();
         return ResponseEntity.ok(tagDto);
     }

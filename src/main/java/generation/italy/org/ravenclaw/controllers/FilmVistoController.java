@@ -27,9 +27,6 @@ public class FilmVistoController {
     @GetMapping
     private ResponseEntity<?> searchFilmVistiByUtente(@RequestParam int utenteId){
         List<FilmVisto> filmVisti = filmService.findFilmVistoByUtente(utenteId);
-        if (filmVisti.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         List<FilmVistoDto> filmVistoDto = filmVisti.stream().map(FilmVistoDto::toDto).toList();
         return ResponseEntity.ok(filmVistoDto);
     }

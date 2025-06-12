@@ -33,9 +33,6 @@ public class RecensioneController {
     @GetMapping
     public ResponseEntity<List<RecensioneDto>> searchRecensione() {
         List<Recensione> recensioneList = recensioneService.findAllRecensioni();
-        if (recensioneList.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         List<RecensioneDto> recensioneDto = recensioneList.stream().map(RecensioneDto::toDto).toList();
         return ResponseEntity.ok(recensioneDto);
     }
