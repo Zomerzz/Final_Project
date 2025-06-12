@@ -39,8 +39,11 @@ export class SearchByProductNameComponent {
         console.log(this.listaLibro);
       },
       error: e => {
-        console.log("la ricerca findByName  libro non ha trovato risultati");
-      }
+        console.log("============================");
+        console.log("la ricerca findByName libro non ha trovato risultati");
+        console.log("============================");
+
+      }      
     });
     this._videogiocoService.getByName(this.film.titolo).subscribe({
       next: listaVideogiocoDb =>{
@@ -48,7 +51,10 @@ export class SearchByProductNameComponent {
         console.log(this.listaVideogioco);
       },
       error: e => {
-        console.log("la ricerca findByName  videogioco non ha trovato risultati");
+        console.log("============================");
+        console.log("la ricerca findByName videogioco non ha trovato risultati");
+        console.log("============================");
+
       }
     });
     this._filmService.findByName(this.film.titolo).subscribe({
@@ -57,7 +63,10 @@ export class SearchByProductNameComponent {
         console.log(this.listaFilm);
       },
       error: e => {
-        console.log("la ricerca findByName  film non ha trovato risultati");
+        console.log("============================");
+        console.log("la ricerca findByName film non ha trovato risultati");
+        console.log("============================");
+
       }
     })
     // console.log(this.videogioco.titolo);
