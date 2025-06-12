@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VideogiocoService } from '../../services/videogioco.service';
-import { Videogioco } from '../../model/Videogioco';
-import { ProductCardComponent } from '../product-card-component/product-card-component';
+import { VideogiocoService } from '../../../services/videogioco.service';
+import { Videogioco } from '../../../model/Videogioco';
+import { ProductCardComponent } from '../../cards/product-card-component/product-card-component';
 import { CommonModule } from '@angular/common';
 
 @Component({
