@@ -12,14 +12,20 @@ export class AdminComponent implements OnInit{
     
     private _authService = inject(AuthService);
     private _router = inject(Router)
+    private _showUserTable:boolean = false;
     ngOnInit(): void {
         if(!(this._authService.isLogged())){
             this._router.navigate(['/home'])
         }
     }
 
-    showUsertable(){
-        alert("a")
+    showUsertab(){
+        (this._showUserTable)?this._showUserTable=false:this._showUserTable=true;
+        
+    }
+
+    get showuserTable(){
+        return this._showUserTable;
     }
 
 

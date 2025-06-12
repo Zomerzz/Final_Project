@@ -1,7 +1,16 @@
-<div class="scroll-container">
-<app-product-list-components></app-product-list-components>
-</div>
+@if (listaLibri) {
+    <div class="scroll-container" >
+        <app-libro-list [libri] = 'this.listaLibri'></app-libro-list>
+    </div>
+}
+@if (listaFilm) {
+    <div class="scroll-container" >
+        <app-film-list [films] = 'this.listaFilm'></app-film-list>
+    </div>
+}
+@if (listaVideogiochi) {
+    <div class="scroll-container" >
+        <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
+    </div>
+}
 
-<div class="scroll-container">
-<app-product-list-components></app-product-list-components>
-</div>

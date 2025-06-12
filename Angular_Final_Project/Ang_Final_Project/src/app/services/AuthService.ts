@@ -23,8 +23,7 @@ export class AuthService{
         this._http.post<JwtToken>(`${this._url}/login`,logreq).subscribe({
             next: (authToken) =>{
                 localStorage.setItem("jwt",authToken.token );
-                console.log("Authenticated as ");
-
+                console.log("Authenticated as "+ logreq.email);
                 this._router.navigate(['/home']);
             },error: e => alert('Errore nel accesso')
         });
@@ -32,13 +31,11 @@ export class AuthService{
 
     logout(){
         localStorage.removeItem('jwt');
+        console.log("Logged out");
+        
     }
 
     isLogged():boolean{
-        console.log("logstatus");
-        
-        console.log(localStorage.getItem("jwt")!=null);
-        
         return localStorage.getItem("jwt")!=null;
     }
 

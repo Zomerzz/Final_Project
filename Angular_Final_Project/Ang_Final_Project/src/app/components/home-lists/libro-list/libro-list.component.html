@@ -1,1 +1,13 @@
-<p>libro-list works!</p>
+@for (libro of libri; track libro.id) {
+    <div class="card">
+        <a [routerLink]="['/libro-dettagli', libro.id]">
+            <h3 class="type-label">Libro</h3>
+            <img [src]="libro.imgUrl" class="libro-immagine">
+            <h2 class="titolo-libro">{{ libro.titolo }}</h2>
+            <p class="voto">⭐ Voto: {{ libro.voto }}</p>
+        </a>
+    </div>
+}
+@if (!libri.length) {
+    <p>NON SONO PRESENTI LIBRI CON QUESTI CRITERI</p>
+}

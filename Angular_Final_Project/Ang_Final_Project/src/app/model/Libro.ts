@@ -6,7 +6,7 @@ export interface Libro {
     numeroPagine:number;
     descrizione:string;
     dataDiPubblicazione:number;
-    casaEditriceId:number;
+    casaEditrice:Casa;
     voto:number;
     imgUrl:string;
 }

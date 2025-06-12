@@ -1,0 +1,13 @@
+@for (videogioco of videogiochi; track videogioco.id) {
+    <div class="card">
+        <a [routerLink]="['/videogiochi-dettagli', videogioco.id]">
+            <h3 class="type-label">Videogioco</h3>
+            <img [src]="videogioco.imgUrl" class="videogioco-immagine">
+            <h2 class="titolo-videogioco">{{ videogioco.titolo }}</h2>
+            <p class="voto">⭐ Voto: {{ videogioco.voto }}</p>
+        </a>
+    </div>
+}
+@if (!videogiochi.length) {
+    <p>NON SONO PRESENTI VIDEOGIOCHI CON QUESTI CRITERI</p>
+}

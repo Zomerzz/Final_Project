@@ -8,7 +8,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { LogOutComponent } from './components/log-out/log-out.component';
 
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent},
   { path: 'user', component: UserPageComponent},
   { path: 'game-detail/:id', component: DetailsComponent},
   { path: 'auth/login', component:LoginAreaComponent},

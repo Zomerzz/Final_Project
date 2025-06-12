@@ -9,5 +9,10 @@
     }
 
 }
-<app-search-by-product-name></app-search-by-product-name>
+<form (ngSubmit) = "send()"> 
+    <div>
+        <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
+        <button>Invia</button>
+    </div> 
+</form>
 
