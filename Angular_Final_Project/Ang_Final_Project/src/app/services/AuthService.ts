@@ -6,19 +6,32 @@ import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../model/JwtPayload';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../model/JwtToken';
+import { Router } from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
 
     private _url: string = 'http://localhost:8080/api/auth'
     private _http = inject(HttpClient);
+    private _router = inject(Router)
 
     register(regreq:RegistrationRequest):Observable<JwtToken>{
         return this._http.post<JwtToken>(`${this._url}/register`,regreq);
     }
 
-    login(logreq:LoginRequest): Observable<JwtToken>{
-        return this._http.post<JwtToken>(`${this._url}/login`,logreq);
+    login(logreq:LoginRequest){
+        this._http.post<JwtToken>(`${this._url}/login`,logreq).subscribe({
+            next: (authToken) =>{
+                localStorage.setItem("jwt",authToken.token );
+                console.log("Authenticated as ");
+
+                this._router.navigate(['/home']);
+            },error: e => alert('Errore nel accesso')
+        });
+    }
+
+    logout(){
+
     }
 
     //

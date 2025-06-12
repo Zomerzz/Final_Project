@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/AuthService';
 
 @Component({
     selector: 'app-login-area-component',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, RouterModule],
     templateUrl: './login-area-component.html',
     styleUrl: './login-area-component.css'
 })
@@ -23,11 +23,6 @@ export class LoginAreaComponent {
     }
 
     onSubmit(){
-        this._authService.login(this.loginForm.value).subscribe({
-            next: (authToken) =>{
-                localStorage.setItem("jwt",authToken.token );
-                console.log(this._authService.getUserId());
-            },error: e => alert('Errore nel accesso')
-        });
+        this._authService.login(this.loginForm.value);
     }
 }

@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/AuthService';
 import { LoginRequest } from '../../model/LoginRequest';
 
 @Component({
     selector: 'app-register-area',
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule,RouterModule],
     templateUrl: './register-area.component.html',
     styleUrl: './register-area.component.css'
 })
@@ -28,7 +28,7 @@ export class RegisterAreaComponent {
         this._authService.register(this.registerForm.value).subscribe({
             next: (authToken) =>{
                 localStorage.setItem("jwt",authToken.token );
-                console.log(this._authService.getUserId());
+                this._router.navigate(['/home']);
             },error: e => alert('Errore nella registrazione')
         });
     }
