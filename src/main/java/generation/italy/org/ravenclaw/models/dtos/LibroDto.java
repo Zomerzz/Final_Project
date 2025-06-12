@@ -5,7 +5,7 @@ import generation.italy.org.ravenclaw.models.entities.Libro;
 import java.time.LocalDate;
 
 public class LibroDto {
-    private int libroId;
+    private int id;
     private String titolo;
     private int numeroPagine;
     private String descrizione;
@@ -17,8 +17,8 @@ public class LibroDto {
     public LibroDto() {
     }
 
-    public LibroDto(int libroId, String titolo, int numeroPagine, String descrizione,LocalDate dataDiPubblicazione, CasaDto casaEditrice, int voto, String imgUrl) {
-        this.libroId = libroId;
+    public LibroDto(int id, String titolo, int numeroPagine, String descrizione,LocalDate dataDiPubblicazione, CasaDto casaEditrice, int voto, String imgUrl) {
+        this.id = id;
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
         this.descrizione = descrizione;
@@ -43,12 +43,12 @@ public class LibroDto {
         return new Libro(titolo, numeroPagine, null, descrizione, dataDiPubblicazione, voto, imgUrl);
     }
 
-    public int getLibroId() {
-        return libroId;
+    public int getId() {
+        return id;
     }
 
-    public void setLibroId(int libroId) {
-        this.libroId = libroId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitolo() {

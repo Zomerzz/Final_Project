@@ -53,7 +53,7 @@ public class FilmController {
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newFilm.getFilmId())
+                .buildAndExpand(newFilm.getId())
                 .toUri();
         return ResponseEntity.created(location).body(newFilm);
     }
@@ -71,7 +71,7 @@ public class FilmController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFilm (@PathVariable int id, @RequestBody FilmDto fdto) throws EntityNotFoundException {
-        if(id != fdto.getFilmId()) return ResponseEntity.badRequest().build();
+        if(id != fdto.getId()) return ResponseEntity.badRequest().build();
 
         Optional<Film> oF = filmService.findFilmById(id);
         if(oF.isPresent()){

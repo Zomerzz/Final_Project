@@ -1,13 +1,12 @@
 package generation.italy.org.ravenclaw.models.dtos;
 
-import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Film;
 
 import java.time.LocalDate;
 
 public class FilmDto {
 
-    private int filmId;
+    private int id;
     private String titolo;
     private int durata;
     private LocalDate dataDiPubblicazione;
@@ -17,7 +16,7 @@ public class FilmDto {
     private int voto;
     private String imgUrl;
 
-    public FilmDto(int filmId,
+    public FilmDto(int id,
                    String titolo,
                    int durata,
                    LocalDate dataDiPubblicazione,
@@ -26,7 +25,7 @@ public class FilmDto {
                    CasaDto casaDiPubblicazione,
                    int voto,
                    String imgUrl) {
-        this.filmId = filmId;
+        this.id = id;
         this.titolo = titolo;
         this.durata = durata;
         this.dataDiPubblicazione = dataDiPubblicazione;
@@ -53,11 +52,11 @@ public class FilmDto {
                 f.getImgUrl());
     }
 
-    public int getFilmId() {
-        return filmId;
+    public int getId() {
+        return id;
     }
-    public void setFilmId(int id) {
-        this.filmId = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitolo() {

@@ -45,7 +45,7 @@ public class LibroLettoController {
     public ResponseEntity<?> createLibroLetto (@RequestBody LibroLettoDto dto) throws EntityNotFoundException {
         LibroLetto ll = dto.toLibroLetto();
         LibroLetto saved = libroService.saveLibroLetto(ll,
-                    dto.getLibro().getLibroId(),
+                    dto.getLibro().getId(),
                     dto.getUtenteId(),
                     0);
         LibroLettoDto newDto = LibroLettoDto.toDto(saved);
@@ -68,7 +68,7 @@ public class LibroLettoController {
             return ResponseEntity.notFound().build();
         }
         LibroLetto libroLetto = libroService.updateLibroLetto(opt.get(),
-                    updatedDto.getLibro().getLibroId(),
+                    updatedDto.getLibro().getId(),
                     updatedDto.getUtenteId(),
                     updatedDto.getRecensione().getRecensioneId());
 

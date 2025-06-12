@@ -69,7 +69,7 @@ public class  LibroController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateLibro(@PathVariable int id, @RequestBody LibroDto updatedDto) throws DataException, EntityNotFoundException {
-        if(id != updatedDto.getLibroId()){
+        if(id != updatedDto.getId()){
             return ResponseEntity.badRequest().body("Id del path e Id del dto non corrispondono");
         }
         Optional<Libro> opt = libroService.findLibroById(id);

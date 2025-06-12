@@ -45,7 +45,7 @@ public class FilmVistoController {
     public ResponseEntity<?> createFilmVisto (@RequestBody FilmVistoDto dto) throws EntityNotFoundException {
         FilmVisto fv = dto.toFilmVisto();
         FilmVisto saved = filmService.saveFilmVisto(fv,
-                    dto.getFilm().getFilmId(),
+                    dto.getFilm().getId(),
                     dto.getUtenteId(),
                     0);
         FilmVistoDto newDto = FilmVistoDto.toDto(saved);
@@ -70,12 +70,12 @@ public class FilmVistoController {
         FilmVisto filmVisto = null;
         if(updatedDto.getRecensione() != null) {
             filmVisto = filmService.updateFilmVisto(opt.get(),
-                    updatedDto.getFilm().getFilmId(),
+                    updatedDto.getFilm().getId(),
                     updatedDto.getUtenteId(),
                     updatedDto.getRecensione().getRecensioneId());
         } else {
             filmVisto = filmService.updateFilmVisto(opt.get(),
-                    updatedDto.getFilm().getFilmId(),
+                    updatedDto.getFilm().getId(),
                     updatedDto.getUtenteId(),
                     0);
         }
