@@ -22,7 +22,7 @@ public interface LibroService {
 
     Libro saveLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
 
-    Libro updateLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
+    Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
 
     boolean deleteLibro(int id) throws DataException, EntityNotFoundException;
 
@@ -32,9 +32,9 @@ public interface LibroService {
 
     Optional<LibroLetto> findLibroLettoById(int id);
 
-    LibroLetto updateLibroLetto(LibroLetto libroLetto, Libro libro, int utenteId, Recensione recensione) throws EntityNotFoundException;
+    LibroLetto updateLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException;
 
-    LibroLetto saveLibroLetto(LibroLetto libroLetto, Libro libro, int utenteId, Recensione recensione) throws EntityNotFoundException;
+    LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException;
 
     boolean deleteLibroLetto(int id);
 }

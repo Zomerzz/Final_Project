@@ -35,7 +35,8 @@ public class Recensione {
     public Recensione() {
     }
 
-    public Recensione(int voto, String recensione) {
+    public Recensione(int recensioneId, int voto, String recensione) {
+        this.recensioneId = recensioneId;
         this.voto = voto;
         this.recensione = recensione;
     }

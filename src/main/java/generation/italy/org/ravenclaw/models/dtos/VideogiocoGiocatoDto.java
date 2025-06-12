@@ -10,6 +10,12 @@ public class VideogiocoGiocatoDto {
 
     public VideogiocoGiocatoDto(){}
 
+    public VideogiocoGiocatoDto(int videogiocoGiocatoId, VideogiocoDto videogioco, int utenteId) {
+        this.videogiocoGiocatoId = videogiocoGiocatoId;
+        this.videogioco = videogioco;
+        this.utenteId = utenteId;;
+    }
+
     public VideogiocoGiocatoDto(int videogiocoGiocatoId, VideogiocoDto videogioco, int utenteId, RecensioneDto recensione) {
         this.videogiocoGiocatoId = videogiocoGiocatoId;
         this.videogioco = videogioco;
@@ -18,10 +24,13 @@ public class VideogiocoGiocatoDto {
     }
 
     public static VideogiocoGiocatoDto toDto(VideogiocoGiocato videogiocoGiocato){
-        return new VideogiocoGiocatoDto(videogiocoGiocato.getVideogiocoGiocatoId(),
+        VideogiocoGiocatoDto dto = new VideogiocoGiocatoDto(videogiocoGiocato.getVideogiocoGiocatoId(),
                 VideogiocoDto.toDto(videogiocoGiocato.getVideogioco()),
-                videogiocoGiocato.getUtente().getUtenteId(),
-                RecensioneDto.toDto(videogiocoGiocato.getRecensione()));
+                videogiocoGiocato.getUtente().getUtenteId());
+        if(videogiocoGiocato.getRecensione() != null){
+            dto.setRecensione(RecensioneDto.toDto(videogiocoGiocato.getRecensione()));
+        }
+        return dto;
     }
 
     public VideogiocoGiocato toVideogiocoGiocato(){

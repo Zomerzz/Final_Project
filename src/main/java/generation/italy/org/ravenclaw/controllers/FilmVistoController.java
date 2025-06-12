@@ -44,18 +44,10 @@ public class FilmVistoController {
     @PostMapping
     public ResponseEntity<?> createFilmVisto (@RequestBody FilmVistoDto dto) throws EntityNotFoundException {
         FilmVisto fv = dto.toFilmVisto();
-        FilmVisto saved = null;
-        if(dto.getRecensione() != null){
-            saved = filmService.saveFilmVisto(fv,
-                    dto.getFilm().toFilm(),
+        FilmVisto saved = filmService.saveFilmVisto(fv,
+                    dto.getFilm().getFilmId(),
                     dto.getUtenteId(),
-                    dto.getRecensione().toRecensione());
-        } else {
-            saved = filmService.saveFilmVisto(fv,
-                    dto.getFilm().toFilm(),
-                    dto.getUtenteId(),
-                    null);
-        }
+                    0);
         FilmVistoDto newDto = FilmVistoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -78,14 +70,14 @@ public class FilmVistoController {
         FilmVisto filmVisto = null;
         if(updatedDto.getRecensione() != null) {
             filmVisto = filmService.updateFilmVisto(opt.get(),
-                    updatedDto.getFilm().toFilm(),
+                    updatedDto.getFilm().getFilmId(),
                     updatedDto.getUtenteId(),
-                    updatedDto.getRecensione().toRecensione());
+                    updatedDto.getRecensione().getRecensioneId());
         } else {
             filmVisto = filmService.updateFilmVisto(opt.get(),
-                    updatedDto.getFilm().toFilm(),
+                    updatedDto.getFilm().getFilmId(),
                     updatedDto.getUtenteId(),
-                    null);
+                    0);
         }
         return ResponseEntity.ok(FilmVistoDto.toDto(filmVisto));
     }

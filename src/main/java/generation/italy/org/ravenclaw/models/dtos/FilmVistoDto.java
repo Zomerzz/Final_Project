@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.dtos;
 
+import generation.italy.org.ravenclaw.models.dtos.request.RecensioneRequest;
 import generation.italy.org.ravenclaw.models.entities.FilmVisto;
 import generation.italy.org.ravenclaw.models.entities.Utente;
 
@@ -12,6 +13,12 @@ public class FilmVistoDto {
     public FilmVistoDto() {
     }
 
+    public FilmVistoDto(int filmVistoId, FilmDto film, int utenteId) {
+        this.filmVistoId = filmVistoId;
+        this.film = film;
+        this.utenteId = utenteId;
+    }
+
     public FilmVistoDto(int filmVistoId, FilmDto film, int utenteId, RecensioneDto recensione) {
         this.filmVistoId = filmVistoId;
         this.film = film;
@@ -20,9 +27,13 @@ public class FilmVistoDto {
     }
 
     public static FilmVistoDto toDto(FilmVisto filmVisto){
-        return new FilmVistoDto((filmVisto.getFilmVistoId()),
-                FilmDto.toDto(filmVisto.getFilm()), filmVisto.getUtente().getUtenteId(), RecensioneDto.toDto(filmVisto.getRecensione()));
 
+        FilmVistoDto dto = new FilmVistoDto((filmVisto.getFilmVistoId()),
+                FilmDto.toDto(filmVisto.getFilm()), filmVisto.getUtente().getUtenteId());
+        if(filmVisto.getRecensione()!=null){
+            dto.setRecensioneDto(RecensioneDto.toDto(filmVisto.getRecensione()));
+        }
+        return dto;
     }
 
     public FilmVisto toFilmVisto(){

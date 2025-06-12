@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RecensioneService } from '../../services/RecensioneService';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RecensioneRequest } from '../../model/RecensioneRequest';
 
 @Component({
   selector: 'app-add-recensione',
@@ -9,11 +10,15 @@ import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule
   templateUrl: './add-recensione.component.html',
   styleUrl: './add-recensione.component.css'
 })
-export class AddRecensioneComponent{
+export class AddRecensioneComponent implements OnInit{
   formBuilder = inject(FormBuilder);
   recensioneForm: FormGroup;
   private _recensioneService = inject(RecensioneService);
   private _router = inject(Router);
+  private _route = inject(ActivatedRoute);
+  private operaId = 0;
+  private type: string|null = "";
+  private utenteId = 0;
 
   constructor(){
     this.recensioneForm = this.formBuilder.group({
@@ -21,9 +26,27 @@ export class AddRecensioneComponent{
       recensione:[""]
     });
   }
+  ngOnInit(): void {
+    const urlId = this._route.snapshot.paramMap.get('id');
+    if(urlId != null){
+      this.operaId = Number(urlId);
+      if(this.operaId < 0 && isNaN(this.operaId)){
+        alert("Id opera non esistente")
+      }
+    }
+    this.type = this._route.snapshot.paramMap.get('type');
+    this.utenteId = 20; //DA CAMBIARE DEVO CAPIRE COME PASSARMELO!!!
+  }
 
   onSubmit(){
-    this._recensioneService.addRecensione(this.recensioneForm.value).subscribe({
+    const recensioneRequest: Partial<RecensioneRequest> = {
+      "voto": this.recensioneForm.value.voto,
+      "recensione": this.recensioneForm.value.recensione,
+      "type": this.type,
+      "operaId": this.operaId,
+      "utenteId": this.utenteId
+    };
+    this._recensioneService.addRecensione(recensioneRequest).subscribe({
       next: (recensione) => {
         // TODO bisogna trovare un modo piu bello dell'alert
         alert('Recensione creata con id ' + recensione.recensioneId);

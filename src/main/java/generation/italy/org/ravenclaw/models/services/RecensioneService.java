@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,14 @@ public interface RecensioneService {
     List<Recensione> findRecensioneByLibroId(int libroId);
 
     List<Recensione> findRecensioneByVideogiocoId(int videogiocoId);
+
+    void addRecensioneToFilmVisto(int utenteId, int filmId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+
+    void addRecensioneToLibroLetto(int utenteId, int operaId, Recensione recensione) throws EntityNotFoundException;
+
+    void addRecensioneToVideogiocoGiocato(int utenteId, int videogiocoId, Recensione recensione) throws EntityNotFoundException;
+
+    void addRecensioneToRegistrazione(String type, int utenteId, int operaId, Recensione recensione) throws EntityNotFoundException;
 
     //List<Recensione> findRecensioneByUtenteId(int utenteId);
 }

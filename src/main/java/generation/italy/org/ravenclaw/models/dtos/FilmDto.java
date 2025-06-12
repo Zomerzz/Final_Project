@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class FilmDto {
 
-    private int id;
+    private int filmId;
     private String titolo;
     private int durata;
     private LocalDate dataDiPubblicazione;
@@ -17,7 +17,7 @@ public class FilmDto {
     private int voto;
     private String imgUrl;
 
-    public FilmDto(int id,
+    public FilmDto(int filmId,
                    String titolo,
                    int durata,
                    LocalDate dataDiPubblicazione,
@@ -26,7 +26,7 @@ public class FilmDto {
                    CasaDto casaDiPubblicazione,
                    int voto,
                    String imgUrl) {
-        this.id = id;
+        this.filmId = filmId;
         this.titolo = titolo;
         this.durata = durata;
         this.dataDiPubblicazione = dataDiPubblicazione;
@@ -53,11 +53,11 @@ public class FilmDto {
                 f.getImgUrl());
     }
 
-    public int getId() {
-        return id;
+    public int getFilmId() {
+        return filmId;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setFilmId(int id) {
+        this.filmId = id;
     }
 
     public String getTitolo() {

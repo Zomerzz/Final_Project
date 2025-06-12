@@ -1,10 +1,10 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.*;
 import generation.italy.org.ravenclaw.models.repositories.*;
 import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaVideogiocoRepository;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +18,7 @@ public class JpaVideogiocoService implements VideogiocoService{
     private CriteriaVideogiocoRepository criteriaVideogiocoRepository;
     private VideogiocoGiocatoRepository videogiocoGiocatoRepository;
     private UtenteRepository utenteRepository;
+    private RecensioneRepository recensioneRepository;
 
 
     @Autowired
@@ -25,12 +26,14 @@ public class JpaVideogiocoService implements VideogiocoService{
                                 CasaRepository casaRepository,
                                 CriteriaVideogiocoRepository criteriaVideogiocoRepository,
                                 VideogiocoGiocatoRepository videogiocoGiocatoRepository,
-                                UtenteRepository utenteRepository) {
+                                UtenteRepository utenteRepository,
+                                RecensioneRepository recensioneRepository) {
         this.videogiocoRepository = videogiocoRepository;
         this.casaRepository = casaRepository;
         this.criteriaVideogiocoRepository = criteriaVideogiocoRepository;
         this.videogiocoGiocatoRepository = videogiocoGiocatoRepository;
         this.utenteRepository = utenteRepository;
+        this.recensioneRepository = recensioneRepository;
     }
 
     @Override
@@ -45,24 +48,26 @@ public class JpaVideogiocoService implements VideogiocoService{
 
     @Override
     public boolean deleteVideogiocoById(int id){
-        if(!videogiocoRepository.existsById(id)){
-            throw new EntityNotFoundException("Videogioco non trovato");
-        }
         videogiocoRepository.deleteById(id);
         return true;
     }
 
     @Override
-    public Videogioco saveVideogioco(Videogioco videogioco, Casa casaDiPubblicazione, Casa casaDiProduzione) {
+    public Videogioco saveVideogioco(Videogioco videogioco, int casaDiPubblicazioneId, int casaDiProduzioneId) throws EntityNotFoundException {
+        Optional<Casa> optProduzione = casaRepository.findById(casaDiProduzioneId);
+        Optional<Casa> optPubblicazione = casaRepository.findById(casaDiPubblicazioneId);
+
+        Casa casaDiProduzione = optProduzione.orElseThrow(()-> new EntityNotFoundException(Casa.class));
+        Casa casaDiPubblicazione = optPubblicazione.orElseThrow(()-> new EntityNotFoundException(Casa.class));
+
         videogioco.setCasaDiPubblicazione(casaDiPubblicazione);
         videogioco.setCasaDiProduzione(casaDiProduzione);
         return videogiocoRepository.save(videogioco);
     }
 
     @Override
-    public Videogioco updateVideogioco(Videogioco videogioco, Casa casaDiProduzione, Casa casaDiPubblicazione) {
-        videogiocoRepository.findById(videogioco.getVideogiocoId()).orElseThrow(EntityNotFoundException::new);
-        return saveVideogioco(videogioco, casaDiProduzione, casaDiPubblicazione);
+    public Videogioco updateVideogioco(Videogioco videogioco, int casaDiPubblicazioneId, int casaDiProduzioneId) throws EntityNotFoundException {
+        return saveVideogioco(videogioco, casaDiPubblicazioneId, casaDiProduzioneId);
     }
 
     @Override
@@ -81,17 +86,23 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public VideogiocoGiocato updateVideogiocoGiocato(VideogiocoGiocato videogiocoGiocato, Videogioco videogioco, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
-        return saveVideogiocoGiocato(videogiocoGiocato, videogioco, utenteId, recensione);
+    public VideogiocoGiocato updateVideogiocoGiocato(VideogiocoGiocato videogiocoGiocato,
+                                                     int videogiocoId,
+                                                     int utenteId,
+                                                     int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
+        return saveVideogiocoGiocato(videogiocoGiocato, videogiocoId, utenteId, recensioneId);
     }
 
     @Override
-    public VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, Videogioco videogioco, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
+    public VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, int videogiocoId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
         Optional<Utente> optionalUtente = utenteRepository.findById(utenteId);
-        Utente u = optionalUtente.orElseThrow(() -> new generation.italy.org.ravenclaw.exceptions.EntityNotFoundException(Utente.class));
+        Optional<Videogioco> optionalVideogioco = videogiocoRepository.findById(videogiocoId);
 
-        if(recensione != null){
-            vg.setRecensione(recensione);
+        Utente u = optionalUtente.orElseThrow(() -> new generation.italy.org.ravenclaw.exceptions.EntityNotFoundException(Utente.class));
+        Videogioco videogioco = optionalVideogioco.orElseThrow(()-> new EntityNotFoundException(Videogioco.class));
+
+        if(recensioneId != 0){
+            vg.setRecensione(recensioneRepository.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
         }
 
         vg.setVideogioco(videogioco);

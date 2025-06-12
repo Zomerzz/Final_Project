@@ -11,6 +11,12 @@ public class LibroLettoDto {
     public LibroLettoDto() {
     }
 
+    public LibroLettoDto(int libroLettoId, LibroDto libro, int utenteId) {
+        this.libroLettoId = libroLettoId;
+        this.libro = libro;
+        this.utenteId = utenteId;
+    }
+
     public LibroLettoDto(int libroLettoId, LibroDto libro, int utenteId, RecensioneDto recensione) {
         this.libroLettoId = libroLettoId;
         this.libro = libro;
@@ -19,10 +25,11 @@ public class LibroLettoDto {
     }
 
     public static LibroLettoDto toDto(LibroLetto libroLetto){
-        return new LibroLettoDto(libroLetto.getLibroLettoId(),
+        LibroLettoDto dto = new LibroLettoDto(libroLetto.getLibroLettoId(),
                 LibroDto.toDto(libroLetto.getLibro()),
-                libroLetto.getUtente().getUtenteId(),
-                RecensioneDto.toDto(libroLetto.getRecensione()));
+                libroLetto.getUtente().getUtenteId());
+        dto.setRecensione(RecensioneDto.toDto(libroLetto.getRecensione()));
+        return dto;
     }
 
     public LibroLetto toLibroLetto(){

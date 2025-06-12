@@ -44,18 +44,10 @@ public class LibroLettoController {
     @PostMapping
     public ResponseEntity<?> createLibroLetto (@RequestBody LibroLettoDto dto) throws EntityNotFoundException {
         LibroLetto ll = dto.toLibroLetto();
-        LibroLetto saved = null;
-        if(dto.getRecensione() != null){
-            saved = libroService.saveLibroLetto(ll,
-                    dto.getLibro().toLibro(),
+        LibroLetto saved = libroService.saveLibroLetto(ll,
+                    dto.getLibro().getLibroId(),
                     dto.getUtenteId(),
-                    dto.getRecensione().toRecensione());
-        } else {
-            saved = libroService.saveLibroLetto(ll,
-                    dto.getLibro().toLibro(),
-                    dto.getUtenteId(),
-                    null);
-        }
+                    0);
         LibroLettoDto newDto = LibroLettoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -75,18 +67,11 @@ public class LibroLettoController {
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        LibroLetto libroLetto = null;
-        if(updatedDto.getRecensione() != null){
-            libroLetto = libroService.updateLibroLetto(opt.get(),
-                    updatedDto.getLibro().toLibro(),
+        LibroLetto libroLetto = libroService.updateLibroLetto(opt.get(),
+                    updatedDto.getLibro().getLibroId(),
                     updatedDto.getUtenteId(),
-                    updatedDto.getRecensione().toRecensione());
-        } else {
-            libroLetto = libroService.updateLibroLetto(opt.get(),
-                    updatedDto.getLibro().toLibro(),
-                    updatedDto.getUtenteId(),
-                    null);
-        }
+                    updatedDto.getRecensione().getRecensioneId());
+
         return ResponseEntity.ok(LibroLettoDto.toDto(libroLetto));
     }
 

@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.entities.FilmVisto;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public interface FilmService {
     Optional<Film> findFilmById(int id);
     List<Film> findAllFilms();
-    Film saveFilm(Film film, Casa casaProduzione, Casa casaPubblicazione);
+    Film saveFilm(Film film, int casaProduzioneId, int casaPubblicazioneId) throws EntityNotFoundException;
     boolean deleteFilm(int id);
     List<Film> searchFilm(FilmFilterCriteria ffc);
 
@@ -22,9 +23,10 @@ public interface FilmService {
 
     Optional<FilmVisto> findFilmVistoById(int id);
 
-    FilmVisto updateFilmVisto(FilmVisto filmVisto, Film film, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+    FilmVisto updateFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 
-    FilmVisto saveFilmVisto(FilmVisto filmVisto, Film film, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+    FilmVisto saveFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+
 
     boolean deleteFilmVisto(int id);
 }

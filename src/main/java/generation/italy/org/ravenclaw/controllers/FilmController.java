@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.FilmDto;
 import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
@@ -45,34 +46,38 @@ public class FilmController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addFilm(@RequestBody FilmDto fdto){
+    public ResponseEntity<?> addFilm(@RequestBody FilmDto fdto) throws EntityNotFoundException {
         Film film = fdto.toFilm();
-        filmService.saveFilm(film, fdto.getCasaDiProduzione().toCasa(), fdto.getCasaDiPubblicazione().toCasa());
+        filmService.saveFilm(film, fdto.getCasaDiProduzione().getCasaId(), fdto.getCasaDiPubblicazione().getCasaId());
         FilmDto newFilm = FilmDto.toDto(film);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(newFilm.getId())
+                .buildAndExpand(newFilm.getFilmId())
                 .toUri();
         return ResponseEntity.created(location).body(newFilm);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById( @PathVariable int id){
+        Optional<Film> opt = filmService.findFilmById(id);
+        if(opt.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
         boolean removed = filmService.deleteFilm(id);
         if(removed){return ResponseEntity.noContent().build();}
         return ResponseEntity.badRequest().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateFilm (@PathVariable int id, @RequestBody FilmDto fdto){
-        if(id != fdto.getId()) return ResponseEntity.badRequest().build();
+    public ResponseEntity<?> updateFilm (@PathVariable int id, @RequestBody FilmDto fdto) throws EntityNotFoundException {
+        if(id != fdto.getFilmId()) return ResponseEntity.badRequest().build();
 
         Optional<Film> oF = filmService.findFilmById(id);
         if(oF.isPresent()){
             Film newFilm = filmService.saveFilm(fdto.toFilm(),
-                    fdto.getCasaDiProduzione().toCasa(),
-                    fdto.getCasaDiPubblicazione().toCasa());
+                    fdto.getCasaDiProduzione().getCasaId(),
+                    fdto.getCasaDiPubblicazione().getCasaId());
             return ResponseEntity.ok().body(FilmDto.toDto(newFilm));
         }
         return ResponseEntity.badRequest().build();

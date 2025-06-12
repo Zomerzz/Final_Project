@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
@@ -16,10 +17,9 @@ public interface VideogiocoService {
 
     boolean deleteVideogiocoById(int id);
 
-    //Fare da DTO a Videogioco prima di salvare
-    Videogioco saveVideogioco(Videogioco videogioco, Casa idCasaPubblicazione, Casa idCasaProduzione);
+    Videogioco saveVideogioco(Videogioco videogioco, int casaDiPubblicazioneId, int casaDiProduzioneId) throws EntityNotFoundException;
 
-    Videogioco updateVideogioco(Videogioco videogioco, Casa casaDiProduzioneId, Casa casaDiPubblicazioneId);
+    Videogioco updateVideogioco(Videogioco videogioco, int casaDiPubblicazioneId, int casaDiProduzioneId) throws EntityNotFoundException;
 
     List<Videogioco> searchVideogiochi(VideogiocoFilterCriteria filters);
 
@@ -27,9 +27,9 @@ public interface VideogiocoService {
 
     Optional<VideogiocoGiocato> findVideogiocoGiocatoById(int id);
 
-    VideogiocoGiocato updateVideogiocoGiocato(VideogiocoGiocato videogiocoGiocato, Videogioco videogioco, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+    VideogiocoGiocato updateVideogiocoGiocato(VideogiocoGiocato videogiocoGiocato, int videogiocoId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 
-    VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, Videogioco videogioco, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+    VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, int videogiocoId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 
     boolean deleteVideogiocoGiocato(int id);
 }

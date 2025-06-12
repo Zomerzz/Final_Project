@@ -1,10 +1,10 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.entities.*;
 import generation.italy.org.ravenclaw.models.repositories.*;
 import generation.italy.org.ravenclaw.models.repositories.criteriaRepositories.CriteriaFilmRepository;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,18 +46,21 @@ public class JpaFilmService implements FilmService {
     }
 
     @Override
-    public Film saveFilm(Film film, Casa casaProduzione, Casa casaPubblicazione) {
-        film.setCasaDiProduzione(casaProduzione);
-        film.setCasaDiPubblicazione(casaPubblicazione);
+    public Film saveFilm(Film film, int casaProduzioneId, int casaPubblicazioneid) throws EntityNotFoundException {
+        Optional<Casa> optProduzione = casaRepo.findById(casaProduzioneId);
+        Optional<Casa> optPubblicazione = casaRepo.findById(casaPubblicazioneid);
+
+        Casa casaDiProduzione = optProduzione.orElseThrow(()-> new EntityNotFoundException(Casa.class));
+        Casa casaDiPubblicazione = optPubblicazione.orElseThrow(()-> new EntityNotFoundException(Casa.class));
+
+
+        film.setCasaDiProduzione(casaDiProduzione);
+        film.setCasaDiPubblicazione(casaDiPubblicazione);
         return filmRepo.save(film);
     }
 
     @Override
-    public boolean deleteFilm(int id) {
-        Optional<Film> optFilm = filmRepo.findById(id);
-        if(optFilm.isEmpty()){
-            throw new EntityNotFoundException(); //AL MOMENTO L'EXCEPTION è QUELLA DI JAKARTA
-        }
+    public boolean deleteFilm(int id){
         filmRepo.deleteById(id);
         return true;
     }
@@ -79,21 +82,23 @@ public class JpaFilmService implements FilmService {
     }
 
     @Override
-    public FilmVisto updateFilmVisto(FilmVisto filmVisto, Film film, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
-        return saveFilmVisto(filmVisto, film, utenteId, recensione);
+    public FilmVisto updateFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
+        return saveFilmVisto(filmVisto, filmId, utenteId, recensioneId);
     }
 
     @Override
-    public FilmVisto saveFilmVisto(FilmVisto filmVisto, Film film, int utenteId, Recensione recensione) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
+    public FilmVisto saveFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
         Optional<Utente> optionalUtente = utenteRepo.findById(utenteId);
+        Optional<Film> optionalFilm = filmRepo.findById(filmId);
 
-        Utente u = optionalUtente.orElseThrow(() -> new generation.italy.org.ravenclaw.exceptions.EntityNotFoundException(Utente.class));
+        Utente u = optionalUtente.orElseThrow(() -> new EntityNotFoundException(Utente.class));
+        Film f = optionalFilm.orElseThrow(() -> new EntityNotFoundException(Utente.class));
 
-        if(recensione != null){
-            filmVisto.setRecensione(recensione);
+        if(recensioneId != 0){
+            filmVisto.setRecensione(recensioneRepo.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
         }
 
-        filmVisto.setFilm(film);
+        filmVisto.setFilm(f);
         filmVisto.setUtente(u);
 
         return filmVistoRepo.save(filmVisto);

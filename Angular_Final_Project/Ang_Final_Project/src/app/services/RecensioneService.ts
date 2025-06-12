@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Recensione } from "../model/Recensione";
+import { RecensioneRequest } from "../model/RecensioneRequest";
 
 @Injectable({
     providedIn: 'root'
@@ -22,8 +23,8 @@ export class RecensioneService{
         return this._http.get<Recensione[]>(`${this._url}/videogioco-id=${videogiocoId}`);
     }
 
-    addRecensione(recensione: Partial<Recensione>): Observable<Recensione> {
-        return this._http.post<Recensione>(this._url, recensione);
+    addRecensione(recensioneRequest: Partial<RecensioneRequest>): Observable<Recensione> {
+        return this._http.post<Recensione>(this._url, recensioneRequest);
     }
 
     updateRecensione(updatedRecensione: Partial<Recensione>): Observable<Recensione> {

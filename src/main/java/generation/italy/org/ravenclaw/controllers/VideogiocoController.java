@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.VideogiocoDto;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
@@ -47,11 +48,11 @@ public class VideogiocoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveGioco (@RequestBody VideogiocoDto vdto){
+    public ResponseEntity<?> saveGioco (@RequestBody VideogiocoDto vdto) throws EntityNotFoundException {
         Videogioco v = vdto.toVideogioco();
         videogiocoService.saveVideogioco(v,vdto.
-                getCasaDiProduzione().toCasa(),
-                vdto.getCasaDiPubblicazione().toCasa());
+                getCasaDiProduzione().getCasaId(),
+                vdto.getCasaDiPubblicazione().getCasaId());
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -68,13 +69,13 @@ public class VideogiocoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateGioco(@PathVariable int id, @RequestBody VideogiocoDto vdto){
+    public ResponseEntity<?> updateGioco(@PathVariable int id, @RequestBody VideogiocoDto vdto) throws EntityNotFoundException {
         if(id != vdto.getId()){return ResponseEntity.badRequest().build();}
         Optional<Videogioco> ov = videogiocoService.findVideogiocoById(id);
         if(ov.isEmpty()){return ResponseEntity.notFound().build();}
         Videogioco newGioco = videogiocoService.saveVideogioco(vdto.toVideogioco(),
-                vdto.getCasaDiPubblicazione().toCasa(),
-                vdto.getCasaDiProduzione().toCasa());
+                vdto.getCasaDiPubblicazione().getCasaId(),
+                vdto.getCasaDiProduzione().getCasaId());
         return ResponseEntity.ok().body(VideogiocoDto.toDto(newGioco));
     }
 }

@@ -21,18 +21,21 @@ public class JpaLibroService implements LibroService{
     private CriteriaLibroRepository criteriaLibroRepo;
     private LibroLettoRepository libroLettoRepo;
     private UtenteRepository utenteRepo;
+    private RecensioneRepository recensioneRepo;
 
     @Autowired
     public JpaLibroService(LibroRepository libroRepo,
                            CasaRepository casaRepo,
                            CriteriaLibroRepository criteriaLibroRepo,
                            LibroLettoRepository libroLettoRepo,
-                           UtenteRepository utenteRepo){
+                           UtenteRepository utenteRepo,
+                           RecensioneRepository recensioneRepo){
         this.libroRepo = libroRepo;
         this.casaRepo = casaRepo;
         this.criteriaLibroRepo = criteriaLibroRepo;
         this.libroLettoRepo = libroLettoRepo;
-        this.utenteRepo = utenteRepo;;
+        this.utenteRepo = utenteRepo;
+        this.recensioneRepo = recensioneRepo;
     }
 
     @Override
@@ -52,7 +55,11 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public Libro updateLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException {
+    public Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
+        Optional<Casa> optionalCasa = casaRepo.findById(casaEditriceId);
+
+        Casa casaEditrice = optionalCasa.orElseThrow(()-> new EntityNotFoundException(Casa.class));
+
         return saveLibro(libro, casaEditrice);
     }
 
@@ -78,21 +85,23 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public LibroLetto updateLibroLetto(LibroLetto libroLetto, Libro libro, int utenteId, Recensione recensione) throws EntityNotFoundException {
-        return saveLibroLetto(libroLetto, libro, utenteId, recensione);
+    public LibroLetto updateLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException {
+        return saveLibroLetto(libroLetto, libroId, utenteId, recensioneId);
     }
 
     @Override
-    public LibroLetto saveLibroLetto(LibroLetto libroLetto, Libro libro, int utenteId, Recensione recensione) throws EntityNotFoundException {
+    public LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException {
         Optional<Utente> optionalUtente = utenteRepo.findById(utenteId);
+        Optional<Libro> optionalLibro = libroRepo.findById(libroId);
 
         Utente u = optionalUtente.orElseThrow(() -> new EntityNotFoundException(Utente.class));
+        Libro l = optionalLibro.orElseThrow(() -> new EntityNotFoundException(Libro.class));
 
-        if(recensione != null){
-            libroLetto.setRecensione(recensione);
+        if(recensioneId != 0){
+            libroLetto.setRecensione(recensioneRepo.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
         }
 
-        libroLetto.setLibro(libro);
+        libroLetto.setLibro(l);
         libroLetto.setUtente(u);
 
         return libroLettoRepo.save(libroLetto);

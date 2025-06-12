@@ -42,15 +42,10 @@ public class VideogiocoGiocatoController {
     @PostMapping
     public ResponseEntity<?> createVideogiocoGiocato (@RequestBody VideogiocoGiocatoDto dto) throws EntityNotFoundException {
         VideogiocoGiocato vg = dto.toVideogiocoGiocato();
-        VideogiocoGiocato saved = null;
-        if(dto.getRecensione() != null){
-            saved = videogiocoService.saveVideogiocoGiocato(vg,
-                                dto.getVideogioco().toVideogioco(),
+        VideogiocoGiocato saved = videogiocoService.saveVideogiocoGiocato(vg,
+                                dto.getVideogioco().getId(),
                                 dto.getUtenteId(),
-                                dto.getRecensione().toRecensione());
-        } else {
-            saved = videogiocoService.saveVideogiocoGiocato(vg, dto.getVideogioco().toVideogioco(), dto.getUtenteId(), null);
-        }
+                                0);
         VideogiocoGiocatoDto newDto = VideogiocoGiocatoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -69,20 +64,12 @@ public class VideogiocoGiocatoController {
         Optional<VideogiocoGiocato> opt = videogiocoService.findVideogiocoGiocatoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
-        }VideogiocoGiocato updated = null;
-        if(updatedDto.getRecensione() != null){
-            VideogiocoGiocato videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
-                    updatedDto.getVideogioco().toVideogioco(),
-                    updatedDto.getUtenteId(),
-                    updatedDto.getRecensione().toRecensione());
-        } else {
-            VideogiocoGiocato videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
-                    updatedDto.getVideogioco().toVideogioco(),
-                    updatedDto.getUtenteId(),
-                    null);
         }
-        VideogiocoGiocato videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
-                updatedDto.getVideogioco().toVideogioco(), updatedDto.getUtenteId(), updatedDto.getRecensione().toRecensione());
+        VideogiocoGiocato videogiocoGiocato = null;
+            videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
+                    updatedDto.getVideogioco().getId(),
+                    updatedDto.getUtenteId(),
+                    updatedDto.getRecensione().getRecensioneId());
         return ResponseEntity.ok(VideogiocoGiocatoDto.toDto(videogiocoGiocato));
     }
 

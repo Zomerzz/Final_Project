@@ -76,7 +76,7 @@ public class  LibroController {
         if (opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        Libro updatedLibro = libroService.updateLibro(opt.get(), updatedDto.getCasaEditrice().toCasa());
+        Libro updatedLibro = libroService.updateLibro(opt.get(), updatedDto.getCasaEditrice().getCasaId());
         return ResponseEntity.ok(LibroDto.toDto(updatedLibro));
     }
 

@@ -14,7 +14,7 @@ public class RecensioneDto {
     }
 
     public Recensione toRecensione(){
-        return new Recensione(voto, recensione);
+        return new Recensione(recensioneId, voto, recensione);
     }
 
     public static RecensioneDto toDto(Recensione r){

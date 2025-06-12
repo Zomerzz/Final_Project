@@ -1,10 +1,16 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.RecensioneDto;
 import generation.italy.org.ravenclaw.models.dtos.TagDto;
+import generation.italy.org.ravenclaw.models.dtos.request.RecensioneRequest;
+import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
 import generation.italy.org.ravenclaw.models.entities.Tag;
+import generation.italy.org.ravenclaw.models.services.FilmService;
+import generation.italy.org.ravenclaw.models.services.LibroService;
 import generation.italy.org.ravenclaw.models.services.RecensioneService;
+import generation.italy.org.ravenclaw.models.services.VideogiocoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +28,7 @@ public class RecensioneController {
 
     @Autowired
     public RecensioneController(RecensioneService recensioneService){
-        this.recensioneService = recensioneService;
+        this.recensioneService = recensioneService;;
     }
     @GetMapping
     public ResponseEntity<List<RecensioneDto>> searchRecensione() {
@@ -94,9 +100,13 @@ public class RecensioneController {
     }
 
     @PostMapping
-    public ResponseEntity<?> createRecensione (@RequestBody RecensioneDto recensioneDto){
-        Recensione recensione = recensioneDto.toRecensione();
+    public ResponseEntity<?> createRecensione (@RequestBody RecensioneRequest recensioneRequest) throws EntityNotFoundException {
+        Recensione recensione = recensioneRequest.toRecensione();
         Recensione savedRecensione = recensioneService.saveRecensione(recensione);
+        recensioneService.addRecensioneToRegistrazione(recensioneRequest.getType(),
+                                                        recensioneRequest.getUtenteId(),
+                                                        recensioneRequest.getOperaId(),
+                                                        recensione);
         RecensioneDto newRecensioneDto = RecensioneDto.toDto(savedRecensione);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
