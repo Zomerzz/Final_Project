@@ -7,6 +7,8 @@ import { Libro } from '../../model/Libro';
 import { Film } from '../../model/Film';
 import { LibroService } from '../../services/LibroService';
 import { ActivatedRoute } from '@angular/router';
+import { VideogiocoService } from '../../services/videogioco.service';
+import { FilmService } from '../../services/FilmService';
 @Component({
   selector: 'app-search-by-product-name',
   imports: [FormsModule],
@@ -22,19 +24,42 @@ export class SearchByProductNameComponent {
   listaVideogioco: Videogioco[] = [];
 
 
-  private _service :LibroService = inject(LibroService);
+  private _libroService :LibroService = inject(LibroService);
+  private _videogiocoService :VideogiocoService = inject(VideogiocoService);
+  private _filmService: FilmService = inject(FilmService);
+
   private _route = inject(ActivatedRoute);
   
 
   
   send(){
-    this._service.findByName(this.libro.titolo).subscribe({
+    this._libroService.findByName(this.libro.titolo).subscribe({
       next: listaLibroDb =>{
         this.listaLibro = listaLibroDb;
         console.log(this.listaLibro);
       },
-      error: e => alert("la ricerca findByName andata male")
+      error: e => {
+        console.log("la ricerca findByName  libro non ha trovato risultati");
+      }
     });
+    this._videogiocoService.getByName(this.film.titolo).subscribe({
+      next: listaVideogiocoDb =>{
+        this.listaVideogioco = listaVideogiocoDb;
+        console.log(this.listaVideogioco);
+      },
+      error: e => {
+        console.log("la ricerca findByName  videogioco non ha trovato risultati");
+      }
+    });
+    this._filmService.findByName(this.film.titolo).subscribe({
+      next: listaFilmDb => {
+        this.listaFilm= listaFilmDb;
+        console.log(this.listaFilm);
+      },
+      error: e => {
+        console.log("la ricerca findByName  film non ha trovato risultati");
+      }
+    })
     // console.log(this.videogioco.titolo);
     // console.log(this.libro.titolo);
     // console.log(this.film.titolo);
