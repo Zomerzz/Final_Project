@@ -16,8 +16,10 @@ export class AdminComponent implements OnInit{
         if(!(this._authService.isLogged())){
             this._router.navigate(['/home'])
         }
+    }
 
-        
+    showUsertable(){
+        alert("a")
     }
 
 
