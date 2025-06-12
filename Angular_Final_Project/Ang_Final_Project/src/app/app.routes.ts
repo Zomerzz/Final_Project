@@ -10,10 +10,6 @@ import { LogOutComponent } from './components/log-out/log-out.component';
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'user', component: UserPageComponent},
-  { path: 'auth/login', component: LoginAreaComponent},
-  { path: 'auth/register', component: RegisterAreaComponent},
-  { path: 'auth/logout', component: LogOutComponent},
-  { path: 'game-detail/:id', component: DetailsComponent},
-  { path: 'admin', component: AdminComponent}
+  { path: 'game-detail/:id', component: DetailsComponent}
+  ];
 
-];
