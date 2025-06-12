@@ -31,12 +31,14 @@ export class AuthService{
     }
 
     logout(){
-
+        localStorage.removeItem('jwt');
     }
 
-    //
-
     isLogged():boolean{
+        console.log("logstatus");
+        
+        console.log(localStorage.getItem("jwt")!=null);
+        
         return localStorage.getItem("jwt")!=null;
     }
 
