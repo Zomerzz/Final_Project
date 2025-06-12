@@ -39,9 +39,9 @@ export class SearchByProductNameComponent {
         console.log(this.listaLibro);
       },
       error: e => {
-        console.log("============================");
+        console.log("====================================================");
         console.log("la ricerca findByName libro non ha trovato risultati");
-        console.log("============================");
+        console.log("====================================================");
 
       }      
     });
@@ -51,9 +51,9 @@ export class SearchByProductNameComponent {
         console.log(this.listaVideogioco);
       },
       error: e => {
-        console.log("============================");
+        console.log("=========================================================");
         console.log("la ricerca findByName videogioco non ha trovato risultati");
-        console.log("============================");
+        console.log("=========================================================");
 
       }
     });
@@ -63,9 +63,9 @@ export class SearchByProductNameComponent {
         console.log(this.listaFilm);
       },
       error: e => {
-        console.log("============================");
+        console.log("===================================================");
         console.log("la ricerca findByName film non ha trovato risultati");
-        console.log("============================");
+        console.log("===================================================");
 
       }
     })
