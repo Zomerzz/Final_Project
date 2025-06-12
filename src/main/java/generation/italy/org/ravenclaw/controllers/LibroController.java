@@ -58,7 +58,7 @@ public class  LibroController {
     @PostMapping
     public ResponseEntity<URI> createLibro(@RequestBody LibroDto libroDto) throws DataException, EntityNotFoundException {
         Libro libro = libroDto.toLibro();
-        Libro newLibro = libroService.saveLibro(libro, libroDto.getCasaEditriceId());
+        Libro newLibro = libroService.saveLibro(libro, libroDto.getCasaEditrice().toCasa());
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -76,7 +76,7 @@ public class  LibroController {
         if (opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        Libro updatedLibro = libroService.updateLibro(opt.get(), updatedDto.getCasaEditriceId());
+        Libro updatedLibro = libroService.updateLibro(opt.get(), updatedDto.getCasaEditrice().toCasa());
         return ResponseEntity.ok(LibroDto.toDto(updatedLibro));
     }
 

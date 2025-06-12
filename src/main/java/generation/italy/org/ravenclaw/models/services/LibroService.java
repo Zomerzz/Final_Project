@@ -4,6 +4,7 @@ import generation.italy.org.ravenclaw.exceptions.DataException;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.LibroDto;
 import generation.italy.org.ravenclaw.models.dtos.RecensioneDto;
+import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.entities.LibroLetto;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
@@ -19,9 +20,9 @@ public interface LibroService {
 
     List<Libro> findAllLibri() throws DataException;
 
-    Libro saveLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
+    Libro saveLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
 
-    Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
+    Libro updateLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
 
     boolean deleteLibro(int id) throws DataException, EntityNotFoundException;
 

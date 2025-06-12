@@ -46,16 +46,14 @@ public class JpaLibroService implements LibroService{
     }
 
     @Override
-    public Libro saveLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
-        Optional<Casa> optCDPub = casaRepo.findById(casaEditriceId);
-        Casa casaDiPubblicazione = optCDPub.orElseThrow(() -> new EntityNotFoundException(Casa.class));
-        libro.setCasaEditrice(casaDiPubblicazione);
+    public Libro saveLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException {
+        libro.setCasaEditrice(casaEditrice);
         return libroRepo.save(libro);
     }
 
     @Override
-    public Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException {
-        return saveLibro(libro, casaEditriceId);
+    public Libro updateLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException {
+        return saveLibro(libro, casaEditrice);
     }
 
     @Override

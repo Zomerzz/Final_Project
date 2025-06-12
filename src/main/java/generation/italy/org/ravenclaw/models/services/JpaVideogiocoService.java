@@ -53,23 +53,16 @@ public class JpaVideogiocoService implements VideogiocoService{
     }
 
     @Override
-    public Videogioco saveVideogioco(Videogioco videogioco, int idCasaPubblicazione, int idCasaProduzione) {
-        Optional<Casa> optCasaPubVideogioco = casaRepository.findById(idCasaPubblicazione);
-        Optional<Casa> optCasaProdVideogioco = casaRepository.findById(idCasaProduzione);
-
-        Casa casaDiProduzione= optCasaProdVideogioco.orElseThrow(EntityNotFoundException::new);
-        Casa casaDiPubblicazione = optCasaPubVideogioco.orElseThrow(EntityNotFoundException::new);
-
+    public Videogioco saveVideogioco(Videogioco videogioco, Casa casaDiPubblicazione, Casa casaDiProduzione) {
         videogioco.setCasaDiPubblicazione(casaDiPubblicazione);
         videogioco.setCasaDiProduzione(casaDiProduzione);
-
         return videogiocoRepository.save(videogioco);
     }
 
     @Override
-    public Videogioco updateVideogioco(Videogioco videogioco, int casaDiProduzioneId, int casaDiPubblicazioneId) {
+    public Videogioco updateVideogioco(Videogioco videogioco, Casa casaDiProduzione, Casa casaDiPubblicazione) {
         videogiocoRepository.findById(videogioco.getVideogiocoId()).orElseThrow(EntityNotFoundException::new);
-        return saveVideogioco(videogioco, casaDiProduzioneId, casaDiPubblicazioneId);
+        return saveVideogioco(videogioco, casaDiProduzione, casaDiPubblicazione);
     }
 
     @Override

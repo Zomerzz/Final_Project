@@ -12,19 +12,27 @@ public class FilmDto {
     private int durata;
     private LocalDate dataDiPubblicazione;
     private String descrizione;
-    private int casaDiProduzioneId;
-    private int casaDiPubblicazioneId;
+    private CasaDto casaDiProduzione;
+    private CasaDto casaDiPubblicazione;
     private int voto;
     private String imgUrl;
 
-    public FilmDto(int id, String titolo, int durata, LocalDate dataDiPubblicazione, String descrizione, int casaDiProduzioneId, int casaDiPubblicazioneId, int voto, String imgUrl) {
+    public FilmDto(int id,
+                   String titolo,
+                   int durata,
+                   LocalDate dataDiPubblicazione,
+                   String descrizione,
+                   CasaDto casaDiProduzione,
+                   CasaDto casaDiPubblicazione,
+                   int voto,
+                   String imgUrl) {
         this.id = id;
         this.titolo = titolo;
         this.durata = durata;
         this.dataDiPubblicazione = dataDiPubblicazione;
         this.descrizione = descrizione;
-        this.casaDiProduzioneId = casaDiProduzioneId;
-        this.casaDiPubblicazioneId = casaDiPubblicazioneId;
+        this.casaDiProduzione = casaDiProduzione;
+        this.casaDiPubblicazione = casaDiPubblicazione;
         this.voto = voto;
         this.imgUrl = imgUrl;
     }
@@ -34,7 +42,15 @@ public class FilmDto {
     }
 
     static public FilmDto toDto(Film f){
-        return new FilmDto(f.getFilmId(),f.getTitolo(),f.getDurata(),f.getDataDiPubblicazione(),f.getDescrizione(),f.getCasaDiProduzione().getCasaId(),f.getCasaDiPubblicazione().getCasaId(),f.getVoto(),f.getImgUrl());
+        return new FilmDto(f.getFilmId(),
+                f.getTitolo(),
+                f.getDurata(),
+                f.getDataDiPubblicazione(),
+                f.getDescrizione(),
+                CasaDto.toDto(f.getCasaDiProduzione()),
+                CasaDto.toDto(f.getCasaDiPubblicazione()),
+                f.getVoto(),
+                f.getImgUrl());
     }
 
     public int getId() {
@@ -65,18 +81,28 @@ public class FilmDto {
         this.descrizione = descrizione;
     }
 
-    public int getCasaDiProduzione() {
-        return casaDiProduzioneId;
-    }
-    public void setCasaDiProduzione(int casaDiProduzioneId) {
-        this.casaDiProduzioneId = casaDiProduzioneId;
+    public LocalDate getDataDiPubblicazione() {
+        return dataDiPubblicazione;
     }
 
-    public int getCasaDiPubblicazione() {
-        return casaDiPubblicazioneId;
+    public void setDataDiPubblicazione(LocalDate dataDiPubblicazione) {
+        this.dataDiPubblicazione = dataDiPubblicazione;
     }
-    public void setCasaDiPubblicazione(int casaDiPubblicazione) {
-        this.casaDiPubblicazioneId = casaDiPubblicazione;
+
+    public CasaDto getCasaDiProduzione() {
+        return casaDiProduzione;
+    }
+
+    public void setCasaDiProduzione(CasaDto casaDiProduzione) {
+        this.casaDiProduzione = casaDiProduzione;
+    }
+
+    public CasaDto getCasaDiPubblicazione() {
+        return casaDiPubblicazione;
+    }
+
+    public void setCasaDiPubblicazione(CasaDto casaDiPubblicazione) {
+        this.casaDiPubblicazione = casaDiPubblicazione;
     }
 
     public int getVoto() {

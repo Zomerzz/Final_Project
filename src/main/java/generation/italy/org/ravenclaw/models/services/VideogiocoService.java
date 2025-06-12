@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.entities.VideogiocoGiocato;
@@ -16,9 +17,9 @@ public interface VideogiocoService {
     boolean deleteVideogiocoById(int id);
 
     //Fare da DTO a Videogioco prima di salvare
-    Videogioco saveVideogioco(Videogioco videogioco, int idCasaPubblicazione, int idCasaProduzione);
+    Videogioco saveVideogioco(Videogioco videogioco, Casa idCasaPubblicazione, Casa idCasaProduzione);
 
-    Videogioco updateVideogioco(Videogioco videogioco, int casaDiProduzioneId, int casaDiPubblicazioneId);
+    Videogioco updateVideogioco(Videogioco videogioco, Casa casaDiProduzioneId, Casa casaDiPubblicazioneId);
 
     List<Videogioco> searchVideogiochi(VideogiocoFilterCriteria filters);
 

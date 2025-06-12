@@ -49,7 +49,9 @@ public class VideogiocoController {
     @PostMapping
     public ResponseEntity<?> saveGioco (@RequestBody VideogiocoDto vdto){
         Videogioco v = vdto.toVideogioco();
-        videogiocoService.saveVideogioco(v,vdto.getCasaDiProduzioneId(),vdto.getCasaDiPubblicazioneId());
+        videogiocoService.saveVideogioco(v,vdto.
+                getCasaDiProduzione().toCasa(),
+                vdto.getCasaDiPubblicazione().toCasa());
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -70,7 +72,9 @@ public class VideogiocoController {
         if(id != vdto.getId()){return ResponseEntity.badRequest().build();}
         Optional<Videogioco> ov = videogiocoService.findVideogiocoById(id);
         if(ov.isEmpty()){return ResponseEntity.notFound().build();}
-        Videogioco newGioco = videogiocoService.saveVideogioco(vdto.toVideogioco(), vdto.getCasaDiPubblicazioneId(), vdto.getCasaDiProduzioneId());
+        Videogioco newGioco = videogiocoService.saveVideogioco(vdto.toVideogioco(),
+                vdto.getCasaDiPubblicazione().toCasa(),
+                vdto.getCasaDiProduzione().toCasa());
         return ResponseEntity.ok().body(VideogiocoDto.toDto(newGioco));
     }
 }

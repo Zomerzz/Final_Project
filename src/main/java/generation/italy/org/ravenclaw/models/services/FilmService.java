@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.models.services;
 
+import generation.italy.org.ravenclaw.models.entities.Casa;
 import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.entities.FilmVisto;
 import generation.italy.org.ravenclaw.models.entities.Recensione;
@@ -13,7 +14,7 @@ import java.util.Optional;
 public interface FilmService {
     Optional<Film> findFilmById(int id);
     List<Film> findAllFilms();
-    Film saveFilm(Film film, int casaProdId, int casaPubbId);
+    Film saveFilm(Film film, Casa casaProduzione, Casa casaPubblicazione);
     boolean deleteFilm(int id);
     List<Film> searchFilm(FilmFilterCriteria ffc);
 
