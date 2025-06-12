@@ -19,6 +19,17 @@ public class Recensione {
     private int voto;
     private String recensione;
 
+
+    @OneToOne(mappedBy = "recensione")
+    private FilmVisto filmVisto;
+
+    @OneToOne(mappedBy = "recensione")
+    private LibroLetto libroLetto;
+
+    @OneToOne(mappedBy = "recensione")
+    private VideogiocoGiocato videogiocoGiocato;
+
+
     // === CONSTRUTTORI ===
 
     public Recensione() {

@@ -71,7 +71,7 @@ public class TagController {
         return ResponseEntity.created(location).body(newTagDto);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateTag (@PathVariable int id, @RequestBody TagDto tagDto){
         Optional<Tag> tagOpt = tagService.findTagById(id);
         if(id != tagDto.getTagId()){

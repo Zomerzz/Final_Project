@@ -1,1 +1,5 @@
-<p>login-area-component works!</p>
+<Form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input type="email" id="email" placeholder="Email" formControlName="email">
+    <input type="password" id="password" placeholder="password" minlength="5" maxlength="30" formControlName="password">
+    <button>cliccami</button>
+</Form>

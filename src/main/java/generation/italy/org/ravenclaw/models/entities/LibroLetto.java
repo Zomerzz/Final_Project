@@ -34,7 +34,8 @@ public class LibroLetto {
     public LibroLetto() {
     }
 
-    public LibroLetto(Libro libro, Utente utente, Recensione recensione) {
+    public LibroLetto(int libroLettoId, Libro libro, Utente utente, Recensione recensione) {
+        this.libroLettoId = libroLettoId;
         this.libro = libro;
         this.utente = utente;
         this.recensione = recensione;
@@ -54,5 +55,23 @@ public class LibroLetto {
     }
     public Recensione getRecensione() {
         return recensione;
+    }
+
+    // === SETTER ===
+
+    public void setLibroLettoId(int libroLettoId) {
+        this.libroLettoId = libroLettoId;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setRecensione(Recensione recensione) {
+        this.recensione = recensione;
     }
 }

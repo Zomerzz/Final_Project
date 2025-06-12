@@ -34,7 +34,8 @@ public class VideogiocoGiocato {
     public VideogiocoGiocato() {
     }
 
-    public VideogiocoGiocato(Videogioco videogioco, Utente utente, Recensione recensione) {
+    public VideogiocoGiocato(int videogiocoGiocatoId, Videogioco videogioco, Utente utente, Recensione recensione) {
+        this.videogiocoGiocatoId = videogiocoGiocatoId;
         this.videogioco = videogioco;
         this.utente = utente;
         this.recensione = recensione;
@@ -53,5 +54,23 @@ public class VideogiocoGiocato {
     }
     public Recensione getRecensione() {
         return recensione;
+    }
+
+    // === SETTER ===
+
+    public void setVideogiocoGiocatoId(int videogiocoGiocatoId) {
+        this.videogiocoGiocatoId = videogiocoGiocatoId;
+    }
+
+    public void setVideogioco(Videogioco videogioco) {
+        this.videogioco = videogioco;
+    }
+
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    public void setRecensione(Recensione recensione) {
+        this.recensione = recensione;
     }
 }
