@@ -27,7 +27,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){
-            Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
+           Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
             predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
         }
         if(filters.getNumeroPagine() != null){
