@@ -3,6 +3,7 @@ import { RecensioneService } from '../../services/RecensioneService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecensioneRequest } from '../../model/RecensioneRequest';
+import { AuthService } from '../../services/AuthService';
 
 @Component({
   selector: 'app-add-recensione',
@@ -13,12 +14,12 @@ import { RecensioneRequest } from '../../model/RecensioneRequest';
 export class AddRecensioneComponent implements OnInit{
   formBuilder = inject(FormBuilder);
   recensioneForm: FormGroup;
+  private _authService = inject(AuthService);
   private _recensioneService = inject(RecensioneService);
   private _router = inject(Router);
   private _route = inject(ActivatedRoute);
   private operaId = 0;
   private type: string|null = "";
-  private utenteId = 0;
 
   constructor(){
     this.recensioneForm = this.formBuilder.group({
@@ -35,7 +36,6 @@ export class AddRecensioneComponent implements OnInit{
       }
     }
     this.type = this._route.snapshot.paramMap.get('type');
-    this.utenteId = 20; //DA CAMBIARE DEVO CAPIRE COME PASSARMELO!!!
   }
 
   onSubmit(){
@@ -44,7 +44,7 @@ export class AddRecensioneComponent implements OnInit{
       "recensione": this.recensioneForm.value.recensione,
       "type": this.type,
       "operaId": this.operaId,
-      "utenteId": this.utenteId
+      "utenteId": Number(this._authService.getUserId)
     };
     this._recensioneService.addRecensione(recensioneRequest).subscribe({
       next: (recensione) => {
