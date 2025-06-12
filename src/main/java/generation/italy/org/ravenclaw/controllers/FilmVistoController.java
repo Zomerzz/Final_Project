@@ -3,7 +3,7 @@ package generation.italy.org.ravenclaw.controllers;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.FilmVistoDto;
 import generation.italy.org.ravenclaw.models.entities.FilmVisto;
-import generation.italy.org.ravenclaw.models.services.FilmVistoService;
+import generation.italy.org.ravenclaw.models.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +15,18 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/filmvisto")
+@RequestMapping("/api/film-visto")
 public class FilmVistoController {
-    private FilmVistoService filmVistoService;
+    private FilmService filmService;
 
     @Autowired
-    public FilmVistoController(FilmVistoService filmVistoService) {
-        this.filmVistoService = filmVistoService;
+    public FilmVistoController(FilmService filmService) {
+        this.filmService = filmService;
     }
 
     @GetMapping
-    private ResponseEntity<?> searchVFilmVistiByUtente(@RequestParam int utenteId){
-        List<FilmVisto> filmVisti = filmVistoService.findByUtente(utenteId);
+    private ResponseEntity<?> searchFilmVistiByUtente(@RequestParam int utenteId){
+        List<FilmVisto> filmVisti = filmService.findFilmVistoByUtente(utenteId);
         if (filmVisti.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -36,7 +36,7 @@ public class FilmVistoController {
 
     @GetMapping("/{id}")
     private ResponseEntity<?> searchFilmVistoById(@PathVariable int id){
-        Optional<FilmVisto> opt = filmVistoService.findById(id);
+        Optional<FilmVisto> opt = filmService.findFilmVistoById(id);
         return opt.map(ff -> ResponseEntity.ok().body(FilmVistoDto.toDto(ff)))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -44,7 +44,18 @@ public class FilmVistoController {
     @PostMapping
     public ResponseEntity<?> createFilmVisto (@RequestBody FilmVistoDto dto) throws EntityNotFoundException {
         FilmVisto fv = dto.toFilmVisto();
-        FilmVisto saved = filmVistoService.save(fv, dto.getFilmId(), dto.getUtenteId(), dto.getRecensioneId());
+        FilmVisto saved = null;
+        if(dto.getRecensione() != null){
+            saved = filmService.saveFilmVisto(fv,
+                    dto.getFilm().toFilm(),
+                    dto.getUtenteId(),
+                    dto.getRecensione().toRecensione());
+        } else {
+            saved = filmService.saveFilmVisto(fv,
+                    dto.getFilm().toFilm(),
+                    dto.getUtenteId(),
+                    null);
+        }
         FilmVistoDto newDto = FilmVistoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -60,21 +71,32 @@ public class FilmVistoController {
         if(id != updatedDto.getFilmVistoId()){
             return ResponseEntity.badRequest().body("id dto e id del path non coincidono");
         }
-        Optional<FilmVisto> opt = filmVistoService.findById(id);
+        Optional<FilmVisto> opt = filmService.findFilmVistoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        FilmVisto filmVisto = filmVistoService.update(opt.get(), updatedDto.getFilmId(), updatedDto.getUtenteId(), updatedDto.getRecensioneId());
+        FilmVisto filmVisto = null;
+        if(updatedDto.getRecensione() != null) {
+            filmVisto = filmService.updateFilmVisto(opt.get(),
+                    updatedDto.getFilm().toFilm(),
+                    updatedDto.getUtenteId(),
+                    updatedDto.getRecensione().toRecensione());
+        } else {
+            filmVisto = filmService.updateFilmVisto(opt.get(),
+                    updatedDto.getFilm().toFilm(),
+                    updatedDto.getUtenteId(),
+                    null);
+        }
         return ResponseEntity.ok(FilmVistoDto.toDto(filmVisto));
     }
 
     @DeleteMapping("/{id}")
     private ResponseEntity<?> deleteFilmVisto(@PathVariable int id){
-        Optional<FilmVisto> opt = filmVistoService.findById(id);
+        Optional<FilmVisto> opt = filmService.findFilmVistoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        filmVistoService.delete(id);
+        filmService.deleteFilmVisto(id);
         return ResponseEntity.noContent().build();
     }
 }

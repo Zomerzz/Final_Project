@@ -1,13 +1,9 @@
 package generation.italy.org.ravenclaw.controllers;
 
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
-import generation.italy.org.ravenclaw.models.dtos.LibroDto;
-import generation.italy.org.ravenclaw.models.dtos.TagDto;
 import generation.italy.org.ravenclaw.models.dtos.VideogiocoGiocatoDto;
-import generation.italy.org.ravenclaw.models.entities.Libro;
-import generation.italy.org.ravenclaw.models.entities.Tag;
 import generation.italy.org.ravenclaw.models.entities.VideogiocoGiocato;
-import generation.italy.org.ravenclaw.models.services.VideogiocoGiocatoService;
+import generation.italy.org.ravenclaw.models.services.VideogiocoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -18,17 +14,17 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/videogiocogiocato")
+@RequestMapping("/api/videogioco-giocato")
 public class VideogiocoGiocatoController {
-    private VideogiocoGiocatoService videogiocoGiocatoService;
+    private VideogiocoService videogiocoService;
 
-    public VideogiocoGiocatoController(VideogiocoGiocatoService videogiocoGiocatoService){
-        this.videogiocoGiocatoService = videogiocoGiocatoService;
+    public VideogiocoGiocatoController(VideogiocoService videogiocoService){
+        this.videogiocoService = videogiocoService;
     }
 
     @GetMapping
-    private ResponseEntity<?> searchVideogiochiGiocatiByUtente(@RequestBody int utenteId){
-        List<VideogiocoGiocato> videogiochiGiocati = videogiocoGiocatoService.findByUtente(utenteId);
+    private ResponseEntity<?> searchVideogiochiGiocatiByUtente(@RequestParam int utenteId){
+        List<VideogiocoGiocato> videogiochiGiocati = videogiocoService.findVideogiocoGiocatoByUtente(utenteId);
         if (videogiochiGiocati.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -38,7 +34,7 @@ public class VideogiocoGiocatoController {
 
     @GetMapping("/{id}")
     private ResponseEntity<?> searchVideogiocoGiocatoById(@PathVariable int id){
-        Optional<VideogiocoGiocato> opt = videogiocoGiocatoService.findById(id);
+        Optional<VideogiocoGiocato> opt = videogiocoService.findVideogiocoGiocatoById(id);
         return opt.map(vg -> ResponseEntity.ok().body(VideogiocoGiocatoDto.toDto(vg)))
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -46,7 +42,15 @@ public class VideogiocoGiocatoController {
     @PostMapping
     public ResponseEntity<?> createVideogiocoGiocato (@RequestBody VideogiocoGiocatoDto dto) throws EntityNotFoundException {
         VideogiocoGiocato vg = dto.toVideogiocoGiocato();
-        VideogiocoGiocato saved = videogiocoGiocatoService.save(vg, dto.getVideogiocoId(), dto.getUtenteId(), dto.getRecensioneId());
+        VideogiocoGiocato saved = null;
+        if(dto.getRecensione() != null){
+            saved = videogiocoService.saveVideogiocoGiocato(vg,
+                                dto.getVideogioco().toVideogioco(),
+                                dto.getUtenteId(),
+                                dto.getRecensione().toRecensione());
+        } else {
+            saved = videogiocoService.saveVideogiocoGiocato(vg, dto.getVideogioco().toVideogioco(), dto.getUtenteId(), null);
+        }
         VideogiocoGiocatoDto newDto = VideogiocoGiocatoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -62,21 +66,33 @@ public class VideogiocoGiocatoController {
         if(id != updatedDto.getVideogiocoGiocatoId()){
             return ResponseEntity.badRequest().body("id dto e id del path non coincidono");
         }
-        Optional<VideogiocoGiocato> opt = videogiocoGiocatoService.findById(id);
+        Optional<VideogiocoGiocato> opt = videogiocoService.findVideogiocoGiocatoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
+        }VideogiocoGiocato updated = null;
+        if(updatedDto.getRecensione() != null){
+            VideogiocoGiocato videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
+                    updatedDto.getVideogioco().toVideogioco(),
+                    updatedDto.getUtenteId(),
+                    updatedDto.getRecensione().toRecensione());
+        } else {
+            VideogiocoGiocato videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
+                    updatedDto.getVideogioco().toVideogioco(),
+                    updatedDto.getUtenteId(),
+                    null);
         }
-        VideogiocoGiocato videogiocoGiocato = videogiocoGiocatoService.update(opt.get(), updatedDto.getVideogiocoId(), updatedDto.getUtenteId(), updatedDto.getRecensioneId());
+        VideogiocoGiocato videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
+                updatedDto.getVideogioco().toVideogioco(), updatedDto.getUtenteId(), updatedDto.getRecensione().toRecensione());
         return ResponseEntity.ok(VideogiocoGiocatoDto.toDto(videogiocoGiocato));
     }
 
     @DeleteMapping("/{id}")
     private ResponseEntity<?> deleteVideogiocoGiocato(@PathVariable int id){
-        Optional<VideogiocoGiocato> opt = videogiocoGiocatoService.findById(id);
+        Optional<VideogiocoGiocato> opt = videogiocoService.findVideogiocoGiocatoById(id);
         if(opt.isEmpty()){
             return ResponseEntity.notFound().build();
         }
-        videogiocoGiocatoService.delete(id);
+        videogiocoService.deleteVideogiocoGiocato(id);
         return ResponseEntity.noContent().build();
     }
 }

@@ -7,8 +7,8 @@ import java.time.LocalDate;
 public class VideogiocoDto {
     private int id;
     private String titolo;
-    private int casaDiProduzioneId;
-    private int casaDiPubblicazioneId;
+    private CasaDto casaDiProduzione;
+    private CasaDto casaDiPubblicazione;
     private LocalDate dataDiPubblicazione;
     private int oreStoriaPrincipale;
     private String descrizione;
@@ -18,11 +18,11 @@ public class VideogiocoDto {
     public VideogiocoDto() {
     }
 
-    public VideogiocoDto(int id, String titolo, int casaDiProduzioneId, int casaDiPubblicazioneId, LocalDate dataDiPubblicazione, int oreStoriaPrincipale, String descrizione, int voto, String imgUrl) {
+    public VideogiocoDto(int id, String titolo, CasaDto casaDiProduzione, CasaDto casaDiPubblicazione, LocalDate dataDiPubblicazione, int oreStoriaPrincipale, String descrizione, int voto, String imgUrl) {
         this.id = id;
         this.titolo = titolo;
-        this.casaDiProduzioneId = casaDiProduzioneId;
-        this.casaDiPubblicazioneId = casaDiPubblicazioneId;
+        this.casaDiProduzione = casaDiProduzione;
+        this.casaDiPubblicazione = casaDiPubblicazione;
         this.dataDiPubblicazione = dataDiPubblicazione;
         this.oreStoriaPrincipale = oreStoriaPrincipale;
         this.descrizione = descrizione;
@@ -31,7 +31,15 @@ public class VideogiocoDto {
     }
 
     static public VideogiocoDto toDto (Videogioco v){
-        return new VideogiocoDto(v.getVideogiocoId(),v.getTitolo(),v.getCasaDiProduzione().getCasaId(),v.getCasaDiPubblicazione().getCasaId(),v.getDataDiPubblicazione(),v.getOreStoriaPrincipale(),v.getDescrizione(),v.getVoto(),v.getImgUrl());
+        return new VideogiocoDto(v.getVideogiocoId(),
+                v.getTitolo(),
+                CasaDto.toDto(v.getCasaDiProduzione()),
+                CasaDto.toDto(v.getCasaDiPubblicazione()),
+                v.getDataDiPubblicazione(),
+                v.getOreStoriaPrincipale(),
+                v.getDescrizione(),
+                v.getVoto(),
+                v.getImgUrl());
     }
     public Videogioco toVideogioco (){
         return new Videogioco(titolo,null,null,dataDiPubblicazione,oreStoriaPrincipale,descrizione,voto,imgUrl);
@@ -53,20 +61,20 @@ public class VideogiocoDto {
         this.titolo = titolo;
     }
 
-    public int getCasaDiProduzioneId() {
-        return casaDiProduzioneId;
+    public CasaDto getCasaDiProduzione() {
+        return casaDiProduzione;
     }
 
-    public void setCasaDiProduzioneId(int casaDiProduzioneId) {
-        this.casaDiProduzioneId = casaDiProduzioneId;
+    public void setCasaDiProduzione(CasaDto casaDiProduzione) {
+        this.casaDiProduzione = casaDiProduzione;
     }
 
-    public int getCasaDiPubblicazioneId() {
-        return casaDiPubblicazioneId;
+    public CasaDto getCasaDiPubblicazione() {
+        return casaDiPubblicazione;
     }
 
-    public void setCasaDiPubblicazioneId(int casaDiPubblicazioneId) {
-        this.casaDiPubblicazioneId = casaDiPubblicazioneId;
+    public void setCasaDiPubblicazione(CasaDto casaDiPubblicazione) {
+        this.casaDiPubblicazione = casaDiPubblicazione;
     }
 
     public LocalDate getDataDiPubblicazione() {
