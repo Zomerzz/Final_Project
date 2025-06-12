@@ -1,22 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import {RegistrationRequest} from '../model/RegistrationRequest'
-import { inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { LoginRequest } from '../model/LoginRequest';
 import { jwtDecode } from 'jwt-decode';
-import { JwtPayload } from '../model/Jwtpayload';
+import { JwtPayload } from '../model/JwtPayload';
+import { Observable } from 'rxjs';
+import { JwtToken } from '../model/JwtToken';
 
+@Injectable({providedIn: 'root'})
 export class AuthService{
 
     private _url: string = 'http://localhost:8080/api/auth'
     private _http = inject(HttpClient);
 
-    register(regreq:RegistrationRequest){
-        const res = this._http.post<RegistrationRequest>(`${this._url}/register`,regreq);
+    register(regreq:RegistrationRequest):Observable<JwtToken>{
+        return this._http.post<JwtToken>(`${this._url}/register`,regreq);
     }
-    
-    login(logreq:LoginRequest){
-        const res = this._http.post<RegistrationRequest>(`${this._url}/login`,logreq);
+
+    login(logreq:LoginRequest): Observable<JwtToken>{
+        return this._http.post<JwtToken>(`${this._url}/login`,logreq);
     }
+
+    //
 
     isLogged():boolean{
         return localStorage.getItem("jwt")!=null;

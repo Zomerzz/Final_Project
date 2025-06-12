@@ -23,7 +23,11 @@ export class LoginAreaComponent {
     }
 
     onSubmit(){
-        
-        // riceveremo il token e lo metteremo nel local storange
+        this._authService.login(this.loginForm.value).subscribe({
+            next: (authToken) =>{
+                localStorage.setItem("jwt",authToken.token );
+                console.log(this._authService.getUserId());
+            },error: e => alert('Errore nel accesso')
+        });
     }
 }
