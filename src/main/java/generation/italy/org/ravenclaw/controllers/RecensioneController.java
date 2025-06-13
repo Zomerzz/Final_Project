@@ -31,8 +31,8 @@ public class RecensioneController {
         this.recensioneService = recensioneService;;
     }
     @GetMapping
-    public ResponseEntity<List<RecensioneDto>> searchRecensione() {
-        List<Recensione> recensioneList = recensioneService.findAllRecensioni();
+    public ResponseEntity<List<RecensioneDto>> searchRecensione(@RequestParam String mediaType, @RequestParam Integer mediaId) {
+        List<Recensione> recensioneList = recensioneService.findRecensioni(mediaType, mediaId);
         List<RecensioneDto> recensioneDto = recensioneList.stream().map(RecensioneDto::toDto).toList();
         return ResponseEntity.ok(recensioneDto);
     }
@@ -45,38 +45,28 @@ public class RecensioneController {
         }
         return ResponseEntity.ok(RecensioneDto.toDto(recensioneOptional.get()));
     }
-
-    @GetMapping("/film-id={filmId}")
-    public ResponseEntity<?> searchByFilmId(@PathVariable int filmId){
-        List<Recensione> recensioni = recensioneService.findRecensioneByFilmId(filmId);
-        if(recensioni.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(recensioni.stream().map(RecensioneDto::toDto));
-    }
-
-    @GetMapping("/libro-id={libroId}")
-    public ResponseEntity<?> searchByLibroId(@PathVariable int libroId){
-        List<Recensione> recensioni = recensioneService.findRecensioneByLibroId(libroId);
-        if(recensioni.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(recensioni.stream().map(RecensioneDto::toDto));
-    }
-
-    @GetMapping("/videogioco-id={videogiocoId}")
-    public ResponseEntity<?> searchByVideogiocoId(@PathVariable int videogiocoId){
-        List<Recensione> recensioni = recensioneService.findRecensioneByVideogiocoId(videogiocoId);
-        if(recensioni.isEmpty()){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(recensioni.stream().map(RecensioneDto::toDto));
-    }
 //
-     //ANCORA DA DECIDERE COME GESTIRE LE RECENSIONI DI UN DATO UTENTE
-//    @GetMapping("/utente-id={utenteId}")
-//    public ResponseEntity<?> searchByUtenteId(@PathVariable int utenteId){
-//        List<Recensione> recensioni = recensioneService.findRecensioneByUtenteId(utenteId);
+//    @GetMapping("/film-id={filmId}")
+//    public ResponseEntity<?> searchByFilmId(@PathVariable int filmId){
+//        List<Recensione> recensioni = recensioneService.findRecensioneByFilmId(filmId);
+//        if(recensioni.isEmpty()){
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(recensioni.stream().map(RecensioneDto::toDto));
+//    }
+//
+//    @GetMapping("/libro-id={libroId}")
+//    public ResponseEntity<?> searchByLibroId(@PathVariable int libroId){
+//        List<Recensione> recensioni = recensioneService.findRecensioneByLibroId(libroId);
+//        if(recensioni.isEmpty()){
+//            return ResponseEntity.notFound().build();
+//        }
+//        return ResponseEntity.ok(recensioni.stream().map(RecensioneDto::toDto));
+//    }
+//
+//    @GetMapping("/videogioco-id={videogiocoId}")
+//    public ResponseEntity<?> searchByVideogiocoId(@PathVariable int videogiocoId){
+//        List<Recensione> recensioni = recensioneService.findRecensioneByVideogiocoId(videogiocoId);
 //        if(recensioni.isEmpty()){
 //            return ResponseEntity.notFound().build();
 //        }

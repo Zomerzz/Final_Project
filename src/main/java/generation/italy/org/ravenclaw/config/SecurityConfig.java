@@ -64,7 +64,7 @@ public class SecurityConfig {
                 configurer
                         .requestMatchers("/api/auth/**","/api/autore/**","/api/film/**"
                                 ,"/api/filmvisto/**","/api/casa/**","/api/libro/**",
-                                "/api/libroletto/**","/api/recension/**","/api/tag/**","/api/videogioco/**"
+                                "/api/libroletto/**","/api/recensione/**","/api/tag/**","/api/videogioco/**"
                                 ,"/api/videogiocogiocato/**").permitAll()
                         //.requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/admin/**").permitAll()
