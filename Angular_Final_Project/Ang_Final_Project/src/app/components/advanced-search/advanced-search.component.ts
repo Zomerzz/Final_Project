@@ -1,7 +1,8 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { SearchModel } from '../../model/SearchModel';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
+import { Tag } from '../../model/Tag';
 
 @Component({
   selector: 'app-advanced-search',
@@ -11,6 +12,7 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class AdvancedSearchComponent implements OnInit{
   @Output('search') search = new EventEmitter<Partial<SearchModel>>();
+  @Input('tags') allTags: Tag[] = [];
   form!: FormGroup;
   mediaTypes = ['tutti', 'libri', 'film', 'videogiochi'];
   currentMedia = 'tutti';
