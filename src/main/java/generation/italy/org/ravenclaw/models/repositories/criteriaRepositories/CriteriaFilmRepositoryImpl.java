@@ -32,6 +32,9 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         Predicate[] predicates = buildPredicates(cb, rootFilm, filmFilters);
         query.where(predicates);
         query.distinct(true);
+        if(filmFilters.isOrderByVoto()){
+            query.orderBy(cb.desc(rootFilm.get("voto")));
+        }
         List<Film> films = em.createQuery(query).setFirstResult(filmFilters.getPageSize()*filmFilters.getNumPage()).setMaxResults(filmFilters.getPageSize())
                 .getResultList();
 
@@ -40,7 +43,7 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         totalQuery.where(predicates);
 
         Long totaleFilm = em.createQuery(totalQuery).getSingleResult();
-        return new PageImpl<>(films, PageRequest.of(filmFilters.getPageSize(), filmFilters.getNumPage()), totaleFilm);
+        return new PageImpl<>(films, PageRequest.of(filmFilters.getNumPage(), filmFilters.getPageSize()), totaleFilm);
     }
 
     private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Film> rootFilm, FilmFilterCriteria filmFilters){

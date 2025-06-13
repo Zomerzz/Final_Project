@@ -30,6 +30,9 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         Predicate[] predicates = buildPredicate(cb,root,filters);
         query.where(predicates);
         query.distinct(true);
+        if(filters.isOrderByVoto()){
+            query.orderBy(cb.desc(root.get("voto")));
+        }
         List<Libro> libri = em.createQuery(query).setFirstResult(filters.getPageSize()*filters.getNumPage()).setMaxResults(filters.getPageSize())
                 .getResultList();
 
