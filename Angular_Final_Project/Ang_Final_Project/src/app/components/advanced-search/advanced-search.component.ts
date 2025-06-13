@@ -3,6 +3,7 @@ import { SearchModel } from '../../model/SearchModel';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { Tag } from '../../model/Tag';
+import { SearchService } from '../../services/search-service';
 
 @Component({
   selector: 'app-advanced-search',
@@ -12,11 +13,12 @@ import { Tag } from '../../model/Tag';
 })
 export class AdvancedSearchComponent implements OnInit{
   @Output('search') search = new EventEmitter<Partial<SearchModel>>();
-  @Input('tags') currentTags: Tag[] = [];
+  currentTags: Tag[] = [];
   form!: FormGroup;
   mediaTypes = ['tutti', 'libri', 'film', 'videogiochi'];
   currentMedia = 'tutti';
   fb: FormBuilder = inject(FormBuilder);
+  searchService: SearchService = inject(SearchService);
   ngOnInit(): void {
     this.form = this.fb.group({
       tipoMedia: [this.currentMedia],
@@ -31,7 +33,7 @@ export class AdvancedSearchComponent implements OnInit{
     this.loadTagsForMedia(this.currentMedia);
   }
   configureFormControls(tipoMedia: string) {
-    const keepAlways = ['tipoMedia'];
+    const keepAlways = ['tipoMedia', 'tags'];
     const allControls = {
       titolo: new FormControl(''), 
       numeroPagine: new FormControl(null), 
@@ -65,13 +67,20 @@ export class AdvancedSearchComponent implements OnInit{
     });
   }
   loadTagsForMedia(tipoMedia: string) {
-    
+    this.searchService.loadTagByMedia(tipoMedia).subscribe({
+      next: tags => this.currentTags = tags,
+      error: er => alert(er)
+    });
   }
   onSubmit() {
     console.log(this.form.value);
   }
   onTagCheckboxChange(event: Event) {
-
+    const checkbox = event.target as HTMLInputElement;
+    const selectedTags = this.tags?.value as number[] || [];
+    if(checkbox.checked) {
+      this.tags?.setValue([...selectedTags, +checkbox.value]);
+    }
   }
 
   get titolo() {
