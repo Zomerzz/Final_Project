@@ -91,20 +91,17 @@ public class JpaVideogiocoService implements VideogiocoService{
                                                      int videogiocoId,
                                                      int utenteId,
                                                      int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
-        return saveVideogiocoGiocato(videogiocoGiocato, videogiocoId, utenteId, recensioneId);
+        videogiocoGiocato.setRecensione(recensioneRepository.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
+        return saveVideogiocoGiocato(videogiocoGiocato, videogiocoId, utenteId);
     }
 
     @Override
-    public VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, int videogiocoId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
+    public VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, int videogiocoId, int utenteId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
         Optional<Utente> optionalUtente = utenteRepository.findById(utenteId);
         Optional<Videogioco> optionalVideogioco = videogiocoRepository.findById(videogiocoId);
 
         Utente u = optionalUtente.orElseThrow(() -> new generation.italy.org.ravenclaw.exceptions.EntityNotFoundException(Utente.class));
         Videogioco videogioco = optionalVideogioco.orElseThrow(()-> new EntityNotFoundException(Videogioco.class));
-
-        if(recensioneId != 0){
-            vg.setRecensione(recensioneRepository.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
-        }
 
         vg.setVideogioco(videogioco);
         vg.setUtente(u);

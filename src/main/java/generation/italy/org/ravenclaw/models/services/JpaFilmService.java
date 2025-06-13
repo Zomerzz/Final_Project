@@ -84,20 +84,17 @@ public class JpaFilmService implements FilmService {
 
     @Override
     public FilmVisto updateFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
-        return saveFilmVisto(filmVisto, filmId, utenteId, recensioneId);
+        filmVisto.setRecensione(recensioneRepo.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
+        return saveFilmVisto(filmVisto, filmId, utenteId);
     }
 
     @Override
-    public FilmVisto saveFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
+    public FilmVisto saveFilmVisto(FilmVisto filmVisto, int filmId, int utenteId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException {
         Optional<Utente> optionalUtente = utenteRepo.findById(utenteId);
         Optional<Film> optionalFilm = filmRepo.findById(filmId);
 
         Utente u = optionalUtente.orElseThrow(() -> new EntityNotFoundException(Utente.class));
         Film f = optionalFilm.orElseThrow(() -> new EntityNotFoundException(Utente.class));
-
-        if(recensioneId != 0){
-            filmVisto.setRecensione(recensioneRepo.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
-        }
 
         filmVisto.setFilm(f);
         filmVisto.setUtente(u);

@@ -103,7 +103,7 @@ public class RecensioneController {
         recensioneService.addRecensioneToRegistrazione(recensioneRequest.getType(),
                                                         recensioneRequest.getUtenteId(),
                                                         recensioneRequest.getOperaId(),
-                                                        recensione);
+                                                        savedRecensione);
         RecensioneDto newRecensioneDto = RecensioneDto.toDto(savedRecensione);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()

@@ -41,8 +41,7 @@ public class VideogiocoGiocatoController {
         VideogiocoGiocato vg = dto.toVideogiocoGiocato();
         VideogiocoGiocato saved = videogiocoService.saveVideogiocoGiocato(vg,
                                 dto.getVideogioco().getId(),
-                                dto.getUtenteId(),
-                                0);
+                                dto.getUtenteId());
         VideogiocoGiocatoDto newDto = VideogiocoGiocatoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -63,10 +62,10 @@ public class VideogiocoGiocatoController {
             return ResponseEntity.notFound().build();
         }
         VideogiocoGiocato videogiocoGiocato = null;
-            videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
-                    updatedDto.getVideogioco().getId(),
-                    updatedDto.getUtenteId(),
-                    updatedDto.getRecensione().getRecensioneId());
+        videogiocoGiocato = videogiocoService.updateVideogiocoGiocato(opt.get(),
+                updatedDto.getVideogioco().getId(),
+                updatedDto.getUtenteId(),
+                updatedDto.getRecensione().getRecensioneId());
         return ResponseEntity.ok(VideogiocoGiocatoDto.toDto(videogiocoGiocato));
     }
 

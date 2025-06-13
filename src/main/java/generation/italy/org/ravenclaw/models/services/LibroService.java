@@ -35,7 +35,7 @@ public interface LibroService {
 
     LibroLetto updateLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException;
 
-    LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException;
+    LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId) throws EntityNotFoundException;
 
     boolean deleteLibroLetto(int id);
 }

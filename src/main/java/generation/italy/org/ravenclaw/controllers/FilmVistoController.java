@@ -43,8 +43,7 @@ public class FilmVistoController {
         FilmVisto fv = dto.toFilmVisto();
         FilmVisto saved = filmService.saveFilmVisto(fv,
                     dto.getFilm().getId(),
-                    dto.getUtenteId(),
-                    0);
+                    dto.getUtenteId());
         FilmVistoDto newDto = FilmVistoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -65,17 +64,10 @@ public class FilmVistoController {
             return ResponseEntity.notFound().build();
         }
         FilmVisto filmVisto = null;
-        if(updatedDto.getRecensione() != null) {
-            filmVisto = filmService.updateFilmVisto(opt.get(),
-                    updatedDto.getFilm().getId(),
-                    updatedDto.getUtenteId(),
-                    updatedDto.getRecensione().getRecensioneId());
-        } else {
-            filmVisto = filmService.updateFilmVisto(opt.get(),
-                    updatedDto.getFilm().getId(),
-                    updatedDto.getUtenteId(),
-                    0);
-        }
+        filmVisto = filmService.updateFilmVisto(opt.get(),
+                updatedDto.getFilm().getId(),
+                updatedDto.getUtenteId(),
+                updatedDto.getRecensione().getRecensioneId());
         return ResponseEntity.ok(FilmVistoDto.toDto(filmVisto));
     }
 

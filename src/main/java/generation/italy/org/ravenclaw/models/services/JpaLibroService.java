@@ -87,20 +87,17 @@ public class JpaLibroService implements LibroService{
 
     @Override
     public LibroLetto updateLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException {
-        return saveLibroLetto(libroLetto, libroId, utenteId, recensioneId);
+        libroLetto.setRecensione(recensioneRepo.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
+        return saveLibroLetto(libroLetto, libroId, utenteId);
     }
 
     @Override
-    public LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId, int recensioneId) throws EntityNotFoundException {
+    public LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId) throws EntityNotFoundException {
         Optional<Utente> optionalUtente = utenteRepo.findById(utenteId);
         Optional<Libro> optionalLibro = libroRepo.findById(libroId);
 
         Utente u = optionalUtente.orElseThrow(() -> new EntityNotFoundException(Utente.class));
         Libro l = optionalLibro.orElseThrow(() -> new EntityNotFoundException(Libro.class));
-
-        if(recensioneId != 0){
-            libroLetto.setRecensione(recensioneRepo.findById(recensioneId).orElseThrow(()-> new EntityNotFoundException(Recensione.class)));
-        }
 
         libroLetto.setLibro(l);
         libroLetto.setUtente(u);

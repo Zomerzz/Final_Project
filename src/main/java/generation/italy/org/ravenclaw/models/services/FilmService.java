@@ -26,7 +26,7 @@ public interface FilmService {
 
     FilmVisto updateFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 
-    FilmVisto saveFilmVisto(FilmVisto filmVisto, int filmId, int utenteId, int recensioneId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+    FilmVisto saveFilmVisto(FilmVisto filmVisto, int filmId, int utenteId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 
 
     boolean deleteFilmVisto(int id);

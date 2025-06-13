@@ -43,8 +43,7 @@ public class LibroLettoController {
         LibroLetto ll = dto.toLibroLetto();
         LibroLetto saved = libroService.saveLibroLetto(ll,
                     dto.getLibro().getId(),
-                    dto.getUtenteId(),
-                    0);
+                    dto.getUtenteId());
         LibroLettoDto newDto = LibroLettoDto.toDto(saved);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -65,9 +64,9 @@ public class LibroLettoController {
             return ResponseEntity.notFound().build();
         }
         LibroLetto libroLetto = libroService.updateLibroLetto(opt.get(),
-                    updatedDto.getLibro().getId(),
-                    updatedDto.getUtenteId(),
-                    updatedDto.getRecensione().getRecensioneId());
+                updatedDto.getLibro().getId(),
+                updatedDto.getUtenteId(),
+                updatedDto.getRecensione().getRecensioneId());
 
         return ResponseEntity.ok(LibroLettoDto.toDto(libroLetto));
     }
