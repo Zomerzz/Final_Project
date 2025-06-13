@@ -1,12 +1,11 @@
 
 <div class="card">
-    <a [routerLink]="['/game-detail', videogioco.id]">
+    <a [routerLink]="['/game-detail', product.id]">
     <div class="type-label">Videogioco</div>
-     
-    <img [src]="videogioco.imgUrl" class="game-image">
-    
-    <h2 class="game-title">{{ videogioco.titolo }}</h2>
-    <p class="game-hours">🎮 Ore: {{ videogioco.oreStoriaPrincipale }}</p>
+
+    <img [src]="product.imgUrl" class="game-image">
+
+    <h2 class="game-title">{{ product.titolo }}</h2>
     </a>
 </div>
 

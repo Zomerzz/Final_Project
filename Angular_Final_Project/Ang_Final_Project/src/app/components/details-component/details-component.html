@@ -4,3 +4,9 @@
         <img [src]="videogioco.imgUrl" class="game-detail-image">
     </div>
 </div>
+<div>
+    <button (click)="loadRecensioni()">Vedi recensioni</button>
+    @if (recensioni.length >= 0) {
+        <app-recensioni-list [recensioni] = 'recensioni'></app-recensioni-list>
+    }
+</div>

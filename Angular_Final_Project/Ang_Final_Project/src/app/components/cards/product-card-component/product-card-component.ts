@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Videogioco } from '../../../model/Videogioco';
+import { Product } from '../../../model/Product';
 
 @Component({
   selector: 'app-product-card-component',
@@ -11,5 +11,5 @@ import { Videogioco } from '../../../model/Videogioco';
   styleUrls: ['./product-card-component.css']
 })
 export class ProductCardComponent {
-  @Input() videogioco!: Videogioco;
+  @Input() product!: Product;
 }
