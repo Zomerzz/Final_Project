@@ -6,6 +6,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -35,9 +37,10 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         totalQuery.select(cb.count(totalQuery.from(Libro.class)));
         totalQuery.where(predicates);
 
-        int totaleLibri = Math.toIntExact(em.createQuery(totalQuery).getSingleResult());
+        int totaleLibri = em.createQuery(totalQuery).getSingleResult().intValue();
+
          //TODO CREARE IL PAGE E FARLO TORNARE
-        return null;
+        return new PageImpl<>(libri, PageRequest.of(filters.getNumPage(), filters.getPageSize()), totaleLibri);
     }
 
     private Predicate[] buildPredicate(CriteriaBuilder cb, Root<Libro> root, LibroFilterCriteria filters){
