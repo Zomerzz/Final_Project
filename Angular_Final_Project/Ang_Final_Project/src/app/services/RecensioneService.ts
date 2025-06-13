@@ -11,17 +11,21 @@ export class RecensioneService{
     private _url: string = 'http://localhost:8080/api/recensione';
     private _http: HttpClient = inject(HttpClient);
 
-    getRecensioniByFilm(filmId: number): Observable<Recensione[]> {
-        return this._http.get<Recensione[]>(`${this._url}/film-id=${filmId}`);
+    getRecensioni(mediaType:string, mediaId: number){
+        return this._http.get<Recensione[]>(`${this._url}?mediaType=${mediaType}&mediaId=${mediaId}`);
     }
 
-    getRecensioniByLibro(libroId: number): Observable<Recensione[]> {
-        return this._http.get<Recensione[]>(`${this._url}/libro-id=${libroId}`);
-    }
+    // getRecensioniByFilm(filmId: number): Observable<Recensione[]> {
+    //     return this._http.get<Recensione[]>(`${this._url}/film-id=${filmId}`);
+    // }
 
-    getRecensioniByVideogioco(videogiocoId: number): Observable<Recensione[]> {
-        return this._http.get<Recensione[]>(`${this._url}/videogioco-id=${videogiocoId}`);
-    }
+    // getRecensioniByLibro(libroId: number): Observable<Recensione[]> {
+    //     return this._http.get<Recensione[]>(`${this._url}/libro-id=${libroId}`);
+    // }
+
+    // getRecensioniByVideogioco(videogiocoId: number): Observable<Recensione[]> {
+    //     return this._http.get<Recensione[]>(`${this._url}/videogioco-id=${videogiocoId}`);
+    // }
 
     addRecensione(recensioneRequest: Partial<RecensioneRequest>): Observable<Recensione> {
         return this._http.post<Recensione>(this._url, recensioneRequest);

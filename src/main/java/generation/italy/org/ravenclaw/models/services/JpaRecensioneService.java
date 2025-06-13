@@ -39,6 +39,23 @@ public class JpaRecensioneService implements RecensioneService{
     }
 
     @Override
+    public List<Recensione> findRecensioni(String mediaType, Integer mediaId) {
+        List<Recensione> recensioni = null;
+                switch(mediaType) {
+            case "film":
+                recensioni = findRecensioneByFilmId(mediaId);
+                break;
+            case "libro":
+                recensioni = findRecensioneByLibroId(mediaId);
+                break;
+            case "videogioco":
+                recensioni = findRecensioneByVideogiocoId(mediaId);
+                break;
+        }
+        return recensioni;
+    }
+
+    @Override
     public List<Recensione> findAllRecensioni(){
         return recensioneRepo.findAll();
     }
@@ -99,16 +116,17 @@ public class JpaRecensioneService implements RecensioneService{
     }
 
     @Override
-    public void addRecensioneToRegistrazione(String type, int utenteId, int operaId, Recensione recensione) throws EntityNotFoundException {
+    public void addRecensioneToRegistrazione(String type, int utenteId, int mediaId, Recensione recensione) throws EntityNotFoundException {
         switch(type) {
             case "film":
-                addRecensioneToFilmVisto(utenteId, operaId, recensione);
+                addRecensioneToFilmVisto(utenteId, mediaId, recensione);
                 break;
             case "libro":
-                addRecensioneToLibroLetto(utenteId, operaId, recensione);
+                addRecensioneToLibroLetto(utenteId, mediaId, recensione);
+
                 break;
             case "videogioco":
-                addRecensioneToVideogiocoGiocato(utenteId, operaId, recensione);
+                addRecensioneToVideogiocoGiocato(utenteId, mediaId, recensione);
                 break;
         }
     }

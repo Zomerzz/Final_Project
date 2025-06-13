@@ -11,6 +11,8 @@ public interface RecensioneService {
 
     Optional<Recensione> findRecensioneById(int id);
 
+    List<Recensione> findRecensioni(String mediaType, Integer mediaId);
+
     List<Recensione> findAllRecensioni();
 
     Recensione saveRecensione(Recensione recensione);
@@ -31,7 +33,8 @@ public interface RecensioneService {
 
     void addRecensioneToVideogiocoGiocato(int utenteId, int videogiocoId, Recensione recensione) throws EntityNotFoundException;
 
-    void addRecensioneToRegistrazione(String type, int utenteId, int operaId, Recensione recensione) throws EntityNotFoundException;
+    void addRecensioneToRegistrazione(String type, int utenteId, int mediaId, Recensione recensione) throws EntityNotFoundException;
+
 
     //List<Recensione> findRecensioneByUtenteId(int utenteId);
 }
