@@ -10,6 +10,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -39,10 +41,8 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
         totalQuery.select(cb.count(totalQuery.from(Videogioco.class)));
         totalQuery.where(predicates);
 
-        int totaleVideogiochi = Math.toIntExact(em.createQuery(totalQuery).getSingleResult());
-        //TODO CREARE IL PAGE E FARLO TORNARE
-
-        return null;
+        Long totaleVideogiochi = em.createQuery(totalQuery).getSingleResult();
+        return new PageImpl<>(videogiochi, PageRequest.of(filters.getPageSize(), filters.getNumPage()), totaleVideogiochi);
     }
 
     private Predicate[] buildPredicate(CriteriaBuilder cb, Root<Videogioco> root, VideogiocoFilterCriteria filters){

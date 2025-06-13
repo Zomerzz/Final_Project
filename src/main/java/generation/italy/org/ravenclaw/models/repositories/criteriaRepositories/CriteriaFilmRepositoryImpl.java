@@ -7,6 +7,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -29,14 +32,15 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         Predicate[] predicates = buildPredicates(cb, rootFilm, filmFilters);
         query.where(predicates);
         query.distinct(true);
+        List<Film> films = em.createQuery(query).setFirstResult(filmFilters.getPageSize()*filmFilters.getNumPage()).setMaxResults(filmFilters.getPageSize())
+                .getResultList();
 
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
         totalQuery.select(cb.count(totalQuery.from(Film.class)));
         totalQuery.where(predicates);
 
-        int totaleFilm = Math.toIntExact(em.createQuery(totalQuery).getSingleResult());
-        //TODO CREARE IL PAGE E FARLO TORNARE
-        return null;
+        Long totaleFilm = em.createQuery(totalQuery).getSingleResult();
+        return new PageImpl<>(films, PageRequest.of(filmFilters.getPageSize(), filmFilters.getNumPage()), totaleFilm);
     }
 
     private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Film> rootFilm, FilmFilterCriteria filmFilters){
