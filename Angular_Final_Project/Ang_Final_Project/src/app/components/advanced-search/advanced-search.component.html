@@ -42,7 +42,15 @@
         <input type="number" placeholder="Max ore di Gioco" formControlName="maxOreDiGiocoStoriaPrincipale">
     }
     @if (tags) {
-        <input type="text" placeholder="Tags" formControlName="tags">
+        <div class="tag-list">
+            <input type="text" placeholder="Tags" formControlName="tags">
+            @for (tag of currentTags; track tag) {
+                <label>
+                    <input type="checkbox" [checked]="form.value.tags.includes(tag.tagId)" [value]="tag.tagId" (change) = "onTagCheckboxChange($event)">
+                    {{ tag.nome }}
+                </label>
+            }            
+        </div>
     }
 
     <button type="submit">Submit</button>

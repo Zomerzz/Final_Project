@@ -12,20 +12,23 @@ import { Tag } from '../../model/Tag';
 })
 export class AdvancedSearchComponent implements OnInit{
   @Output('search') search = new EventEmitter<Partial<SearchModel>>();
-  @Input('tags') allTags: Tag[] = [];
+  @Input('tags') currentTags: Tag[] = [];
   form!: FormGroup;
   mediaTypes = ['tutti', 'libri', 'film', 'videogiochi'];
   currentMedia = 'tutti';
   fb: FormBuilder = inject(FormBuilder);
   ngOnInit(): void {
     this.form = this.fb.group({
-      tipoMedia: [this.currentMedia]
+      tipoMedia: [this.currentMedia],
+      tags: new FormControl<number[]>([])
     });
     this.form.get('tipoMedia')!.valueChanges.subscribe(value => {
       this.currentMedia = value;
       this.configureFormControls(value);
+      this.loadTagsForMedia(value);
     });
     this.configureFormControls(this.currentMedia);
+    this.loadTagsForMedia(this.currentMedia);
   }
   configureFormControls(tipoMedia: string) {
     const keepAlways = ['tipoMedia'];
@@ -61,9 +64,16 @@ export class AdvancedSearchComponent implements OnInit{
       this.form.addControl(key, allControls[key]);
     });
   }
+  loadTagsForMedia(tipoMedia: string) {
+    
+  }
   onSubmit() {
     console.log(this.form.value);
   }
+  onTagCheckboxChange(event: Event) {
+
+  }
+
   get titolo() {
     return this.form.get("titolo");
   }

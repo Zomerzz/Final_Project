@@ -6,7 +6,7 @@ import { SearchModel } from "../model/SearchModel";
 @Injectable({
     providedIn: 'root'
 })
-export class SearchModelService{
+export class SearchService {
     private _url: string = 'http://localhost:8080/api/ricerca-per-nome';
     private _http: HttpClient = inject(HttpClient);
     getOperaBySearchModel( searchModel: Partial<SearchModel>): Observable<SearchModel[]> {
