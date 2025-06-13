@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="tipoMedia">Tipo di Opera</label>
+    <select formControlName="tipoMedia" id="tipoMedia">
+        @for (media of mediaTypes; track media) {
+            <option [value]="media">{{media | uppercase}}</option>
+        }   
+    </select>
+    @if (titolo) {
+        <input type="text" placeholder="Titolo" formControlName="titolo">
+    }
+    @if (numeroPagine) {
+        <input type="number" placeholder="Numero di Pagine" formControlName="numeroPagine">
+    }
+    @if (autoreNome) {
+        <input type="text" placeholder="Autore" formControlName="autoreNome">
+    }
+    @if (casaEditriceNome) {
+        <input type="text" placeholder="Casa Editrice" formControlName="casaEditriceNome">
+    }
+    @if (casaDiProduzione) {
+        <input type="text" placeholder="Casa di Produzione" formControlName="casaDiProduzione">
+    }
+    @if (casaDiPubblicazione) {
+        <input type="text" placeholder="Casa Di Pubblicazione" formControlName="casaDiPubblicazione">
+    }
+    @if (minData) {
+        <input type="date" placeholder="Data di inizio" formControlName="minData">
+    }
+    @if (maxData) {
+        <input type="date" placeholder="Data di fine" formControlName="maxData">
+    }
+    @if (minVoto) {
+        <input type="number" placeholder="Voto minimo" formControlName="minVoto">
+    }
+    @if (maxVoto) {
+        <input type="number" placeholder="Voto massimo" formControlName="maxVoto">
+    }
+    @if (minOreDiGiocoStoriaPrincipale) {
+        <input type="number" placeholder="Min ore di Gioco" formControlName="minOreDiGiocoStoriaPrincipale">
+    }
+    @if (maxOreDiGiocoStoriaPrincipale) {
+        <input type="number" placeholder="Max ore di Gioco" formControlName="maxOreDiGiocoStoriaPrincipale">
+    }
+    @if (tags) {
+        <input type="text" placeholder="Tags" formControlName="tags">
+    }
+
+    <button type="submit">Submit</button>
+</form>

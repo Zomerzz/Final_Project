@@ -13,4 +13,6 @@
         <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
     </div>
 }
-
+<div>
+    <app-advanced-search (search)="executeSearch($event)"></app-advanced-search>
+</div>

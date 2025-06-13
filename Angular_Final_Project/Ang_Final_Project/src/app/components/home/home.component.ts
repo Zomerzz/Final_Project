@@ -11,11 +11,13 @@ import { LibroListComponent } from '../home-lists/libro-list/libro-list.componen
 import { FilmListComponent } from "../home-lists/film-list/film-list.component";
 import { VideogiocoListComponent } from '../home-lists/videogioco-list/videogioco-list.component';
 import { AuthService } from '../../services/AuthService';
+import { AdvancedSearchComponent } from "../advanced-search/advanced-search.component";
+import { SearchModel } from '../../model/SearchModel';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, LibroListComponent, FilmListComponent,VideogiocoListComponent],
+    imports: [CommonModule, LibroListComponent, FilmListComponent, VideogiocoListComponent, AdvancedSearchComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
@@ -76,6 +78,9 @@ export class HomeComponent implements OnInit {
             }
         });
 
+    }
+    executeSearch(filters: Partial<SearchModel>) {
+        
     }
 }
 
