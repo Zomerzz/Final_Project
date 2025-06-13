@@ -20,6 +20,7 @@ export class FilmService{
     findByName(titolo:string|undefined):  Observable<Film[]>{
             return this._http.get<Film[]>(`${this._url}?titolo=${titolo}`);
         }
-    
-
+    findByFilters(queryString:string): Observable<Film[]>{
+            return this._http.get<Film[]>(`${this._url}${queryString}`);
+        }
 }

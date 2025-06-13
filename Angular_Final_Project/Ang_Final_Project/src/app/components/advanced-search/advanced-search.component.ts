@@ -3,7 +3,7 @@ import { SearchModel } from '../../model/SearchModel';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { Tag } from '../../model/Tag';
-import { SearchService } from '../../services/search-service';
+import { TagService } from '../../services/searchService';
 
 @Component({
   selector: 'app-advanced-search',
@@ -18,7 +18,7 @@ export class AdvancedSearchComponent implements OnInit{
   mediaTypes = ['tutti', 'libri', 'film', 'videogiochi'];
   currentMedia = 'tutti';
   fb: FormBuilder = inject(FormBuilder);
-  searchService: SearchService = inject(SearchService);
+  searchService: TagService = inject(TagService);
   ngOnInit(): void {
     this.form = this.fb.group({
       tipoMedia: [this.currentMedia],
@@ -73,7 +73,7 @@ export class AdvancedSearchComponent implements OnInit{
     });
   }
   onSubmit() {
-    console.log(this.form.value);
+    this.search.emit(this.form.value);
   }
   onTagCheckboxChange(event: Event) {
     const checkbox = event.target as HTMLInputElement;

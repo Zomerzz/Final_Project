@@ -6,7 +6,7 @@ import { Tag } from "../model/Tag";
 @Injectable({
     providedIn: 'root'
 })
-export class SearchService {
+export class TagService {
     private _url: string = 'http://localhost:8080/api/tag';
     private _http: HttpClient = inject(HttpClient);
     loadTagByMedia(mediaType: string): Observable<Tag[]> {

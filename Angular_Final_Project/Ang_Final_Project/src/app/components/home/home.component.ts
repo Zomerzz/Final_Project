@@ -80,7 +80,97 @@ export class HomeComponent implements OnInit {
 
     }
     executeSearch(filters: Partial<SearchModel>) {
+        if(filters.tipoMedia ==='tutti'){
+            const queryString = this.createQueryString(filters);
+            this._libroService.findByFilters(queryString).subscribe({
+                next: listaLibriDb=>{
+                    this.listaLibri = listaLibriDb;
+                },
+                error: e => {
+                    console.log("|==========================================================================|");
+                    console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                    console.log("|==========================================================================|");
+                }
+            });
+            this._filmService.findByFilters(queryString).subscribe({
+                    next: listaFilmDb=>{
+                        this.listaFilm = listaFilmDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            this._videogiocoService.getByFilters(queryString).subscribe({
+                    next: listaVideogiochiDb=>{
+                        this.listaVideogiochi = listaVideogiochiDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+        } else{
+            if(filters.tipoMedia ==='libri'){
+                const queryString = this.createQueryString(filters);
+                this._libroService.findByFilters(queryString).subscribe({
+                    next: listaLibriDb=>{
+                        this.listaLibri = listaLibriDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            }
+            if(filters.tipoMedia ==='film'){
+                const queryString = this.createQueryString(filters);
+                this._filmService.findByFilters(queryString).subscribe({
+                    next: listaFilmDb=>{
+                        this.listaFilm = listaFilmDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            }        
+            if(filters.tipoMedia ==='videogiochi'){
+                const queryString = this.createQueryString(filters);
+                this._videogiocoService.getByFilters(queryString).subscribe({
+                    next: listaVideogiochiDb=>{
+                        this.listaVideogiochi = listaVideogiochiDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            }
+        }
         
     }
+    createQueryString(filters: Partial<SearchModel>): string{
+        let queryString: string ='?';
+        filters.tipoMedia = '';
+        if (filters.tags?.length === 0) {
+            filters.tags = undefined;
+        }
+        for(const key in filters){
+            const value = filters[key as keyof SearchModel];
+            
+            if (value !== undefined && value !== null && value !== ''){
+                queryString += key+"="+value+"&";
+            }
+        }
+        return queryString;
+    }
+
+
 }
 

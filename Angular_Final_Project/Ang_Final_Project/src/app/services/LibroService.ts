@@ -20,5 +20,8 @@ export class LibroService{
     findByName(titolo:string|undefined):  Observable<Libro[]>{
         return this._http.get<Libro[]>(`${this._url}?titolo=${titolo}`);
     }
+    findByFilters(queryString:string): Observable<Libro[]>{
+        return this._http.get<Libro[]>(`${this._url}${queryString}`);
+    }
 
 }

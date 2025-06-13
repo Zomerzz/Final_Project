@@ -21,4 +21,7 @@ export class VideogiocoService {
   getByName(titolo: string|undefined): Observable<Videogioco[]>{
     return this.http.get<Videogioco[]>(`${this._apiUrl}?titolo=${titolo}`);
   }
+  getByFilters(queryString:string): Observable<Videogioco[]>{
+          return this.http.get<Videogioco[]>(`${this._apiUrl}${queryString}`);
+      }
 }
