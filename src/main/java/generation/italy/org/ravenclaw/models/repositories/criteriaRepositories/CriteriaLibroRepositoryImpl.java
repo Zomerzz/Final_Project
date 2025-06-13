@@ -37,7 +37,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         totalQuery.select(cb.count(totalQuery.from(Libro.class)));
         totalQuery.where(predicates);
 
-        int totaleLibri = em.createQuery(totalQuery).getSingleResult().intValue();
+        long totaleLibri = em.createQuery(totalQuery).getSingleResult();
 
          //TODO CREARE IL PAGE E FARLO TORNARE
         return new PageImpl<>(libri, PageRequest.of(filters.getNumPage(), filters.getPageSize()), totaleLibri);
