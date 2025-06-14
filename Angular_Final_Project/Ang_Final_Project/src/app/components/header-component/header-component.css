@@ -1,0 +1,12 @@
+main{
+    background-color: rgba(82, 73, 73, 0.65);
+    padding: 1em;
+    height: 4em;
+    display: grid;
+    grid-template-columns: 1fr 3fr 0.5fr 0.5fr;
+    align-items: center;
+}
+main button{
+    height: 50%;
+    grid-column: 3;
+}

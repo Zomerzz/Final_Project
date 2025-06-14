@@ -27,6 +27,9 @@ export class RegisterAreaComponent {
     onSubmit(){
         this._authService.register(this.registerForm.value).subscribe({
             next: (authToken) =>{
+                console.log(authToken.token);
+                
+                
                 localStorage.setItem("jwt",authToken.token );
                 this._router.navigate(['/home']);
             },error: e => alert('Errore nella registrazione')

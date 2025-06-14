@@ -1,6 +1,9 @@
+import { authority } from "./Authority";
+
 export interface Utente {
     id:number;
     nome:string;
-    password:string;
     email:string;
+    password:string;
+    authorities:authority[];
 }
