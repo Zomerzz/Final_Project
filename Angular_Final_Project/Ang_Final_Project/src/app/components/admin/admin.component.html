@@ -1,4 +1,50 @@
 <button (click)="showUsertab()">Show User list</button>
 @if (showuserTable) {
-
+    <table>
+        <thead>
+            <th>
+                ID
+            </th>
+            <th>
+                USERNAME
+            </th>
+            <th>
+                EMAIL
+            </th>
+            <th>
+                AUTHORITIES
+            </th>
+            <th>
+                DELETE
+            </th>
+            <th>
+                PROMOTE
+            </th>
+        </thead>
+        <tbody>
+            @for (utente of users; track utente.id) {
+                <tr>
+                    <td>
+                        {{utente.id}}
+                    </td>
+                    <td>
+                        {{utente.nome}}
+                    </td>
+                    <td>
+                        {{utente.email}}
+                    </td>
+                    <td id="Auth-{{utente.id}}">
+                        {{utente.authorities[utente.authorities.length-1].authority.slice(5)}}
+                    </td>
+                    <td>
+                        <button (click)="deleteCall(utente.id)">DELETE</button>
+                    </td>
+                    <td>
+                        <button (click)="promoteCall(utente.id)">PROMOTE</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
 }

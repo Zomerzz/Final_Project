@@ -33,8 +33,8 @@ public class VideogiocoDto {
     static public VideogiocoDto toDto (Videogioco v){
         return new VideogiocoDto(v.getVideogiocoId(),
                 v.getTitolo(),
-                CasaDto.toDto(v.getCasaDiProduzione()),
-                CasaDto.toDto(v.getCasaDiPubblicazione()),
+                v.getCasaDiProduzione() != null ? CasaDto.toDto(v.getCasaDiProduzione()) : null,
+                v.getCasaDiPubblicazione() != null ? CasaDto.toDto(v.getCasaDiPubblicazione()) : null,
                 v.getDataDiPubblicazione(),
                 v.getOreStoriaPrincipale(),
                 v.getDescrizione(),

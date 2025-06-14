@@ -1,8 +1,8 @@
-import { Component, inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, inject, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LibroService } from '../../services/LibroService';
-import { VideogiocoService } from '../../services/videogioco.service';
+import { VideogiocoService } from '../../services/VideogiocoService';
 import { FilmService } from '../../services/FilmService';
 import { Libro } from '../../model/Libro';
 import { Film } from '../../model/Film';
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
     private _videogiocoService: VideogiocoService = inject(VideogiocoService);
     private _filmService: FilmService = inject(FilmService);
     private _authService: AuthService = inject(AuthService);
+    private _router =inject(Router);
 
     ngOnInit(): void {
         this._activatedRoute.queryParams.subscribe(params => {
@@ -80,7 +81,104 @@ export class HomeComponent implements OnInit {
 
     }
     executeSearch(filters: Partial<SearchModel>) {
+        this._router.navigate(['/home'], { queryParams: filters });
+        if(filters.tipoMedia ==='tutti'){
+            const queryString = this.createQueryString(filters);
+            this._libroService.findByFilters(queryString).subscribe({
+                next: listaLibriDb=>{
+                    this.listaLibri = listaLibriDb;
+                },
+                error: e => {
+                    console.log("|==========================================================================|");
+                    console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                    console.log("|==========================================================================|");
+                }
+            });
+            this._filmService.findByFilters(queryString).subscribe({
+                    next: listaFilmDb=>{
+                        this.listaFilm = listaFilmDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            this._videogiocoService.getByFilters(queryString).subscribe({
+                    next: listaVideogiochiDb=>{
+                        this.listaVideogiochi = listaVideogiochiDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+        } else{
+            if(filters.tipoMedia ==='libri'){
+                this.listaFilm = [];
+                this.listaVideogiochi = [];
+                const queryString = this.createQueryString(filters);
+                this._libroService.findByFilters(queryString).subscribe({
+                    next: listaLibriDb=>{
+                        this.listaLibri = listaLibriDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            }
+            if(filters.tipoMedia ==='film'){
+                this.listaLibri = [];
+                this.listaVideogiochi = [];
+                const queryString = this.createQueryString(filters);
+                this._filmService.findByFilters(queryString).subscribe({
+                    next: listaFilmDb=>{
+                        this.listaFilm = listaFilmDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            }        
+            if(filters.tipoMedia ==='videogiochi'){
+                this.listaFilm = [];
+                this.listaLibri = [];
+                const queryString = this.createQueryString(filters);
+                this._videogiocoService.getByFilters(queryString).subscribe({
+                    next: listaVideogiochiDb=>{
+                        this.listaVideogiochi = listaVideogiochiDb;
+                    },
+                    error: e => {
+                        console.log("|==========================================================================|");
+                        console.log("----"+ filters.tipoMedia +"|la ricerca findWithFilters ha dato degli errori|");
+                        console.log("|==========================================================================|");
+                    }
+                });
+            }
+        }
         
     }
+    createQueryString(filters: Partial<SearchModel>): string{
+        let queryString: string ='?';
+        filters.tipoMedia = '';
+        if (filters.tags?.length === 0) {
+            filters.tags = undefined;
+        }
+        for(const key in filters){
+            const value = filters[key as keyof SearchModel];
+            
+            if (value !== undefined && value !== null && value !== ''){
+                queryString += key+"="+value+"&";
+            }
+        }
+        return queryString;
+    }
+
+
 }
 

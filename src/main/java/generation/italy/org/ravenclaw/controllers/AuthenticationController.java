@@ -20,8 +20,8 @@ public class AuthenticationController {
 
     @ResponseStatus(HttpStatus.CREATED) // crea un nuovo utente
     @PostMapping("/register")
-    public void register(@Valid @RequestBody RegisterRequest registerRequest) throws Exception {
-        authenticationService.register(registerRequest);
+    public AuthenticationResponse register(@Valid @RequestBody RegisterRequest registerRequest) throws Exception {
+        return authenticationService.register(registerRequest);
     }
 
     @ResponseStatus(HttpStatus.OK) // fa il login del utente

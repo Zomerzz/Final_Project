@@ -1,7 +1,9 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { SearchModel } from '../../model/SearchModel';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
+import { Tag } from '../../model/Tag';
+import { TagService } from '../../services/searchService';
 
 @Component({
   selector: 'app-advanced-search',
@@ -11,22 +13,27 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class AdvancedSearchComponent implements OnInit{
   @Output('search') search = new EventEmitter<Partial<SearchModel>>();
+  currentTags: Tag[] = [];
   form!: FormGroup;
   mediaTypes = ['tutti', 'libri', 'film', 'videogiochi'];
   currentMedia = 'tutti';
   fb: FormBuilder = inject(FormBuilder);
+  searchService: TagService = inject(TagService);
   ngOnInit(): void {
     this.form = this.fb.group({
-      tipoMedia: [this.currentMedia]
+      tipoMedia: [this.currentMedia],
+      tags: new FormControl<number[]>([])
     });
     this.form.get('tipoMedia')!.valueChanges.subscribe(value => {
       this.currentMedia = value;
       this.configureFormControls(value);
+      this.loadTagsForMedia(value);
     });
     this.configureFormControls(this.currentMedia);
+    this.loadTagsForMedia(this.currentMedia);
   }
   configureFormControls(tipoMedia: string) {
-    const keepAlways = ['tipoMedia'];
+    const keepAlways = ['tipoMedia', 'tags'];
     const allControls = {
       titolo: new FormControl(''), 
       numeroPagine: new FormControl(null), 
@@ -59,9 +66,23 @@ export class AdvancedSearchComponent implements OnInit{
       this.form.addControl(key, allControls[key]);
     });
   }
-  onSubmit() {
-    console.log(this.form.value);
+  loadTagsForMedia(tipoMedia: string) {
+    this.searchService.loadTagByMedia(tipoMedia).subscribe({
+      next: tags => this.currentTags = tags,
+      error: er => alert(er)
+    });
   }
+  onSubmit() {
+    this.search.emit(this.form.value);
+  }
+  onTagCheckboxChange(event: Event) {
+    const checkbox = event.target as HTMLInputElement;
+    const selectedTags = this.tags?.value as number[] || [];
+    if(checkbox.checked) {
+      this.tags?.setValue([...selectedTags, +checkbox.value]);
+    }
+  }
+
   get titolo() {
     return this.form.get("titolo");
   }

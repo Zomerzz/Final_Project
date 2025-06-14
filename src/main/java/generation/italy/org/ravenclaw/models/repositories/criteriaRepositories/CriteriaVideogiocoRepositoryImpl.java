@@ -32,7 +32,7 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Videogioco> query = cb.createQuery(Videogioco.class);
         Root<Videogioco> root = query.from(Videogioco.class);
-        Predicate[] predicates = buildPredicate(cb, root, filters);
+        Predicate[] predicates = buildPredicates(cb, root, filters);
         query.where(predicates);
         query.distinct(true);
         if(filters.isOrderByVoto()){
@@ -42,14 +42,16 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
                 .getResultList();
 
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
-        totalQuery.select(cb.count(totalQuery.from(Videogioco.class)));
-        totalQuery.where(predicates);
+        Root<Videogioco> totalRoot = totalQuery.from(Videogioco.class);
+        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filters);
+        totalQuery.select(cb.countDistinct(totalRoot));
+        totalQuery.where(countPredicates);
 
         Long totaleVideogiochi = em.createQuery(totalQuery).getSingleResult();
         return new PageImpl<>(videogiochi, PageRequest.of(filters.getNumPage(), filters.getPageSize()), totaleVideogiochi);
     }
 
-    private Predicate[] buildPredicate(CriteriaBuilder cb, Root<Videogioco> root, VideogiocoFilterCriteria filters){
+    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Videogioco> root, VideogiocoFilterCriteria filters){
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){

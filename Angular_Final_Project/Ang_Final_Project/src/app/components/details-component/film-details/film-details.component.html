@@ -1,0 +1,27 @@
+<div>
+    <img [src]="film.imgUrl">
+    <h1>{{film.titolo}}</h1>
+    <p>Descrizione:</p>
+    <p>{{film.descrizione}}</p>
+    
+    <p>Data di pubblicazione:</p>
+    <p>{{film.dataDiPubblicazione}}</p>
+
+    <p>Durata: {{film.durata}}</p>
+
+    <p>Casa di produzione: {{film.casaDiProduzione.nome}}</p>
+    <p>Casa di pubblicazione: {{film.casaDiPubblicazione.nome}}</p>
+    <p>Voto: {{film.voto}}</p>
+
+</div>
+<!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
+    <div>
+
+    </div>
+} -->
+@if(recensioni.length){
+    <div>
+        <h2>Recensioni dei nostri utenti</h2>
+        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    </div>
+}

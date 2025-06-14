@@ -7,6 +7,7 @@ import { JwtPayload } from '../model/JwtPayload';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../model/JwtToken';
 import { Router } from '@angular/router';
+import { Utente } from '../model/Utente';
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
@@ -34,6 +35,8 @@ export class AuthService{
         console.log("Logged out");
         
     }
+
+    
 
     isLogged():boolean{
         return localStorage.getItem("jwt")!=null;

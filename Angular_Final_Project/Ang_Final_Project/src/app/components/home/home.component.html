@@ -1,18 +1,22 @@
-@if (listaLibri) {
-    <div class="scroll-container" >
-        <app-libro-list [libri] = 'this.listaLibri'></app-libro-list>
+<main>
+    <div id="advSe">
+        <app-advanced-search (search)="executeSearch($event)"></app-advanced-search>
     </div>
-}
-@if (listaFilm) {
-    <div class="scroll-container" >
-        <app-film-list [films] = 'this.listaFilm'></app-film-list>
+    <div id="viewArea">
+    @if (listaLibri) {
+        <div class="scroll-container" >
+            <app-libro-list [libri] = 'this.listaLibri'></app-libro-list>
+        </div>
+    }
+    @if (listaFilm) {
+        <div class="scroll-container" >
+            <app-film-list [films] = 'this.listaFilm'></app-film-list>
+        </div>
+    }
+    @if (listaVideogiochi) {
+        <div class="scroll-container" >
+            <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
+        </div>
+    }
     </div>
-}
-@if (listaVideogiochi) {
-    <div class="scroll-container" >
-        <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
-    </div>
-}
-<div>
-    <app-advanced-search (search)="executeSearch($event)"></app-advanced-search>
-</div>
+</main>

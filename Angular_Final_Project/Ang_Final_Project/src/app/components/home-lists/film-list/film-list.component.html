@@ -1,13 +1,10 @@
 @for (film of films; track film.id) {
     <div class="card">
-        <a [routerLink]="['/films-dettagli', film.id]">
+        <a [routerLink]="['/films-dettagli', film.id]" [state]="{ film: film }">
             <h3 class="type-label">Film</h3>
             <img [src]="film.imgUrl" class="film-immagine">
             <h2 class="titolo-film">{{ film.titolo }}</h2>
             <p class="voto">⭐ Voto: {{ film.voto }}</p>
         </a>
     </div>
-}
-@if (!films.length) {
-    <p>NON SONO PRESENTI FILM CON QUESTI CRITERI</p>
 }

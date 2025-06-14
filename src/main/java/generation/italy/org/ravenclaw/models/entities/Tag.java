@@ -1,6 +1,7 @@
 package generation.italy.org.ravenclaw.models.entities;
 
 import jakarta.persistence.*;
+import jdk.jfr.Category;
 
 import java.util.HashSet;
 import java.util.Set;

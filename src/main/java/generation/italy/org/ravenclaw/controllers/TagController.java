@@ -26,11 +26,11 @@ public class TagController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TagDto>> searchTags(){
+    public ResponseEntity<List<TagDto>> searchTags(@RequestParam(defaultValue = "all") String mediaType){
         List<Tag> tagList = tagService.findAllTags();
         List<TagDto> tagDto = tagList.stream().map(TagDto::toDto).toList();
         return ResponseEntity.ok(tagDto);
-    }
+    } //TODO fare implementazione nel back end per i tag, fare tabella nel db
 
     @GetMapping("/{id}")
     public ResponseEntity<?> searchById (@PathVariable int id){

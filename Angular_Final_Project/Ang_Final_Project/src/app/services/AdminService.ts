@@ -7,6 +7,7 @@ import { JwtPayload } from '../model/JwtPayload';
 import { Observable } from 'rxjs';
 import { JwtToken } from '../model/JwtToken';
 import { Router } from '@angular/router';
+import { Utente } from '../model/Utente';
 
 @Injectable({providedIn: 'root'})
 export class AdminService{
@@ -15,18 +16,15 @@ export class AdminService{
     private _http = inject(HttpClient);
     private _router = inject(Router)
 
-    getAll(){
-        this._http.get('')
+    getAll():Observable<Utente[]>{
+        return this._http.get<Utente[]>(this._url)
     }
 
-    promote(id:number):boolean{
-        this._http.put(`${this._url}/${id}/role`,null).subscribe({
-            next: ()=> {return true;}
-        });
-        return false;
+    promote(id:number){
+        return this._http.put(`${this._url}/${id}/role`,null);
     }
     
-    delete(id:number):boolean{
-        return (this._http.delete(`${this._url}/${id}`))!= null;
+    delete(id:number){
+        return (this._http.delete(`${this._url}/${id}`))
     }
 }
