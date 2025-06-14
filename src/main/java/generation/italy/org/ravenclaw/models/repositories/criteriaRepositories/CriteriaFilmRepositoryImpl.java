@@ -54,7 +54,7 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         //=== FILM ========================
 
         if (filmFilters.getTitolo() != null) {
-            predicates.add(cb.like(rootFilm.get("titolo"), "%" + filmFilters.getTitolo() + "%"));
+            predicates.add(cb.like(cb.lower(rootFilm.get("titolo")), "%" + filmFilters.getTitolo().toLowerCase() + "%"));
         }
         if (filmFilters.getCasaDiProduzioneNome() != null) {
             predicates.add(cb.like(rootFilm.get("casaDiProduzioneNome"), "%" + filmFilters.getCasaDiProduzioneNome() + "%"));
