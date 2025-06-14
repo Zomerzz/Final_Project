@@ -7,7 +7,6 @@ import { DetailsComponent } from './components/details-component/details-compone
 import { AdminComponent } from './components/admin/admin.component';
 import { LogOutComponent } from './components/log-out/log-out.component';
 import { FilmDetailsComponent } from './components/details-component/film-details/film-details.component';
-import { LibroCardComponent } from './components/cards/libro-card/libro-card.component';
 import { VideogameDetailsComponent } from './components/details-component/videogame-details/videogame-details.component';
 import { BookDetailsComponent } from './components/details-component/book-details/book-details.component';
 
