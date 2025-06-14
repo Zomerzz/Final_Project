@@ -27,7 +27,7 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Libro> query = cb.createQuery(Libro.class);
         Root<Libro> root = query.from(Libro.class);
-        Predicate[] predicates = buildPredicate(cb,root,filters);
+        Predicate[] predicates = buildPredicates(cb,root,filters);
         query.where(predicates);
         query.distinct(true);
         if(filters.isOrderByVoto()){
@@ -37,16 +37,17 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
                 .getResultList();
 
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
-        totalQuery.select(cb.count(totalQuery.from(Libro.class)));
-        totalQuery.where(predicates);
+        Root<Libro> totalRoot = totalQuery.from(Libro.class);
+        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filters);
+        totalQuery.select(cb.countDistinct(totalQuery.from(Libro.class)));
+        totalQuery.where(countPredicates);
 
         long totaleLibri = em.createQuery(totalQuery).getSingleResult();
 
-         //TODO CREARE IL PAGE E FARLO TORNARE
         return new PageImpl<>(libri, PageRequest.of(filters.getNumPage(), filters.getPageSize()), totaleLibri);
     }
 
-    private Predicate[] buildPredicate(CriteriaBuilder cb, Root<Libro> root, LibroFilterCriteria filters){
+    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Libro> root, LibroFilterCriteria filters){
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){

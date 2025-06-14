@@ -39,8 +39,10 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
                 .getResultList();
 
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
-        totalQuery.select(cb.count(totalQuery.from(Film.class)));
-        totalQuery.where(predicates);
+        Root<Film> totalRoot = totalQuery.from(Film.class);
+        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filmFilters);
+        totalQuery.select(cb.countDistinct(totalQuery.from(Libro.class)));
+        totalQuery.where(countPredicates);
 
         Long totaleFilm = em.createQuery(totalQuery).getSingleResult();
         return new PageImpl<>(films, PageRequest.of(filmFilters.getNumPage(), filmFilters.getPageSize()), totaleFilm);
