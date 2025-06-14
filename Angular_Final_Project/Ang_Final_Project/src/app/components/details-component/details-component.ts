@@ -5,8 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { VideogiocoService } from '../../services/videogioco.service';
 import { Recensione } from '../../model/Recensione';
 import { RecensioneService } from '../../services/RecensioneService';
-import { RecensioniListComponent } from '../recensioni-list/recensioni-list.component';
 import { Product } from '../../model/Product';
+import { RecensioniListComponent } from '../recensioni/recensioni-list/recensioni-list.component';
 
 @Component({
   selector: 'app-details-components',
