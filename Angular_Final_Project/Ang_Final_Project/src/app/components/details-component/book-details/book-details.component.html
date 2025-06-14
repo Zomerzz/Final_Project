@@ -1,1 +1,28 @@
-<p>book-details works!</p>
+<div>
+    <img [src]="libro.imgUrl">
+    <h1>{{libro.titolo}}</h1>
+    <p>Descrizione:</p>
+    <p>{{libro.descrizione}}</p>
+    
+    <p>Data di pubblicazione:</p>
+    <p>{{libro.dataDiPubblicazione}}</p>
+
+    <p>Numero di pagine: {{libro.numeroPagine}}</p>
+
+    <p>Casa Editrice: {{libro.casaEditrice}}</p>
+
+    <p>Voto: {{libro.voto}}</p>
+
+</div>
+<!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
+    <div>
+
+    </div>
+} -->
+@if(recensioni.length){
+    <div>
+        <h2>Recensioni dei nostri utenti</h2>
+        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    </div>
+}
+
