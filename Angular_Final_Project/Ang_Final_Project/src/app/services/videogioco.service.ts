@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Videogioco } from '../model/Videogioco';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { PageResponse } from "../model/PageResponse";
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class VideogiocoService {
     return this.http.get<Videogioco>(`${this._apiUrl}/${id}`);
   }
   getByName(titolo: string|undefined): Observable<Videogioco[]>{
-    return this.http.get<Videogioco[]>(`${this._apiUrl}?titolo=${titolo}`);
+    return this.http.get<PageResponse<Videogioco>>(`${this._apiUrl}?titolo=${titolo}`).pipe(map(page=>page.content));
   }
   getByFilters(queryString:string): Observable<Videogioco[]>{
           return this.http.get<Videogioco[]>(`${this._apiUrl}${queryString}`);
