@@ -30,4 +30,8 @@ export class LibroService{
                         .pipe(map(page => page.content));
     }
 
+    getById(id: number): Observable<Libro> {
+        return this._http.get<Libro>(`${this._url}/${id}`);
+    }
+
 }
