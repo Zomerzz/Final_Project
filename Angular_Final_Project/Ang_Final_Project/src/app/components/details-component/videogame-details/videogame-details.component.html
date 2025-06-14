@@ -1,1 +1,27 @@
-<p>videogame-details works!</p>
+<div>
+    <img [src]="videogioco.imgUrl">
+    <h1>{{videogioco.titolo}}</h1>
+    <p>Descrizione:</p>
+    <p>{{videogioco.descrizione}}</p>
+    
+    <p>Data di pubblicazione:</p>
+    <p>{{videogioco.dataDiPubblicazione}}</p>
+
+    <p>Ore storia principale: {{videogioco.oreStoriaPrincipale}}</p>
+
+    <p>Casa di produzione: {{videogioco.casaDiProduzione.nome}}</p>
+    <p>Casa di pubblicazione: {{videogioco.casaDiPubblicazione.nome}}</p>
+    <p>Voto: {{videogioco.voto}}</p>
+
+</div>
+<!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
+    <div>
+
+    </div>
+} -->
+@if(recensioni.length){
+    <div>
+        <h2>Recensioni dei nostri utenti</h2>
+        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    </div>
+}

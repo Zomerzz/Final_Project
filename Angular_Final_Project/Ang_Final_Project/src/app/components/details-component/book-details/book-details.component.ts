@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Libro } from '../../../model/Libro';
 import { ActivatedRoute } from '@angular/router';
 import { RecensioniListComponent } from "../../recensioni/recensioni-list/recensioni-list.component";
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.css'
 })
-export class BookDetailsComponent {
+export class BookDetailsComponent implements OnInit{
   libro!: Libro;
   recensioni!: Recensione[];
   recensioneService = inject(RecensioneService);

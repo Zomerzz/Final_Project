@@ -22,11 +22,11 @@ public class Videogioco {
 
     private String titolo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "casa_di_produzione_id")
     private Casa casaDiProduzione;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "casa_di_pubblicazione_id")
     private Casa casaDiPubblicazione;
 

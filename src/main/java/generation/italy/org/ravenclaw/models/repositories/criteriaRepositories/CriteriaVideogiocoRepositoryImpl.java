@@ -44,7 +44,7 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
         Root<Videogioco> totalRoot = totalQuery.from(Videogioco.class);
         Predicate[] countPredicates = buildPredicates(cb, totalRoot, filters);
-        totalQuery.select(cb.countDistinct(totalQuery.from(Libro.class)));
+        totalQuery.select(cb.countDistinct(totalRoot));
         totalQuery.where(countPredicates);
 
         Long totaleVideogiochi = em.createQuery(totalQuery).getSingleResult();

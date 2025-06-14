@@ -20,6 +20,6 @@ export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full'
   //PATH PER LE DETAILS PAGE
    {path: 'films-dettagli/:id', component: FilmDetailsComponent},
    {path: 'libro-dettagli/:id', component: BookDetailsComponent},
-   {path: 'videogame-dettagli/:id', component: VideogameDetailsComponent}
+   {path: 'videogiochi-dettagli/:id', component: VideogameDetailsComponent}
    ];
 
