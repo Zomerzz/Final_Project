@@ -116,6 +116,8 @@ export class HomeComponent implements OnInit {
                 });
         } else{
             if(filters.tipoMedia ==='libri'){
+                this.listaFilm = [];
+                this.listaVideogiochi = [];
                 const queryString = this.createQueryString(filters);
                 this._libroService.findByFilters(queryString).subscribe({
                     next: listaLibriDb=>{
@@ -129,6 +131,8 @@ export class HomeComponent implements OnInit {
                 });
             }
             if(filters.tipoMedia ==='film'){
+                this.listaLibri = [];
+                this.listaVideogiochi = [];
                 const queryString = this.createQueryString(filters);
                 this._filmService.findByFilters(queryString).subscribe({
                     next: listaFilmDb=>{
@@ -142,6 +146,8 @@ export class HomeComponent implements OnInit {
                 });
             }        
             if(filters.tipoMedia ==='videogiochi'){
+                this.listaFilm = [];
+                this.listaLibri = [];
                 const queryString = this.createQueryString(filters);
                 this._videogiocoService.getByFilters(queryString).subscribe({
                     next: listaVideogiochiDb=>{
