@@ -3,8 +3,9 @@ import { Casa } from "./Casa";
 export interface Videogioco {
     id:number;
     titolo:string;
-    casaDiProduzioneId:number;
-    casaDiPubblicazioneId:number;
+    casaDiProduzione:Casa;
+    casaDiPubblicazione:Casa;
+    dataDiPubblicazione:number;
     oreStoriaPrincipale:number|null;
     descrizione:string;
     voto:number;

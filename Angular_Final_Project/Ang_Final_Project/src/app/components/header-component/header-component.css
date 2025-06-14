@@ -10,3 +10,8 @@ main button{
     height: 50%;
     grid-column: 3;
 }
+.logo_header{
+    width: 50px;
+    height: auto;
+
+}

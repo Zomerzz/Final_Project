@@ -1,19 +1,24 @@
 <main>
     
-<form (ngSubmit) = "send()"> 
+    <form (ngSubmit) = "send()"> 
+        <div>
+            <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
+            <button>Invia</button>
+        </div> 
+    </form>
+<a [routerLink]="['/home']">
     <div>
-        <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
-        <button>Invia</button>
-    </div> 
-</form>
-@if (!isinLoginPage) {
-    @if (isAlreadylogged) {
-    <button routerLink="/auth/logout">LogOut</button>
+        <img  src="https://cdn.discordapp.com/attachments/1362517804087120005/1383471465374159050/raw.png?ex=684ee9b5&is=684d9835&hm=e59507139dc2f4e239c387a081b10c7f0303e8e5ffda91021c5f0332dbb59506&" class="logo_header">
+    </div>
+</a>
+    @if (!isinLoginPage) {
+        @if (isAlreadylogged) {
+        <button routerLink="/auth/logout">LogOut</button>
+        }
+        @else {
+            <button routerLink="/auth/login">Login</button>
+            <button routerLink="/auth/register">Register</button>
+        }
     }
-    @else {
-        <button routerLink="/auth/login">Login</button>
-        <button routerLink="/auth/register">Register</button>
-    }
-}
 
 </main>
