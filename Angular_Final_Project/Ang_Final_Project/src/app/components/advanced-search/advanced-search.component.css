@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+form>input{
+    padding: 0.30em;
+    border-radius: 1em;
+}
+form >.tag-list{
+    display: flex;
+    gap:0.25em;
+    flex-direction: column;
+    
+}

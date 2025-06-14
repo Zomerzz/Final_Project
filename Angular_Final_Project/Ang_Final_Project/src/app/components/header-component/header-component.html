@@ -3,17 +3,19 @@
 <form (ngSubmit) = "send()"> 
     <div>
         <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
-        <button>Invia</button>
+        <button>🔍</button>
     </div> 
 </form>
-@if (!isinLoginPage) {
-    @if (isAlreadylogged) {
-    <button routerLink="/auth/logout">LogOut</button>
+<div id="authDiv">
+    @if (!isinLoginPage) {
+        @if (isAlreadylogged) {
+            <button routerLink="/auth/logout">LogOut</button>
+        }
+        @else {
+            <button routerLink="/auth/login">Login</button>
+            <button routerLink="/auth/register">Register</button>
+        }
     }
-    @else {
-        <button routerLink="/auth/login">Login</button>
-        <button routerLink="/auth/register">Register</button>
-    }
-}
+</div>
 
 </main>
