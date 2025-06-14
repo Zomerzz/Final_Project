@@ -2,7 +2,7 @@ import { Component, inject, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { LibroService } from '../../services/LibroService';
-import { VideogiocoService } from '../../services/videogioco.service';
+import { VideogiocoService } from '../../services/VideogiocoService';
 import { FilmService } from '../../services/FilmService';
 import { Libro } from '../../model/Libro';
 import { Film } from '../../model/Film';

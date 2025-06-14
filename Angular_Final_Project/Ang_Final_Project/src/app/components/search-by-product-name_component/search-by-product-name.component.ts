@@ -7,7 +7,7 @@ import { Libro } from '../../model/Libro';
 import { Film } from '../../model/Film';
 import { LibroService } from '../../services/LibroService';
 import { ActivatedRoute } from '@angular/router';
-import { VideogiocoService } from '../../services/videogioco.service';
+import { VideogiocoService } from '../../services/VideogiocoService';
 import { FilmService } from '../../services/FilmService';
 import { CommonModule } from '@angular/common';
 @Component({

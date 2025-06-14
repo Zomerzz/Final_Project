@@ -19,11 +19,12 @@ export class FilmService{
         //     return this._http.delete<void>(`${this._url}/${libroId}`);
         // }
     findByName(titolo:string|undefined):  Observable<Film[]>{
-            return this._http.get<PageResponse<Film>>(`${this._url}?titolo=${titolo}`).pipe(
-                map(page => page.content));
-        }
+        return this._http.get<PageResponse<Film>>(`${this._url}?titolo=${titolo}`)
+                         .pipe(map(page => page.content));
+    }
+    
     findByFilters(queryString:string): Observable<Film[]>{
-            return this._http.get<PageResponse<Film>>(`${this._url}${queryString}`).pipe(
-                map(page => page.content));
-        }
+        return this._http.get<PageResponse<Film>>(`${this._url}${queryString}`)
+                         .pipe(map(page => page.content));
+    }
 }

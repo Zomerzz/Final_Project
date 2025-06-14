@@ -20,10 +20,14 @@ export class VideogiocoService {
   getById(id: number): Observable<Videogioco> {
     return this.http.get<Videogioco>(`${this._apiUrl}/${id}`);
   }
+  
   getByName(titolo: string|undefined): Observable<Videogioco[]>{
-    return this.http.get<PageResponse<Videogioco>>(`${this._apiUrl}?titolo=${titolo}`).pipe(map(page=>page.content));
+    return this.http.get<PageResponse<Videogioco>>(`${this._apiUrl}?titolo=${titolo}`)
+                    .pipe(map(page=>page.content));
   }
+
   getByFilters(queryString:string): Observable<Videogioco[]>{
-          return this.http.get<Videogioco[]>(`${this._apiUrl}${queryString}`);
-      }
+    return this.http.get<PageResponse<Videogioco>>(`${this._apiUrl}${queryString}`)
+                    .pipe(map(page=>page.content));
+  }
 }

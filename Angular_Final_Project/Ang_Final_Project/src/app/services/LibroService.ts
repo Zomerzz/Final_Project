@@ -21,12 +21,13 @@ export class LibroService{
     //     return this._http.delete<void>(`${this._url}/${libroId}`);
     // }
     findByName(titolo:string|undefined):  Observable<Libro[]>{
-        return this._http.get<PageResponse<Libro>>(`${this._url}?titolo=${titolo}`).pipe(
-      map(page => page.content)   // prendi solo l’array
-    );;
+        return this._http.get<PageResponse<Libro>>(`${this._url}?titolo=${titolo}`)
+                        .pipe(map(page => page.content));  // prendi solo l’array;
     }
+    
     findByFilters(queryString:string): Observable<Libro[]>{
-        return this._http.get<Libro[]>(`${this._url}${queryString}`);
+        return this._http.get<PageResponse<Libro>>(`${this._url}${queryString}`)
+                        .pipe(map(page => page.content));
     }
 
 }

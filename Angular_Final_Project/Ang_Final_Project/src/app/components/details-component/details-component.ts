@@ -2,7 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { Videogioco } from '../../model/Videogioco';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { VideogiocoService } from '../../services/videogioco.service';
+import { VideogiocoService } from '../../services/VideogiocoService';
 import { Recensione } from '../../model/Recensione';
 import { RecensioneService } from '../../services/RecensioneService';
 import { Product } from '../../model/Product';
