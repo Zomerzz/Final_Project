@@ -1,11 +1,66 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { FilmListComponent } from '../home-lists/film-list/film-list.component';
+import { LibroListComponent } from '../home-lists/libro-list/libro-list.component';
+import { VideogiocoListComponent } from '../home-lists/videogioco-list/videogioco-list.component';
+import { Libro } from '../../model/Libro';
+import { Videogioco } from '../../model/Videogioco';
+import { Film } from '../../model/Film';
+import { FilmVisto } from '../../model/FilmVisto';
+import { LibroLetto } from '../../model/LibroLetto';
+import { VideogiocoGiocato } from '../../model/VideogiocoGiocato';
+import { MediaRegistratoService } from '../../services/MediaRegistratoService';
+import { AuthService } from '../../services/AuthService';
 
 @Component({
   selector: 'app-user-page-component',
-  imports: [],
+  imports: [FilmListComponent, LibroListComponent, VideogiocoListComponent],
   templateUrl: './user-page-component.html',
   styleUrl: './user-page-component.css'
 })
-export class UserPageComponent {
+export class UserPageComponent implements OnInit{
+  utenteId!: number;
+  //i consigliati li teniamo qui o nella home?
+  //filmConsigliati!: Film[];
+  //filmVisti ha dentro i film e le recensioni se ci sono
+  filmVisti!: FilmVisto[];
+  //films ha dentro solo i film visti
+  films!: Film[];
 
+  //libriConsigliati!: Libro[];
+  libriLetti!: LibroLetto[];
+  libri!: Libro[];
+
+  //videogiochiConsigliati!: Videogioco[];
+  videogiochiGiocati!: VideogiocoGiocato[];
+  videogiochi!: Videogioco[];
+
+  private _authService = inject(AuthService);
+  private _mediaRegistratoService = inject(MediaRegistratoService);
+
+  ngOnInit(): void {
+    this.utenteId = Number(this._authService.getUserId());
+    this._mediaRegistratoService.getFilmVisti(this.utenteId).subscribe({
+      next: list => this.filmVisti = list,
+      error: e => alert('errore nel caricamento dei film visti :' + e)
+    });
+    this.filmVisti.forEach(filmVisto => {
+      this.films.push(filmVisto.film);
+    });
+    this._mediaRegistratoService.getLibriLetti(this.utenteId).subscribe({
+      next: list => this.libriLetti = list,
+      error: e => alert('errore nel caricamento dei libri letti :' + e)
+    });
+    this.libriLetti.forEach(libroLetto => {
+      this.libri.push(libroLetto.libro);
+    });
+    this._mediaRegistratoService.getVideogiochiGiocati(this.utenteId).subscribe({
+      next: list => this.videogiochiGiocati = list,
+      error: e => alert('errore nel caricamento dei videogiochi giocati :' + e)
+    });
+    this.videogiochiGiocati.forEach(videogiocoGiocato => {
+      this.videogiochi.push(videogiocoGiocato.videogioco);
+    });
+
+    //TODO CARICARE I MEDIA CONSIGLIATI???
+  }
 }

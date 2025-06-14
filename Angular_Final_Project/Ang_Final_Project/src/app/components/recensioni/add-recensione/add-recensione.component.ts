@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RecensioneService } from '../../services/RecensioneService';
+import { RecensioneService } from '../../../services/RecensioneService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RecensioneRequest } from '../../model/RecensioneRequest';
-import { AuthService } from '../../services/AuthService';
+import { RecensioneRequest } from '../../../model/RecensioneRequest';
+import { AuthService } from '../../../services/AuthService';
 
 @Component({
   selector: 'app-add-recensione',

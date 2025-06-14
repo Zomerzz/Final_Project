@@ -1,1 +1,53 @@
-<p>user-page-component works!</p>
+<!-- LISTE DEI MEDIA CONSIGLIATI
+
+@if (filmConsigliati.length >= 0) {
+<div>
+    <p>FILM CONSIGLIATI</p>
+    <app-film-list [films] = 'filmConsigliati'></app-film-list>
+</div>
+} @else {
+    <p>caricamento dei film consigliati...</p>
+}
+
+@if (libriConsigliati.length >= 0) {
+<div>
+    <p>LIBRI CONSIGLIATI</p>
+    <app-libro-list [libri] = 'libriConsigliati'></app-libro-list>
+</div>
+} @else {
+    <p>caricamento dei libri consigliati...</p>
+}
+
+@if (videogiochiConsigliati.length >= 0) {
+<div>
+    <p>VIDEOGIOCHI CONSIGLIATI</p>
+    <app-videogioco-list [videogiochi] = 'videogiochiConsigliati'></app-videogioco-list>
+</div>
+} @else {
+    <p>caricamento dei videogiochi consigliati...</p>
+} -->
+
+<!-- LISTE DEI MEDIA REGISTRATI -->
+
+@if (filmVisti.length >= 0) {
+<div>
+    <p>FILM VISTI</p>
+    <app-film-list [films] = 'films'></app-film-list>
+</div>
+}
+
+@if (libriLetti.length >= 0) {
+<div>
+    <p>LIBRI LETTI</p>
+    <app-libro-list [libri] = 'libri'></app-libro-list>
+</div>
+}
+
+@if (videogiochiGiocati.length >= 0) {
+<div>
+    <p>VIDEOGIOCHI GIOCATI</p>
+    <app-videogioco-list [videogiochi] = 'videogiochi'></app-videogioco-list>
+</div>
+}
+
+

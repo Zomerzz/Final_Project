@@ -1,9 +1,9 @@
 import { Component, Inject, inject, Input, OnInit} from '@angular/core';
-import { RecensioneCardComponent } from '../recensione-card/recensione-card.component';
-import { Recensione } from '../../model/Recensione';
-import { RecensioneService } from '../../services/RecensioneService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RecensioneCardComponent } from '../recensione-card/recensione-card.component';
+import { Recensione } from '../../../model/Recensione';
+import { RecensioneService } from '../../../services/RecensioneService';
 
 @Component({
   selector: 'app-recensioni-list',

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Recensione } from '../../model/Recensione';
+import { Recensione } from '../../../model/Recensione';
 
 @Component({
   selector: 'app-recensione-card',
