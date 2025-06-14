@@ -1,5 +1,11 @@
 <main>
-    
+    <div id="buttonsDiv">     
+        <button [routerLink]="['home']">HOME</button>
+        @if(isAlreadylogged){
+        <button (click)="['user']">PROFILE</button>
+        }
+    </div>
+
 <form (ngSubmit) = "send()"> 
     <div>
         <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">

@@ -16,7 +16,6 @@ main form input{
     margin-right:-4.5em;
     padding-right: 4.5em ;
     text-align: center;
-    
 }
 main form button{
     background-color: transparent;
@@ -26,7 +25,9 @@ main form button{
     background-color: rgba(0, 0, 0, 0.2);
     border: black solid 2px;
     border-radius: 1em;
-    
+}
+button:hover{
+    cursor: pointer;
 }
 main #authDiv{
     display: flex;
@@ -34,5 +35,8 @@ main #authDiv{
     height: 50%;
     grid-column: 3;
     gap: 1.5em;
+}
+#buttonDiv {
+grid-column: 1;
 }
 

@@ -19,18 +19,14 @@ import { AuthService } from '../../services/AuthService';
 })
 export class UserPageComponent implements OnInit{
   utenteId!: number;
-  //i consigliati li teniamo qui o nella home?
-  //filmConsigliati!: Film[];
   //filmVisti ha dentro i film e le recensioni se ci sono
   filmVisti!: FilmVisto[];
   //films ha dentro solo i film visti
   films!: Film[];
 
-  //libriConsigliati!: Libro[];
   libriLetti!: LibroLetto[];
   libri!: Libro[];
 
-  //videogiochiConsigliati!: Videogioco[];
   videogiochiGiocati!: VideogiocoGiocato[];
   videogiochi!: Videogioco[];
 
@@ -61,6 +57,5 @@ export class UserPageComponent implements OnInit{
       this.videogiochi.push(videogiocoGiocato.videogioco);
     });
 
-    //TODO CARICARE I MEDIA CONSIGLIATI???
   }
 }
