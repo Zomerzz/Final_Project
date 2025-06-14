@@ -11,6 +11,4 @@ import { RouterLink, RouterModule } from '@angular/router';
 export class LibroListComponent {
     @Input('libri')
     libri:Libro[]= [];
-
-
 }
