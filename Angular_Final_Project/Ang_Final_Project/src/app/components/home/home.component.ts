@@ -1,6 +1,6 @@
-import { Component, inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, inject, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LibroService } from '../../services/LibroService';
 import { VideogiocoService } from '../../services/VideogiocoService';
 import { FilmService } from '../../services/FilmService';
@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
     private _videogiocoService: VideogiocoService = inject(VideogiocoService);
     private _filmService: FilmService = inject(FilmService);
     private _authService: AuthService = inject(AuthService);
+    private _router =inject(Router);
 
     ngOnInit(): void {
         this._activatedRoute.queryParams.subscribe(params => {
@@ -80,6 +81,7 @@ export class HomeComponent implements OnInit {
 
     }
     executeSearch(filters: Partial<SearchModel>) {
+        this._router.navigate(['/home'], { queryParams: filters });
         if(filters.tipoMedia ==='tutti'){
             const queryString = this.createQueryString(filters);
             this._libroService.findByFilters(queryString).subscribe({
