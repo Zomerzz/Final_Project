@@ -20,15 +20,15 @@ import { AuthService } from '../../services/AuthService';
 export class UserPageComponent implements OnInit{
   utenteId!: number;
   //filmVisti ha dentro i film e le recensioni se ci sono
-  filmVisti!: FilmVisto[];
+  filmVisti: FilmVisto[] = [];
   //films ha dentro solo i film visti
-  films!: Film[];
+  films: Film[] = [];
 
-  libriLetti!: LibroLetto[];
-  libri!: Libro[];
+  libriLetti: LibroLetto[] = [];
+  libri: Libro[] = [];
 
-  videogiochiGiocati!: VideogiocoGiocato[];
-  videogiochi!: Videogioco[];
+  videogiochiGiocati: VideogiocoGiocato[] = [];
+  videogiochi: Videogioco[] = [];
 
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
@@ -36,26 +36,38 @@ export class UserPageComponent implements OnInit{
   ngOnInit(): void {
     this.utenteId = Number(this._authService.getUserId());
     this._mediaRegistratoService.getFilmVisti(this.utenteId).subscribe({
-      next: list => this.filmVisti = list,
+      next: list => {
+        this.filmVisti = list;
+        if(this.filmVisti.length){
+        this.filmVisti.forEach(filmVisto => {
+          this.films.push(filmVisto.film);
+      });
+    }
+      },
       error: e => alert('errore nel caricamento dei film visti :' + e)
     });
-    this.filmVisti.forEach(filmVisto => {
-      this.films.push(filmVisto.film);
-    });
     this._mediaRegistratoService.getLibriLetti(this.utenteId).subscribe({
-      next: list => this.libriLetti = list,
+      next: list => {
+        this.libriLetti = list;
+        if(this.libriLetti.length){
+          this.libriLetti.forEach(libroLetto => {
+            this.libri.push(libroLetto.libro);
+          });
+        }
+      },
       error: e => alert('errore nel caricamento dei libri letti :' + e)
     });
-    this.libriLetti.forEach(libroLetto => {
-      this.libri.push(libroLetto.libro);
-    });
+  
     this._mediaRegistratoService.getVideogiochiGiocati(this.utenteId).subscribe({
-      next: list => this.videogiochiGiocati = list,
+      next: list => {
+        this.videogiochiGiocati = list;
+        if(this.videogiochiGiocati.length){
+          this.videogiochiGiocati.forEach(videogiocoGiocato => {
+            this.videogiochi.push(videogiocoGiocato.videogioco);
+          });
+        }
+      },
       error: e => alert('errore nel caricamento dei videogiochi giocati :' + e)
     });
-    this.videogiochiGiocati.forEach(videogiocoGiocato => {
-      this.videogiochi.push(videogiocoGiocato.videogioco);
-    });
-
   }
 }
