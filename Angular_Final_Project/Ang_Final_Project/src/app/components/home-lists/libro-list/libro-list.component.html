@@ -7,9 +7,11 @@
     <div class="card">
         <a [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
             <h3 class="type-label">Libro</h3>
-            <img [src]="libro.imgUrl" class="libro-immagine">
-            <h2 class="titolo-libro">{{ libro.titolo }}</h2>
-            <p class="voto">⭐ Voto: {{ libro.voto }}</p>
+            <img [src]="libro.imgUrl" class="immagine">
+            <div class="title_div">
+                <h2 class="titolo-libro">{{ libro.titolo }}</h2>
+                <p class="voto">⭐ Voto: {{ libro.voto }}</p>
+            </div>
         </a>
         
     </div>

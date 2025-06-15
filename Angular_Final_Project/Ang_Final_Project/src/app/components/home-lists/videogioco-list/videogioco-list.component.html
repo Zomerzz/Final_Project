@@ -7,9 +7,11 @@
     <div class="card">
         <a [routerLink]="['/videogiochi-dettagli', videogioco.id]"[state]="{ videogioco: videogioco }">
             <h3 class="type-label">Videogioco</h3>
-            <img [src]="videogioco.imgUrl" class="videogioco-immagine">
-            <h2 class="titolo-videogioco">{{ videogioco.titolo }}</h2>
-            <p class="voto">⭐ Voto: {{ videogioco.voto }}</p>
+            <img [src]="videogioco.imgUrl" class="immagine">
+            <div class="title_div">
+                <h2 class="titolo-videogioco">{{ videogioco.titolo }}</h2>
+                <p class="voto">⭐ Voto: {{ videogioco.voto }}</p>
+            </div>
         </a>
     </div>
 }
