@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS public.videogiochi_giocati CASCADE;
 DROP TABLE IF EXISTS public.libri_letti CASCADE;
 DROP TABLE IF EXISTS public.film_visti CASCADE;
 DROP TABLE IF EXISTS public.recensioni CASCADE;
+DROP TABLE IF EXISTS public.utenti_authorities CASCADE;
 
 --
 -- PostgreSQL database dump
