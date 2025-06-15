@@ -27,7 +27,7 @@ export class MediaRegistratoService {
     }
 
     getFilmVistoByFilmIdAndUtenteId(filmId: number, utenteId: number): Observable<FilmVisto> {
-        return this._http.get<FilmVisto>(`${this._videogiocoUrl}/${filmId}/${utenteId}`);
+        return this._http.get<FilmVisto>(`${this._filmUrl}/${filmId}/${utenteId}`);
     }
     
     getLibriLetti(utenteId: number): Observable<LibroLetto[]>{

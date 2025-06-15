@@ -241,11 +241,25 @@ ALTER SEQUENCE public.film_prodotto_da_prodotto_da_id_seq OWNED BY public.crew_f
 
 
 --
+-- Name: film_visti_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.film_visti_seq
+    START WITH 50
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.film_visti_seq OWNER TO "postgresMaster";
+
+--
 -- Name: film_visti; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
 CREATE TABLE public.film_visti (
-    film_visto_id integer NOT NULL,
+    film_visto_id integer DEFAULT nextval('public.film_visti_seq'::regclass) NOT NULL,
     film_id integer NOT NULL,
     utente_id integer NOT NULL,
     recensione_id integer
@@ -253,28 +267,6 @@ CREATE TABLE public.film_visti (
 
 
 ALTER TABLE public.film_visti OWNER TO "postgresMaster";
-
---
--- Name: film_visti_film_visti_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
---
-
-CREATE SEQUENCE public.film_visti_film_visti_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER SEQUENCE public.film_visti_film_visti_id_seq OWNER TO "postgresMaster";
-
---
--- Name: film_visti_film_visti_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
---
-
-ALTER SEQUENCE public.film_visti_film_visti_id_seq OWNED BY public.film_visti.film_visto_id;
-
 
 --
 -- Name: libri; Type: TABLE; Schema: public; Owner: postgresMaster
@@ -622,25 +614,10 @@ ALTER SEQUENCE public.videogiochi_assegnamento_tag_assegnamento_id_seq OWNED BY 
 
 
 --
--- Name: videogiochi_giocati; Type: TABLE; Schema: public; Owner: postgresMaster
+-- Name: videogiochi_giocati_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
 --
 
-CREATE TABLE public.videogiochi_giocati (
-    videogioco_giocato_id integer NOT NULL,
-    videogioco_id integer NOT NULL,
-    utente_id integer NOT NULL,
-    recensione_id integer
-);
-
-
-ALTER TABLE public.videogiochi_giocati OWNER TO "postgresMaster";
-
---
--- Name: videogiochi_giocati_videogiochi_giocati_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
---
-
-CREATE SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq
-    AS integer
+CREATE SEQUENCE public.videogiochi_giocati_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -648,14 +625,21 @@ CREATE SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq OWNER TO "postgresMaster";
+ALTER SEQUENCE public.videogiochi_giocati_seq OWNER TO "postgresMaster";
 
 --
--- Name: videogiochi_giocati_videogiochi_giocati_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
+-- Name: videogiochi_giocati; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
-ALTER SEQUENCE public.videogiochi_giocati_videogiochi_giocati_id_seq OWNED BY public.videogiochi_giocati.videogioco_giocato_id;
+CREATE TABLE public.videogiochi_giocati (
+    videogioco_giocato_id integer DEFAULT nextval('public.videogiochi_giocati_seq'::regclass) NOT NULL,
+    videogioco_id integer NOT NULL,
+    utente_id integer NOT NULL,
+    recensione_id integer
+);
 
+
+ALTER TABLE public.videogiochi_giocati OWNER TO "postgresMaster";
 
 --
 -- Name: videogiochi_videogioco_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
@@ -744,13 +728,6 @@ ALTER TABLE ONLY public.film_assegnamento_tag ALTER COLUMN assegnamento_id SET D
 
 
 --
--- Name: film_visti film_visto_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
---
-
-ALTER TABLE ONLY public.film_visti ALTER COLUMN film_visto_id SET DEFAULT nextval('public.film_visti_film_visti_id_seq'::regclass);
-
-
---
 -- Name: libri libro_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
 --
 
@@ -811,468 +788,6 @@ ALTER TABLE ONLY public.videogiochi ALTER COLUMN videogioco_id SET DEFAULT nextv
 --
 
 ALTER TABLE ONLY public.videogiochi_assegnamento_tag ALTER COLUMN assegnamento_id SET DEFAULT nextval('public.videogiochi_assegnamento_tag_assegnamento_id_seq'::regclass);
-
-
---
--- Name: videogiochi_giocati videogioco_giocato_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
---
-
-ALTER TABLE ONLY public.videogiochi_giocati ALTER COLUMN videogioco_giocato_id SET DEFAULT nextval('public.videogiochi_giocati_videogiochi_giocati_id_seq'::regclass);
-
-
---
--- Data for Name: autori; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) FROM stdin;
-1	J.K.	\N	Rowling	1965-07-31	Regno Unito
-2	Stephen	\N	King	1947-09-21	USA
-3	George	R.R.	Martin	1948-09-20	USA
-4	Agatha	\N	Christie	1890-09-15	Regno Unito
-5	Isaac	\N	Asimov	1920-01-02	USA
-6	Neil	\N	Gaiman	1960-11-10	Regno Unito
-7	Margaret	\N	Atwood	1939-11-18	Canada
-8	Haruki	\N	Murakami	1949-01-12	Giappone
-9	J.R.R.	\N	Tolkien	1892-01-03	Regno Unito
-10	Jane	\N	Austen	1775-12-16	Regno Unito
-\.
-
-
---
--- Data for Name: case_p; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.case_p (casa_id, nome, nazionalita) FROM stdin;
-1	Warner Bros.	USA
-2	Penguin Books	Regno Unito
-3	Electronic Arts	USA
-4	Sony Pictures	USA
-5	Random House	USA
-6	Nintendo	Giappone
-7	20th Century Fox	USA
-8	HarperCollins	USA
-9	Ubisoft	Francia
-10	Columbia Pictures	USA
-\.
-
-
---
--- Data for Name: crew_film; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.crew_film (crew_id, film_id, autore_id, ruolo_id) FROM stdin;
-1	1	1	1
-2	2	2	1
-3	3	3	1
-4	4	4	1
-5	5	5	1
-6	6	6	1
-7	7	7	1
-8	8	8	1
-9	9	9	1
-10	10	10	1
-\.
-
-
---
--- Data for Name: crew_videogioco; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) FROM stdin;
-1	1	1	9
-2	2	2	8
-3	3	3	9
-4	4	4	9
-5	5	5	8
-6	6	6	9
-7	7	7	8
-8	8	8	9
-9	9	9	9
-10	10	10	8
-\.
-
-
---
--- Data for Name: film; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) FROM stdin;
-1	Inception	148	2010-07-16	Un thriller che piega la mente sui sogni dentro i sogni.	1	92	https://media.themoviedb.org/t/p/w440_and_h660_face/67RLqAViz6v4ez5oTy01eVH57VC.jpg	1
-2	Il Padrino	175	1972-03-24	Il patriarca di un impero criminale passa il controllo al figlio riluttante.	7	98	https://image.tmdb.org/t/p/original/aQ4yCDBVtCVis7tLNMpUiu1DuLa.jpg	7
-3	Pulp Fiction	154	1994-10-14	Le vite di due sicari, un pugile e altri si intrecciano in una serie di eventi violenti.	4	94	https://media.themoviedb.org/t/p/w440_and_h660_face/9p10J9Xp7MuaVac56g8BwAuXEsA.jpg	4
-4	Il Cavaliere Oscuro	152	2008-07-18	Batman alza la posta nella sua guerra contro il crimine.	1	94	https://media.themoviedb.org/t/p/w440_and_h660_face/qIhsgno1mjbzUbs4H6DaRjhskAR.jpg	1
-5	Fight Club	139	1999-10-15	Un impiegato insonne forma un club di combattimento sotterraneo.	4	89	https://media.themoviedb.org/t/p/w440_and_h660_face/rtNLQ8HbPElzEfrHjrzSr07prKT.jpg	4
-6	Forrest Gump	142	1994-07-06	Le presidenze di Kennedy e Johnson raccontate attraverso gli occhi di un uomo con un QI basso.	7	88	https://media.themoviedb.org/t/p/w440_and_h660_face/pGZqc9jQ6F8klQZKm37NAAMH70o.jpg	7
-7	Matrix	136	1999-03-31	Un hacker scopre che la realtà è una simulazione.	1	92	https://media.themoviedb.org/t/p/w440_and_h660_face/yQZX4scmfYtj4ccKFNGZJlOj1y9.jpg	1
-8	Interstellar	169	2014-11-07	Esploratori attraversano un wormhole nello spazio per salvare l’umanità.	1	91	https://media.themoviedb.org/t/p/w440_and_h660_face/bMKiLh0mES4Uiococ240lbbTGXQ.jpg	1
-9	Il Gladiatore	155	2000-05-05	Un ex generale romano cerca vendetta contro l’imperatore corrotto.	7	87	https://media.themoviedb.org/t/p/w440_and_h660_face/42KK5H6oo30LxQ9PtYoUklPltrM.jpg	7
-10	Le Ali della Libertà	142	1994-09-23	Due prigionieri stringono un legame nel corso di molti anni.	7	98	https://media.themoviedb.org/t/p/w440_and_h660_face/9OxcvTJwZDjQTFvY2NxiwnSrQS6.jpg	7
-\.
-
-
---
--- Data for Name: film_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) FROM stdin;
-1	3	1
-2	8	1
-3	9	2
-4	9	3
-5	8	4
-6	9	5
-7	8	6
-8	3	7
-9	4	8
-10	7	9
-\.
-
-
---
--- Data for Name: film_visti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.film_visti (film_visto_id, film_id, utente_id, recensione_id) FROM stdin;
-1	1	1	1
-2	2	2	2
-3	3	3	3
-4	4	4	4
-5	5	5	5
-6	6	6	6
-7	7	7	7
-8	8	8	8
-9	9	9	9
-10	10	10	10
-11	1	12	\N
-13	1	12	\N
-\.
-
-
---
--- Data for Name: libri; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) FROM stdin;
-1	Harry Potter e la Pietra Filosofale	309	2	Un giovane mago scopre il suo retaggio magico.	1997-06-26	95	https://m.media-amazon.com/images/I/71CvZU5-quL._SL1479_.jpg
-2	Shining	447	5	Una famiglia si dirige in un hotel isolato per l’inverno dove una presenza sinistra influenza il padre.	1977-01-28	88	https://m.media-amazon.com/images/I/713-MwTS+2L._SL1500_.jpg
-3	Il Trono di Spade	694	8	Famiglie nobili gareggiano per il controllo del Trono di Spade.	1996-08-06	92	https://m.media-amazon.com/images/I/71I7798hdLL._SL1500_.jpg
-4	Assassinio sull’Orient Express	256	8	L’investigatore Hercule Poirot indaga su un omicidio su un treno bloccato dalla neve.	1934-01-01	85	https://m.media-amazon.com/images/I/71-gfpil2WL._SL1500_.jpg
-5	Fondazione	255	5	Un matematico cerca di preservare la conoscenza mentre l’Impero Galattico crolla.	1951-06-01	90	https://m.media-amazon.com/images/I/61iWMdS9j1L._SL1500_.jpg
-6	American Gods	465	2	Il carcere penale Shadow incontra il misterioso signor Wednesday.	2001-06-19	89	https://m.media-amazon.com/images/I/7146xxh252L._SL1500_.jpg
-7	Il Racconto dell’Ancella	311	8	In un futuro distopico, le donne sono trattate come proprietà.	1985-09-01	87	https://m.media-amazon.com/images/I/51btRHNtfLL._SL1474_.jpg
-8	Norwegian Wood	296	8	Uno studente universitario ricorda i suoi giorni a Tokyo negli anni ’60.	1987-09-04	84	https://m.media-amazon.com/images/I/81RARTnoWjL._SL1500_.jpg
-9	Lo Hobbit	310	5	Bilbo Baggins intraprende un viaggio inaspettato.	1937-09-21	94	https://m.media-amazon.com/images/I/71emctAoDYL._SL1066_.jpg
-10	Orgoglio e Pregiudizio	279	8	Le maniere e le macchinazioni matrimoniali tra la nobiltà inglese.	1813-01-28	96	https://m.media-amazon.com/images/I/71aELj6cylL._SL1433_.jpg
-\.
-
-
---
--- Data for Name: libri_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) FROM stdin;
-1	4	1
-2	5	2
-3	4	3
-4	2	4
-5	3	5
-6	6	6
-7	7	7
-8	4	8
-9	4	9
-10	6	10
-\.
-
-
---
--- Data for Name: libri_letti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) FROM stdin;
-\.
-
-
---
--- Data for Name: recensioni; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.recensioni (recensione_id, voto, recensione) FROM stdin;
-1	95	Assolutamente fantastico. Un capolavoro.
-2	80	Abbastanza solido, ma presenta dei difetti.
-3	60	Mah, è stato così così.
-4	45	Non è eccezionale, ma neanche pessimo.
-5	20	Mi pento di averlo visto/letto/giocato.
-6	90	Mozzafiato. Consigliatissimo.
-7	70	Sufficientemente buono da guardare/leggere/giocare.
-8	50	Nella media, al massimo.
-9	30	Al di sotto delle aspettative.
-10	10	Terribile. Evitatelo a tutti i costi.
-\.
-
-
---
--- Data for Name: ruoli; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.ruoli (ruolo_id, nome) FROM stdin;
-1	Regista
-2	Produttore
-3	Sceneggiatore
-4	Attore
-5	Compositore
-6	Direttore della fotografia
-7	Montatore
-8	Designer
-9	Programmatore
-10	Doppiatore
-\.
-
-
---
--- Data for Name: scritto_da; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.scritto_da (made_by_id, autore_id, libro_id) FROM stdin;
-1	1	1
-2	2	2
-3	3	3
-4	4	4
-5	5	5
-6	6	6
-7	7	7
-8	8	8
-9	9	9
-10	10	10
-\.
-
-
---
--- Data for Name: tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.tag (tag_id, tag_name, genere) FROM stdin;
-1	Narrativa	t
-2	Mistero	t
-3	Fantascienza	t
-4	Fantasy	t
-5	Horror	t
-6	Romantico	t
-7	Avventura	t
-8	Thriller	t
-9	Drammatico	t
-10	Commedia	t
-\.
-
-
---
--- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.utenti (utente_id, nome, password, email) FROM stdin;
-1	user_one	pwd123	user1@example.com
-2	user_two	pwd123	user2@example.com
-3	user_three	pwd123	user3@example.com
-4	user_four	pwd123	user4@example.com
-5	user_five	pwd123	user5@example.com
-6	user_six	pwd123	user6@example.com
-7	user_seven	pwd123	user7@example.com
-8	user_eight	pwd123	user8@example.com
-9	user_nine	pwd123	user9@example.com
-10	user_ten	pwd123	user10@example.com
-11	Lorenzo	$2a$10$gdtHFhrAmRVkjbroeWzZP.cAm9nurITg9bifZU9u1aYcDUl0FDpY2	lorenzo.coretti1@gmail.com
-12	Lorenzo	$2a$10$79QDxr49KNxDHDc1MXwc1.8BXaMV85Hl3QmFae.Iimp82FTSS5M.u	lorenzo@gmail.com
-\.
-
-
---
--- Data for Name: utenti_authorities; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.utenti_authorities (utente_id, authority) FROM stdin;
-11	ROLE_EMPLOYEE
-12	ROLE_EMPLOYEE
-\.
-
-
---
--- Data for Name: videogiochi; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) FROM stdin;
-1	The Witcher 3: Wild Hunt	9	9	2015-05-19	50	Geralt di Rivia intraprende un viaggio per trovare sua figlia adottiva.	97	https://cdn.cdkeys.com/496x700/media/catalog/product/n/e/new_project_-_2023-08-15t114305.357.jpg
-2	Super Mario Bros.	6	6	1985-09-13	10	Mario deve salvare la Principessa Peach da Bowser.	90	https://howlongtobeat.com/games/9371_Super_Mario_Bros.png?width=250
-3	Assassin’s Creed II	9	9	2009-11-17	20	Ezio Auditore diventa un assassino nel Rinascimento italiano.	89	https://static.wikia.nocookie.net/assassinscreed/images/0/09/AC2coverHighRes.jpg/revision/latest?cb=20120706023159
-4	The Last of Us	3	3	2013-06-14	15	Joel scorta Ellie attraverso un’America post-apocalittica.	95	https://cdn.cdkeys.com/496x700/media/catalog/product/e/g/egs_wildhearts_koeitecmogamescoltd_s2_1200x1600-398fdb8dbc918051f99347ebe0335973_3_.jpg
-5	God of War	6	6	2018-04-20	25	Kratos intraprende un viaggio con suo figlio Atreus.	94	https://static.wikia.nocookie.net/sony-playstation/images/6/62/God_of_War_2018_cover_standard.jpg/revision/latest?cb=20210212104221
-6	Minecraft	3	3	2011-11-18	0	Gioco sandbox di costruzione e sopravvivenza.	88	https://assets2.ignimgs.com/2014/06/18/minecraft-buttonjpg-b689ca.jpg
-7	Red Dead Redemption 2	3	3	2018-10-26	60	Un fuorilegge intraprende una missione nel West morente.	96	https://static1.srcdn.com/wordpress/wp-content/uploads/sharedimages/2024/04/red-dead-redemption-2-poster.jpg
-8	The Legend of Zelda: Breath of the Wild	6	6	2017-03-03	50	Link si risveglia da un lungo sonno per salvare Hyrule.	97	https://wallpapercave.com/wp/wp3277347.jpg
-9	Cyberpunk 2077	9	9	2020-12-10	30	V si muove nella Night City alla ricerca dell’immortalità.	70	https://store-images.s-microsoft.com/image/apps.47379.63407868131364914.bcaa868c-407e-42c2-baeb-48a3c9f29b54.89bb995b-b066-4a53-9fe4-0260ce07e894
-10	Fortnite	3	3	2017-07-21	0	Gioco Battle Royale con meccaniche di costruzione.	75	https://i.3djuegos.com/juegos/8298/fortnite/fotos/ficha/fortnite-5154610.jpg
-\.
-
-
---
--- Data for Name: videogiochi_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) FROM stdin;
-1	7	1
-2	7	2
-3	7	3
-4	8	4
-5	7	5
-6	7	6
-7	7	7
-8	4	8
-9	3	9
-10	7	10
-\.
-
-
---
--- Data for Name: videogiochi_giocati; Type: TABLE DATA; Schema: public; Owner: postgresMaster
---
-
-COPY public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) FROM stdin;
-1	1	1	1
-2	2	2	2
-3	3	3	3
-4	4	4	4
-5	5	5	5
-6	6	6	6
-7	7	7	7
-8	8	8	8
-9	9	9	9
-10	10	10	10
-11	6	12	\N
-\.
-
-
---
--- Name: autori_autore_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.autori_autore_id_seq', 11, false);
-
-
---
--- Name: casa_casa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.casa_casa_id_seq', 11, false);
-
-
---
--- Name: film_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.film_assegnamento_tag_assegnamento_id_seq', 11, false);
-
-
---
--- Name: film_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.film_film_id_seq', 11, false);
-
-
---
--- Name: film_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.film_prodotto_da_prodotto_da_id_seq', 11, false);
-
-
---
--- Name: film_visti_film_visti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.film_visti_film_visti_id_seq', 13, true);
-
-
---
--- Name: libri_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.libri_assegnamento_tag_assegnamento_id_seq', 11, false);
-
-
---
--- Name: libri_letti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.libri_letti_id_seq', 50, false);
-
-
---
--- Name: libri_libro_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.libri_libro_id_seq', 11, false);
-
-
---
--- Name: recensioni_recensioni_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.recensioni_recensioni_id_seq', 11, false);
-
-
---
--- Name: ruoli_ruolo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.ruoli_ruolo_id_seq', 11, false);
-
-
---
--- Name: scritto_da_made_by_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.scritto_da_made_by_id_seq', 11, false);
-
-
---
--- Name: tag_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.tag_tag_id_seq', 11, false);
-
-
---
--- Name: utente_utente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.utente_utente_id_seq', 12, true);
-
-
---
--- Name: videogiochi_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.videogiochi_assegnamento_tag_assegnamento_id_seq', 11, false);
-
-
---
--- Name: videogiochi_giocati_videogiochi_giocati_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.videogiochi_giocati_videogiochi_giocati_id_seq', 11, true);
-
-
---
--- Name: videogiochi_videogioco_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.videogiochi_videogioco_id_seq', 11, false);
-
-
---
--- Name: videogioco_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
---
-
-SELECT pg_catalog.setval('public.videogioco_prodotto_da_prodotto_da_id_seq', 11, false);
 
 
 --
@@ -1337,6 +852,14 @@ ALTER TABLE ONLY public.film
 
 ALTER TABLE ONLY public.crew_film
     ADD CONSTRAINT film_prodotto_da_pkey PRIMARY KEY (crew_id);
+
+
+--
+-- Name: film_visti film_visti_unique; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.film_visti
+    ADD CONSTRAINT film_visti_unique UNIQUE (film_id, utente_id);
 
 
 --
@@ -1452,6 +975,14 @@ ALTER TABLE ONLY public.videogiochi_giocati
 
 
 --
+-- Name: videogiochi_giocati videogioco_giocato_unique; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.videogiochi_giocati
+    ADD CONSTRAINT videogioco_giocato_unique UNIQUE (videogioco_id, utente_id);
+
+
+--
 -- Name: crew_videogioco videogioco_prodotto_da_pkey; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
 --
 
@@ -1544,7 +1075,7 @@ ALTER TABLE ONLY public.crew_film
 --
 
 ALTER TABLE ONLY public.film_visti
-    ADD CONSTRAINT film_visti_film_id_fkey FOREIGN KEY (film_id) REFERENCES public.film(film_id) NOT VALID;
+    ADD CONSTRAINT film_visti_film_id_fkey FOREIGN KEY (film_id) REFERENCES public.film(film_id);
 
 
 --
@@ -1552,7 +1083,7 @@ ALTER TABLE ONLY public.film_visti
 --
 
 ALTER TABLE ONLY public.film_visti
-    ADD CONSTRAINT film_visti_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id) NOT VALID;
+    ADD CONSTRAINT film_visti_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id);
 
 
 --
@@ -1560,7 +1091,7 @@ ALTER TABLE ONLY public.film_visti
 --
 
 ALTER TABLE ONLY public.film_visti
-    ADD CONSTRAINT film_visti_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id) NOT VALID;
+    ADD CONSTRAINT film_visti_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id);
 
 
 --
@@ -1672,7 +1203,7 @@ ALTER TABLE ONLY public.videogiochi
 --
 
 ALTER TABLE ONLY public.videogiochi_giocati
-    ADD CONSTRAINT videogiochi_giocati_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id) NOT VALID;
+    ADD CONSTRAINT videogiochi_giocati_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id);
 
 
 --
@@ -1680,7 +1211,7 @@ ALTER TABLE ONLY public.videogiochi_giocati
 --
 
 ALTER TABLE ONLY public.videogiochi_giocati
-    ADD CONSTRAINT videogiochi_giocati_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id) NOT VALID;
+    ADD CONSTRAINT videogiochi_giocati_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id);
 
 
 --
@@ -1688,7 +1219,7 @@ ALTER TABLE ONLY public.videogiochi_giocati
 --
 
 ALTER TABLE ONLY public.videogiochi_giocati
-    ADD CONSTRAINT videogiochi_giocati_videogioco_id_fkey FOREIGN KEY (videogioco_id) REFERENCES public.videogiochi(videogioco_id) NOT VALID;
+    ADD CONSTRAINT videogiochi_giocati_videogioco_id_fkey FOREIGN KEY (videogioco_id) REFERENCES public.videogiochi(videogioco_id);
 
 
 --

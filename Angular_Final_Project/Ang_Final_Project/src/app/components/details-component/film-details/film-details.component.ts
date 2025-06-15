@@ -16,7 +16,7 @@ import { MediaRegistratoService } from '../../../services/MediaRegistratoService
 export class FilmDetailsComponent implements OnInit{
   film!: Film;
   filmVisto!: FilmVisto | null;
-  recensioni!: Recensione[];
+  recensioni: Recensione[] = [];
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);

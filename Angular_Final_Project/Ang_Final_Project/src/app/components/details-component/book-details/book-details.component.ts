@@ -18,7 +18,7 @@ import { LibroLetto } from '../../../model/LibroLetto';
 export class BookDetailsComponent implements OnInit{
   libro!: Libro;
   libroLetto!: LibroLetto | null;
-  recensioni!: Recensione[];
+  recensioni: Recensione[] = [];
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
