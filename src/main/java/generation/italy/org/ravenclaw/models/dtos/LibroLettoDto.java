@@ -28,7 +28,9 @@ public class LibroLettoDto {
         LibroLettoDto dto = new LibroLettoDto(libroLetto.getLibroLettoId(),
                 LibroDto.toDto(libroLetto.getLibro()),
                 libroLetto.getUtente().getUtenteId());
-        dto.setRecensione(RecensioneDto.toDto(libroLetto.getRecensione()));
+        if(libroLetto.getRecensione() != null){
+            dto.setRecensione(RecensioneDto.toDto(libroLetto.getRecensione()));
+        }
         return dto;
     }
 
