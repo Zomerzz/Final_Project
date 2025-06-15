@@ -1,4 +1,8 @@
 .videogioco-img {
   width: 300px;
   height: auto;
+  border-radius: 5%;}
+
+  .videogioco-details {
+  margin-top:20px;
 }

@@ -1,4 +1,8 @@
 .film-img {
   width: 300px;
   height: auto;
+  border-radius: 5%;
+}
+.film-details {
+  margin-top:20px;
 }

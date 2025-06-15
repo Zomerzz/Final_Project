@@ -1,4 +1,8 @@
 .libro-img {
   width: 300px;
   height: auto;
+  border-radius: 5%;
+}
+.libro-details {
+  margin-top:20px;
 }
