@@ -1,3 +1,8 @@
+<div class="list-container">
+@if (isLibriVuoti()) {
+    <p> Nono sono stati trovati libri</p>
+}
+
 @for (libro of libri; track libro.id) {
     <div class="card">
         <a [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
@@ -9,3 +14,4 @@
         
     </div>
 }
+</div>

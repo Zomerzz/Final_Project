@@ -1,3 +1,9 @@
+<div class="list-container">
+
+@if (isfilmVuoti()) {
+    <p> Nono sono stati trovati film</p>
+}
+
 @for (film of films; track film.id) {
     <div class="card">
         <a [routerLink]="['/films-dettagli', film.id]" [state]="{ film: film }">
@@ -8,3 +14,4 @@
         </a>
     </div>
 }
+</div>

@@ -11,4 +11,9 @@ import { Film } from '../../../model/Film';
 export class FilmListComponent {
     @Input('films')
     films:Film[]=[];
+
+
+    isfilmVuoti(): boolean {
+        return this.films.length === 0;
+    }
 }

@@ -1,3 +1,8 @@
+<div class="list-container">
+
+    @if (isVideogiochiVuoti()) {
+    <p> Nono sono stati trovati videogiochi</p>
+}
 @for (videogioco of videogiochi; track videogioco.id) {
     <div class="card">
         <a [routerLink]="['/videogiochi-dettagli', videogioco.id]"[state]="{ videogioco: videogioco }">
@@ -8,3 +13,4 @@
         </a>
     </div>
 }
+</div>

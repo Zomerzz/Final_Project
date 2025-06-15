@@ -11,4 +11,9 @@ import { Videogioco } from '../../../model/Videogioco';
 export class VideogiocoListComponent {
   @Input('videogiochi')
   videogiochi:Videogioco[] = [];
+
+
+  isVideogiochiVuoti(): boolean {
+    return this.videogiochi.length === 0;
+  }
 }

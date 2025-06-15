@@ -15,5 +15,9 @@ export class LibroListComponent {
     libri:Libro[]= [];
     libro!: Libro;
 
+      isLibriVuoti(): boolean {
+    return this.libri.length === 0;
+  }
 
 }
+
