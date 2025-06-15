@@ -1,7 +1,9 @@
 package generation.italy.org.ravenclaw.controllers;
 
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+import generation.italy.org.ravenclaw.models.dtos.LibroLettoDto;
 import generation.italy.org.ravenclaw.models.dtos.VideogiocoGiocatoDto;
+import generation.italy.org.ravenclaw.models.entities.LibroLetto;
 import generation.italy.org.ravenclaw.models.entities.VideogiocoGiocato;
 import generation.italy.org.ravenclaw.models.services.VideogiocoService;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +36,13 @@ public class VideogiocoGiocatoController {
         Optional<VideogiocoGiocato> opt = videogiocoService.findVideogiocoGiocatoById(id);
         return opt.map(vg -> ResponseEntity.ok().body(VideogiocoGiocatoDto.toDto(vg)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{videogiocoId}/{utenteId}")
+    private ResponseEntity<VideogiocoGiocatoDto> searchIfLibroIsLetto(@PathVariable int videogiocoId, @PathVariable int utenteId) {
+        Optional<VideogiocoGiocato> opt = videogiocoService.findVideogiocoGiocatoByVideogiocoIdAndUtenteId(videogiocoId, utenteId);
+        return opt.map(giocato -> ResponseEntity.ok(VideogiocoGiocatoDto.toDto(giocato))).
+                orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

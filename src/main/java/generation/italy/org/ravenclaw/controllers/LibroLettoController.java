@@ -25,7 +25,7 @@ public class LibroLettoController {
     }
 
     @GetMapping
-    private ResponseEntity<?> searchVLibriLettiByUtente(@RequestParam int utenteId){
+    private ResponseEntity<?> searchLibriLettiByUtente(@RequestParam int utenteId){
         List<LibroLetto> libriLetti = libroService.findLibroLettoByUtente(utenteId);
         List<LibroLettoDto> libroLettoDto = libriLetti.stream().map(LibroLettoDto::toDto).toList();
         return ResponseEntity.ok(libroLettoDto);
@@ -36,6 +36,13 @@ public class LibroLettoController {
         Optional<LibroLetto> opt = libroService.findLibroLettoById(id);
         return opt.map(ll -> ResponseEntity.ok().body(LibroLettoDto.toDto(ll)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{libroId}/{utenteId}")
+    private ResponseEntity<LibroLettoDto> searchIfLibroIsLetto(@PathVariable int libroId, @PathVariable int utenteId) {
+        Optional<LibroLetto> opt = libroService.findLibroLettoByLibroIdAndUtenteId(libroId, utenteId);
+        return opt.map(letto -> ResponseEntity.ok(LibroLettoDto.toDto(letto))).
+                orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

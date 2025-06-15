@@ -30,4 +30,6 @@ public interface FilmService {
 
 
     boolean deleteFilmVisto(int id);
+
+    Optional<FilmVisto> findFilmVistoByFilmIdAndUtenteId(int filmId, int utenteId);
 }

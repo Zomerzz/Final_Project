@@ -33,4 +33,6 @@ public interface VideogiocoService {
     VideogiocoGiocato saveVideogiocoGiocato(VideogiocoGiocato vg, int videogiocoId, int utenteId) throws generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 
     boolean deleteVideogiocoGiocato(int id);
+
+    Optional<VideogiocoGiocato> findVideogiocoGiocatoByVideogiocoIdAndUtenteId(int videogiocoId, int utenteId);
 }

@@ -2,7 +2,9 @@ package generation.italy.org.ravenclaw.controllers;
 
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.FilmVistoDto;
+import generation.italy.org.ravenclaw.models.dtos.LibroLettoDto;
 import generation.italy.org.ravenclaw.models.entities.FilmVisto;
+import generation.italy.org.ravenclaw.models.entities.LibroLetto;
 import generation.italy.org.ravenclaw.models.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,13 @@ public class FilmVistoController {
         Optional<FilmVisto> opt = filmService.findFilmVistoById(id);
         return opt.map(ff -> ResponseEntity.ok().body(FilmVistoDto.toDto(ff)))
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/{filmId}/{utenteId}")
+    private ResponseEntity<FilmVistoDto> searchIfLibroIsLetto(@PathVariable int filmId, @PathVariable int utenteId) {
+        Optional<FilmVisto> opt = filmService.findFilmVistoByFilmIdAndUtenteId(filmId, utenteId);
+        return opt.map(visto -> ResponseEntity.ok(FilmVistoDto.toDto(visto))).
+                orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping

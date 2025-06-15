@@ -5,6 +5,9 @@ import { RecensioniListComponent } from "../../recensioni/recensioni-list/recens
 import { Recensione } from '../../../model/Recensione';
 import { RecensioneService } from '../../../services/RecensioneService';
 import { CommonModule } from '@angular/common';
+import { MediaRegistratoService } from '../../../services/MediaRegistratoService';
+import { AuthService } from '../../../services/AuthService';
+import { LibroLetto } from '../../../model/LibroLetto';
 
 @Component({
   selector: 'app-book-details',
@@ -14,10 +17,11 @@ import { CommonModule } from '@angular/common';
 })
 export class BookDetailsComponent implements OnInit{
   libro!: Libro;
+  libroLetto!: LibroLetto | null;
   recensioni!: Recensione[];
-  recensioneService = inject(RecensioneService);
-
-  constructor(private route: ActivatedRoute) { }
+  private _recensioneService = inject(RecensioneService);
+  private _authService = inject(AuthService);
+  private _mediaRegistratoService = inject(MediaRegistratoService);
 
   ngOnInit(): void {
     // Recupera i dati direttamente da history.state
@@ -28,11 +32,40 @@ export class BookDetailsComponent implements OnInit{
       console.log('Nessun dato disponibile per il libro');
     }
 
-    this.recensioneService.getRecensioni('libro', this.libro.id).subscribe({
+    this._recensioneService.getRecensioni('libro', this.libro.id).subscribe({
       next: list => this.recensioni = list,
       error: e => alert('Errore nel caricamento delle recensioni')
     });
-    console.log(this.recensioni);
+    
+    if(this.isAlreadylogged){
+      this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
+          .subscribe({
+            next: ll => this.libroLetto = ll,
+            error: e => this.libroLetto = null
+      });
+    }
   }
 
+  get isAlreadylogged() {
+    return this._authService.isLogged();
+  }
+
+  registerLibroLetto() {
+    this._mediaRegistratoService.addLibroLetto({
+      libro: this.libro,
+      utenteId: Number(this._authService.getUserId())
+    }).subscribe({
+      next: ll => this.libroLetto = ll,
+      error: e => alert('errore nella registrazione del libro letto: '+ e)
+    });
+  }
+
+  deleteLibroLetto() {
+    if(this.libroLetto){
+      this._mediaRegistratoService.deleteLibroLetto(this.libroLetto.libroLettoId).subscribe({
+      next: () => this.libroLetto = null,
+      error: e => alert('errore nella registrazione del libro letto: '+ e)
+      });
+    }
+ }
 }

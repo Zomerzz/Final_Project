@@ -19,6 +19,19 @@
 
     </div>
 } -->
+
+@if(isAlreadylogged && !libroLetto){
+<div>
+    <button (click)="registerLibroLetto()">Segna come letto</button>
+</div>
+}
+
+@if(isAlreadylogged && libroLetto){
+<div>
+    <button (click)="deleteLibroLetto()">Rimuovi dai libri letti</button>
+</div>
+}
+
 @if(recensioni.length){
     <div>
         <h2>Recensioni dei nostri utenti</h2>

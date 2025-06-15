@@ -107,4 +107,9 @@ public class JpaFilmService implements FilmService {
         filmVistoRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    public Optional<FilmVisto> findFilmVistoByFilmIdAndUtenteId(int filmId, int utenteId) {
+        return filmVistoRepo.findByUtenteUtenteIdAndFilmFilmId(utenteId, filmId);
+    }
 }

@@ -38,4 +38,6 @@ public interface LibroService {
     LibroLetto saveLibroLetto(LibroLetto libroLetto, int libroId, int utenteId) throws EntityNotFoundException;
 
     boolean deleteLibroLetto(int id);
+
+    Optional<LibroLetto> findLibroLettoByLibroIdAndUtenteId(int libroId, int utenteId);
 }

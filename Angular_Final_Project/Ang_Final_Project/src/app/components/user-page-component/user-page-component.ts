@@ -20,15 +20,15 @@ import { AuthService } from '../../services/AuthService';
 export class UserPageComponent implements OnInit{
   utenteId!: number;
   //filmVisti ha dentro i film e le recensioni se ci sono
-  filmVisti!: FilmVisto[];
+  filmVisti: FilmVisto[] = [];
   //films ha dentro solo i film visti
-  films!: Film[];
+  films: Film[] = [];
 
-  libriLetti!: LibroLetto[];
-  libri!: Libro[];
+  libriLetti: LibroLetto[] = [];
+  libri: Libro[] = [];
 
-  videogiochiGiocati!: VideogiocoGiocato[];
-  videogiochi!: Videogioco[];
+  videogiochiGiocati: VideogiocoGiocato[] = [];
+  videogiochi: Videogioco[] = [];
 
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);

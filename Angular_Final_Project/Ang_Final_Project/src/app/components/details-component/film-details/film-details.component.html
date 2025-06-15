@@ -19,6 +19,19 @@
 
     </div>
 } -->
+    
+@if(isAlreadylogged && !filmVisto){
+<div>
+    <button (click)="registerFilmVisto()">Segna come visto</button>
+</div>
+}
+
+@if(isAlreadylogged && filmVisto){
+<div>
+    <button (click)="deleteFilmVisto()">Rimuovi dai film visti</button>
+</div>
+}
+
 @if(recensioni.length){
     <div>
         <h2>Recensioni dei nostri utenti</h2>

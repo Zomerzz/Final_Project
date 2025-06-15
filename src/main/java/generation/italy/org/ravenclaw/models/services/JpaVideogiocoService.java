@@ -115,4 +115,9 @@ public class JpaVideogiocoService implements VideogiocoService{
         return true;
     }
 
+    @Override
+    public Optional<VideogiocoGiocato> findVideogiocoGiocatoByVideogiocoIdAndUtenteId(int videogiocoId, int utenteId) {
+        return videogiocoGiocatoRepository.findByUtenteUtenteIdAndVideogiocoVideogiocoId(utenteId, videogiocoId);
+    }
+
 }

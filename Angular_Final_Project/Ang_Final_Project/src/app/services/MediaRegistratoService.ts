@@ -25,6 +25,10 @@ export class MediaRegistratoService {
     deleteFilmVisto(filmVistoId: number): Observable<void>{
         return this._http.delete<void>(`${this._filmUrl}/${filmVistoId}`)
     }
+
+    getFilmVistoByFilmIdAndUtenteId(filmId: number, utenteId: number): Observable<FilmVisto> {
+        return this._http.get<FilmVisto>(`${this._videogiocoUrl}/${filmId}/${utenteId}`);
+    }
     
     getLibriLetti(utenteId: number): Observable<LibroLetto[]>{
         return this._http.get<LibroLetto[]>(`${this._libroUrl}?utenteId=${utenteId}`)
@@ -38,6 +42,10 @@ export class MediaRegistratoService {
         return this._http.delete<void>(`${this._libroUrl}/${libroLettoId}`)
     }
 
+    getLibroLettoByLibroIdAndUtenteId(libroId: number, utenteId: number): Observable<LibroLetto> {
+        return this._http.get<LibroLetto>(`${this._libroUrl}/${libroId}/${utenteId}`);
+    }
+
     getVideogiochiGiocati(utenteId: number): Observable<VideogiocoGiocato[]>{
         return this._http.get<VideogiocoGiocato[]>(`${this._videogiocoUrl}?utenteId=${utenteId}`)
     }
@@ -49,4 +57,8 @@ export class MediaRegistratoService {
     deleteVideogiocoGiocato(videogiocoGiocatoId: number): Observable<void>{
         return this._http.delete<void>(`${this._videogiocoUrl}/${videogiocoGiocatoId}`)
     }
+
+    getVideogiocoGiocatoByVideogiocoIdAndUtenteId(videogiocoId: number, utenteId: number): Observable<VideogiocoGiocato> {
+        return this._http.get<VideogiocoGiocato>(`${this._videogiocoUrl}/${videogiocoId}/${utenteId}`);
+    }
 }

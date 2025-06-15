@@ -110,4 +110,9 @@ public class JpaLibroService implements LibroService{
         libroLettoRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    public Optional<LibroLetto> findLibroLettoByLibroIdAndUtenteId(int libroId, int utenteId) {
+        return libroLettoRepo.findByUtenteUtenteIdAndLibroLibroId(utenteId,libroId);
+    }
 }
