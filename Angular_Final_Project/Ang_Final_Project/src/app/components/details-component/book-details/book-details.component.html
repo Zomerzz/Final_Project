@@ -1,17 +1,28 @@
-<div class="libro-details">
-    <img class ="libro-img" [src]="libro.imgUrl">
-    <h1>{{libro.titolo}}</h1>
-    <p>Descrizione:</p>
-    <p>{{libro.descrizione}}</p>
-    
-    <p>Data di pubblicazione:</p>
-    <p>{{libro.dataDiPubblicazione}}</p>
+<div class="details">
+    <img class="details-img" [src]="libro.imgUrl">
+    <div class="details-text">
+        <h1>{{libro.titolo}}</h1>
+        <p>Descrizione:</p>
+        <p>{{libro.descrizione}}</p>
 
-    <p>Numero di pagine: {{libro.numeroPagine}}</p>
+        <p>Data di pubblicazione:</p>
+        <p>{{libro.dataDiPubblicazione}}</p>
 
-    <p>Casa Editrice: {{libro.casaEditrice.nome}}</p>
+        <p>Numero di pagine: {{libro.numeroPagine}}</p>
 
-    <p>Voto: {{libro.voto}}</p>
+        <p>Casa Editrice: {{libro.casaEditrice.nome}}</p>
+
+        <div class="voto-Display">
+            <div>Voto: {{libro.voto}}</div>
+            <div class="progress-bar-container">
+                
+                <div class="progress-bar-fill"
+                    [style.width.%]="libro.voto"
+                    [style.backgroundColor]="getBarColor()">
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
@@ -33,9 +44,8 @@
 }
 
 @if(recensioni.length){
-    <div>
-        <h2>Recensioni dei nostri utenti</h2>
-        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
-    </div>
+<div>
+    <h2>Recensioni dei nostri utenti</h2>
+    <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+</div>
 }
-

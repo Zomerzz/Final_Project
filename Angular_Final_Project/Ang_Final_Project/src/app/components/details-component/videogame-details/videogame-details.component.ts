@@ -66,4 +66,12 @@ export class VideogameDetailsComponent implements OnInit{
     }
  }
 
+ getBarColor(): string {
+    const voto = this.videogioco.voto;
+    if (voto >= 75) return '#30D158';
+    if (voto >= 50) return '#FFD60A';
+    if (voto >= 25) return '#FF9F0A';
+    return '#FF453A';
+}
+
 }

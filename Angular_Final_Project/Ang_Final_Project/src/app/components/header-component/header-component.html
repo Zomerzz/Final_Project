@@ -1,26 +1,21 @@
 <main>
-    <div id="buttonsDiv" [routerLink]="['home']">     
-        <a><img src="https://i.imgur.com/4q0TQSI.png"></a>
-        @if(isAlreadylogged){
-        <button (click)="['user']">PROFILE</button>
+    <button id="buttonsDiv" routerLink="/home"></button>
+    <form (ngSubmit) = "send()"> 
+        <div>
+            <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
+            <button>🔍</button>
+        </div> 
+    </form>
+    <div id="authDiv">
+        @if (!isinLoginPage) {
+            @if (isAlreadylogged) {
+                <button routerLink="/auth/logout">LogOut</button>
+                <button routerLink="/user">PROFILE</button>
+            }
+            @else {
+                <button routerLink="/auth/login">Login</button>
+                <button routerLink="/auth/register">Register</button>
+            }
         }
     </div>
-
-<form (ngSubmit) = "send()"> 
-    <div>
-        <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
-        <button>🔍</button>
-    </div> 
-</form>
-<div id="authDiv">
-    @if (!isinLoginPage) {
-        @if (isAlreadylogged) {
-            <button routerLink="/auth/logout">LogOut</button>
-        }
-        @else {
-            <button routerLink="/auth/login">Login</button>
-            <button routerLink="/auth/register">Register</button>
-        }
-    }
-</div>
 </main>

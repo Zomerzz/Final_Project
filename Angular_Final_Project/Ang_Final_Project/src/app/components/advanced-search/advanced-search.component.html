@@ -1,57 +1,75 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label for="tipoMedia">Tipo di Opera</label>
+    <h3><label for="tipoMedia">Tipo di Opera</label></h3>
     <select formControlName="tipoMedia" id="tipoMedia">
         @for (media of mediaTypes; track media) {
-            <option [value]="media">{{media | uppercase}}</option>
-        }   
+        <option [value]="media">{{media | uppercase}}</option>
+        }
     </select>
     @if (titolo) {
-        <input type="text" placeholder="Titolo" formControlName="titolo">
+    <input type="text" placeholder="Titolo" formControlName="titolo">
     }
     @if (numeroPagine) {
-        <input type="number" placeholder="Numero di Pagine" formControlName="numeroPagine">
+    <input type="number" placeholder="Numero di Pagine" formControlName="numeroPagine">
     }
     @if (autoreNome) {
-        <input type="text" placeholder="Autore" formControlName="autoreNome">
+    <input type="text" placeholder="Autore" formControlName="autoreNome">
     }
     @if (casaEditriceNome) {
-        <input type="text" placeholder="Casa Editrice" formControlName="casaEditriceNome">
+    <input type="text" placeholder="Casa Editrice" formControlName="casaEditriceNome">
     }
     @if (casaDiProduzione) {
-        <input type="text" placeholder="Casa di Produzione" formControlName="casaDiProduzione">
+    <input type="text" placeholder="Casa di Produzione" formControlName="casaDiProduzione">
     }
     @if (casaDiPubblicazione) {
-        <input type="text" placeholder="Casa Di Pubblicazione" formControlName="casaDiPubblicazione">
+    <input type="text" placeholder="Casa Di Pubblicazione" formControlName="casaDiPubblicazione">
     }
     @if (minData) {
-        <input type="date" placeholder="Data di inizio" formControlName="minData">
+    <input type="date" placeholder="Data di inizio" formControlName="minData">
     }
     @if (maxData) {
-        <input type="date" placeholder="Data di fine" formControlName="maxData">
+    <input type="date" placeholder="Data di fine" formControlName="maxData">
     }
     @if (minVoto) {
-        <input type="number" placeholder="Voto minimo" formControlName="minVoto">
+    <input type="number" placeholder="Voto minimo" formControlName="minVoto">
     }
     @if (maxVoto) {
-        <input type="number" placeholder="Voto massimo" formControlName="maxVoto">
+    <input type="number" placeholder="Voto massimo" formControlName="maxVoto">
     }
     @if (minOreDiGiocoStoriaPrincipale) {
-        <input type="number" placeholder="Min ore di Gioco" formControlName="minOreDiGiocoStoriaPrincipale">
+    <input type="number" placeholder="Min ore di Gioco" formControlName="minOreDiGiocoStoriaPrincipale">
     }
     @if (maxOreDiGiocoStoriaPrincipale) {
-        <input type="number" placeholder="Max ore di Gioco" formControlName="maxOreDiGiocoStoriaPrincipale">
+    <input type="number" placeholder="Max ore di Gioco" formControlName="maxOreDiGiocoStoriaPrincipale">
     }
     @if (tags) {
+    <h3>Tags</h3>
+    <div class="tag-list">
+        
+        @for (tag of currentTags; track tag) {
+        <div class="checkbox-wrapper">
+            <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"
+                [checked]="form.value.tags?.includes(tag.tagId)" [value]="tag.tagId"
+                (change)="onTagCheckboxChange($event)" />
+            <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                {{ tag.nome }}
+            </label>
+        </div>
+        }
+    </div>
+    }
+
+    <!-- @if (tags) {
         <div class="tag-list">
             <p>Tags</p>
             @for (tag of currentTags; track tag) {
-                <label>
-                    <input type="checkbox" [checked]="form.value.tags?.includes(tag.tagId)" [value]="tag.tagId" (change) = "onTagCheckboxChange($event)">
+                <label class="checkbox-button">
+                    <input class="checkboxtag" type="checkbox" [checked]="form.value.tags?.includes(tag.tagId)" [value]="tag.tagId" (change) = "onTagCheckboxChange($event)">
                     {{ tag.nome }}
                 </label>
             }            
         </div>
-    }
+    } -->
 
-    <button type="submit">Submit</button>
+
+    <button id="sub" type="submit">Submit</button>
 </form>

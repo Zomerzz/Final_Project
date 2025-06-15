@@ -1,15 +1,90 @@
-form{
+*{
+    color:whitesmoke;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+form {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
-form>input{
+
+form>input,select {
+    border: 2px solid #8E8E93;
+    background: #2C2C2E;
     padding: 0.30em;
     border-radius: 1em;
+    border-radius: 5px;
+    color: whitesmoke;
 }
-form >.tag-list{
+
+input::placeholder,select::placeholder{
+    color: whitesmoke;
+}
+
+form>input:hover,select:hover {
+    border: 2px solid #8E8E93;
+    background-color: #3a3a3c;
+}
+form>input:hover,select:hover {
+    scrollbar-arrow-color: transparent;
+}
+
+form>.tag-list {
     display: flex;
-    gap:0.25em;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.checkbox-wrapper {
+    position: relative;
+    margin: 1%;
+}
+
+.checkboxtag {
+    display: none;
+}
+
+.checkbox-button {
+    display: inline-block;
+    padding: 0.5em 1.2em;
+    border: 2px solid #8E8E93;
+    border-radius: 5px;
+    background: #2C2C2E;
+    color: #ffffff;
+    font: normal normal normal 14px/14px Poppins, sans-serif;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* When checked, style the label differently */
+.checkboxtag:checked+.checkbox-button {
+    background-color: #30D158;
+    color: white;
+    border-color: #30D158;
+}
+
+/* Optional: hover effect */
+.checkbox-button:hover, #sub:hover {
+    background-color: #3a3a3c;
+}
+
+#sub{
+    background: #2C2C2E;
+    border: 2px solid #8E8E93;
+    border-radius: 5px;
+    width: max-content;
+    margin: auto;
+    margin-top: 2em;
     
+    padding: 1em 2em;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

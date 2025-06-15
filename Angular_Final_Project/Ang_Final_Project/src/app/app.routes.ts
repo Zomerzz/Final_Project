@@ -10,16 +10,16 @@ import { VideogameDetailsComponent } from './components/details-component/videog
 import { BookDetailsComponent } from './components/details-component/book-details/book-details.component';
 
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
-  { path: 'user', component: UserPageComponent},
-  { path: 'auth/login', component:LoginAreaComponent},
-  { path: 'auth/logout', component:LogOutComponent},
-  { path: 'auth/register', component:RegisterAreaComponent},
-  { path: 'admin', component:AdminComponent},
-  
-  //PATH PER LE DETAILS PAGE
-   {path: 'films-dettagli/:id', component: FilmDetailsComponent},
-   {path: 'libro-dettagli/:id', component: BookDetailsComponent},
-   {path: 'videogiochi-dettagli/:id', component: VideogameDetailsComponent}
-   ];
+{ path: 'home', component: HomeComponent },
+{ path: 'user', component: UserPageComponent },
+{ path: 'auth/login', component: LoginAreaComponent },
+{ path: 'auth/logout', component: LogOutComponent },
+{ path: 'auth/register', component: RegisterAreaComponent },
+{ path: 'admin', component: AdminComponent },
+
+//PATH PER LE DETAILS PAGE
+{ path: 'films-dettagli/:id', component: FilmDetailsComponent },
+{ path: 'libro-dettagli/:id', component: BookDetailsComponent },
+{ path: 'videogiochi-dettagli/:id', component: VideogameDetailsComponent }
+];
 

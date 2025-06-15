@@ -10,62 +10,70 @@ import { AuthService } from '../../../services/AuthService';
 import { LibroLetto } from '../../../model/LibroLetto';
 
 @Component({
-  selector: 'app-book-details',
-  imports: [CommonModule, RecensioniListComponent],
-  templateUrl: './book-details.component.html',
-  styleUrl: './book-details.component.css'
+    selector: 'app-book-details',
+    imports: [CommonModule, RecensioniListComponent],
+    templateUrl: './book-details.component.html',
+    styleUrl: './book-details.component.css'
 })
-export class BookDetailsComponent implements OnInit{
-  libro!: Libro;
-  libroLetto!: LibroLetto | null;
-  recensioni: Recensione[] = [];
-  private _recensioneService = inject(RecensioneService);
-  private _authService = inject(AuthService);
-  private _mediaRegistratoService = inject(MediaRegistratoService);
+export class BookDetailsComponent implements OnInit {
+    libro!: Libro;
+    libroLetto!: LibroLetto | null;
+    recensioni!: Recensione[];
+    private _recensioneService = inject(RecensioneService);
+    private _authService = inject(AuthService);
+    private _mediaRegistratoService = inject(MediaRegistratoService);
 
-  ngOnInit(): void {
-    // Recupera i dati direttamente da history.state
-    if (history.state && history.state.libro) {
-      this.libro = history.state.libro;
-    } else {
-      // fallback in caso di errore, come se la pagina venisse caricata senza stato
-      console.log('Nessun dato disponibile per il libro');
+    ngOnInit(): void {
+        // Recupera i dati direttamente da history.state
+        if (history.state && history.state.libro) {
+            this.libro = history.state.libro;
+        } else {
+            // fallback in caso di errore, come se la pagina venisse caricata senza stato
+            console.log('Nessun dato disponibile per il libro');
+        }
+
+        this._recensioneService.getRecensioni('libro', this.libro.id).subscribe({
+            next: list => this.recensioni = list,
+            error: e => alert('Errore nel caricamento delle recensioni')
+        });
+
+        if (this.isAlreadylogged) {
+            this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
+                .subscribe({
+                    next: ll => this.libroLetto = ll,
+                    error: e => this.libroLetto = null
+                });
+        }
     }
 
-    this._recensioneService.getRecensioni('libro', this.libro.id).subscribe({
-      next: list => this.recensioni = list,
-      error: e => alert('Errore nel caricamento delle recensioni')
-    });
-    
-    if(this.isAlreadylogged){
-      this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
-          .subscribe({
-            next: libroLetto => this.libroLetto = libroLetto,
-            error: e => this.libroLetto = null
-      });
+    get isAlreadylogged() {
+        return this._authService.isLogged();
     }
-  }
 
-  get isAlreadylogged() {
-    return this._authService.isLogged();
-  }
-
-  registerLibroLetto() { 
-    this._mediaRegistratoService.addLibroLetto({
-      libro: this.libro,
-      utenteId: Number(this._authService.getUserId())
-    }).subscribe({
-      next: libroLetto => this.libroLetto = libroLetto,
-      error: e => alert('errore nella registrazione del libro letto: '+ e)
-    });
-  }
-
-  deleteLibroLetto() {
-    if(this.libroLetto){
-      this._mediaRegistratoService.deleteLibroLetto(this.libroLetto.libroLettoId).subscribe({
-      next: () => this.libroLetto = null,
-      error: e => alert('errore nella registrazione del libro letto: '+ e)
-      });
+    registerLibroLetto() {
+        this._mediaRegistratoService.addLibroLetto({
+            libro: this.libro,
+            utenteId: Number(this._authService.getUserId())
+        }).subscribe({
+            next: ll => this.libroLetto = ll,
+            error: e => alert('errore nella registrazione del libro letto: ' + e)
+        });
     }
- }
+
+    deleteLibroLetto() {
+        if (this.libroLetto) {
+            this._mediaRegistratoService.deleteLibroLetto(this.libroLetto.libroLettoId).subscribe({
+                next: () => this.libroLetto = null,
+                error: e => alert('errore nella registrazione del libro letto: ' + e)
+            });
+        }
+    }
+
+    getBarColor(): string {
+    const voto = this.libro.voto;
+    if (voto >= 75) return '#30D158';
+    if (voto >= 50) return '#FFD60A';
+    if (voto >= 25) return '#FF9F0A';
+    return '#FF453A';
+}
 }

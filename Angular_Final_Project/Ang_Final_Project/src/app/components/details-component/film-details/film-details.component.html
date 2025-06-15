@@ -1,17 +1,27 @@
-<div class="film-details">
-    <img class = "film-img" [src]="film.imgUrl">
-    <h1>{{film.titolo}}</h1>
-    <p>Descrizione:</p>
-    <p>{{film.descrizione}}</p>
-    
-    <p>Data di pubblicazione:</p>
-    <p>{{film.dataDiPubblicazione}}</p>
+<div class="details">
+    <img class="details-img" [src]="film.imgUrl">
+    <div class="details-text">
+        <h1>{{film.titolo}}</h1>
+        <p>Descrizione:</p>
+        <p>{{film.descrizione}}</p>
 
-    <p>Durata: {{film.durata}}</p>
+        <p>Data di pubblicazione:</p>
+        <p>{{film.dataDiPubblicazione}}</p>
 
-    <p>Casa di produzione: {{film.casaDiProduzione.nome}}</p>
-    <p>Casa di pubblicazione: {{film.casaDiPubblicazione.nome}}</p>
-    <p>Voto: {{film.voto}}</p>
+        <p>Durata: {{film.durata}}</p>
+
+        <p>Casa di produzione: {{film.casaDiProduzione.nome}}</p>
+        <p>Casa di pubblicazione: {{film.casaDiPubblicazione.nome}}</p>
+        <div class="voto-Display">
+            <div>Voto: {{film.voto}}</div>
+            <div class="progress-bar-container">
+
+                <div class="progress-bar-fill" [style.width.%]="film.voto" [style.backgroundColor]="getBarColor()">
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </div>
 <!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
@@ -19,7 +29,7 @@
 
     </div>
 } -->
-    
+
 @if(isAlreadylogged && !filmVisto){
 <div>
     <button (click)="registerFilmVisto()">Segna come visto</button>
@@ -33,8 +43,8 @@
 }
 
 @if(recensioni.length){
-    <div>
-        <h2>Recensioni dei nostri utenti</h2>
-        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
-    </div>
+<div>
+    <h2>Recensioni dei nostri utenti</h2>
+    <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+</div>
 }
