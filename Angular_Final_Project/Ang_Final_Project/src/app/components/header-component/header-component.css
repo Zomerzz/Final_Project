@@ -39,4 +39,8 @@ main #authDiv{
 #buttonDiv {
 grid-column: 1;
 }
-
+#buttonsDiv img {
+  width: 75px; 
+  height: auto; 
+  border-radius: 50px;
+}
