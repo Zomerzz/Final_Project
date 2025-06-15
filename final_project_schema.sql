@@ -330,11 +330,25 @@ ALTER SEQUENCE public.libri_assegnamento_tag_assegnamento_id_seq OWNED BY public
 
 
 --
+-- Name: libri_letti_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
+--
+
+CREATE SEQUENCE public.libri_letti_id_seq
+    START WITH 50
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.libri_letti_id_seq OWNER TO "postgresMaster";
+
+--
 -- Name: libri_letti; Type: TABLE; Schema: public; Owner: postgresMaster
 --
 
 CREATE TABLE public.libri_letti (
-    libro_letto_id integer NOT NULL,
+    libro_letto_id integer DEFAULT nextval('public.libri_letti_id_seq'::regclass) NOT NULL,
     libro_id integer NOT NULL,
     utente_id integer NOT NULL,
     recensione_id integer
@@ -342,28 +356,6 @@ CREATE TABLE public.libri_letti (
 
 
 ALTER TABLE public.libri_letti OWNER TO "postgresMaster";
-
---
--- Name: libri_letti_libri_letti_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
---
-
-CREATE SEQUENCE public.libri_letti_libri_letti_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER SEQUENCE public.libri_letti_libri_letti_id_seq OWNER TO "postgresMaster";
-
---
--- Name: libri_letti_libri_letti_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgresMaster
---
-
-ALTER SEQUENCE public.libri_letti_libri_letti_id_seq OWNED BY public.libri_letti.libro_letto_id;
-
 
 --
 -- Name: libri_libro_id_seq; Type: SEQUENCE; Schema: public; Owner: postgresMaster
@@ -773,13 +765,6 @@ ALTER TABLE ONLY public.libri_assegnamento_tag ALTER COLUMN assegnamento_id SET 
 
 
 --
--- Name: libri_letti libro_letto_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
---
-
-ALTER TABLE ONLY public.libri_letti ALTER COLUMN libro_letto_id SET DEFAULT nextval('public.libri_letti_libri_letti_id_seq'::regclass);
-
-
---
 -- Name: recensioni recensione_id; Type: DEFAULT; Schema: public; Owner: postgresMaster
 --
 
@@ -958,6 +943,8 @@ COPY public.film_visti (film_visto_id, film_id, utente_id, recensione_id) FROM s
 8	8	8	8
 9	9	9	9
 10	10	10	10
+11	1	12	\N
+13	1	12	\N
 \.
 
 
@@ -1002,16 +989,6 @@ COPY public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) FROM stdi
 --
 
 COPY public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) FROM stdin;
-1	1	1	1
-2	2	2	2
-3	3	3	3
-4	4	4	4
-5	5	5	5
-6	6	6	6
-7	7	7	7
-8	8	8	8
-9	9	9	9
-10	10	10	10
 \.
 
 
@@ -1103,6 +1080,7 @@ COPY public.utenti (utente_id, nome, password, email) FROM stdin;
 9	user_nine	pwd123	user9@example.com
 10	user_ten	pwd123	user10@example.com
 11	Lorenzo	$2a$10$gdtHFhrAmRVkjbroeWzZP.cAm9nurITg9bifZU9u1aYcDUl0FDpY2	lorenzo.coretti1@gmail.com
+12	Lorenzo	$2a$10$79QDxr49KNxDHDc1MXwc1.8BXaMV85Hl3QmFae.Iimp82FTSS5M.u	lorenzo@gmail.com
 \.
 
 
@@ -1112,6 +1090,7 @@ COPY public.utenti (utente_id, nome, password, email) FROM stdin;
 
 COPY public.utenti_authorities (utente_id, authority) FROM stdin;
 11	ROLE_EMPLOYEE
+12	ROLE_EMPLOYEE
 \.
 
 
@@ -1166,6 +1145,7 @@ COPY public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id
 8	8	8	8
 9	9	9	9
 10	10	10	10
+11	6	12	\N
 \.
 
 
@@ -1208,7 +1188,7 @@ SELECT pg_catalog.setval('public.film_prodotto_da_prodotto_da_id_seq', 11, false
 -- Name: film_visti_film_visti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.film_visti_film_visti_id_seq', 11, false);
+SELECT pg_catalog.setval('public.film_visti_film_visti_id_seq', 13, true);
 
 
 --
@@ -1219,10 +1199,10 @@ SELECT pg_catalog.setval('public.libri_assegnamento_tag_assegnamento_id_seq', 11
 
 
 --
--- Name: libri_letti_libri_letti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+-- Name: libri_letti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.libri_letti_libri_letti_id_seq', 11, false);
+SELECT pg_catalog.setval('public.libri_letti_id_seq', 50, false);
 
 
 --
@@ -1264,7 +1244,7 @@ SELECT pg_catalog.setval('public.tag_tag_id_seq', 11, false);
 -- Name: utente_utente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.utente_utente_id_seq', 12, false);
+SELECT pg_catalog.setval('public.utente_utente_id_seq', 12, true);
 
 
 --
@@ -1278,7 +1258,7 @@ SELECT pg_catalog.setval('public.videogiochi_assegnamento_tag_assegnamento_id_se
 -- Name: videogiochi_giocati_videogiochi_giocati_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.videogiochi_giocati_videogiochi_giocati_id_seq', 11, false);
+SELECT pg_catalog.setval('public.videogiochi_giocati_videogiochi_giocati_id_seq', 11, true);
 
 
 --
@@ -1373,6 +1353,14 @@ ALTER TABLE ONLY public.film_visti
 
 ALTER TABLE ONLY public.libri_assegnamento_tag
     ADD CONSTRAINT libri_assegnamento_tag_pkey PRIMARY KEY (assegnamento_id);
+
+
+--
+-- Name: libri_letti libri_letti_unique; Type: CONSTRAINT; Schema: public; Owner: postgresMaster
+--
+
+ALTER TABLE ONLY public.libri_letti
+    ADD CONSTRAINT libri_letti_unique UNIQUE (libro_id, utente_id);
 
 
 --
@@ -1620,7 +1608,7 @@ ALTER TABLE ONLY public.libri_letti
 --
 
 ALTER TABLE ONLY public.libri_letti
-    ADD CONSTRAINT libri_letti_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id) NOT VALID;
+    ADD CONSTRAINT libri_letti_recensione_id_fkey FOREIGN KEY (recensione_id) REFERENCES public.recensioni(recensione_id);
 
 
 --
@@ -1628,7 +1616,7 @@ ALTER TABLE ONLY public.libri_letti
 --
 
 ALTER TABLE ONLY public.libri_letti
-    ADD CONSTRAINT libri_letti_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id) NOT VALID;
+    ADD CONSTRAINT libri_letti_utente_id_fkey FOREIGN KEY (utente_id) REFERENCES public.utenti(utente_id);
 
 
 --
