@@ -16,7 +16,7 @@ import { MediaRegistratoService } from '../../../services/MediaRegistratoService
 export class VideogameDetailsComponent implements OnInit{
   videogioco!: Videogioco;
   videogiocoGiocato!: VideogiocoGiocato | null;
-  recensioni!: Recensione[];
+  recensioni: Recensione[] = [];
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);

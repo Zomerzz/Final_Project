@@ -63,9 +63,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers("/api/auth/**","/api/autore/**","/api/film/**"
-                                ,"/api/filmvisto/**","/api/casa/**","/api/libro/**",
-                                "/api/libroletto/**","/api/recensione/**","/api/tag/**","/api/videogioco/**"
-                                ,"/api/videogiocogiocato/**").permitAll()
+                                ,"/api/film-visto/**","/api/casa/**","/api/libro/**",
+                                "/api/libro-letto/**","/api/recensione/**","/api/tag/**","/api/videogioco/**"
+                                ,"/api/videogioco-giocato/**").permitAll()
                         //.requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/api/admin/**").permitAll()
                         .anyRequest().authenticated()

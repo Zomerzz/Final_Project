@@ -18,7 +18,7 @@ import { LibroLetto } from '../../../model/LibroLetto';
 export class BookDetailsComponent implements OnInit{
   libro!: Libro;
   libroLetto!: LibroLetto | null;
-  recensioni!: Recensione[];
+  recensioni: Recensione[] = [];
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
@@ -40,7 +40,7 @@ export class BookDetailsComponent implements OnInit{
     if(this.isAlreadylogged){
       this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
           .subscribe({
-            next: ll => this.libroLetto = ll,
+            next: libroLetto => this.libroLetto = libroLetto,
             error: e => this.libroLetto = null
       });
     }
@@ -50,12 +50,12 @@ export class BookDetailsComponent implements OnInit{
     return this._authService.isLogged();
   }
 
-  registerLibroLetto() {
+  registerLibroLetto() { 
     this._mediaRegistratoService.addLibroLetto({
       libro: this.libro,
       utenteId: Number(this._authService.getUserId())
     }).subscribe({
-      next: ll => this.libroLetto = ll,
+      next: libroLetto => this.libroLetto = libroLetto,
       error: e => alert('errore nella registrazione del libro letto: '+ e)
     });
   }
