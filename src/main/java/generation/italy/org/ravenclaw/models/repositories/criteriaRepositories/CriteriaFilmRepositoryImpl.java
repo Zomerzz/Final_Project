@@ -29,26 +29,51 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Film> query = cb.createQuery(Film.class);
         Root<Film> rootFilm = query.from(Film.class);
-        Predicate[] predicates = buildPredicates(cb, rootFilm, filmFilters);
+        Join<Film, Tag> tagJoin = null;
+        if (filmFilters.getTags() != null && !filmFilters.getTags().isEmpty()) {
+            tagJoin = rootFilm.join("tagSet");
+        }
+        Predicate[] predicates = buildPredicates(cb, rootFilm, filmFilters, tagJoin);
         query.where(predicates);
+        if (tagJoin != null) {
+            query.groupBy(rootFilm.get("id"));
+            query.having(
+                    cb.equal(
+                            cb.countDistinct(tagJoin.get("id")),
+                            filmFilters.getTags().size()
+                    )
+            );
+        }
         query.distinct(true);
         if(filmFilters.isOrderByVoto()){
             query.orderBy(cb.desc(rootFilm.get("voto")));
         }
         List<Film> films = em.createQuery(query).setFirstResult(filmFilters.getPageSize()*filmFilters.getNumPage()).setMaxResults(filmFilters.getPageSize())
                 .getResultList();
-
+    //conteggio totale
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
         Root<Film> totalRoot = totalQuery.from(Film.class);
-        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filmFilters);
+        Join<Film, Tag> totalTagJoin = null;
+        if (filmFilters.getTags() != null && !filmFilters.getTags().isEmpty()) {
+            totalTagJoin = totalRoot.join("tagSet");
+        }
+        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filmFilters, totalTagJoin);
         totalQuery.select(cb.countDistinct(totalQuery.from(Libro.class)));
         totalQuery.where(countPredicates);
-
+        if (totalTagJoin != null) {
+            totalQuery.groupBy(totalRoot.get("id"));
+            totalQuery.having(
+                    cb.equal(
+                            cb.countDistinct(totalTagJoin.get("id")),
+                            filmFilters.getTags().size()
+                    )
+            );
+        }
         Long totaleFilm = em.createQuery(totalQuery).getSingleResult();
         return new PageImpl<>(films, PageRequest.of(filmFilters.getNumPage(), filmFilters.getPageSize()), totaleFilm);
     }
 
-    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Film> rootFilm, FilmFilterCriteria filmFilters){
+    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Film> rootFilm, FilmFilterCriteria filmFilters, Join<Film,Tag> tagJoin){
         List<Predicate> predicates = new ArrayList<>();
 
         //=== FILM ========================
@@ -91,11 +116,9 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
         //per far arrivare dati dalla tabella autore
 
         if (filmFilters.getAutoreNome() != null) {
-            // Join tra Film e Autore
             Join<Film, CrewFilm> crewJoin = rootFilm.join("crew");
             Join<Join<Film, CrewFilm>, Autore> autoreJoin = crewJoin.join("autore");
 
-            // Split delle parole chiave inserite nel campo nome
             String[] keywords = filmFilters.getAutoreNome().trim().toLowerCase().split("\\s+");
 
             // Coalesce per evitare null su nome, secondoNome e cognome
@@ -112,7 +135,6 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
                     cognome
             );
 
-            // Lista di predicati LIKE per ciascuna keyword
             List<Predicate> keywordPredicates = new ArrayList<>();
             for (String kw : keywords) {
                 keywordPredicates.add(cb.like(fullName, "%" + kw + "%"));
@@ -121,15 +143,11 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
             // Unisci i predicati con OR (almeno una keyword deve essere contenuta)
             Predicate autoreKeywordMatch = cb.or(keywordPredicates.toArray(new Predicate[0]));
 
-            // Aggiungi il predicato alla lista della query principale
             predicates.add(autoreKeywordMatch);
         }
 
         //=== TAGS ===
         if(filmFilters.getTags() != null){
-            // Join diretta tra Libro e Tag
-            Join<Film, Tag> tagJoin = rootFilm.join("tagSet", JoinType.INNER);
-            // Predicate: il tagId è uno di quelli passati nella lista
             predicates.add(tagJoin.get("tagId").in(filmFilters.getTags()));
 
         }

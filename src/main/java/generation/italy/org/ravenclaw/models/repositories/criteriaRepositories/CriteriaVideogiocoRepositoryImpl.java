@@ -1,10 +1,8 @@
 package generation.italy.org.ravenclaw.models.repositories.criteriaRepositories;
 
 import generation.italy.org.ravenclaw.models.entities.Casa;
-import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.entities.Tag;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
-import generation.italy.org.ravenclaw.models.searchCriteria.LibroFilterCriteria;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,71 +29,105 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Videogioco> query = cb.createQuery(Videogioco.class);
         Root<Videogioco> root = query.from(Videogioco.class);
-        Predicate[] predicates = buildPredicates(cb, root, filters);
+
+        Join<Videogioco, Tag> tagJoin = null;
+        if (filters.getTags() != null && !filters.getTags().isEmpty()) {
+            tagJoin = root.join("tagSet");
+        }
+
+        Predicate[] predicates = buildPredicates(cb, root, tagJoin, filters);
         query.where(predicates);
+
+        if (tagJoin != null) {
+            query.groupBy(root.get("id"));
+            query.having(
+                    cb.equal(
+                            cb.countDistinct(tagJoin.get("id")),
+                            filters.getTags().size()
+                    )
+            );
+        }
+
         query.distinct(true);
-        if(filters.isOrderByVoto()){
+
+        if (filters.isOrderByVoto()) {
             query.orderBy(cb.desc(root.get("voto")));
         }
-        List<Videogioco> videogiochi = em.createQuery(query).setFirstResult(filters.getPageSize()*filters.getNumPage()).setMaxResults(filters.getPageSize())
+
+        List<Videogioco> videogiochi = em.createQuery(query)
+                .setFirstResult(filters.getPageSize() * filters.getNumPage())
+                .setMaxResults(filters.getPageSize())
                 .getResultList();
 
+        // Conteggio totale
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
         Root<Videogioco> totalRoot = totalQuery.from(Videogioco.class);
-        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filters);
+        Join<Videogioco, Tag> totalTagJoin = null;
+        if (filters.getTags() != null && !filters.getTags().isEmpty()) {
+            totalTagJoin = totalRoot.join("tagSet");
+        }
+
+        Predicate[] countPredicates = buildPredicates(cb, totalRoot, totalTagJoin, filters);
         totalQuery.select(cb.countDistinct(totalRoot));
         totalQuery.where(countPredicates);
+
+        if (totalTagJoin != null) {
+            totalQuery.groupBy(totalRoot.get("id"));
+            totalQuery.having(
+                    cb.equal(
+                            cb.countDistinct(totalTagJoin.get("id")),
+                            filters.getTags().size()
+                    )
+            );
+        }
 
         Long totaleVideogiochi = em.createQuery(totalQuery).getSingleResult();
         return new PageImpl<>(videogiochi, PageRequest.of(filters.getNumPage(), filters.getPageSize()), totaleVideogiochi);
     }
 
-    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Videogioco> root, VideogiocoFilterCriteria filters){
+    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Videogioco> root, Join<Videogioco, Tag> tagJoin, VideogiocoFilterCriteria filters) {
         List<Predicate> predicates = new ArrayList<>();
 
-        if(filters.getTitolo() != null){
+        if (filters.getTitolo() != null) {
             Expression<String> lowerTitolo = cb.lower(root.get("titolo"));
             predicates.add(cb.like(lowerTitolo, "%" + filters.getTitolo().toLowerCase() + "%"));
         }
 
-        if(filters.getNomeCasaDiProduzione() != null && !filters.getNomeCasaDiProduzione().isEmpty()){
+        if (filters.getNomeCasaDiProduzione() != null && !filters.getNomeCasaDiProduzione().isEmpty()) {
             Join<Videogioco, Casa> casaProdJoin = root.join("casaDiProduzione", JoinType.INNER);
             predicates.add(cb.like(cb.lower(casaProdJoin.get("nome")), "%" + filters.getNomeCasaDiProduzione() + "%"));
         }
 
-        if(filters.getNomeCasaDiPubblicazione() != null && !filters.getNomeCasaDiPubblicazione().isEmpty()) {
+        if (filters.getNomeCasaDiPubblicazione() != null && !filters.getNomeCasaDiPubblicazione().isEmpty()) {
             Join<Videogioco, Casa> casaPubJoin = root.join("casaDiPubblicazione", JoinType.INNER);
             predicates.add(cb.like(cb.lower(casaPubJoin.get("nome")), "%" + filters.getNomeCasaDiPubblicazione() + "%"));
         }
 
-        if(filters.getMinDataDiPubblicazione() != null){
+        if (filters.getMinDataDiPubblicazione() != null) {
             predicates.add(cb.greaterThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMinDataDiPubblicazione()));
         }
 
-        if(filters.getMaxDataDiPubblicazione() != null){
+        if (filters.getMaxDataDiPubblicazione() != null) {
             predicates.add(cb.lessThanOrEqualTo(root.get("dataDiPubblicazione"), filters.getMaxDataDiPubblicazione()));
-
         }
 
-        if(filters.getMinOreDiGiocoStoriaPrincipale() != null){
+        if (filters.getMinOreDiGiocoStoriaPrincipale() != null) {
             predicates.add(cb.greaterThanOrEqualTo(root.get("oreStoriaPrincipale"), filters.getMinOreDiGiocoStoriaPrincipale()));
         }
 
-        if(filters.getMaxOreDiGiocoStoriaPrincipale() != null){
+        if (filters.getMaxOreDiGiocoStoriaPrincipale() != null) {
             predicates.add(cb.lessThanOrEqualTo(root.get("oreStoriaPrincipale"), filters.getMaxOreDiGiocoStoriaPrincipale()));
         }
 
-
-        if(filters.getMinVoto() != null){
-            predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMinVoto()));
+        if (filters.getMinVoto() != null) {
+            predicates.add(cb.greaterThanOrEqualTo(root.get("voto"), filters.getMinVoto()));
         }
 
-        if(filters.getMaxVoto() != null){
+        if (filters.getMaxVoto() != null) {
             predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMaxVoto()));
         }
 
-        if(filters.getTags() != null && !filters.getTags().isEmpty()){
-            Join<Videogioco, Tag> tagJoin = root.join("tags", JoinType.INNER);
+        if (tagJoin != null) {
             predicates.add(tagJoin.get("id").in(filters.getTags()));
         }
 

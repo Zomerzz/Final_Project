@@ -27,8 +27,26 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Libro> query = cb.createQuery(Libro.class);
         Root<Libro> root = query.from(Libro.class);
-        Predicate[] predicates = buildPredicates(cb,root,filters);
+
+        Join<Libro, Tag> tagJoin = null;
+        if (filters.getTags() != null && !filters.getTags().isEmpty()) {
+            tagJoin = root.join("tagSet");
+        }
+
+        Predicate[] predicates = buildPredicates(cb,root,filters,tagJoin);
+
         query.where(predicates);
+
+        if (tagJoin != null) {
+            query.groupBy(root.get("id"));
+            query.having(
+                    cb.equal(
+                            cb.countDistinct(tagJoin.get("id")),
+                            filters.getTags().size()
+                    )
+            );
+        }
+
         query.distinct(true);
         if(filters.isOrderByVoto()){
             query.orderBy(cb.desc(root.get("voto")));
@@ -36,18 +54,33 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
         List<Libro> libri = em.createQuery(query).setFirstResult(filters.getPageSize()*filters.getNumPage()).setMaxResults(filters.getPageSize())
                 .getResultList();
 
+        // Conteggio totale
+
         CriteriaQuery<Long> totalQuery = cb.createQuery(Long.class);
         Root<Libro> totalRoot = totalQuery.from(Libro.class);
-        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filters);
+        Join<Libro, Tag> totalTagJoin = null;
+        if (filters.getTags() != null && !filters.getTags().isEmpty()) {
+            totalTagJoin = totalRoot.join("tagSet");
+        }
+
+        Predicate[] countPredicates = buildPredicates(cb, totalRoot, filters, totalTagJoin);
         totalQuery.select(cb.countDistinct(totalQuery.from(Libro.class)));
         totalQuery.where(countPredicates);
-
+        if (totalTagJoin != null) {
+            totalQuery.groupBy(totalRoot.get("id"));
+            totalQuery.having(
+                    cb.equal(
+                            cb.countDistinct(totalTagJoin.get("id")),
+                            filters.getTags().size()
+                    )
+            );
+        }
         long totaleLibri = em.createQuery(totalQuery).getSingleResult();
 
         return new PageImpl<>(libri, PageRequest.of(filters.getNumPage(), filters.getPageSize()), totaleLibri);
     }
 
-    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Libro> root, LibroFilterCriteria filters){
+    private Predicate[] buildPredicates(CriteriaBuilder cb, Root<Libro> root, LibroFilterCriteria filters, Join<Libro, Tag> tagJoin){
         List<Predicate> predicates = new ArrayList<>();
 
         if(filters.getTitolo() != null){
@@ -117,10 +150,6 @@ public class CriteriaLibroRepositoryImpl implements CriteriaLibroRepository{
             predicates.add(cb.lessThanOrEqualTo(root.get("voto"), filters.getMaxVoto()));
         }
         if(filters.getTags() != null){
-            // Join diretta tra Libro e Tag
-            Join<Libro, Tag> tagJoin = root.join("tagSet", JoinType.INNER);
-
-            // Predicate: il tagId è uno di quelli passati nella lista
             predicates.add(tagJoin.get("tagId").in(filters.getTags()));
 
         }
