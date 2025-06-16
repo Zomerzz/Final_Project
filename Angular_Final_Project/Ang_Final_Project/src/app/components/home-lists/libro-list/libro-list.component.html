@@ -7,7 +7,14 @@
                 <img [src]="libro.imgUrl" class="immagine">
                 <div class="title_div">
                     <h2 class="titolo-scroll">{{ libro.titolo }}</h2>
-                    <p class="voto-scroll">⭐ Voto: {{ libro.voto }}</p>
+                    <div class="card-voto-Display">
+                    <div class="voto-scroll">⭐Voto: {{libro.voto}}</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" [style.width.%]="libro.voto"
+                            [style.backgroundColor]="getBarColor(libro)">
+                        </div>
+                    </div>
+                </div>
                 </div>
             </a>
         </div>

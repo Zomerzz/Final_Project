@@ -9,7 +9,14 @@
                 <img [src]="film.imgUrl" class="immagine">
                 <div class="title_div">
                     <h2 class="titolo-scroll">{{ film.titolo }}</h2>
-                    <p class="voto-scroll">⭐ Voto: {{ film.voto }}</p>
+                    <div class="card-voto-Display">
+                    <div class="voto-scroll">⭐Voto: {{film.voto}}</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" [style.width.%]="film.voto"
+                            [style.backgroundColor]="getBarColor(film)">
+                        </div>
+                    </div>
+                </div>
                 </div>
             </a>
         </div>

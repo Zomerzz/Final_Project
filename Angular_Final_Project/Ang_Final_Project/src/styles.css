@@ -137,6 +137,29 @@ app-home >main{
     margin: 0;
 }
 
+.card-voto-Display{
+    width: 100%;
+    display: flex;
+    gap: 0.5em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-voto-Display .progress-bar-container {
+    width: 90%;
+    height: 2em;
+    background-color: rgba(255, 255, 255, 0.25)  ;
+    border-radius: 0.5em;
+    overflow: hidden;
+}
+
+.card-voto-Display .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+}
+
 /* 
 =============================================================================================================================
                                                         DETAILS PAGE
@@ -188,7 +211,7 @@ app-home >main{
     width: 70%;
     /* or fixed like 200px */
     height: 20px;
-    background-color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.5  );
     border-radius: 0.5em;
     overflow: hidden;
 }
@@ -198,4 +221,5 @@ app-home >main{
     width: 0%;
     transition: width 0.3s ease-in-out;
 }
+
 
