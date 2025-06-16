@@ -42,8 +42,8 @@ public class  LibroController {
                                                       @RequestParam(required = false) List<Integer> tags,
                                                       @RequestParam(defaultValue = "10") int pageSize,
                                                       @RequestParam(defaultValue = "0") int numPage,
-                                                      @RequestParam(defaultValue = "true") boolean orderByVoto) {
-        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreNome, casaEditriceNome, minData, maxData, minVoto, maxVoto, tags,pageSize,numPage,orderByVoto);
+                                                      @RequestParam(defaultValue = "orderByDataPubblicazioneDesc") String sort) {
+        LibroFilterCriteria lfc = new LibroFilterCriteria(titolo, numeroPagine, autoreNome, casaEditriceNome, minData, maxData, minVoto, maxVoto, tags,pageSize,numPage,sort);
         Page<Libro> libri = libroService.searchLibro(lfc);
         return ResponseEntity.ok(libri.map(LibroDto::toDto));
     }

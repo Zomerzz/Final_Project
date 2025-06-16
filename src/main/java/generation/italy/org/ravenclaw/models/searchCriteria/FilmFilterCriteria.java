@@ -17,7 +17,7 @@ public class FilmFilterCriteria {
     private String autoreNome;
     private int pageSize;
     private int numPage;
-    private boolean orderByVoto;
+    private String sort;
 
     public FilmFilterCriteria(String titolo,
                               String casaDiProduzioneNome,
@@ -31,7 +31,7 @@ public class FilmFilterCriteria {
                               String autoreNome,
                               int pageSize,
                               int numPage,
-                              boolean orderByVoto) {
+                              String sort) {
         this.titolo = titolo;
         this.casaDiProduzioneNome = casaDiProduzioneNome;
         this.casaDiPubblicazioneNome = casaDiPubblicazioneNome;
@@ -44,7 +44,7 @@ public class FilmFilterCriteria {
         this.autoreNome = autoreNome;
         this.pageSize = pageSize;
         this.numPage = numPage;
-        this.orderByVoto = orderByVoto;
+        this.sort = sort;
     }
 
     //=== GETTER E SETTER ===
@@ -136,7 +136,7 @@ public class FilmFilterCriteria {
         return numPage;
     }
 
-    public boolean isOrderByVoto() {
-        return orderByVoto;
+    public String getSort() {
+        return sort;
     }
 }

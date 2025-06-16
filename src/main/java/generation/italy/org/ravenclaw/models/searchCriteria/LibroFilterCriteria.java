@@ -18,9 +18,9 @@ public class LibroFilterCriteria {
     private List<Integer> tags;
     private int pageSize;
     private int numPage;
-    private boolean orderByVoto;
+    private String sort;
 
-    public LibroFilterCriteria(String titolo, Integer numeroPagine, String autoreNome, String casaEditriceNome, LocalDate minData, LocalDate maxData, Integer minVoto, Integer maxVoto, List<Integer> tags, int pageSize, int numPage, boolean orderByVoto) {
+    public LibroFilterCriteria(String titolo, Integer numeroPagine, String autoreNome, String casaEditriceNome, LocalDate minData, LocalDate maxData, Integer minVoto, Integer maxVoto, List<Integer> tags, int pageSize, int numPage, String sort) {
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
         this.autoreNome = autoreNome;
@@ -32,7 +32,7 @@ public class LibroFilterCriteria {
         this.tags = tags;
         this.pageSize = pageSize;
         this.numPage = numPage;
-        this.orderByVoto = orderByVoto;
+        this.sort = sort;
     }
 
     // === GETTER ===
@@ -79,7 +79,7 @@ public class LibroFilterCriteria {
         return numPage;
     }
 
-    public boolean isOrderByVoto() {
-        return orderByVoto;
+    public String getSort() {
+        return sort;
     }
 }

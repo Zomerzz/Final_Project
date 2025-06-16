@@ -40,10 +40,12 @@ public class FilmController {
                                                     @RequestParam(required = false) String autoreNome,
                                                     @RequestParam(defaultValue = "10") int pageSize,
                                                     @RequestParam(defaultValue = "0") int numPage,
-                                                    @RequestParam(defaultValue = "true") boolean orderByVoto){
+                                                    @RequestParam(defaultValue = "orderByDataPubblicazioneDesc") String sort
+    )
+    {
         FilmFilterCriteria ffc = new FilmFilterCriteria(titolo, casaDiProduzione,
                 casaDiPubblicazione, dataDiPubblicazione, minData, maxData,
-                tags, minVoto, maxVoto, autoreNome, pageSize, numPage, orderByVoto);
+                tags, minVoto, maxVoto, autoreNome, pageSize, numPage, sort);
         Page<Film> film = filmService.searchFilm(ffc);
         return ResponseEntity.ok(film.map(FilmDto::toDto));
     }

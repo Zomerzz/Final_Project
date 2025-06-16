@@ -45,9 +45,28 @@ public class CriteriaFilmRepositoryImpl implements CriteriaFilmRepository {
             );
         }
         query.distinct(true);
-        if(filmFilters.isOrderByVoto()){
+
+        //METODI DI SORTING
+        String sortOrder = filmFilters.getSort();
+        if (sortOrder.equalsIgnoreCase("orderByVotoDesc")) {
             query.orderBy(cb.desc(rootFilm.get("voto")));
+        } else if (sortOrder.equalsIgnoreCase("orderByVotoAsc")) {
+            query.orderBy(cb.asc(rootFilm.get("voto")));
+        } else if (sortOrder.equalsIgnoreCase("orderByTitoloDesc")) {
+            query.orderBy(cb.desc(rootFilm.get("titolo")));
+        } else if (sortOrder.equalsIgnoreCase("orderByTitoloAsc")) {
+            query.orderBy(cb.asc(rootFilm.get("titolo")));
+        } else if (sortOrder.equalsIgnoreCase("orderByDataPubblicazioneDesc")) {
+            query.orderBy(cb.desc(rootFilm.get("dataDiPubblicazione")));
+        } else if (sortOrder.equalsIgnoreCase("orderByDataDiPubblicazioneAsc")) {
+            query.orderBy(cb.asc(rootFilm.get("dataDiPubblicazione")));
+            //SORTING SPECIFICI PER FILM DA QUI IN POI
+        } else if (sortOrder.equalsIgnoreCase("orderByDurataFilmDesc")) {
+            query.orderBy(cb.desc(rootFilm.get("durata")));
+        } else if (sortOrder.equalsIgnoreCase("orderByDurataFilmAsc")) {
+            query.orderBy(cb.asc(rootFilm.get("durata")));
         }
+
         List<Film> films = em.createQuery(query).setFirstResult(filmFilters.getPageSize()*filmFilters.getNumPage()).setMaxResults(filmFilters.getPageSize())
                 .getResultList();
     //conteggio totale
