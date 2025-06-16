@@ -20,7 +20,7 @@ import { RecensioneCardComponent } from '../../recensioni/recensione-card/recens
 export class FilmDetailsComponent implements OnInit{
   film!: Film;
   filmVisto!: FilmVisto | null;
-  type = 'film';
+  type = 'films';
   recensioni: Recensione[] = [];
 
   private _activatedRoute = inject(ActivatedRoute);

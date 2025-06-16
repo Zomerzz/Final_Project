@@ -20,7 +20,7 @@ import { RecensioneCardComponent } from '../../recensioni/recensione-card/recens
 export class VideogameDetailsComponent implements OnInit{
   videogioco!: Videogioco;
   videogiocoGiocato!: VideogiocoGiocato | null;
-  type = 'videogioco';
+  type = 'videogiochi';
   recensioni: Recensione[] = [];
 
   private _activatedRoute = inject(ActivatedRoute);

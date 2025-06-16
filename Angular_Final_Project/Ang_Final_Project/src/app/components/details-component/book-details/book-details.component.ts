@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Libro } from '../../../model/Libro';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecensioniListComponent } from "../../recensioni/recensioni-list/recensioni-list.component";
 import { Recensione } from '../../../model/Recensione';
 import { RecensioneService } from '../../../services/RecensioneService';
@@ -37,17 +37,17 @@ export class BookDetailsComponent implements OnInit {
             this.loadRecensioni(this.libro.id);
         } else {
             const id = this._activatedRoute.snapshot.paramMap.get("id");
-             if(id != null){
-              const libroId = Number(id);
-              if (libroId > 0 && !isNaN(libroId)){
-                this._libroService.getById(libroId).subscribe({
-                  next: l => {
-                    this.libro = l;
-                    this.loadRecensioni(libroId);
-                  },
-                  error: e => alert('errore nel caricamento del libro')
-                });
-              }
+            if (id != null) {
+                const libroId = Number(id);
+                if (libroId > 0 && !isNaN(libroId)) {
+                    this._libroService.getById(libroId).subscribe({
+                        next: l => {
+                            this.libro = l;
+                            this.loadRecensioni(libroId);
+                        },
+                        error: e => alert('errore nel caricamento del libro')
+                    });
+                }
             }
         }
 
@@ -83,18 +83,18 @@ export class BookDetailsComponent implements OnInit {
         }
     }
 
-    loadRecensioni(id: number){
-    this._recensioneService.getRecensioni(this.type, id).subscribe({
-      next: list => this.recensioni = list,
-      error: e => alert('Errore nel caricamento delle recensioni')
-    });
-  }
+    loadRecensioni(id: number) {
+        this._recensioneService.getRecensioni(this.type, id).subscribe({
+            next: list => this.recensioni = list,
+            error: e => alert('Errore nel caricamento delle recensioni')
+        });
+    }
 
     getBarColor(): string {
-    const voto = this.libro.voto;
-    if (voto >= 75) return '#30D158';
-    if (voto >= 50) return '#FFD60A';
-    if (voto >= 25) return '#FF9F0A';
-    return '#FF453A';
-}
+        const voto = this.libro.voto;
+        if (voto >= 75) return '#30D158';
+        if (voto >= 50) return '#FFD60A';
+        if (voto >= 25) return '#FF9F0A';
+        return '#FF453A';
+    }
 }

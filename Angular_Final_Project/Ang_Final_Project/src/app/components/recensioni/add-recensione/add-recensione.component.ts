@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { RecensioneService } from '../../../services/RecensioneService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,8 +12,9 @@ import { AuthService } from '../../../services/AuthService';
   styleUrl: './add-recensione.component.css'
 })
 export class AddRecensioneComponent{
-  @Input("operaId") operaId!: number;
-  @Input("type") type!: string;
+  @Input('operaId') operaId!: number;
+  @Input('type') type!: string;
+  @Output('addedRecensione') addedRecensione = new EventEmitter();
   formBuilder = inject(FormBuilder);
   recensioneForm: FormGroup;
   private _authService = inject(AuthService);
@@ -37,11 +38,7 @@ export class AddRecensioneComponent{
       "utenteId": Number(this._authService.getUserId())
     };
     this._recensioneService.addRecensione(recensioneRequest).subscribe({
-      next: (recensione) => {
-        // TODO bisogna trovare un modo piu bello dell'alert
-        alert('Recensione creata con id ' + recensione.recensioneId);
-        // dove mi porta il router ora??
-      },
+      next: (recensione) => window.location.reload(),
       error: e => alert('Errore nella creazione della recensione')
     })
   }
