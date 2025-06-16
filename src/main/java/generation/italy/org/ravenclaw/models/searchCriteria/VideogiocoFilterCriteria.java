@@ -16,7 +16,7 @@ public class VideogiocoFilterCriteria {
     private List<Integer> tags;
     private int pageSize;
     private int numPage;
-    private boolean orderByVoto;
+    private String sort;
 
     public VideogiocoFilterCriteria(String titolo,
                                     String nomeCasaDiProduzione,
@@ -29,7 +29,7 @@ public class VideogiocoFilterCriteria {
                                     List<Integer> tags,
                                     int pageSize,
                                     int numPage,
-                                    boolean orderByVoto) {
+                                    String sort) {
         this.titolo = titolo;
         this.nomeCasaDiProduzione = nomeCasaDiProduzione;
         this.nomeCasaDiPubblicazione = nomeCasaDiPubblicazione;
@@ -42,7 +42,7 @@ public class VideogiocoFilterCriteria {
         this.tags = tags;
         this.pageSize = pageSize;
         this.numPage = numPage;
-        this.orderByVoto = orderByVoto;
+        this.sort = sort;
     }
 // === GETTER ===
 
@@ -94,7 +94,7 @@ public class VideogiocoFilterCriteria {
         return numPage;
     }
 
-    public boolean isOrderByVoto() {
-        return orderByVoto;
+    public String getSort() {
+        return sort;
     }
 }

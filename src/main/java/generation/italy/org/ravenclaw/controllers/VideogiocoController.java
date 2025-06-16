@@ -41,12 +41,12 @@ public class VideogiocoController {
                                                               @RequestParam(required = false) List<Integer> tags,
                                                               @RequestParam(defaultValue = "10") int pageSize,
                                                               @RequestParam(defaultValue = "0") int numPage,
-                                                              @RequestParam(defaultValue = "true") boolean orderByVoto
+                                                              @RequestParam(defaultValue = "orderByDataPubblicazioneDesc") String sort //vedi nel model frontend i metodi di sorting
                                                               ) {
         VideogiocoFilterCriteria vfc = new VideogiocoFilterCriteria(titolo, nomeCasaDiProduzione,
                 nomeCasaDiPubblicazione, minDataDiPubblicazione, maxDataDiPubblicazione,
                 minOreDiGiocoStoriaPrincipale,maxOreDiGiocoStoriaPrincipale,minVoto,maxVoto,tags, pageSize,
-                numPage, orderByVoto);
+                numPage, sort);
         Page<Videogioco> videogiochi = videogiocoService.searchVideogiochi(vfc);
         return ResponseEntity.ok(videogiochi.map(VideogiocoDto::toDto));
     }

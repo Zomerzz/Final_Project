@@ -13,5 +13,6 @@ export interface SearchModel{
     minOreDiGiocoStoriaPrincipale:number;
     maxOreDiGiocoStoriaPrincipale:number;
     tags:number[];
+    sort: string;
 }
 

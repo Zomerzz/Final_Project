@@ -49,9 +49,20 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
         }
 
         query.distinct(true);
-
-        if (filters.isOrderByVoto()) {
+        //Ordinamento
+        String sortOrder = filters.getSort();
+        if (sortOrder.equalsIgnoreCase("orderByVotoDesc")) {
             query.orderBy(cb.desc(root.get("voto")));
+        } else if (sortOrder.equalsIgnoreCase("orderByVotoAsc")) {
+            query.orderBy(cb.asc(root.get("voto")));
+        } else if (sortOrder.equalsIgnoreCase("orderByTitoloDesc")) {
+            query.orderBy(cb.desc(root.get("titolo")));
+        } else if (sortOrder.equalsIgnoreCase("orderByTitoloAsc")) {
+            query.orderBy(cb.asc(root.get("titolo")));
+        } else if (sortOrder.equalsIgnoreCase("orderByDataPubblicazioneDesc")) {
+            query.orderBy(cb.desc(root.get("dataDiPubblicazione")));
+        } else if (sortOrder.equalsIgnoreCase("orderByDataDiPubblicazioneAsc")) {
+            query.orderBy(cb.asc(root.get("dataDiPubblicazione")));
         }
 
         List<Videogioco> videogiochi = em.createQuery(query)

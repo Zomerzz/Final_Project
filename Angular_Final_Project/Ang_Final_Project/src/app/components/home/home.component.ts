@@ -37,6 +37,25 @@ export class HomeComponent implements OnInit {
     private _router = inject(Router);
 
     ngOnInit(): void {
+        const isLogged = this._authService.isLogged();
+
+        this._activatedRoute.queryParams.subscribe(params => {
+            const hasParams = Object.keys(params).length > 0
+
+            if(!isLogged && !hasParams) {
+                const defaultFilter: Partial<SearchModel> = {
+                    tipoMedia: 'tutti',
+                    sort: 'orderByDataPubblicazioneDesc'
+                };
+                this._router.navigate(['/home'], { queryParams: defaultFilter });
+              
+                this.fetchPreSearchResults(defaultFilter);
+                return;
+            }
+        })
+
+        
+
         this._activatedRoute.queryParams.subscribe(params => {
             const titolo = params['q'];
             if (titolo) {
@@ -76,6 +95,38 @@ export class HomeComponent implements OnInit {
             }
         });
     }
+    fetchPreSearchResults(filters: Partial<SearchModel>): void {
+    const queryString = this.createQueryString(filters);
+
+    this._libroService.findByFilters(queryString).subscribe({
+        next: listaLibriDb => {
+            this.listaLibri = listaLibriDb;
+        },
+        error: e => {
+            console.log("Errore nella ricerca dei libri:", e);
+        }
+    });
+
+    this._filmService.findByFilters(queryString).subscribe({
+        next: listaFilmDb => {
+            this.listaFilm = listaFilmDb;
+        },
+        error: e => {
+            console.log("Errore nella ricerca dei film:", e);
+        }
+    });
+
+    this._videogiocoService.getByFilters(queryString).subscribe({
+        next: listaVideogiochiDb => {
+            this.listaVideogiochi = listaVideogiochiDb;
+        },
+        error: e => {
+            console.log("Errore nella ricerca dei videogiochi:", e);
+        }
+    });
+}
+
+
     executeSearch(filters: Partial<SearchModel>) {
         this._router.navigate(['/home'], { queryParams: filters });
         if (filters.tipoMedia === 'tutti') {
