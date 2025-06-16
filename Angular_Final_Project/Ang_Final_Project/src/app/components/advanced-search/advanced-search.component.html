@@ -74,7 +74,18 @@
             }
             }
         </div>
-
+        <!-- div ordinamento -->
+        <div class="orderBy">
+            <h3>Ordinamento</h3>
+            <select formControlName="sort">
+                <option value="orderByDataPubblicazioneDesc">Data: Dal più recente</option>
+                <option value="orderByDataPubblicazioneAsc">Data: Dal meno recente</option>
+                <option value="orderByVotoDesc">Voto: Dal più alto</option>
+                <option value="orderByVotoAsc">Voto: Dal più basso</option>
+                <option value="orderByTitoloAsc">Ordine dalla A-Z</option>
+                <option value="orderByTitoloDesc">Ordine dalla Z-A</option>
+            </select>
+        </div>
 
     }
 
