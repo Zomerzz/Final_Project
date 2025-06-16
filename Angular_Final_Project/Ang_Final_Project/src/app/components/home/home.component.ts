@@ -132,6 +132,9 @@ export class HomeComponent implements OnInit {
 
 
     executeSearch(filters: Partial<SearchModel>) {
+        this.listaFilm = [];
+        this.listaLibri = [];
+        this.listaVideogiochi = [];
         this._router.navigate(['/home'], { queryParams: filters });
         if (filters.tipoMedia === 'tutti') {
             const queryString = this.createQueryString(filters);

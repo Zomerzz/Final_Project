@@ -81,6 +81,15 @@ export class AdvancedSearchComponent implements OnInit{
     if(checkbox.checked) {
       this.tags?.setValue([...selectedTags, +checkbox.value]);
     }
+    if (!checkbox.checked) {
+      const valore = +checkbox.value;
+      const idx = selectedTags.indexOf(valore);
+      if (idx > -1) {
+        selectedTags.splice(idx, 1)
+      ;
+}
+      
+    }
   }
 
   get titolo() {
