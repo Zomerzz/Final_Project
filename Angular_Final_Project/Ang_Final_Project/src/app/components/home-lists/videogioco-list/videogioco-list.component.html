@@ -1,18 +1,19 @@
-<div class="list-container">
 
-    @if (isVideogiochiVuoti()) {
-    <p> Nono sono stati trovati videogiochi</p>
-}
-@for (videogioco of videogiochi; track videogioco.id) {
-    <div class="card">
-        <a [routerLink]="['/videogiochi-dettagli', videogioco.id]"[state]="{ videogioco: videogioco }">
-            <h3 class="type-label">Videogioco</h3>
-            <img [src]="videogioco.imgUrl" class="immagine">
-            <div class="title_div">
-                <h2 class="titolo-scroll">{{ videogioco.titolo }}</h2>
-                <p class="voto-scroll">⭐ Voto: {{ videogioco.voto }}</p>
+    @if (!isVideogiochiVuoti()) {
+    
+        <div class="list-container">
+
+            @for (videogioco of videogiochi; track videogioco.id) {
+            <div class="card">
+                <a [routerLink]="['/videogiochi-dettagli', videogioco.id]"[state]="{ videogioco: videogioco }">
+                    <h3 class="type-label">Videogioco</h3>
+                    <img [src]="videogioco.imgUrl" class="immagine">
+                    <div class="title_div">
+                        <h2 class="titolo-scroll">{{ videogioco.titolo }}</h2>
+                        <p class="voto-scroll">⭐ Voto: {{ videogioco.voto }}</p>
+                    </div>
+                </a>
             </div>
-        </a>
-    </div>
-}
-</div>
+            }
+        </div>
+    }
