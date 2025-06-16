@@ -6,32 +6,48 @@ import { RecensioniListComponent } from "../../recensioni/recensioni-list/recens
 import { VideogiocoGiocato } from '../../../model/VideogiocoGiocato';
 import { AuthService } from '../../../services/AuthService';
 import { MediaRegistratoService } from '../../../services/MediaRegistratoService';
+import { ActivatedRoute } from '@angular/router';
+import { VideogiocoService } from '../../../services/VideogiocoService';
+import { AddRecensioneComponent } from '../../recensioni/add-recensione/add-recensione.component';
+import { RecensioneCardComponent } from '../../recensioni/recensione-card/recensione-card.component';
 
 @Component({
   selector: 'app-videogame-details',
-  imports: [RecensioniListComponent],
+  imports: [RecensioniListComponent, AddRecensioneComponent, RecensioneCardComponent],
   templateUrl: './videogame-details.component.html',
   styleUrl: './videogame-details.component.css'
 })
 export class VideogameDetailsComponent implements OnInit{
   videogioco!: Videogioco;
   videogiocoGiocato!: VideogiocoGiocato | null;
+  type = 'videogioco';
   recensioni: Recensione[] = [];
+
+  private _activatedRoute = inject(ActivatedRoute);
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
+  private _videogiocoService = inject(VideogiocoService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
 
   ngOnInit(): void {
     if(history.state && history.state.videogioco){
       this.videogioco = history.state.videogioco;
+      this.loadRecensioni(this.videogioco.id);
     } else {
-      console.log('Nessun dato disponibile per il videogioco');
+      const id = this._activatedRoute.snapshot.paramMap.get("id");
+        if(id != null){
+          const videogiocoId = Number(id);
+          if (videogiocoId > 0 && !isNaN(videogiocoId)){
+            this._videogiocoService.getById(videogiocoId).subscribe({
+              next: v => {
+                this.videogioco = v;
+                this.loadRecensioni(videogiocoId);
+              },
+              error: e => alert('errore nel caricamento del film')
+            });
+          }
+        }
     }
-
-    this._recensioneService.getRecensioni('videogioco', this.videogioco.id).subscribe({
-      next: list => this.recensioni = list,
-      error: e => alert('Errore nel caricamento delle recensioni')
-    });
 
     if(this.isAlreadylogged){
       this._mediaRegistratoService.getVideogiocoGiocatoByVideogiocoIdAndUtenteId(this.videogioco.id, Number(this._authService.getUserId()))
@@ -42,7 +58,7 @@ export class VideogameDetailsComponent implements OnInit{
     }
 
   }
-  
+
   get isAlreadylogged() {
     return this._authService.isLogged();
   }
@@ -65,6 +81,13 @@ export class VideogameDetailsComponent implements OnInit{
       });
     }
  }
+
+  loadRecensioni(id: number){
+    this._recensioneService.getRecensioni(this.type, id).subscribe({
+      next: list => this.recensioni = list,
+      error: e => alert('Errore nel caricamento delle recensioni')
+    });
+  }
 
  getBarColor(): string {
     const voto = this.videogioco.voto;

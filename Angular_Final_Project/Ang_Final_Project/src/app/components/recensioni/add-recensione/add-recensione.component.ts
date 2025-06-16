@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, Output } from '@angular/core';
 import { RecensioneService } from '../../../services/RecensioneService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,31 +11,21 @@ import { AuthService } from '../../../services/AuthService';
   templateUrl: './add-recensione.component.html',
   styleUrl: './add-recensione.component.css'
 })
-export class AddRecensioneComponent implements OnInit{
+export class AddRecensioneComponent{
+  @Input("operaId") operaId!: number;
+  @Input("type") type!: string;
   formBuilder = inject(FormBuilder);
   recensioneForm: FormGroup;
   private _authService = inject(AuthService);
   private _recensioneService = inject(RecensioneService);
   private _router = inject(Router);
   private _route = inject(ActivatedRoute);
-  private operaId = 0;
-  private type: string|null = "";
 
   constructor(){
     this.recensioneForm = this.formBuilder.group({
       voto:["",[Validators.required]],
       recensione:[""]
     });
-  }
-  ngOnInit(): void {
-    const urlId = this._route.snapshot.paramMap.get('id');
-    if(urlId != null){
-      this.operaId = Number(urlId);
-      if(this.operaId < 0 && isNaN(this.operaId)){
-        alert("Id opera non esistente")
-      }
-    }
-    this.type = this._route.snapshot.paramMap.get('type');
   }
 
   onSubmit(){
@@ -44,7 +34,7 @@ export class AddRecensioneComponent implements OnInit{
       "recensione": this.recensioneForm.value.recensione,
       "type": this.type,
       "operaId": this.operaId,
-      "utenteId": Number(this._authService.getUserId)
+      "utenteId": Number(this._authService.getUserId())
     };
     this._recensioneService.addRecensione(recensioneRequest).subscribe({
       next: (recensione) => {

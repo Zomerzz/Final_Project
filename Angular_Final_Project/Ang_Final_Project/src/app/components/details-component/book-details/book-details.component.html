@@ -15,7 +15,7 @@
         <div class="voto-Display">
             <div>Voto: {{libro.voto}}</div>
             <div class="progress-bar-container">
-                
+
                 <div class="progress-bar-fill"
                     [style.width.%]="libro.voto"
                     [style.backgroundColor]="getBarColor()">
@@ -25,11 +25,6 @@
     </div>
 
 </div>
-<!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
-    <div>
-
-    </div>
-} -->
 
 @if(isAlreadylogged && !libroLetto){
 <div>
@@ -41,6 +36,15 @@
 <div>
     <button (click)="deleteLibroLetto()">Rimuovi dai libri letti</button>
 </div>
+}
+
+@if(isAlreadylogged && libroLetto && !libroLetto.recensione){
+    <app-add-recensione [operaId] = 'libro.id' [type] = 'type'></app-add-recensione>
+}
+
+@if(isAlreadylogged && libroLetto && libroLetto.recensione){
+    <h2>La tua recensione</h2>
+    <app-recensione-card [recensione] = 'libroLetto.recensione'></app-recensione-card>
 }
 
 @if(recensioni.length){

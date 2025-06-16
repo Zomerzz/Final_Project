@@ -42,6 +42,15 @@
 </div>
 }
 
+@if(isAlreadylogged && videogiocoGiocato && !videogiocoGiocato.recensione){
+    <app-add-recensione [operaId] = 'videogioco.id' [type] = 'type'></app-add-recensione>
+}
+
+@if(isAlreadylogged && videogiocoGiocato && videogiocoGiocato.recensione){
+    <h2>La tua recensione</h2>
+    <app-recensione-card [recensione] = 'videogiocoGiocato.recensione'></app-recensione-card>
+}
+
 @if(recensioni.length){
 <div>
     <h2>Recensioni dei nostri utenti</h2>

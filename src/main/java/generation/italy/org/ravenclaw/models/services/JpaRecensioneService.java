@@ -102,6 +102,7 @@ public class JpaRecensioneService implements RecensioneService{
     @Override
     public void addRecensioneToLibroLetto(int utenteId, int libroId, Recensione recensione) throws EntityNotFoundException {
         Optional<LibroLetto> opt = libroLettoRepo.findByUtenteUtenteIdAndLibroLibroId(utenteId, libroId);
+        System.out.println(libroId + "           " + utenteId);
         LibroLetto libroLetto = opt.orElseThrow(()-> new EntityNotFoundException(LibroLetto.class));
         libroLetto.setRecensione(recensione);
         libroLettoRepo.save(libroLetto);
@@ -123,7 +124,6 @@ public class JpaRecensioneService implements RecensioneService{
                 break;
             case "libro":
                 addRecensioneToLibroLetto(utenteId, mediaId, recensione);
-
                 break;
             case "videogioco":
                 addRecensioneToVideogiocoGiocato(utenteId, mediaId, recensione);

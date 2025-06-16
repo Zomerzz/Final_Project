@@ -8,34 +8,48 @@ import { CommonModule } from '@angular/common';
 import { MediaRegistratoService } from '../../../services/MediaRegistratoService';
 import { AuthService } from '../../../services/AuthService';
 import { LibroLetto } from '../../../model/LibroLetto';
+import { AddRecensioneComponent } from '../../recensioni/add-recensione/add-recensione.component';
+import { RecensioneCardComponent } from "../../recensioni/recensione-card/recensione-card.component";
+import { LibroService } from '../../../services/LibroService';
 
 @Component({
     selector: 'app-book-details',
-    imports: [CommonModule, RecensioniListComponent],
+    imports: [CommonModule, RecensioniListComponent, AddRecensioneComponent, RecensioneCardComponent],
     templateUrl: './book-details.component.html',
     styleUrl: './book-details.component.css'
 })
 export class BookDetailsComponent implements OnInit {
+    type = 'libro';
     libro!: Libro;
     libroLetto!: LibroLetto | null;
     recensioni!: Recensione[];
+
+    private _activatedRoute = inject(ActivatedRoute);
     private _recensioneService = inject(RecensioneService);
     private _authService = inject(AuthService);
+    private _libroService = inject(LibroService);
     private _mediaRegistratoService = inject(MediaRegistratoService);
 
     ngOnInit(): void {
         // Recupera i dati direttamente da history.state
         if (history.state && history.state.libro) {
             this.libro = history.state.libro;
+            this.loadRecensioni(this.libro.id);
         } else {
-            // fallback in caso di errore, come se la pagina venisse caricata senza stato
-            console.log('Nessun dato disponibile per il libro');
+            const id = this._activatedRoute.snapshot.paramMap.get("id");
+             if(id != null){
+              const libroId = Number(id);
+              if (libroId > 0 && !isNaN(libroId)){
+                this._libroService.getById(libroId).subscribe({
+                  next: l => {
+                    this.libro = l;
+                    this.loadRecensioni(libroId);
+                  },
+                  error: e => alert('errore nel caricamento del libro')
+                });
+              }
+            }
         }
-
-        this._recensioneService.getRecensioni('libro', this.libro.id).subscribe({
-            next: list => this.recensioni = list,
-            error: e => alert('Errore nel caricamento delle recensioni')
-        });
 
         if (this.isAlreadylogged) {
             this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
@@ -68,6 +82,13 @@ export class BookDetailsComponent implements OnInit {
             });
         }
     }
+
+    loadRecensioni(id: number){
+    this._recensioneService.getRecensioni(this.type, id).subscribe({
+      next: list => this.recensioni = list,
+      error: e => alert('Errore nel caricamento delle recensioni')
+    });
+  }
 
     getBarColor(): string {
     const voto = this.libro.voto;

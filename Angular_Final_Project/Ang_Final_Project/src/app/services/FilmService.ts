@@ -11,7 +11,7 @@ export class FilmService{
     private _url="http://localhost:8080/api/film";
     private _http = inject(HttpClient);
 
-    
+
     findAll(): Observable<Film[]> {
             return this._http.get<Film[]>(this._url);
         }
@@ -22,9 +22,13 @@ export class FilmService{
         return this._http.get<PageResponse<Film>>(`${this._url}?titolo=${titolo}`)
                          .pipe(map(page => page.content));
     }
-    
+
     findByFilters(queryString:string): Observable<Film[]>{
         return this._http.get<PageResponse<Film>>(`${this._url}${queryString}`)
                          .pipe(map(page => page.content));
+    }
+
+    getById(id: number): Observable<Film> {
+        return this._http.get<Film>(`${this._url}/${id}`);
     }
 }

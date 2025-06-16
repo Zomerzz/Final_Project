@@ -1,8 +1,11 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.DataException;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
 import generation.italy.org.ravenclaw.models.dtos.FilmDto;
+import generation.italy.org.ravenclaw.models.dtos.LibroDto;
 import generation.italy.org.ravenclaw.models.entities.Film;
+import generation.italy.org.ravenclaw.models.entities.Libro;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,13 @@ public class FilmController {
                 tags, minVoto, maxVoto, autoreNome, pageSize, numPage, sort);
         Page<Film> film = filmService.searchFilm(ffc);
         return ResponseEntity.ok(film.map(FilmDto::toDto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> searchById(@PathVariable Integer id) throws DataException {
+        Optional<Film> opt = filmService.findFilmById(id);
+        return opt.map(film -> ResponseEntity.ok().body(FilmDto.toDto(film)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping

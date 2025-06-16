@@ -1,7 +1,10 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.exceptions.DataException;
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
+import generation.italy.org.ravenclaw.models.dtos.FilmDto;
 import generation.italy.org.ravenclaw.models.dtos.VideogiocoDto;
+import generation.italy.org.ravenclaw.models.entities.Film;
 import generation.italy.org.ravenclaw.models.entities.Videogioco;
 import generation.italy.org.ravenclaw.models.searchCriteria.VideogiocoFilterCriteria;
 import generation.italy.org.ravenclaw.models.services.VideogiocoService;
@@ -49,6 +52,13 @@ public class VideogiocoController {
                 numPage, sort);
         Page<Videogioco> videogiochi = videogiocoService.searchVideogiochi(vfc);
         return ResponseEntity.ok(videogiochi.map(VideogiocoDto::toDto));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> searchById(@PathVariable Integer id) throws DataException {
+        Optional<Videogioco> opt = videogiocoService.findVideogiocoById(id);
+        return opt.map(videogioco -> ResponseEntity.ok().body(VideogiocoDto.toDto(videogioco)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping

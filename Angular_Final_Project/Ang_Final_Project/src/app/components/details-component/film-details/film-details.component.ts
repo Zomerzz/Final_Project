@@ -6,32 +6,48 @@ import { RecensioniListComponent } from "../../recensioni/recensioni-list/recens
 import { FilmVisto } from '../../../model/FilmVisto';
 import { AuthService } from '../../../services/AuthService';
 import { MediaRegistratoService } from '../../../services/MediaRegistratoService';
+import { ActivatedRoute } from '@angular/router';
+import { FilmService } from '../../../services/FilmService';
+import { AddRecensioneComponent } from '../../recensioni/add-recensione/add-recensione.component';
+import { RecensioneCardComponent } from '../../recensioni/recensione-card/recensione-card.component';
 
 @Component({
   selector: 'app-film-details',
-  imports: [RecensioniListComponent],
+  imports: [RecensioniListComponent, AddRecensioneComponent, RecensioneCardComponent],
   templateUrl: './film-details.component.html',
   styleUrl: './film-details.component.css'
 })
 export class FilmDetailsComponent implements OnInit{
   film!: Film;
   filmVisto!: FilmVisto | null;
+  type = 'film';
   recensioni: Recensione[] = [];
+
+  private _activatedRoute = inject(ActivatedRoute);
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
+  private _filmService = inject(FilmService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
-  
+
   ngOnInit(): void {
     if(history.state && history.state.film){
       this.film = history.state.film;
+      this.loadRecensioni(this.film.id);
     } else {
-      console.log('Nessun dato disponibile per il film');
+      const id = this._activatedRoute.snapshot.paramMap.get("id");
+        if(id != null){
+          const filmId = Number(id);
+          if (filmId > 0 && !isNaN(filmId)){
+            this._filmService.getById(filmId).subscribe({
+              next: f => {
+                this.film = f;
+                this.loadRecensioni(filmId);
+              },
+              error: e => alert('errore nel caricamento del film')
+            });
+          }
+        }
     }
-
-    this._recensioneService.getRecensioni('film', this.film.id).subscribe({
-      next: list => this.recensioni = list,
-      error: e => alert('Errore nel caricamento delle recensioni')
-    });
 
     if(this.isAlreadylogged){
       this._mediaRegistratoService.getFilmVistoByFilmIdAndUtenteId(this.film.id, Number(this._authService.getUserId()))
@@ -55,7 +71,7 @@ export class FilmDetailsComponent implements OnInit{
       error: e => alert('errore nella registrazione del film visto: '+ e)
     });
   }
-  
+
   deleteFilmVisto() {
     if(this.filmVisto){
       this._mediaRegistratoService.deleteFilmVisto(this.filmVisto.filmVistoId).subscribe({
@@ -64,6 +80,14 @@ export class FilmDetailsComponent implements OnInit{
       });
     }
   }
+
+  loadRecensioni(id: number){
+    this._recensioneService.getRecensioni(this.type, id).subscribe({
+      next: list => this.recensioni = list,
+      error: e => alert('Errore nel caricamento delle recensioni')
+    });
+  }
+
   getBarColor(): string {
     const voto = this.film.voto;
     if (voto >= 75) return '#30D158';
