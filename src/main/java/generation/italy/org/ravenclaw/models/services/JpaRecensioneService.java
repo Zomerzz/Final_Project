@@ -12,6 +12,7 @@ import generation.italy.org.ravenclaw.models.repositories.VideogiocoGiocatoRepos
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,18 +41,13 @@ public class JpaRecensioneService implements RecensioneService{
 
     @Override
     public List<Recensione> findRecensioni(String mediaType, Integer mediaId) {
-        List<Recensione> recensioni = null;
-                switch(mediaType) {
-            case "films":
-                recensioni = findRecensioneByFilmId(mediaId);
-                break;
-            case "libro":
-                recensioni = findRecensioneByLibroId(mediaId);
-                break;
-            case "videogiochi":
-                recensioni = findRecensioneByVideogiocoId(mediaId);
-                break;
-        }
+        List<Recensione> recensioni = switch (mediaType) {
+            case "films" -> findRecensioneByFilmId(mediaId);
+            case "libro" -> findRecensioneByLibroId(mediaId);
+            case "videogiochi" -> findRecensioneByVideogiocoId(mediaId);
+            default -> new ArrayList<>();
+        };
+        System.out.println(recensioni);
         return recensioni;
     }
 

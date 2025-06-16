@@ -22,7 +22,7 @@ export class BookDetailsComponent implements OnInit {
     type = 'libro';
     libro!: Libro;
     libroLetto!: LibroLetto | null;
-    recensioni!: Recensione[];
+    recensioni: Recensione[] = [];
 
     private _activatedRoute = inject(ActivatedRoute);
     private _recensioneService = inject(RecensioneService);
