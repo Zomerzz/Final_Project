@@ -84,7 +84,20 @@
                 <option value="orderByVotoAsc">Voto: Dal più basso</option>
                 <option value="orderByTitoloAsc">Ordine dalla A-Z</option>
                 <option value="orderByTitoloDesc">Ordine dalla Z-A</option>
+                @if (currentMedia === 'libri') {
+                    <option value="orderByNumeroDiPagineDesc">Numero di pagine: Dal più alto</option>
+                    <option value="orderByNumeroDiPagineAsc">Numero di pagine: Dal più basso</option>
+                }
+                @if (currentMedia === 'film') {
+                    <option value="orderByDurataFilmDesc">Per durata maggiore</option>
+                    <option value="orderByDurataFilmAsc">Per durata minore</option>
+                }
+                @if (currentMedia === 'videogiochi') {
+                    <option value="orderByOreStoriaPrincipaleDesc">Per durata maggiore</option>
+                    <option value="orderByOreStoriaPrincipaleAsc">Per durata minore</option>
+                }
             </select>
+            
         </div>
 
     }
