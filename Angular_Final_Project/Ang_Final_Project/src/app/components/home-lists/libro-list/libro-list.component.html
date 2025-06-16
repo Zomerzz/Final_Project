@@ -1,13 +1,12 @@
-
 @if (!isLibriVuoti()) {
-    <div class="list-container">
-        @for (libro of libri; track libro.id) {
-        <div class="card">
-            <a class="card-a" [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
-                <img [src]="libro.imgUrl" class="immagine">
-                <div class="title_div">
-                    <h2 class="titolo-scroll">{{ libro.titolo }}</h2>
-                    <div class="card-voto-Display">
+<div class="list-container">
+    @for (libro of libri; track libro.id) {
+    <div class="card">
+        <a class="card-a" [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
+            <img [src]="libro.imgUrl" class="immagine">
+            <div class="title_div">
+                <h2 class="titolo-scroll">{{ libro.titolo }}</h2>
+                <div class="card-voto-Display">
                     <div class="voto-scroll">⭐Voto: {{libro.voto}}</div>
                     <div class="progress-bar-container">
                         <div class="progress-bar-fill" [style.width.%]="libro.voto"
@@ -15,12 +14,9 @@
                         </div>
                     </div>
                 </div>
-                </div>
-            </a>
-        </div>
-        }
+            </div>
+        </a>
     </div>
+    }
+</div>
 }
-
-
-

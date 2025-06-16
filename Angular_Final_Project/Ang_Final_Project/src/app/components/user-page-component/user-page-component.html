@@ -1,21 +1,21 @@
 
 @if (films.length > 0) {
-<div>
-    <p>FILM VISTI</p>
+<div class="utente-list-container-with-title">
+    <div class="category-title"><p>FILM VISTI</p></div>
     <app-film-list [films] = 'films'></app-film-list>
 </div>
 }
 
 @if (libri.length > 0) {
-<div>
-    <p>LIBRI LETTI</p>
+<div class="utente-list-container-with-title">
+    <div class="category-title"><p>LIBRI LETTI</p></div>
     <app-libro-list [libri] = 'libri'></app-libro-list>
 </div>
 }
 
 @if (videogiochi.length > 0) {
-<div>
-    <p>VIDEOGIOCHI GIOCATI</p>
+<div class="utente-list-container-with-title">
+    <div class="category-title"><p>VIDEOGIOCHI GIOCATI</p></div>
     <app-videogioco-list [videogiochi] = 'videogiochi'></app-videogioco-list>
 </div>
 }

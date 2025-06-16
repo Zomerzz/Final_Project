@@ -1,4 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <button id="sub" type="submit">Submit</button>
     <h3><label for="tipoMedia">Tipo di Opera</label></h3>
     <select formControlName="tipoMedia" id="tipoMedia">
         @for (media of mediaTypes; track media) {
@@ -97,7 +98,7 @@
                     <option value="orderByOreStoriaPrincipaleAsc">Per durata minore</option>
                 }
             </select>
-            
+
         </div>
 
     }
@@ -115,5 +116,5 @@
     } -->
 
 
-    <button id="sub" type="submit">Submit</button>
+
 </form>

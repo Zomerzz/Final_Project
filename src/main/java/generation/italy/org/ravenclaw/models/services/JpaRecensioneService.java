@@ -47,7 +47,6 @@ public class JpaRecensioneService implements RecensioneService{
             case "videogiochi" -> findRecensioneByVideogiocoId(mediaId);
             default -> new ArrayList<>();
         };
-        System.out.println(recensioni);
         return recensioni;
     }
 

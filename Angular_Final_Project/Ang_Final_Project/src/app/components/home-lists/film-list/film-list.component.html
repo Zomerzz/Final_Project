@@ -5,7 +5,6 @@
         @for (film of films; track film.id) {
         <div class="card">
             <a class="card-a" [routerLink]="['/films-dettagli', film.id]" [state]="{ film: film }">
-
                 <img [src]="film.imgUrl" class="immagine">
                 <div class="title_div">
                     <h2 class="titolo-scroll">{{ film.titolo }}</h2>

@@ -35,6 +35,7 @@ export class BookDetailsComponent implements OnInit {
         if (history.state && history.state.libro) {
             this.libro = history.state.libro;
             this.loadRecensioni(this.libro.id);
+            this.getLibroLetto();
         } else {
             const id = this._activatedRoute.snapshot.paramMap.get("id");
             if (id != null) {
@@ -44,6 +45,7 @@ export class BookDetailsComponent implements OnInit {
                         next: l => {
                             this.libro = l;
                             this.loadRecensioni(libroId);
+                            this.getLibroLetto();
                         },
                         error: e => alert('errore nel caricamento del libro')
                     });
@@ -51,13 +53,7 @@ export class BookDetailsComponent implements OnInit {
             }
         }
 
-        if (this.isAlreadylogged) {
-            this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
-                .subscribe({
-                    next: ll => this.libroLetto = ll,
-                    error: e => this.libroLetto = null
-                });
-        }
+
     }
 
     get isAlreadylogged() {
@@ -107,5 +103,15 @@ export class BookDetailsComponent implements OnInit {
         if (voto >= 50) return '#FFD60A';
         if (voto >= 25) return '#FF9F0A';
         return '#FF453A';
+    }
+
+    getLibroLetto(){
+        if (this.isAlreadylogged) {
+            this._mediaRegistratoService.getLibroLettoByLibroIdAndUtenteId(this.libro.id, Number(this._authService.getUserId()))
+                .subscribe({
+                    next: ll => this.libroLetto = ll,
+                    error: e => this.libroLetto = null
+                });
+        }
     }
 }

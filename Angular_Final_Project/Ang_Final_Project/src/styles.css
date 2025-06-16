@@ -19,7 +19,7 @@ body::-webkit-scrollbar{
     width: 0;
 }
 
-/* 
+/*
 =============================================================================================================================
                                                         HOME PAGE
 =============================================================================================================================
@@ -43,7 +43,7 @@ app-home >main{
     grid-column: 2;
 }
 
-/* 
+/*
 =============================================================================================================================
                                                         HOME PAGE LISTS
 =============================================================================================================================
@@ -71,7 +71,7 @@ app-home >main{
 ::-webkit-scrollbar-thumb {
     background-color: rgba(68, 108, 194);
     border-radius: 1em;
-    
+
 
 }
 
@@ -83,17 +83,17 @@ app-home >main{
     width: 30vh;
     height: 50vh;
     background-color: rgba(170, 170, 170, 0.25);
-    
     border-radius: 1em;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: grid;    
+    display: grid;
     grid-template-rows: 7fr 3fr;
     grid-template-columns: 1fr;
     text-align: center;
     align-items: center;
     transition: transform 0.2s ease-in-out;
 }
-.card-a{display: grid;    
+.card-a{
+    display: grid;
     grid-template-rows: 7fr 3fr;
     grid-template-columns: 1fr;}
 
@@ -160,7 +160,7 @@ app-home >main{
     transition: width 0.3s ease-in-out;
 }
 
-/* 
+/*
 =============================================================================================================================
                                                         DETAILS PAGE
 =============================================================================================================================
@@ -222,17 +222,47 @@ app-home >main{
     transition: width 0.3s ease-in-out;
 }
 
-/* 
+/*
 =============================================================================================================================
                                                         USER PAGE
 =============================================================================================================================
 */
+app-user-page-component{
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
+
+app-user-page-component .list-container{
+    width: 95vw;
+}
+
+.category-title{
+    background-color: rgba(170, 170, 170, 0.25);
+    width: 30em;
+    text-align: center;
+    padding: 0.2em 2em;
+    border-radius: 1em;
+    font-weight: bold;
+}
+.category-title >*{
+    color: white;
+}
+
+.utente-list-container-with-title{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
 
 .recensioni-container {
-    width: 100%;
+    width: 95vw;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1em;
     padding: 1rem;
     border: 2px solid #292929;
     border-radius: 1em;
@@ -244,9 +274,9 @@ app-home >main{
     padding:1em;
     border-radius: 1em;
     background-color: rgba(170, 170, 170, 0.25);
-    width: 45%;
+    width: 47%;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: 50% 50%;
 }
 
@@ -268,5 +298,42 @@ app-home >main{
 .descrizione-rec-div {
     grid-column: 2;
     grid-row: 2;
+    background-color: rgba(170, 170, 170, 0.25);
+    border-radius: 1em;
+
+}
+
+.recensione-title-div{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+
+}
+
+.recensione-title-div .titolo-scroll{
+    text-align: center;
+    font-weight: bold;
+
+}
+
+.recensione-title-div .progress-bar-container{
+    display: flex;
+
+    justify-content: left;
+    align-items: left;
+}
+
+.recensione-title-div .card-voto-Display{
+    display: flex;
+
+}
+
+.descrizione-rec-div{
+    padding: 1em;
+}
+
+.descrizione-rec-div p:first-child{
+    text-align: center;
+    font-weight: bold;
 }
 
