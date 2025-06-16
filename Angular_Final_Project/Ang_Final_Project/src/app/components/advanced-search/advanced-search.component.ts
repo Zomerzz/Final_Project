@@ -47,9 +47,10 @@ export class AdvancedSearchComponent implements OnInit{
       maxVoto: new FormControl(null),
       minOreDiGiocoStoriaPrincipale: new FormControl(null),
       maxOreDiGiocoStoriaPrincipale: new FormControl(null),
-      tags: new FormControl(null)
+      tags: new FormControl(null),
+      sort: new FormControl('')
     };
-    const all: (keyof typeof allControls) [] = ['titolo', 'minData', 'maxData', 'minVoto', 'maxVoto', 'tags'];
+    const all: (keyof typeof allControls) [] = ['titolo', 'minData', 'maxData', 'minVoto', 'maxVoto', 'tags', 'sort'];
     const allowed: { [key: string]: (keyof typeof allControls) [] } = {
       tutti: all,
       libri: [...all, 'numeroPagine', 'casaEditriceNome', 'autoreNome'],
@@ -73,6 +74,7 @@ export class AdvancedSearchComponent implements OnInit{
     });
   }
   onSubmit() {
+    console.log(this.form.value)
     this.search.emit(this.form.value);
   }
   onTagCheckboxChange(event: Event) {

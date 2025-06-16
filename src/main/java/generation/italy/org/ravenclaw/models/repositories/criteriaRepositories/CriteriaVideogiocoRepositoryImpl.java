@@ -63,6 +63,10 @@ public class CriteriaVideogiocoRepositoryImpl implements CriteriaVideogiocoRepos
             query.orderBy(cb.desc(root.get("dataDiPubblicazione")));
         } else if (sortOrder.equalsIgnoreCase("orderByDataDiPubblicazioneAsc")) {
             query.orderBy(cb.asc(root.get("dataDiPubblicazione")));
+        } else if (sortOrder.equalsIgnoreCase("orderByOreStoriaPrincipaleDesc")) {
+            query.orderBy(cb.desc(root.get("oreStoriaPrincipale")));
+        } else if (sortOrder.equalsIgnoreCase("orderByOreStoriaPrincipaleAsc")) {
+            query.orderBy(cb.asc(root.get("oreStoriaPrincipale")));
         }
 
         List<Videogioco> videogiochi = em.createQuery(query)

@@ -17,6 +17,6 @@ export interface SearchModel{
 }
 
 //Metodi di sort attualmente disponibili
-//Videogiochi: orderByVotoDesc, orderByVotoAsc, orderByTitoloDesc, orderByTitoloAsc, orderByDataPubblicazioneDesc, orderByDataDiPubblicazioneAsc
+//Videogiochi: orderByVotoDesc, orderByVotoAsc, orderByTitoloDesc, orderByTitoloAsc, orderByDataPubblicazioneDesc, orderByDataDiPubblicazioneAsc, orderByOreStoriaPrincipaleAsc, orderByOreStoriaPrincipaleDesc
 //Libri: orderByVotoDesc, orderByVotoAsc, orderByTitoloDesc, orderByTitoloAsc, orderByDataPubblicazioneDesc, orderByDataDiPubblicazioneAsc, orderByNumeroDiPagineDesc, orderByNumeroDiPagineAsc
 //Film orderByVotoDesc, orderByVotoAsc, orderByTitoloDesc, orderByTitoloAsc, orderByDataPubblicazioneDesc, orderByDataDiPubblicazioneAsc, orderByDurataFilmDesc, orderByDurataFilmAsc
