@@ -42,16 +42,16 @@ export class HomeComponent implements OnInit {
         this._activatedRoute.queryParams.subscribe(params => {
             const hasParams = Object.keys(params).length > 0
 
+            const tipoMedia = params['tipoMedia'] || 'tutti';
+            const sort = params['sort'] || 'orderByDataPubblicazioneDesc';
+
+            const filters: Partial<SearchModel> = {tipoMedia, sort}
+
             if(!isLogged && !hasParams) {
-                const defaultFilter: Partial<SearchModel> = {
-                    tipoMedia: 'tutti',
-                    sort: 'orderByDataPubblicazioneDesc'
-                };
-                this._router.navigate(['/home'], { queryParams: defaultFilter });
-              
-                this.fetchPreSearchResults(defaultFilter);
-                return;
+                this._router.navigate(['/home'], { queryParams: filters });
             }
+
+            this.fetchPreSearchResults(filters);
         })
 
         
