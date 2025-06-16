@@ -16,3 +16,7 @@ export interface SearchModel{
     sort: string;
 }
 
+//Metodi di sort attualmente disponibili
+//Videogiochi: orderByVotoDesc, orderByVotoAsc, orderByTitoloDesc, orderByTitoloAsc, orderByDataPubblicazioneDesc, orderByDataDiPubblicazioneAsc
+//Libri: //
+//Film //
