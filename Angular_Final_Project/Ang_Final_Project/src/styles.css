@@ -69,9 +69,10 @@ app-home >main{
 
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(68, 108, 194, 0.5);
-    border-radius: 100em;
-    max-height: 5%;
+    background-color: rgba(68, 108, 194);
+    border-radius: 1em;
+    
+
 }
 
 .list-container::-webkit-scrollbar-corner {
@@ -197,3 +198,4 @@ app-home >main{
     width: 0%;
     transition: width 0.3s ease-in-out;
 }
+

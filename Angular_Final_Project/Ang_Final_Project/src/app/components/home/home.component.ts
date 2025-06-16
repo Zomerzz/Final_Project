@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
             const numParams = Object.keys(params).length;
             const isLogged = this._authService.isLogged();
 
-            if (numParams === 1 && hasParams) {
+            if (numParams === 1) {
                 console.log("search by titolo");
                 const titolo = params['q'];
                 if (titolo) {
@@ -83,13 +83,10 @@ export class HomeComponent implements OnInit {
             }
             else if (!isLogged && !hasParams) {
                 console.log("search by all");
-                const tipoMedia = params['tipoMedia'] || 'tutti';
-                const sort = params['sort'] || 'orderByDataPubblicazioneDesc';
+                const tipoMedia ='tutti';
+                const sort = 'orderByDataPubblicazioneDesc';
                 const filters: Partial<SearchModel> = { tipoMedia, sort };
-
-                this._router.navigate(['/home'], { queryParams: filters });
                 this.fetchPreSearchResults(filters);
-
                 return;   // ← esci qui, stop alle altre condizioni
             }
             else if (isLogged && !hasParams) {
@@ -221,7 +218,6 @@ export class HomeComponent implements OnInit {
     }
     createQueryString(filters: Partial<SearchModel>): string {
         let queryString: string = '?';
-        filters.tipoMedia = '';
         if (filters.tags?.length === 0) {
             filters.tags = undefined;
         }

@@ -21,6 +21,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
 </div>
@@ -30,12 +31,12 @@
     </div>
 } -->
 
-@if(isAlreadylogged && !videogiocoGiocato){
-<div>
-    <button (click)="registerVideogiocoGiocato()">Segna come giocato</button>
-</div>
-}
 
+@if(isAlreadylogged && !videogiocoGiocato){
+            <div>
+                <button (click)="registerVideogiocoGiocato()">Segna come giocato</button>
+            </div>
+        }
 @if(isAlreadylogged && videogiocoGiocato){
 <div>
     <button (click)="deleteVideogiocoGiocato()">Rimuovi dai videogiochi a cui hai giocato</button>
