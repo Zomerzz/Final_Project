@@ -35,8 +35,8 @@ export class AdvancedSearchComponent implements OnInit{
   configureFormControls(tipoMedia: string) {
     const keepAlways = ['tipoMedia', 'tags'];
     const allControls = {
-      titolo: new FormControl(''), 
-      numeroPagine: new FormControl(null), 
+      titolo: new FormControl(''),
+      numeroPagine: new FormControl(null),
       autoreNome: new FormControl(''),
       casaEditriceNome: new FormControl(''),
       casaDiProduzione: new FormControl(''),
@@ -51,7 +51,7 @@ export class AdvancedSearchComponent implements OnInit{
     };
     const all: (keyof typeof allControls) [] = ['titolo', 'minData', 'maxData', 'minVoto', 'maxVoto', 'tags'];
     const allowed: { [key: string]: (keyof typeof allControls) [] } = {
-      tutti: all, 
+      tutti: all,
       libri: [...all, 'numeroPagine', 'casaEditriceNome', 'autoreNome'],
       film: [...all, 'casaDiProduzione', 'casaDiPubblicazione','autoreNome'],
       videogiochi: [...all, 'casaDiProduzione', 'casaDiPubblicazione', 'minOreDiGiocoStoriaPrincipale', 'maxOreDiGiocoStoriaPrincipale']
@@ -85,9 +85,10 @@ export class AdvancedSearchComponent implements OnInit{
       const valore = +checkbox.value;
       const idx = selectedTags.indexOf(valore);
       if (idx > -1) {
-        selectedTags.splice(idx, 1);
-      }
-      this.tags?.setValue([...selectedTags]); 
+        selectedTags.splice(idx, 1)
+      ;
+}
+
     }
   }
 

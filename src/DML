@@ -24,6 +24,7 @@ INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nasci
   (9, 'J.R.R.', NULL, 'Tolkien', '1892-01-03', 'Regno Unito'),
   (10, 'Jane', NULL, 'Austen', '1775-12-16', 'Regno Unito');
 
+
 -- 3. Popola i ruoli ("ruoli")
 INSERT INTO public.ruoli (ruolo_id, nome) VALUES
   (1, 'Regista'),

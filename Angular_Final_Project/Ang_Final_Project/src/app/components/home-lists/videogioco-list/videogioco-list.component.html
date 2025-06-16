@@ -5,8 +5,7 @@
 
             @for (videogioco of videogiochi; track videogioco.id) {
             <div class="card">
-                <a [routerLink]="['/videogiochi-dettagli', videogioco.id]"[state]="{ videogioco: videogioco }">
-                    <h3 class="type-label">Videogioco</h3>
+                <a class="card-a" [routerLink]="['/videogiochi-dettagli', videogioco.id]"[state]="{ videogioco: videogioco }">
                     <img [src]="videogioco.imgUrl" class="immagine">
                     <div class="title_div">
                         <h2 class="titolo-scroll">{{ videogioco.titolo }}</h2>

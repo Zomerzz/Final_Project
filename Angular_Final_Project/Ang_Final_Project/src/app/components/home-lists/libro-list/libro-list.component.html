@@ -3,15 +3,13 @@
     <div class="list-container">
         @for (libro of libri; track libro.id) {
         <div class="card">
-            <a [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
-                <h3 class="type-label">Libro</h3>
+            <a class="card-a" [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
                 <img [src]="libro.imgUrl" class="immagine">
                 <div class="title_div">
                     <h2 class="titolo-scroll">{{ libro.titolo }}</h2>
                     <p class="voto-scroll">⭐ Voto: {{ libro.voto }}</p>
                 </div>
             </a>
-            
         </div>
         }
     </div>

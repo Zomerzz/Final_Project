@@ -36,13 +36,15 @@ export class HomeComponent implements OnInit {
     private _authService: AuthService = inject(AuthService);
     private _router = inject(Router);
 
-    ngOnInit(): void {
 
+    ngOnInit(): void {
         this._activatedRoute.queryParams.subscribe(params => {
             const hasParams = Object.keys(params).length > 0;
-            const numParams = Object.keys(params).length ;
+            const numParams = Object.keys(params).length;
             const isLogged = this._authService.isLogged();
-            if(numParams ===1 && hasParams){
+
+            if (numParams === 1 && hasParams) {
+                console.log("search by titolo");
                 const titolo = params['q'];
                 if (titolo) {
                     this._libroService.findByName(titolo).subscribe({
@@ -75,56 +77,60 @@ export class HomeComponent implements OnInit {
                             console.log("|===================================================|");
                             console.log("|la ricerca findByName ha dato degli errori|");
                             console.log("|===================================================|");
-
                         }
                     })
                 }
-            } else if(!isLogged && !hasParams){
+            }
+            else if (!isLogged && !hasParams) {
+                console.log("search by all");
                 const tipoMedia = params['tipoMedia'] || 'tutti';
                 const sort = params['sort'] || 'orderByDataPubblicazioneDesc';
-                const filters: Partial<SearchModel> = {tipoMedia, sort}
+                const filters: Partial<SearchModel> = { tipoMedia, sort };
+
                 this._router.navigate(['/home'], { queryParams: filters });
-                console.log("pippo");
                 this.fetchPreSearchResults(filters);
-            } else if(isLogged && !hasParams) {
 
-            } else{
-                const queryObj :Partial<SearchModel>= { ...params }; 
-                this.executeSearch(queryObj);
+                return;   // ← esci qui, stop alle altre condizioni
             }
-        })
-
+            else if (isLogged && !hasParams) {
+                // …logged senza params…
+            }
+            else if (numParams > 1) {
+                console.log("search by tags");
+                this.executeSearch({ ...params });
+            }
+        });
     }
     fetchPreSearchResults(filters: Partial<SearchModel>): void {
-    const queryString = this.createQueryString(filters);
+        const queryString = this.createQueryString(filters);
 
-    this._libroService.findByFilters(queryString).subscribe({
-        next: listaLibriDb => {
-            this.listaLibri = listaLibriDb;
-        },
-        error: e => {
-            console.log("Errore nella ricerca dei libri:", e);
-        }
-    });
+        this._libroService.findByFilters(queryString).subscribe({
+            next: listaLibriDb => {
+                this.listaLibri = listaLibriDb;
+            },
+            error: e => {
+                console.log("Errore nella ricerca dei libri:", e);
+            }
+        });
 
-    this._filmService.findByFilters(queryString).subscribe({
-        next: listaFilmDb => {
-            this.listaFilm = listaFilmDb;
-        },
-        error: e => {
-            console.log("Errore nella ricerca dei film:", e);
-        }
-    });
+        this._filmService.findByFilters(queryString).subscribe({
+            next: listaFilmDb => {
+                this.listaFilm = listaFilmDb;
+            },
+            error: e => {
+                console.log("Errore nella ricerca dei film:", e);
+            }
+        });
 
-    this._videogiocoService.getByFilters(queryString).subscribe({
-        next: listaVideogiochiDb => {
-            this.listaVideogiochi = listaVideogiochiDb;
-        },
-        error: e => {
-            console.log("Errore nella ricerca dei videogiochi:", e);
-        }
-    });
-}
+        this._videogiocoService.getByFilters(queryString).subscribe({
+            next: listaVideogiochiDb => {
+                this.listaVideogiochi = listaVideogiochiDb;
+            },
+            error: e => {
+                console.log("Errore nella ricerca dei videogiochi:", e);
+            }
+        });
+    }
 
 
     executeSearch(filters: Partial<SearchModel>) {
