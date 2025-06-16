@@ -15,17 +15,17 @@ public class FilmVisto {
 
     // === MANY TO MANY ===
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn( name = "film_id")
     private Film film;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn( name = "utente_id")
     private Utente utente;
 
     // === ONE TO MANY ===
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn( name = "recensione_id")
     private Recensione recensione;
 

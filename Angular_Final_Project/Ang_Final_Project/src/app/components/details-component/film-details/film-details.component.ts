@@ -75,7 +75,11 @@ export class FilmDetailsComponent implements OnInit{
   deleteFilmVisto() {
     if(this.filmVisto){
       this._mediaRegistratoService.deleteFilmVisto(this.filmVisto.filmVistoId).subscribe({
-      next: () => this.filmVisto = null,
+      next: () =>{
+        this.recensioni = this.recensioni
+            .filter(recensione => recensione.recensioneId != this.filmVisto?.recensione.recensioneId);
+        this.filmVisto = null;
+      },
       error: e => alert('errore nella registrazione del film visto: '+ e)
       });
     }

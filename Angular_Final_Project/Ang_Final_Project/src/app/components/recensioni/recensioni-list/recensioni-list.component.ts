@@ -11,12 +11,10 @@ import { RecensioneService } from '../../../services/RecensioneService';
   templateUrl: './recensioni-list.component.html',
   styleUrl: './recensioni-list.component.css'
 })
-export class RecensioniListComponent implements OnInit {
+export class RecensioniListComponent {
   @Input('recensioni') list: Recensione[] = [];
   private _route = inject(ActivatedRoute);
   private _recensioneService: RecensioneService = inject(RecensioneService);
   private _router = inject(Router);
 
-  ngOnInit(): void {
-  }
 }
