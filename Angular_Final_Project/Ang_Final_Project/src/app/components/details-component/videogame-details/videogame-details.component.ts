@@ -20,7 +20,7 @@ import { RecensioneCardComponent } from '../../recensioni/recensione-card/recens
 export class VideogameDetailsComponent implements OnInit{
   videogioco!: Videogioco;
   videogiocoGiocato!: VideogiocoGiocato | null;
-  type = 'videogioco';
+  type = 'videogiochi';
   recensioni: Recensione[] = [];
 
   private _activatedRoute = inject(ActivatedRoute);
@@ -75,8 +75,12 @@ export class VideogameDetailsComponent implements OnInit{
 
   deleteVideogiocoGiocato() {
     if(this.videogiocoGiocato){
-      this._mediaRegistratoService.deleteLibroLetto(this.videogiocoGiocato.videogiocoGiocatoId).subscribe({
-      next: () => this.videogiocoGiocato = null,
+      this._mediaRegistratoService.deleteVideogiocoGiocato(this.videogiocoGiocato.videogiocoGiocatoId).subscribe({
+      next: () =>{
+        this.recensioni = this.recensioni.
+            filter(recensione => recensione.recensioneId != this.videogiocoGiocato?.recensione.recensioneId);
+        this.videogiocoGiocato = null;
+      },
       error: e => alert('errore nella registrazione del videogioco giocato: '+ e)
       });
     }

@@ -1,6 +1,8 @@
 <div>
     <p>Voto : {{rec.voto}}</p>
-    @if(rec.recensione != null){
-        <p>Recensione : {{rec.recensione}}</p>
+    @if(rec.recensione != null || rec.recensione != undefined){
+        @if(rec.recensione.trim() != ''){
+            <p>Recensione : {{rec.recensione}}</p>
+        }
     }
 </div>

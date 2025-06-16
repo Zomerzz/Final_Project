@@ -42,13 +42,13 @@ public class JpaRecensioneService implements RecensioneService{
     public List<Recensione> findRecensioni(String mediaType, Integer mediaId) {
         List<Recensione> recensioni = null;
                 switch(mediaType) {
-            case "film":
+            case "films":
                 recensioni = findRecensioneByFilmId(mediaId);
                 break;
             case "libro":
                 recensioni = findRecensioneByLibroId(mediaId);
                 break;
-            case "videogioco":
+            case "videogiochi":
                 recensioni = findRecensioneByVideogiocoId(mediaId);
                 break;
         }
@@ -119,23 +119,15 @@ public class JpaRecensioneService implements RecensioneService{
     @Override
     public void addRecensioneToRegistrazione(String type, int utenteId, int mediaId, Recensione recensione) throws EntityNotFoundException {
         switch(type) {
-            case "film":
+            case "films":
                 addRecensioneToFilmVisto(utenteId, mediaId, recensione);
                 break;
             case "libro":
                 addRecensioneToLibroLetto(utenteId, mediaId, recensione);
                 break;
-            case "videogioco":
+            case "videogiochi":
                 addRecensioneToVideogiocoGiocato(utenteId, mediaId, recensione);
                 break;
         }
     }
-//
-     //DA GESTIRE IL FATTO CHE NON COMPARE NEL DTO IL NOME DELL'OPERA, COSì NELLA PAG UTENTE SAREBBE UNA LISTA DI RECENSIONI A CASO
-//    @Override
-//    public List<Recensione> findRecensioneByUtenteId(int utenteId) {
-//        List<Recensione> recFilm = recensioneRepo.findByFilmVistoFilmUtenteId(utenteId);
-//        List<Recensione> recLibri = recensioneRepo.findByLibroLettoLibroUtenteId(utenteId);
-//        List<Recensione> recVideogiochi = recensioneRepo.findByVideogiocoGiocatoVideogiocoUtenteId(utenteId);
-//    }
 }
