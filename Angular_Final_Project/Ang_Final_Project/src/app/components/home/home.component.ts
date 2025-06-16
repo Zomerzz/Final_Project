@@ -38,65 +38,17 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this._activatedRoute.queryParams.subscribe(params => {
-            const hasParams = Object.keys(params).length > 0;
-            const numParams = Object.keys(params).length;
-            const isLogged = this._authService.isLogged();
-
-            if (numParams === 1) {
-                console.log("search by titolo");
-                const titolo = params['q'];
-                if (titolo) {
-                    this._libroService.findByName(titolo).subscribe({
-                        next: listaLibroDb => {
-                            this.listaLibri = listaLibroDb;
-                        },
-                        error: e => {
-                            console.log("|====================================================|");
-                            console.log("|la ricerca findByName ha dato degli errori          |");
-                            console.log("|====================================================|");
-
-                        }
-                    });
-                    this._videogiocoService.getByName(titolo).subscribe({
-                        next: listaVideogiocoDb => {
-                            this.listaVideogiochi = listaVideogiocoDb;
-                        },
-                        error: e => {
-                            console.log("|=========================================================|");
-                            console.log("|la ricerca findByName ha dato degli errori|");
-                            console.log("|=========================================================|");
-
-                        }
-                    });
-                    this._filmService.findByName(titolo).subscribe({
-                        next: listaFilmDb => {
-                            this.listaFilm = listaFilmDb;
-                        },
-                        error: e => {
-                            console.log("|===================================================|");
-                            console.log("|la ricerca findByName ha dato degli errori|");
-                            console.log("|===================================================|");
-                        }
-                    })
-                }
-            }
-            else if (!isLogged && !hasParams) {
-                console.log("search by all");
-                const tipoMedia ='tutti';
-                const sort = 'orderByDataPubblicazioneDesc';
-                const filters: Partial<SearchModel> = { tipoMedia, sort };
-                this.fetchPreSearchResults(filters);
-                return;   // ← esci qui, stop alle altre condizioni
-            }
-            else if (isLogged && !hasParams) {
-                // …logged senza params…
-            }
-            else if (numParams > 1) {
-                console.log("search by tags");
-                this.executeSearch({ ...params });
-            }
-        });
+        const isLogged = this._authService.isLogged();
+        if(!isLogged)
+        {
+            const tipoMedia ='tutti';
+            const sort = 'orderByDataPubblicazioneDesc';
+            const filters: Partial<SearchModel> = { tipoMedia, sort };
+            this.fetchPreSearchResults(filters);
+            return;
+        }  else{
+            //fare ricerca per consigliati
+        }
     }
     fetchPreSearchResults(filters: Partial<SearchModel>): void {
         const queryString = this.createQueryString(filters);
@@ -134,7 +86,7 @@ export class HomeComponent implements OnInit {
         this.listaFilm = [];
         this.listaLibri = [];
         this.listaVideogiochi = [];
-        this._router.navigate(['/home'], { queryParams: filters });
+        //this._router.navigate(['/home'], { queryParams: filters });
         if (filters.tipoMedia === 'tutti') {
             const queryString = this.createQueryString(filters);
             this._libroService.findByFilters(queryString).subscribe({
