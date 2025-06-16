@@ -1,0 +1,1021 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
+-- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET transaction_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+-- CIAO MI CHIAMO GIORNO GIOVANNA
+--
+-- Data for Name: autori; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+---
+
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (1, 'J.K.', NULL, 'Rowling', '1965-07-31', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (2, 'Stephen', NULL, 'King', '1947-09-21', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (3, 'George', 'R.R.', 'Martin', '1948-09-20', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (4, 'Agatha', NULL, 'Christie', '1890-09-15', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (5, 'Isaac', NULL, 'Asimov', '1920-01-02', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (6, 'Neil', NULL, 'Gaiman', '1960-11-10', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (7, 'Margaret', NULL, 'Atwood', '1939-11-18', 'Canada');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (8, 'Haruki', NULL, 'Murakami', '1949-01-12', 'Giappone');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (9, 'J.R.R.', NULL, 'Tolkien', '1892-01-03', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (10, 'Jane', NULL, 'Austen', '1775-12-16', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (11, 'William', NULL, 'Herrera', '1985-10-20', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (12, 'Ella', NULL, 'Gonzalez', '1950-04-13', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (13, 'Isabella', NULL, 'Ramos', '1952-12-11', 'Italia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (14, 'Chloe', NULL, 'Miller', '1961-09-10', 'Giappone');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (15, 'Ethan', NULL, 'Johnson', '1982-03-13', 'Italia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (16, 'Amelia', NULL, 'Herrera', '1992-11-14', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (17, 'Emma', NULL, 'Leon', '1950-01-25', 'Corea del Sud');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (18, 'Lucas', NULL, 'Brown', '1967-03-02', 'Giappone');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (19, 'Emma', NULL, 'Chavez', '1993-08-25', 'Spagna');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (20, 'Evelyn', NULL, 'Brown', '1980-05-15', 'Giappone');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (21, 'Alex', NULL, 'Martinez', '1985-11-15', 'Italia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (22, 'Ethan', NULL, 'Perez', '1965-08-03', 'Corea del Sud');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (23, 'Lucia', NULL, 'Chavez', '1983-03-21', 'Italia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (24, 'Alex', NULL, 'Johnson', '1952-11-23', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (25, 'Benjamin', NULL, 'Gutierrez', '1981-08-02', 'Francia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (26, 'Scarlett', NULL, 'Garcia', '1987-07-06', 'Spagna');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (27, 'Emily', NULL, 'Castro', '1994-12-18', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (28, 'Joseph', NULL, 'Rivera', '1961-07-16', 'Canada');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (29, 'Logan', NULL, 'Davis', '1950-12-17', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (30, 'Daniel', NULL, 'Herrera', '1987-04-08', 'Germania');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (31, 'Olivia', NULL, 'Martinez', '1982-09-08', 'Germania');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (32, 'Emma', NULL, 'Miller', '1983-05-23', 'Canada');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (33, 'Olivia', NULL, 'Leon', '1960-07-05', 'Australia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (34, 'Elijah', NULL, 'Gonzalez', '1994-08-17', 'Australia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (35, 'Chloe', NULL, 'Torres', '1971-06-27', 'Germania');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (36, 'Alex', NULL, 'Garcia', '1968-07-26', 'Italia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (37, 'Carlos', NULL, 'Ortiz', '1958-01-02', 'USA');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (38, 'William', NULL, 'Williams', '1950-06-09', 'Regno Unito');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (39, 'Matthew', NULL, 'Castro', '1991-08-10', 'Australia');
+INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (40, 'Sofia', NULL, 'Diaz', '1981-09-24', 'Regno Unito');
+
+
+--
+-- Data for Name: case_p; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (1, 'Warner Bros.', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (2, 'Penguin Books', 'Regno Unito');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (3, 'Electronic Arts', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (4, 'Sony Pictures', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (5, 'Random House', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (6, 'Nintendo', 'Giappone');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (7, '20th Century Fox', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (8, 'HarperCollins', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (9, 'Ubisoft', 'Francia');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (10, 'Columbia Pictures', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (11, 'Miramax Films', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (12, 'New Line Cinema', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (13, 'Studio Ghibli', 'Giappone');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (14, 'Pathé', 'Francia');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (15, 'Gaumont', 'Francia');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (16, 'CJ Entertainment', 'Corea del Sud');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (17, 'Televisa', 'Messico');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (18, 'Canal+', 'Francia');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (19, 'Illumination', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (20, 'DreamWorks', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (21, 'Pixar', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (22, 'Laika', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (23, 'Paramount Pictures', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (24, 'Universal Pictures', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (25, 'Lionsgate', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (26, 'MGM', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (27, 'Toho', 'Giappone');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (28, 'Focus Features', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (29, 'A24', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (30, 'BBC Films', 'Regno Unito');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (31, 'Film4 Productions', 'Regno Unito');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (32, 'Nordisk Film', 'Danimarca');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (33, 'SF Studios', 'Svezia');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (34, 'StudioCanal', 'Regno Unito');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (35, 'UFA', 'Germania');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (36, 'Concorde Film', 'Germania');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (37, 'Yash Raj Films', 'India');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (38, 'Eros International', 'India');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (39, 'Wild Bunch', 'Francia');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (40, 'Archie Comics', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (41, 'Dark Horse Comics', 'USA');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (42, 'Kodansha', 'Giappone');
+INSERT INTO public.case_p (casa_id, nome, nazionalita) VALUES (43, 'Shueisha', 'Giappone');
+
+
+--
+-- Data for Name: film; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (1, 'Inception', 148, '2010-07-16', 'Un thriller che piega la mente sui sogni dentro i sogni.', 1, 92, 'https://media.themoviedb.org/t/p/w440_and_h660_face/67RLqAViz6v4ez5oTy01eVH57VC.jpg', 1);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (2, 'Il Padrino', 175, '1972-03-24', 'Il patriarca di un impero criminale passa il controllo al figlio riluttante.', 7, 98, 'https://image.tmdb.org/t/p/original/aQ4yCDBVtCVis7tLNMpUiu1DuLa.jpg', 7);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (3, 'Pulp Fiction', 154, '1994-10-14', 'Le vite di due sicari, un pugile e altri si intrecciano in una serie di eventi violenti.', 4, 94, 'https://media.themoviedb.org/t/p/w440_and_h660_face/9p10J9Xp7MuaVac56g8BwAuXEsA.jpg', 4);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (4, 'Il Cavaliere Oscuro', 152, '2008-07-18', 'Batman alza la posta nella sua guerra contro il crimine.', 1, 94, 'https://media.themoviedb.org/t/p/w440_and_h660_face/qIhsgno1mjbzUbs4H6DaRjhskAR.jpg', 1);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (5, 'Fight Club', 139, '1999-10-15', 'Un impiegato insonne forma un club di combattimento sotterraneo.', 4, 89, 'https://media.themoviedb.org/t/p/w440_and_h660_face/rtNLQ8HbPElzEfrHjrzSr07prKT.jpg', 4);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (6, 'Forrest Gump', 142, '1994-07-06', 'Le presidenze di Kennedy e Johnson raccontate attraverso gli occhi di un uomo con un QI basso.', 7, 88, 'https://media.themoviedb.org/t/p/w440_and_h660_face/pGZqc9jQ6F8klQZKm37NAAMH70o.jpg', 7);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (7, 'Matrix', 136, '1999-03-31', 'Un hacker scopre che la realtà è una simulazione.', 1, 92, 'https://media.themoviedb.org/t/p/w440_and_h660_face/yQZX4scmfYtj4ccKFNGZJlOj1y9.jpg', 1);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (8, 'Interstellar', 169, '2014-11-07', 'Esploratori attraversano un wormhole nello spazio per salvare l’umanità.', 1, 91, 'https://media.themoviedb.org/t/p/w440_and_h660_face/bMKiLh0mES4Uiococ240lbbTGXQ.jpg', 1);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (9, 'Il Gladiatore', 155, '2000-05-05', 'Un ex generale romano cerca vendetta contro l’imperatore corrotto.', 7, 87, 'https://media.themoviedb.org/t/p/w440_and_h660_face/42KK5H6oo30LxQ9PtYoUklPltrM.jpg', 7);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (10, 'Le Ali della Libertà', 142, '1994-09-23', 'Due prigionieri stringono un legame nel corso di molti anni.', 7, 98, 'https://media.themoviedb.org/t/p/w440_and_h660_face/9OxcvTJwZDjQTFvY2NxiwnSrQS6.jpg', 7);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (38, 'Fast & Furious 7', 104, '2003-09-21', 'Descrizione di Fast & Furious 7.', 13, 60, 'https://example.com/Fast_&_Furious_7.jpg', 13);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (11, 'Avatar', 106, '2023-02-18', 'Descrizione di Avatar.', 12, 61, 'https://m.media-amazon.com/images/I/81iDpcE0tlL._UF1000,1000_QL80_.jpg', 12);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (12, 'Titanic', 103, '2002-01-23', 'Descrizione di Titanic.', 20, 74, 'https://leganerd.com/wp-content/uploads/2021/03/43dae080442402c7fab4c93603fc74bf.jpg', 20);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (13, 'The Avengers', 112, '2016-07-19', 'Descrizione di The Avengers.', 31, 70, 'https://static.wikia.nocookie.net/avengers/images/1/1e/Marvel%27s_The_Avengers.jpg/revision/latest?cb=20160414122927&path-prefix=de', 31);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (14, 'Jurassic World', 147, '2021-05-21', 'Descrizione di Jurassic World.', 28, 90, 'https://static.wikia.nocookie.net/cinema/images/2/26/Loc4.jpeg/revision/latest?cb=20201112123511&path-prefix=it', 28);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (15, 'Furious 7', 157, '2004-09-08', 'Descrizione di Furious 7.', 11, 76, 'https://pad.mymovies.it/filmclub/2013/10/194/locandina.jpg', 11);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (16, 'Avengers: Endgame', 99, '2023-11-03', 'Descrizione di Avengers: Endgame.', 2, 96, 'https://pad.mymovies.it/filmclub/2018/12/029/locandina.jpg', 2);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (17, 'Frozen II', 159, '2019-11-27', 'Descrizione di Frozen II.', 33, 87, 'https://lumiere-a.akamaihd.net/v1/images/image_fc6ca233.jpeg?region=0,0,540,810', 33);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (18, 'Incredibles 2', 152, '2023-11-13', 'Descrizione di Incredibles 2.', 15, 72, 'https://m.media-amazon.com/images/M/MV5BMTEzNzY0OTg0NTdeQTJeQWpwZ15BbWU4MDU3OTg3MjUz._V1_FMjpg_UX1000_.jpg', 15);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (19, 'Beauty and the Beast', 167, '2001-07-04', 'Descrizione di Beauty and the Beast.', 18, 78, 'https://i.ebayimg.com/00/s/MTYwMFgxMDY2/z/ehgAAOSwXbRisyxl/$_57.JPG?set_id=880000500F', 18);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (20, 'Star Wars: The Force Awakens', 116, '2018-06-08', 'Descrizione di Star Wars: The Force Awakens.', 26, 93, 'https://m.media-amazon.com/images/I/81pqW2MS7+L._UF1000,1000_QL80_.jpg', 26);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (21, 'Black Panther', 93, '2024-02-25', 'Descrizione di Black Panther.', 35, 94, 'https://lumiere-a.akamaihd.net/v1/images/p_blackpanther_19754_4ac13f07.jpeg', 35);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (22, 'Harry Potter and the Deathly Hallows – Part 2', 150, '2008-06-27', 'Descrizione di Harry Potter and the Deathly Hallows – Part 2.', 2, 71, 'https://m.media-amazon.com/images/M/MV5BOTA1Mzc2N2ItZWRiNS00MjQzLTlmZDQtMjU0NmY1YWRkMGQ4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg', 2);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (23, 'The Lion King', 109, '2013-03-04', 'Descrizione di The Lion King.', 40, 72, 'https://lumiere-a.akamaihd.net/v1/images/p_thelionking_19752_1_0b9de87b.jpeg?region=0%2C0%2C540%2C810', 40);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (24, 'The Dark Knight Rises', 129, '2014-03-08', 'Descrizione di The Dark Knight Rises.', 36, 69, 'https://m.media-amazon.com/images/M/MV5BMTk4ODQzNDY3Ml5BMl5BanBnXkFtZTcwODA0NTM4Nw@@._V1_FMjpg_UX1000_.jpg', 36);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (25, 'Toy Story 4', 93, '2002-02-17', 'Descrizione di Toy Story 4.', 27, 84, 'https://pad.mymovies.it/filmclub/2011/07/059/locandina.jpg', 27);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (26, 'Joker', 171, '2000-02-06', 'Descrizione di Joker.', 39, 64, 'https://musicart.xboxlive.com/7/9a2a5100-0000-0000-0000-000000000002/504/image.jpg', 39);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (27, 'Toy Story 3', 118, '2024-01-16', 'Descrizione di Toy Story 3.', 17, 76, 'https://pad.mymovies.it/filmclub/2007/02/135/locandina.jpg', 17);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (28, 'Pirates of the Caribbean: Dead Man''s Chest', 176, '2008-01-02', 'Descrizione di Pirates of the Caribbean: Dead Man''s Chest.', 27, 73, 'https://m.media-amazon.com/images/I/81yFXFPPTVL._UF1000,1000_QL80_.jpg', 27);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (29, 'Finding Dory', 145, '2022-10-11', 'Descrizione di Finding Dory.', 21, 61, 'https://m.media-amazon.com/images/I/71+dWqh7oVL.jpg', 21);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (30, 'Zootopia', 143, '2013-07-14', 'Descrizione di Zootopia.', 36, 97, 'https://m.media-amazon.com/images/S/pv-target-images/0ecb745d03d6656e19c12acc7fe9f7a7ba6336a0f2d2c202aff94a8335f00aae.jpg', 36);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (31, 'Alice in Wonderland', 136, '2008-01-18', 'Descrizione di Alice in Wonderland.', 8, 94, 'https://m.media-amazon.com/images/I/91NJTuwDDhL.jpg', 8);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (32, 'The Hobbit: The Battle of the Five Armies', 170, '2009-12-10', 'Descrizione di The Hobbit: The Battle of the Five Armies.', 23, 64, 'https://m.media-amazon.com/images/M/MV5BMTYzNDE3OTQ3MF5BMl5BanBnXkFtZTgwODczMTg4MjE@._V1_.jpg', 23);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (33, 'Captain Marvel', 116, '2004-07-05', 'Descrizione di Captain Marvel.', 39, 98, 'https://lumiere-a.akamaihd.net/v1/images/p_captainmarvel_19755_3a1675ee.jpeg?region=0%2C0%2C540%2C810', 39);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (34, 'Rogue One: A Star Wars Story', 172, '2008-10-24', 'Descrizione di Rogue One: A Star Wars Story.', 20, 90, 'https://pad.mymovies.it/filmclub/2015/08/098/locandina.jpg', 20);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (35, 'The Hobbit: An Unexpected Journey', 170, '2019-04-05', 'Descrizione di The Hobbit: An Unexpected Journey.', 24, 67, 'https://m.media-amazon.com/images/M/MV5BMTcwNTE4MTUxMl5BMl5BanBnXkFtZTcwMDIyODM4OA@@._V1_FMjpg_UX1000_.jpg', 24);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (36, 'Despicable Me 3', 153, '2016-06-18', 'Descrizione di Despicable Me 3.', 34, 64, 'https://m.media-amazon.com/images/M/MV5BNjUyNzQ2MTg3Ml5BMl5BanBnXkFtZTgwNzE4NDM3MTI@._V1_.jpg', 34);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (37, 'The Jungle Book', 109, '2020-07-23', 'Descrizione di The Jungle Book.', 29, 95, 'https://m.media-amazon.com/images/M/MV5BMTc3NTUzNTI4MV5BMl5BanBnXkFtZTgwNjU0NjU5NzE@._V1_FMjpg_UX1000_.jpg', 29);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (39, 'Captain America: Civil War', 166, '2007-07-08', 'Descrizione di Captain America: Civil War.', 22, 91, 'https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_FMjpg_UX1000_.jpg', 22);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (40, 'Minions', 151, '2015-02-26', 'Descrizione di Minions.', 25, 93, 'https://m.media-amazon.com/images/S/pv-target-images/ab51409d6be6f8b4283fc5ea1d19e6f03111c2742485ccdfac2c0acfa9948c70.jpg', 25);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (41, 'Transformers: Dark of the Moon', 169, '2022-02-12', 'Descrizione di Transformers: Dark of the Moon.', 34, 80, 'https://m.media-amazon.com/images/M/MV5BMTkwOTY0MTc1NV5BMl5BanBnXkFtZTcwMDQwNjA2NQ@@._V1_.jpg', 34);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (42, 'Skyfall', 180, '2007-02-03', 'Descrizione di Skyfall.', 30, 87, 'https://stanzedicinema.com/wp-content/uploads/2012/11/skyfall-classic-poster.jpg', 30);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (43, 'Jurassic World: Fallen Kingdom', 150, '2017-09-18', 'Descrizione di Jurassic World: Fallen Kingdom.', 3, 84, 'https://m.media-amazon.com/images/I/A1P7N8O3OwL._UF1000,1000_QL80_.jpg', 3);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (44, 'Aquaman', 173, '2000-10-20', 'Descrizione di Aquaman.', 6, 66, 'https://pad.mymovies.it/filmclub/2015/11/202/locandina.jpg', 6);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (45, 'The Hunger Games: Catching Fire', 106, '2015-11-08', 'Descrizione di The Hunger Games: Catching Fire.', 7, 78, 'https://m.media-amazon.com/images/M/MV5BMTAyMjQ3OTAxMzNeQTJeQWpwZ15BbWU4MDU0NzA1MzAx._V1_.jpg', 7);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (46, 'Fifty Shades of Grey', 139, '2011-02-05', 'Descrizione di Fifty Shades of Grey.', 33, 79, 'https://m.media-amazon.com/images/I/812Fj0RWerL._UF1000,1000_QL80_.jpg', 33);
+INSERT INTO public.film (film_id, titolo, durata, data_di_pubblicazione, descrizione, casa_di_produzione_id, voto, immagine_di_copertina, casa_di_pubblicazione_id) VALUES (47, 'Deadpool', 148, '2018-07-15', 'Descrizione di Deadpool.', 21, 74, 'https://upload.wikimedia.org/wikipedia/en/thumb/2/23/Deadpool_%282016_poster%29.png/250px-Deadpool_%282016_poster%29.png', 21);
+
+
+--
+-- Data for Name: ruoli; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (1, 'Regista');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (2, 'Produttore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (3, 'Sceneggiatore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (4, 'Attore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (5, 'Compositore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (6, 'Direttore della fotografia');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (7, 'Montatore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (8, 'Designer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (9, 'Programmatore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (10, 'Doppiatore');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (11, 'Sound Designer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (12, 'Effetti Speciali');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (13, 'Costumista');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (14, 'Make-up Artist');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (15, 'Stunt Coordinator');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (16, 'Script Supervisor');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (17, 'Casting Director');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (18, 'Location Manager');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (19, 'Artista Visivo');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (20, 'Storyboard Artist');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (21, 'Colorist');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (22, 'Music Supervisor');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (23, 'Choreographer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (24, 'Voice Director');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (25, 'Fight Choreographer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (26, 'Props Master');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (27, 'Gaffer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (28, 'Key Grip');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (29, 'Boom Operator');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (30, 'Production Assistant');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (31, 'Line Producer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (32, 'Executive Producer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (33, 'Assistant Director');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (34, 'Set Decorator');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (35, 'Hair Stylist');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (36, 'Sound Mixer');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (37, 'Camera Operator');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (38, 'Visual Effects Supervisor');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (39, 'Technical Advisor');
+INSERT INTO public.ruoli (ruolo_id, nome) VALUES (40, 'Unit Publicist');
+
+
+--
+-- Data for Name: crew_film; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (1, 1, 1, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (2, 2, 2, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (3, 3, 3, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (4, 4, 4, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (5, 5, 5, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (6, 6, 6, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (7, 7, 7, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (8, 8, 8, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (9, 9, 9, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (10, 10, 10, 1);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (41, 11, 36, 36);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (42, 12, 31, 15);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (43, 13, 38, 19);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (44, 14, 26, 16);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (45, 15, 18, 40);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (46, 16, 30, 13);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (47, 17, 14, 32);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (48, 18, 38, 39);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (49, 19, 30, 25);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (50, 20, 29, 24);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (51, 21, 33, 35);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (52, 22, 20, 23);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (53, 23, 29, 22);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (54, 24, 16, 29);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (55, 25, 32, 19);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (56, 26, 37, 26);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (57, 27, 18, 18);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (58, 28, 40, 25);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (59, 29, 23, 28);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (60, 30, 22, 15);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (61, 31, 27, 12);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (62, 32, 23, 30);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (63, 33, 32, 11);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (64, 34, 27, 29);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (65, 35, 28, 33);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (66, 36, 25, 40);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (67, 37, 39, 29);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (68, 38, 25, 13);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (69, 39, 21, 27);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (70, 40, 24, 40);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (71, 41, 20, 32);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (72, 42, 17, 35);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (73, 43, 26, 31);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (74, 44, 11, 18);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (75, 45, 23, 11);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (76, 46, 15, 19);
+INSERT INTO public.crew_film (crew_id, film_id, autore_id, ruolo_id) VALUES (77, 47, 34, 15);
+
+
+--
+-- Data for Name: videogiochi; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (1, 'The Witcher 3: Wild Hunt', 9, 9, '2015-05-19', 50, 'Geralt di Rivia intraprende un viaggio per trovare sua figlia adottiva.', 97, 'https://cdn.cdkeys.com/496x700/media/catalog/product/n/e/new_project_-_2023-08-15t114305.357.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (2, 'Super Mario Bros.', 6, 6, '1985-09-13', 10, 'Mario deve salvare la Principessa Peach da Bowser.', 90, 'https://howlongtobeat.com/games/9371_Super_Mario_Bros.png?width=250');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (3, 'Assassin’s Creed II', 9, 9, '2009-11-17', 20, 'Ezio Auditore diventa un assassino nel Rinascimento italiano.', 89, 'https://static.wikia.nocookie.net/assassinscreed/images/0/09/AC2coverHighRes.jpg/revision/latest?cb=20120706023159');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (4, 'The Last of Us', 3, 3, '2013-06-14', 15, 'Joel scorta Ellie attraverso un’America post-apocalittica.', 95, 'https://cdn.cdkeys.com/496x700/media/catalog/product/e/g/egs_wildhearts_koeitecmogamescoltd_s2_1200x1600-398fdb8dbc918051f99347ebe0335973_3_.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (5, 'God of War', 6, 6, '2018-04-20', 25, 'Kratos intraprende un viaggio con suo figlio Atreus.', 94, 'https://static.wikia.nocookie.net/sony-playstation/images/6/62/God_of_War_2018_cover_standard.jpg/revision/latest?cb=20210212104221');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (6, 'Minecraft', 3, 3, '2011-11-18', 0, 'Gioco sandbox di costruzione e sopravvivenza.', 88, 'https://assets2.ignimgs.com/2014/06/18/minecraft-buttonjpg-b689ca.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (7, 'Red Dead Redemption 2', 3, 3, '2018-10-26', 60, 'Un fuorilegge intraprende una missione nel West morente.', 96, 'https://static1.srcdn.com/wordpress/wp-content/uploads/sharedimages/2024/04/red-dead-redemption-2-poster.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (8, 'The Legend of Zelda: Breath of the Wild', 6, 6, '2017-03-03', 50, 'Link si risveglia da un lungo sonno per salvare Hyrule.', 97, 'https://wallpapercave.com/wp/wp3277347.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (9, 'Cyberpunk 2077', 9, 9, '2020-12-10', 30, 'V si muove nella Night City alla ricerca dell’immortalità.', 70, 'https://store-images.s-microsoft.com/image/apps.47379.63407868131364914.bcaa868c-407e-42c2-baeb-48a3c9f29b54.89bb995b-b066-4a53-9fe4-0260ce07e894');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (10, 'Fortnite', 3, 3, '2017-07-21', 0, 'Gioco Battle Royale con meccaniche di costruzione.', 75, 'https://i.3djuegos.com/juegos/8298/fortnite/fotos/ficha/fortnite-5154610.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (11, 'Elden Ring', 31, 31, '2014-09-07', 25, 'Descrizione del gioco Elden Ring.', 61, 'https://store-images.s-microsoft.com/image/apps.30323.14537704372270848.6ecb6038-5426-409a-8660-158d1eb64fb0.08703491-f5dc-4b00-bca6-486b7b293c17?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (12, 'God of War Ragnarök', 5, 5, '2020-07-28', 51, 'Descrizione del gioco God of War Ragnarök.', 66, 'https://cdn1.epicgames.com/spt-assets/edaff839f0734d16bc89d2ddb1dc9339/steel-magnolia-15owu.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (13, 'Horizon Forbidden West', 7, 7, '2011-08-23', 73, 'Descrizione del gioco Horizon Forbidden West.', 94, 'https://image.api.playstation.com/vulcan/ap/rnd/202107/3100/cb7gh5N3DjSRathadczu40S9.png');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (14, 'Animal Crossing: New Horizons', 38, 38, '2007-11-06', 72, 'Descrizione del gioco Animal Crossing: New Horizons.', 97, 'https://multiplayer.net-cdn.it/thumbs/images/2025/05/28/animal-crossing-new-horizons-is-a-much-more-structured-take-on-the-series-1582207487107_jpg_1200x0_crop_q85.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (15, 'Death Stranding', 38, 38, '2014-05-18', 37, 'Descrizione del gioco Death Stranding.', 69, 'https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fdeath-stranding%2Fhome%2FEGS_KojimaProductions_DeathStranding_S1-2560x1440-d57b8f430c573292ea8450e5be7f75a4b4e3f015.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (16, 'Cyberpunk 2077', 19, 19, '2010-10-17', 40, 'Descrizione del gioco Cyberpunk 2077.', 74, 'https://multiplayer.net-cdn.it/thumbs/images/2025/06/13/cyberpunk-2077-ultimate-edition-1_jpg_1600x900_crop_q85.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (17, 'Ghost of Tsushima', 22, 22, '2012-07-21', 99, 'Descrizione del gioco Ghost of Tsushima.', 70, 'https://imgcdn.agendadigitale.eu/wp-content/uploads/2023/12/22113214/ghost-of-tsushima-1024x576-1.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (18, 'Final Fantasy VII Remake', 38, 38, '2017-06-19', 23, 'Descrizione del gioco Final Fantasy VII Remake.', 70, 'https://cdn1.epicgames.com/offer/6f43ab8025ad42d18510aa91e9eb688b/EGS_FINALFANTASYVIIREMAKEINTERGRADE_SquareEnix_S1_2560x1440-85f829541a833442eaace75d02e0f07d');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (19, 'Resident Evil Village', 12, 12, '2018-12-22', 54, 'Descrizione del gioco Resident Evil Village.', 86, 'https://store-images.s-microsoft.com/image/apps.39328.13946458263695761.43457946-df8c-4dc7-96ef-7ffc79bd1869.f8635450-b763-4716-83e9-ac9afbb6fac2?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (20, 'Marvel''s Spider-Man', 24, 24, '2014-08-14', 80, 'Descrizione del gioco Marvel''s Spider-Man.', 89, 'https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (21, 'The Last of Us Part II', 37, 37, '2010-08-15', 10, 'Descrizione del gioco The Last of Us Part II.', 100, 'https://cdn1.epicgames.com/offer/7713e3fa4b234e0d8f553044205d53b6/EGS_TheLastofUsPartIIRemastered_NaughtyDogLLCNixxesSoftwareIronGalaxy_S1_2560x1440-e93b7a99866b784c5fc948c1666df5e0');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (22, 'Sekiro: Shadows Die Twice', 6, 6, '2015-09-02', 75, 'Descrizione del gioco Sekiro: Shadows Die Twice.', 75, 'https://store-images.s-microsoft.com/image/apps.26135.69038865179152125.ddcc0d78-9e3a-4110-94b3-6df63908553a.d476c9fa-e81b-4656-889e-c241d73bb93c?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (23, 'Super Mario Odyssey', 14, 14, '2010-05-28', 95, 'Descrizione del gioco Super Mario Odyssey.', 69, 'https://sm.ign.com/ign_it/preview/e/e3-2017-su/e3-2017-super-mario-odyssey-hands-on-preview-a-brilliantly-b_eju2.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (24, 'Red Dead Redemption 2', 8, 8, '2024-10-03', 27, 'Descrizione del gioco Red Dead Redemption 2.', 90, 'https://store-images.s-microsoft.com/image/apps.21181.14244061853036130.7c2802a8-1b30-475c-bf05-1f4138de9fd0.0ff00a6d-8e75-4346-980c-12dcdb64778d?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (25, 'Breath of the Wild', 30, 30, '2020-02-14', 13, 'Descrizione del gioco Breath of the Wild.', 63, 'https://www.nintendo.com/eu/media/images/10_share_images/games_15/wiiu_14/SI_WiiU_TheLegendOfZeldaBreathOfTheWild.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (26, 'Persona 5', 4, 4, '2015-12-20', 99, 'Descrizione del gioco Persona 5.', 76, 'https://image.api.playstation.com/cdn/EP4062/CUSA06638_00/0fSaYhFhEVP183JLTwVec7qkzmaHNMS2.png');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (27, 'Monster Hunter: World', 31, 31, '2021-04-16', 100, 'Descrizione del gioco Monster Hunter: World.', 86, 'https://gaming-cdn.com/img/products/12309/pcover/12309.jpg?v=1741185968');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (28, 'Control', 12, 12, '2005-03-24', 14, 'Descrizione del gioco Control.', 91, 'https://image.api.playstation.com/vulcan/img/rnd/202011/0615/3UWZHE8qN0kgnF6o74Ts4AC4.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (29, 'Doom Eternal', 3, 3, '2008-08-01', 20, 'Descrizione del gioco Doom Eternal.', 88, 'https://store-images.s-microsoft.com/image/apps.19006.14272227869653628.a5b2ad6e-df4e-4a36-a057-d3a2b0ab4d8f.e3854aaa-8dd7-472f-b727-0c13f4478c7f?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (30, 'Half-Life: Alyx', 15, 15, '2011-04-13', 97, 'Descrizione del gioco Half-Life: Alyx.', 62, 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/546560/capsule_616x353.jpg?t=1673391297');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (31, 'Forza Horizon 5', 23, 23, '2011-12-26', 68, 'Descrizione del gioco Forza Horizon 5.', 66, 'https://store-images.s-microsoft.com/image/apps.33953.14506879174941978.138d3eab-0b06-443b-a252-c99592521394.fbecd5ff-76a3-4dc9-9005-3799f09950a0?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (32, 'Halo Infinite', 39, 39, '2005-09-01', 67, 'Descrizione del gioco Halo Infinite.', 95, 'https://assets.xboxservices.com/assets/34/84/348495df-d8f9-43f4-94cf-12d6e641d610.jpg?n=Halo-Infinite_Poster-Image_1920x1080.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (33, 'Call of Duty: Modern Warfare', 30, 30, '2010-06-28', 35, 'Descrizione del gioco Call of Duty: Modern Warfare.', 84, 'https://www.gamesvillage.it/wp-content/uploads/2019/11/Call-of-Duty-Cover.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (34, 'Ghostrunner', 34, 34, '2014-12-21', 37, 'Descrizione del gioco Ghostrunner.', 78, 'https://store-images.s-microsoft.com/image/apps.6339.14150012495483667.3dab4f1e-a4bc-43a2-92e3-c7b3b9a91dc2.05ad53f0-6c70-4c55-ab3f-b14fb56d39c1?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (35, 'It Takes Two', 13, 13, '2008-04-03', 64, 'Descrizione del gioco It Takes Two.', 88, 'https://store-images.s-microsoft.com/image/apps.40253.14488339386131194.84ca8b8a-582e-4d34-904e-8f1e60f71000.c3aaab37-0ce8-464b-85c1-4f42a74d9972?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (36, 'Ratchet & Clank: Rift Apart', 2, 2, '2020-11-08', 33, 'Descrizione del gioco Ratchet & Clank: Rift Apart.', 86, 'https://image.api.playstation.com/vulcan/ap/rnd/202101/2819/UzL9pZa8l5U5q48fNXlOHVSm.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (37, 'Metroid Dread', 22, 22, '2021-01-25', 90, 'Descrizione del gioco Metroid Dread.', 64, 'https://www.gamesvillage.it/wp-content/uploads/2021/10/metroid-dread-artwork.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (38, 'Returnal', 12, 12, '2020-08-28', 89, 'Descrizione del gioco Returnal.', 66, 'https://image.api.playstation.com/vulcan/ap/rnd/202011/1621/oE5NHcrITZnKa1kYSCQtsoRE.png');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (39, 'Uncharted 4', 35, 35, '2024-11-03', 43, 'Descrizione del gioco Uncharted 4.', 93, 'https://blog.jobmetoo.com/wp-content/uploads/2016/05/Uncharted4.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (40, 'Spelunky 2', 16, 16, '2019-12-13', 54, 'Descrizione del gioco Spelunky 2.', 81, 'https://store-images.s-microsoft.com/image/apps.10415.14298096177274930.caec21fb-7c68-4a6c-b169-f9b7429b0fcd.9946e755-ccd7-4438-af6f-0e63da99c4a2?q=90&w=480&h=270');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (41, 'Hades', 24, 24, '2007-10-02', 43, 'Descrizione del gioco Hades.', 79, 'https://sm.ign.com/ign_it/blogroll/default/hades-1280-1544656728364_gc81.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (42, 'Ori and the Will of the Wisps', 28, 28, '2024-11-03', 78, 'Descrizione del gioco Ori and the Will of the Wisps.', 61, 'https://store-images.s-microsoft.com/image/apps.40411.14047496556148589.9fda5cef-7995-4dbb-a626-66d2ab3feb4f.d87f046c-667d-4ce7-98bc-eba2b535dc94?h=862&format=jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (43, 'Celeste', 39, 39, '2007-02-21', 82, 'Descrizione del gioco Celeste.', 78, 'https://image.api.playstation.com/cdn/EP2120/CUSA11235_00/QIi3jKznLkAGV7iXnMhVMOw1F9tROkIC.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (44, 'Cuphead', 14, 14, '2011-01-14', 5, 'Descrizione del gioco Cuphead.', 60, 'https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_Cuphead.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (45, 'Valheim', 32, 32, '2012-08-28', 48, 'Descrizione del gioco Valheim.', 75, 'https://cdn.mos.cms.futurecdn.net/CtYGQR7nUa4HD4FAusKTrJ.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (46, 'Among Us', 16, 16, '2021-10-12', 81, 'Descrizione del gioco Among Us.', 78, 'https://sm.ign.com/ign_it/game/default/among-us-2_ngy2.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (47, 'Fall Guys', 8, 8, '2021-10-16', 44, 'Descrizione del gioco Fall Guys.', 84, 'https://cdn2.unrealengine.com/fg-fg-1920x1080-b25bc4113574.jpg');
+INSERT INTO public.videogiochi (videogioco_id, titolo, casa_di_produzione_id, casa_di_pubblicazione_id, data_di_pubblicazione, ore_storia_principale, descrizione, voto, immagine_di_copertina) VALUES (48, 'Genshin Impact', 10, 10, '2022-07-08', 6, 'Descrizione del gioco Genshin Impact.', 74, 'https://multiplayer.net-cdn.it/thumbs/images/2020/10/05/genshin_impact_01_jpg_800x0_crop_upscale_q85.jpg');
+
+
+--
+-- Data for Name: crew_videogioco; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (1, 1, 1, 9);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (2, 2, 2, 8);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (3, 3, 3, 9);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (4, 4, 4, 9);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (5, 5, 5, 8);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (6, 6, 6, 9);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (7, 7, 7, 8);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (8, 8, 8, 9);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (9, 9, 9, 9);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (10, 10, 10, 8);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (21, 11, 29, 18);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (22, 12, 32, 36);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (23, 13, 24, 30);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (24, 14, 32, 19);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (25, 15, 35, 11);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (26, 16, 14, 30);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (27, 17, 26, 13);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (28, 18, 29, 13);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (29, 19, 12, 28);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (30, 20, 15, 38);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (31, 21, 35, 24);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (32, 22, 29, 19);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (33, 23, 15, 26);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (34, 24, 38, 36);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (35, 25, 25, 17);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (36, 26, 27, 39);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (37, 27, 18, 40);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (38, 28, 16, 40);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (39, 29, 32, 27);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (40, 30, 12, 32);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (41, 31, 11, 39);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (42, 32, 12, 27);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (43, 33, 14, 36);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (44, 34, 39, 29);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (45, 35, 38, 38);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (46, 36, 31, 24);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (47, 37, 34, 40);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (48, 38, 24, 11);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (49, 39, 33, 31);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (50, 40, 40, 30);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (51, 41, 25, 31);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (52, 42, 26, 30);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (53, 43, 38, 22);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (54, 44, 25, 34);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (55, 45, 38, 27);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (56, 46, 39, 19);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (57, 47, 15, 20);
+INSERT INTO public.crew_videogioco (crew_id, videogioco_id, autore_id, ruolo_id) VALUES (58, 48, 30, 31);
+
+
+--
+-- Data for Name: tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (1, 'Narrativa', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (2, 'Mistero', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (3, 'Fantascienza', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (4, 'Fantasy', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (5, 'Horror', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (6, 'Romantico', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (7, 'Avventura', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (8, 'Thriller', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (9, 'Drammatico', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (10, 'Commedia', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (11, 'Storico', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (12, 'Guerra', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (13, 'Biografico', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (14, 'Documentario', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (15, 'Animazione', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (16, 'Supereroi', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (17, 'Distopico', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (18, 'Post-apocalittico', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (19, 'Musical', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (20, 'Western', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (21, 'Poliziesco', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (22, 'Survival', true);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (23, 'Amicizia', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (24, 'Famiglia', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (25, 'Vendetta', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (26, 'Sopravvivenza', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (27, 'Viaggio', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (28, 'Crescita personale', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (29, 'Magia', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (30, 'Musica', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (31, 'Sport', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (32, 'Crimine organizzato', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (33, 'Spionaggio', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (34, 'Robotica', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (35, 'Intelligenza artificiale', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (36, 'Natura', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (37, 'Cibo', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (38, 'Mafia', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (39, 'Cyberpunk', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (40, 'Steampunk', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (41, 'Satira', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (42, 'Femminismo', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (43, 'Politica', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (44, 'Psicologia', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (45, 'Mistero storico', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (46, 'Memoria', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (47, 'Avventura epica', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (48, 'Commedia nera', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (49, 'Realismo magico', false);
+INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (50, 'Tecnologia', false);
+
+
+--
+-- Data for Name: film_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (1, 3, 1);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (2, 8, 1);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (3, 9, 2);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (4, 9, 3);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (5, 8, 4);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (6, 9, 5);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (7, 8, 6);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (8, 3, 7);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (9, 4, 8);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (10, 7, 9);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (11, 37, 11);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (12, 27, 12);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (13, 34, 13);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (14, 24, 14);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (15, 33, 15);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (16, 25, 16);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (17, 42, 17);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (18, 28, 18);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (19, 43, 19);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (20, 13, 20);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (21, 24, 21);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (22, 48, 22);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (23, 20, 23);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (24, 35, 24);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (25, 39, 25);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (26, 17, 26);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (27, 12, 27);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (28, 38, 28);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (29, 26, 29);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (30, 33, 30);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (31, 42, 31);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (32, 21, 32);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (33, 27, 33);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (34, 39, 34);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (35, 42, 35);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (36, 34, 36);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (37, 44, 37);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (38, 47, 38);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (39, 39, 39);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (40, 29, 40);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (41, 14, 41);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (42, 28, 42);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (43, 33, 43);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (44, 38, 44);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (45, 41, 45);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (46, 11, 46);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (47, 49, 47);
+
+
+--
+-- Data for Name: recensioni; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (1, 95, 'Assolutamente fantastico. Un capolavoro.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (2, 80, 'Abbastanza solido, ma presenta dei difetti.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (3, 60, 'Mah, è stato così così.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (4, 45, 'Non è eccezionale, ma neanche pessimo.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (5, 20, 'Mi pento di averlo visto/letto/giocato.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (6, 90, 'Mozzafiato. Consigliatissimo.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (7, 70, 'Sufficientemente buono da guardare/leggere/giocare.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (8, 50, 'Nella media, al massimo.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (9, 30, 'Al di sotto delle aspettative.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (10, 10, 'Terribile. Evitatelo a tutti i costi.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (11, 83, 'Degno di nota.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (12, 88, 'Degno di nota.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (13, 94, 'Un''esperienza unica.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (14, 50, 'Sotto le aspettative.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (15, 23, 'Spettacolare.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (16, 64, 'Sorprendente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (17, 51, 'Un''esperienza unica.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (18, 67, 'Deludente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (19, 15, 'Impeccabile.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (20, 95, 'Sorprendente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (21, 44, 'Molto coinvolgente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (22, 87, 'Impeccabile.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (23, 93, 'Potrebbe migliorare.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (24, 23, 'Sotto le aspettative.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (25, 14, 'Spettacolare.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (26, 73, 'Non mi ha convinto del tutto.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (27, 60, 'Sotto le aspettative.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (28, 46, 'Impeccabile.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (29, 56, 'Un''esperienza unica.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (30, 91, 'Non mi ha convinto del tutto.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (31, 89, 'Potrebbe migliorare.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (32, 36, 'Non mi ha convinto del tutto.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (33, 66, 'Deludente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (34, 14, 'Sorprendente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (35, 44, 'Molto coinvolgente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (36, 82, 'Deludente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (37, 17, 'Un''esperienza unica.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (38, 48, 'Spettacolare.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (39, 28, 'Sorprendente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (40, 72, 'Deludente.');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (50, 0, 'che merda');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (51, 90, 'la paura');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (52, 100, 'bellissime musiche');
+
+
+--
+-- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (1, 'user_one', 'pwd123', 'user1@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (2, 'user_two', 'pwd123', 'user2@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (3, 'user_three', 'pwd123', 'user3@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (4, 'user_four', 'pwd123', 'user4@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (5, 'user_five', 'pwd123', 'user5@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (6, 'user_six', 'pwd123', 'user6@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (7, 'user_seven', 'pwd123', 'user7@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (8, 'user_eight', 'pwd123', 'user8@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (9, 'user_nine', 'pwd123', 'user9@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (10, 'user_ten', 'pwd123', 'user10@example.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (20, 'Zomerz', '$2a$10$yIGliJkx4qRmhhSXgPHuzu1/xOVKht/nomsT31uO12dxZXDmhKfxu', 'aresufilippo2005@gmail.com');
+
+
+--
+-- Data for Name: film_visti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.film_visti (film_visto_id, film_id, utente_id, recensione_id) VALUES (55, 18, 20, 50);
+
+
+--
+-- Data for Name: libri; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (2, 'Shining', 447, 5, 'Una famiglia si dirige in un hotel isolato per l’inverno dove una presenza sinistra influenza il padre.', '1977-01-28', 88, 'https://m.media-amazon.com/images/I/713-MwTS+2L._SL1500_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (3, 'Il Trono di Spade', 694, 8, 'Famiglie nobili gareggiano per il controllo del Trono di Spade.', '1996-08-06', 92, 'https://m.media-amazon.com/images/I/71I7798hdLL._SL1500_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (4, 'Assassinio sull’Orient Express', 256, 8, 'L’investigatore Hercule Poirot indaga su un omicidio su un treno bloccato dalla neve.', '1934-01-01', 85, 'https://m.media-amazon.com/images/I/71-gfpil2WL._SL1500_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (5, 'Fondazione', 255, 5, 'Un matematico cerca di preservare la conoscenza mentre l’Impero Galattico crolla.', '1951-06-01', 90, 'https://m.media-amazon.com/images/I/61iWMdS9j1L._SL1500_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (6, 'American Gods', 465, 2, 'Il carcere penale Shadow incontra il misterioso signor Wednesday.', '2001-06-19', 89, 'https://m.media-amazon.com/images/I/7146xxh252L._SL1500_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (7, 'Il Racconto dell’Ancella', 311, 8, 'In un futuro distopico, le donne sono trattate come proprietà.', '1985-09-01', 87, 'https://m.media-amazon.com/images/I/51btRHNtfLL._SL1474_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (8, 'Norwegian Wood', 296, 8, 'Uno studente universitario ricorda i suoi giorni a Tokyo negli anni ’60.', '1987-09-04', 84, 'https://m.media-amazon.com/images/I/81RARTnoWjL._SL1500_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (9, 'Lo Hobbit', 310, 5, 'Bilbo Baggins intraprende un viaggio inaspettato.', '1937-09-21', 94, 'https://m.media-amazon.com/images/I/71emctAoDYL._SL1066_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (10, 'Orgoglio e Pregiudizio', 279, 8, 'Le maniere e le macchinazioni matrimoniali tra la nobiltà inglese.', '1813-01-28', 96, 'https://m.media-amazon.com/images/I/71aELj6cylL._SL1433_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (11, 'The Da Vinci Code', 319, 35, 'Descrizione del libro The Da Vinci Code.', '1974-01-01', 92, 'https://m.media-amazon.com/images/I/71y4X5150dL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (1, 'Harry Potter e la Pietra Filosofale', 309, 2, 'Un giovane mago scopre il suo retaggio magico.', '1997-06-26', 40, 'https://m.media-amazon.com/images/I/71CvZU5-quL._SL1479_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (12, 'The Girl on the Train', 337, 40, 'Descrizione del libro The Girl on the Train.', '1961-01-01', 84, 'https://m.media-amazon.com/images/I/81-Q2OAVeXL._AC_UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (13, 'Gone Girl', 271, 34, 'Descrizione del libro Gone Girl.', '2021-01-01', 95, 'https://m.media-amazon.com/images/I/71+khXHbe5L.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (14, 'The Alchemist', 514, 31, 'Descrizione del libro The Alchemist.', '1980-01-01', 82, 'https://m.media-amazon.com/images/I/71CaTj9MAFL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (15, 'The Kite Runner', 268, 11, 'Descrizione del libro The Kite Runner.', '1965-01-01', 81, 'https://m.media-amazon.com/images/I/81IzbD2IiIL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (16, 'Life of Pi', 594, 15, 'Descrizione del libro Life of Pi.', '1977-01-01', 63, 'https://m.media-amazon.com/images/I/81lBmZWYktL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (17, 'The Help', 588, 12, 'Descrizione del libro The Help.', '1971-01-01', 96, 'https://m.media-amazon.com/images/I/81dXmPXfL1L.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (18, 'The Fault in Our Stars', 591, 28, 'Descrizione del libro The Fault in Our Stars.', '1970-01-01', 88, 'https://m.media-amazon.com/images/I/817tHNcyAgL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (19, 'The Book Thief', 612, 34, 'Descrizione del libro The Book Thief.', '1972-01-01', 96, 'https://m.media-amazon.com/images/I/71H52+sSb4L.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (20, 'The Hunger Games', 426, 37, 'Descrizione del libro The Hunger Games.', '2012-01-01', 90, 'https://m.media-amazon.com/images/I/61zo9L2qSvL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (21, 'Twilight', 475, 2, 'Descrizione del libro Twilight.', '1998-01-01', 96, 'https://m.media-amazon.com/images/I/61eoeu1UpRL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (22, 'Divergent', 677, 39, 'Descrizione del libro Divergent.', '2005-01-01', 79, 'https://m.media-amazon.com/images/I/91oNu+R7EUL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (23, 'The Maze Runner', 157, 18, 'Descrizione del libro The Maze Runner.', '1992-01-01', 71, 'https://m.media-amazon.com/images/I/91N1C7CTjSL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (24, 'Fifty Shades Darker', 708, 1, 'Descrizione del libro Fifty Shades Darker.', '1974-01-01', 87, 'https://m.media-amazon.com/images/I/81dj-KUDWUL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (25, 'Me Before You', 670, 39, 'Descrizione del libro Me Before You.', '1969-01-01', 86, 'https://m.media-amazon.com/images/I/71dzw8F3B+L._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (26, 'Where the Crawdads Sing', 214, 29, 'Descrizione del libro Where the Crawdads Sing.', '1980-01-01', 87, 'https://m.media-amazon.com/images/I/81N82LIgTtL._AC_UF1000,1000_QL80_DpWeblab_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (27, 'Educated', 351, 25, 'Descrizione del libro Educated.', '1964-01-01', 63, 'https://m.media-amazon.com/images/I/71-4MkLN5jL._UF1000,1000_QL80_DpWeblab_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (28, 'The Silent Patient', 242, 4, 'Descrizione del libro The Silent Patient.', '1954-01-01', 74, 'https://m.media-amazon.com/images/I/91lslnZ-btL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (29, 'Normal People', 189, 27, 'Descrizione del libro Normal People.', '1969-01-01', 97, 'https://m.media-amazon.com/images/I/71PNVvlGhgL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (30, 'The Midnight Library', 420, 8, 'Descrizione del libro The Midnight Library.', '1998-01-01', 100, 'https://m.media-amazon.com/images/I/71FsIkGF3pL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (31, 'The Vanishing Half', 394, 31, 'Descrizione del libro The Vanishing Half.', '2015-01-01', 98, 'https://m.media-amazon.com/images/I/71qWC2D6R7L._AC_UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (32, 'Circe', 383, 23, 'Descrizione del libro Circe.', '1980-01-01', 94, 'https://m.media-amazon.com/images/I/81x2YnuIaAL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (33, 'American Dirt', 382, 17, 'Descrizione del libro American Dirt.', '2014-01-01', 93, 'https://m.media-amazon.com/images/I/61kBYwNfnBL._AC_UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (34, 'The Testaments', 798, 14, 'Descrizione del libro The Testaments.', '1973-01-01', 79, 'https://m.media-amazon.com/images/I/71t7r-macFL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (35, 'Klara and the Sun', 606, 40, 'Descrizione del libro Klara and the Sun.', '1996-01-01', 98, 'https://m.media-amazon.com/images/I/61tqFlvlU3L.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (36, 'The Lincoln Highway', 445, 15, 'Descrizione del libro The Lincoln Highway.', '2013-01-01', 86, 'https://m.media-amazon.com/images/I/81es7RW3zQL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (37, 'Project Hail Mary', 237, 17, 'Descrizione del libro Project Hail Mary.', '2004-01-01', 85, 'https://m.media-amazon.com/images/I/81zD9kaVW9L.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (38, 'The Four Winds', 757, 3, 'Descrizione del libro The Four Winds.', '2024-01-01', 89, 'https://m.media-amazon.com/images/I/81BvTRnoBoL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (39, 'The Invisible Life of Addie LaRue', 747, 1, 'Descrizione del libro The Invisible Life of Addie LaRue.', '1950-01-01', 72, 'https://m.media-amazon.com/images/I/91Ql48Y0mqL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (40, 'The Chain', 425, 28, 'Descrizione del libro The Chain.', '1998-01-01', 64, 'https://m.media-amazon.com/images/I/71c4JtOf3FL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (41, 'Verity', 645, 2, 'Descrizione del libro Verity.', '1963-01-01', 61, 'https://cdn.kobo.com/book-images/f05cbd49-8a67-4995-ab77-0b8e99068f86/1200/1200/False/verity-17.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (42, 'Anxious People', 201, 27, 'Descrizione del libro Anxious People.', '1976-01-01', 65, 'https://m.media-amazon.com/images/I/81yvpZDOgkL._UF1000,1000_QL80_.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (43, 'Malibu Rising', 743, 28, 'Descrizione del libro Malibu Rising.', '2007-01-01', 82, 'https://m.media-amazon.com/images/I/81vtfglyzsL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (44, 'The Night Circus', 313, 24, 'Descrizione del libro The Night Circus.', '2023-01-01', 98, 'https://m.media-amazon.com/images/I/71IuSejwJBL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (45, 'Big Little Lies', 503, 7, 'Descrizione del libro Big Little Lies.', '2011-01-01', 100, 'https://m.media-amazon.com/images/I/81N+sjNpGML.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (46, 'The Goldfinch', 199, 23, 'Descrizione del libro The Goldfinch.', '1980-01-01', 99, 'https://m.media-amazon.com/images/I/71ud9Tcj5YL.jpg');
+INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, descrizione, anno_di_pubblicazione, voto, immagine_di_copertina) VALUES (47, 'The Road', 402, 7, 'Descrizione del libro The Road.', '1971-01-01', 94, 'https://m.media-amazon.com/images/I/51URLMJvQ7L._UF1000,1000_QL80_.jpg');
+
+
+--
+-- Data for Name: libri_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (1, 4, 1);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (2, 5, 2);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (3, 4, 3);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (4, 2, 4);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (5, 3, 5);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (6, 6, 6);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (7, 7, 7);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (8, 4, 8);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (9, 4, 9);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (10, 6, 10);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (11, 46, 11);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (12, 36, 12);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (13, 15, 13);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (14, 38, 14);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (15, 11, 15);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (16, 44, 16);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (17, 33, 17);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (18, 45, 18);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (19, 40, 19);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (20, 34, 20);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (21, 42, 21);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (22, 19, 22);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (23, 13, 23);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (24, 27, 24);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (25, 30, 25);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (26, 40, 26);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (27, 39, 27);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (28, 42, 28);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (29, 32, 29);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (30, 44, 30);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (31, 37, 31);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (32, 25, 32);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (33, 21, 33);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (34, 35, 34);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (35, 41, 35);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (36, 13, 36);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (37, 42, 37);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (38, 27, 38);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (39, 21, 39);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (40, 20, 40);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (41, 27, 41);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (42, 30, 42);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (43, 21, 43);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (44, 48, 44);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (45, 46, 45);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (46, 43, 46);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (47, 18, 47);
+
+
+--
+-- Data for Name: libri_letti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (1, 1, 1, 1);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (2, 2, 2, 2);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (3, 3, 3, 3);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (4, 4, 4, 4);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (5, 5, 5, 5);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (6, 6, 6, 6);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (7, 7, 7, 7);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (8, 8, 8, 8);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (9, 9, 9, 9);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (10, 10, 10, 10);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (11, 11, 9, 25);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (12, 12, 5, 23);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (13, 13, 5, 12);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (14, 14, 5, 36);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (15, 15, 4, 14);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (16, 16, 5, 36);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (17, 17, 4, 11);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (18, 18, 9, 35);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (19, 19, 8, 39);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (20, 20, 7, 28);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (21, 21, 3, 18);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (22, 22, 9, 34);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (23, 23, 8, 20);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (24, 24, 10, 25);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (25, 25, 7, 11);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (26, 26, 1, 17);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (27, 27, 6, 15);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (28, 28, 10, 21);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (29, 29, 1, 40);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (30, 30, 5, 16);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (31, 31, 3, 23);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (32, 32, 6, 37);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (33, 33, 2, 36);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (34, 34, 7, 24);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (35, 35, 3, 15);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (36, 36, 5, 38);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (37, 37, 6, 29);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (38, 38, 3, 19);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (39, 39, 1, 22);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (40, 40, 6, 21);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (41, 41, 10, 40);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (42, 42, 1, 21);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (43, 43, 10, 31);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (44, 44, 6, 25);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (45, 45, 4, 20);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (46, 46, 10, 34);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (47, 47, 4, 32);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (51, 38, 20, NULL);
+
+
+--
+-- Data for Name: scritto_da; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (1, 1, 1);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (2, 2, 2);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (3, 3, 3);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (4, 4, 4);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (5, 5, 5);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (6, 6, 6);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (7, 7, 7);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (8, 8, 8);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (9, 9, 9);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (10, 10, 10);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (11, 27, 11);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (12, 36, 12);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (13, 23, 13);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (14, 21, 14);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (15, 30, 15);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (16, 39, 16);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (17, 21, 17);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (18, 32, 18);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (19, 14, 19);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (20, 16, 20);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (21, 34, 21);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (22, 18, 22);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (23, 21, 23);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (24, 40, 24);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (25, 21, 25);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (26, 30, 26);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (27, 17, 27);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (28, 33, 28);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (29, 36, 29);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (30, 19, 30);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (31, 20, 31);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (32, 28, 32);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (33, 18, 33);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (34, 24, 34);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (35, 40, 35);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (36, 27, 36);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (37, 22, 37);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (38, 20, 38);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (39, 35, 39);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (40, 11, 40);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (41, 34, 41);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (42, 29, 42);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (43, 36, 43);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (44, 34, 44);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (45, 23, 45);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (46, 31, 46);
+INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (47, 33, 47);
+
+
+--
+-- Data for Name: utenti_authorities; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (20, 'ROLE_EMPLOYEE');
+
+
+--
+-- Data for Name: videogiochi_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (1, 7, 1);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (2, 7, 2);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (3, 7, 3);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (4, 8, 4);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (5, 7, 5);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (6, 7, 6);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (7, 7, 7);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (8, 4, 8);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (9, 3, 9);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (10, 7, 10);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (11, 31, 11);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (12, 37, 12);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (13, 23, 13);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (14, 46, 14);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (15, 35, 15);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (16, 47, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (17, 36, 17);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (18, 38, 18);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (19, 27, 19);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (20, 36, 20);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (21, 14, 21);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (22, 30, 22);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (23, 25, 23);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (24, 33, 24);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (25, 23, 25);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (26, 27, 26);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (27, 34, 27);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (28, 39, 28);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (29, 11, 29);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (30, 47, 30);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (31, 17, 31);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (32, 36, 32);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (33, 29, 33);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (34, 39, 34);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (35, 23, 35);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (36, 25, 36);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (37, 23, 37);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (38, 20, 38);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (39, 21, 39);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (40, 26, 40);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (41, 13, 41);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (42, 49, 42);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (43, 44, 43);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (44, 24, 44);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (45, 30, 45);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (46, 36, 46);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (47, 41, 47);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (48, 24, 48);
+
+
+--
+-- Data for Name: videogiochi_giocati; Type: TABLE DATA; Schema: public; Owner: postgresMaster
+--
+
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (1, 1, 1, 1);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (2, 2, 2, 2);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (3, 3, 3, 3);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (4, 4, 4, 4);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (5, 5, 5, 5);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (6, 6, 6, 6);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (7, 7, 7, 7);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (8, 8, 8, 8);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (9, 9, 9, 9);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (10, 10, 10, 10);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (11, 11, 5, 16);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (12, 12, 8, 33);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (13, 13, 1, 36);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (14, 14, 3, 23);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (15, 15, 4, 21);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (16, 16, 6, 38);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (17, 17, 3, 24);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (18, 18, 2, 18);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (19, 19, 8, 40);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (20, 20, 6, 39);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (21, 21, 6, 34);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (22, 22, 8, 20);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (23, 23, 10, 27);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (24, 24, 8, 13);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (25, 25, 6, 28);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (26, 26, 6, 27);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (27, 27, 7, 38);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (28, 28, 4, 22);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (29, 29, 8, 19);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (30, 30, 10, 11);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (31, 31, 3, 31);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (32, 32, 5, 37);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (33, 33, 1, 14);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (34, 34, 1, 24);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (35, 35, 10, 29);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (36, 36, 3, 26);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (37, 37, 9, 25);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (38, 38, 6, 30);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (39, 39, 6, 22);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (40, 40, 4, 18);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (41, 41, 1, 28);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (42, 42, 7, 12);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (43, 43, 2, 12);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (44, 44, 3, 30);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (45, 45, 2, 13);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (46, 46, 4, 11);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (47, 47, 2, 37);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (48, 48, 3, 35);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (51, 24, 20, NULL);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (53, 48, 20, NULL);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (50, 4, 20, 51);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (52, 42, 20, 52);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (54, 39, 20, NULL);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (55, 27, 20, NULL);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (56, 37, 20, NULL);
+
+
+--
+-- Name: autori_autore_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.autori_autore_id_seq', 1, false);
+
+
+--
+-- Name: casa_casa_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.casa_casa_id_seq', 1, false);
+
+
+--
+-- Name: film_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.film_assegnamento_tag_assegnamento_id_seq', 1, false);
+
+
+--
+-- Name: film_film_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.film_film_id_seq', 1, false);
+
+
+--
+-- Name: film_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.film_prodotto_da_prodotto_da_id_seq', 1, false);
+
+
+--
+-- Name: film_visti_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.film_visti_seq', 55, true);
+
+
+--
+-- Name: libri_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.libri_assegnamento_tag_assegnamento_id_seq', 1, false);
+
+
+--
+-- Name: libri_letti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.libri_letti_id_seq', 51, true);
+
+
+--
+-- Name: libri_libro_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.libri_libro_id_seq', 1, false);
+
+
+--
+-- Name: recensioni_recensioni_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.recensioni_recensioni_id_seq', 52, true);
+
+
+--
+-- Name: ruoli_ruolo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.ruoli_ruolo_id_seq', 1, false);
+
+
+--
+-- Name: scritto_da_made_by_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.scritto_da_made_by_id_seq', 1, false);
+
+
+--
+-- Name: tag_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.tag_tag_id_seq', 1, false);
+
+
+--
+-- Name: utente_utente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.utente_utente_id_seq', 20, true);
+
+
+--
+-- Name: videogiochi_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.videogiochi_assegnamento_tag_assegnamento_id_seq', 1, false);
+
+
+--
+-- Name: videogiochi_giocati_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.videogiochi_giocati_seq', 56, true);
+
+
+--
+-- Name: videogiochi_videogioco_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.videogiochi_videogioco_id_seq', 1, false);
+
+
+--
+-- Name: videogioco_prodotto_da_prodotto_da_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
+--
+
+SELECT pg_catalog.setval('public.videogioco_prodotto_da_prodotto_da_id_seq', 1, false);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
