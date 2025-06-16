@@ -222,4 +222,51 @@ app-home >main{
     transition: width 0.3s ease-in-out;
 }
 
+/* 
+=============================================================================================================================
+                                                        USER PAGE
+=============================================================================================================================
+*/
+
+.recensioni-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid #292929;
+    border-radius: 1em;
+    background-color: rgba(170, 170, 170, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.user-recensione-card {
+    padding:1em;
+    border-radius: 1em;
+    background-color: rgba(170, 170, 170, 0.25);
+    width: 45%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+.user-recensione-card .rec-img {
+    border-radius: 1em;
+    overflow: hidden;
+    object-fit: cover;
+    width: 30vh;
+    height: 35vh;
+    grid-column: 1;
+    grid-row: 1/3;
+}
+
+.user-recensione-card .recensione-title-div {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.descrizione-rec-div {
+    grid-column: 2;
+    grid-row: 2;
+}
 

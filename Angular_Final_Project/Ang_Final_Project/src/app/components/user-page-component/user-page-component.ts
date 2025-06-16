@@ -10,10 +10,11 @@ import { LibroLetto } from '../../model/LibroLetto';
 import { VideogiocoGiocato } from '../../model/VideogiocoGiocato';
 import { MediaRegistratoService } from '../../services/MediaRegistratoService';
 import { AuthService } from '../../services/AuthService';
+import { UserRecensioniListComponent } from '../recensioni/user-recensioni-list/user-recensioni-list.component';
 
 @Component({
   selector: 'app-user-page-component',
-  imports: [FilmListComponent, LibroListComponent, VideogiocoListComponent],
+  imports: [FilmListComponent, LibroListComponent, VideogiocoListComponent, UserRecensioniListComponent],
   templateUrl: './user-page-component.html',
   styleUrl: './user-page-component.css'
 })
@@ -23,12 +24,15 @@ export class UserPageComponent implements OnInit{
   filmVisti: FilmVisto[] = [];
   //films ha dentro solo i film visti
   films: Film[] = [];
+  filmRecensiti: FilmVisto[] = [];
 
   libriLetti: LibroLetto[] = [];
   libri: Libro[] = [];
+  libriRecensiti: LibroLetto[] = [];
 
   videogiochiGiocati: VideogiocoGiocato[] = [];
   videogiochi: Videogioco[] = [];
+  videogiochiRecensiti: VideogiocoGiocato[] = [];
 
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
@@ -38,10 +42,11 @@ export class UserPageComponent implements OnInit{
       next: list => {
         this.filmVisti = list;
         if(this.filmVisti.length){
-        this.filmVisti.forEach(filmVisto => {
-          this.films.push(filmVisto.film);
-      });
-    }
+          this.filmVisti.forEach(filmVisto => {
+            this.films.push(filmVisto.film);
+          });
+        }
+        this.filmRecensiti = this.filmVisti.filter(fv => fv.recensione != null);
       },
       error: e => alert('errore nel caricamento dei film visti :' + e)
     });
@@ -53,6 +58,7 @@ export class UserPageComponent implements OnInit{
             this.libri.push(libroLetto.libro);
           });
         }
+        this.libriRecensiti = this.libriLetti.filter(ll => ll.recensione != null);
       },
       error: e => alert('errore nel caricamento dei libri letti :' + e)
     });
@@ -65,6 +71,7 @@ export class UserPageComponent implements OnInit{
             this.videogiochi.push(videogiocoGiocato.videogioco);
           });
         }
+        this.videogiochiRecensiti = this.videogiochiGiocati.filter(vg => vg.recensione != null);
       },
       error: e => alert('errore nel caricamento dei videogiochi giocati :' + e)
     });

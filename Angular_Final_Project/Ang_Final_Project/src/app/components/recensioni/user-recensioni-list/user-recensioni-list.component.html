@@ -1,0 +1,55 @@
+
+<div class="recensioni-container">
+        @for(libroLetto of libriRecensiti; track libroLetto.libroLettoId){
+        <div class="user-recensione-card">
+            <div class="rec-img">       
+                <img src='{{libroLetto.libro.imgUrl}}' class="rec-img">
+            </div>
+            <div class='recensione-title-div'>
+                <p class='titolo-scroll'>Libro: {{libroLetto.libro.titolo}} </p>
+                <p class='voto-scroll'>Voto : {{libroLetto.recensione.voto}}</p>
+            </div>
+           
+            @if(libroLetto.recensione.recensione && libroLetto.recensione.recensione.trim() != ''){
+                <div class="descrizione-rec-div">
+                    <p>Recensione : {{libroLetto.recensione.recensione}}</p>
+                </div>
+            }
+        </div>
+    }
+
+    @for(videogiocoGiocato of videogiochiRecensiti; track videogiocoGiocato.videogiocoGiocatoId){
+    <div class="user-recensione-card">
+        <div class="rec-img">       
+            <img src='{{videogiocoGiocato.videogioco.imgUrl}}' class="rec-img">
+        </div>
+        <div class='recensione-title-div'>
+            <p class='titolo-scroll'>Videogioco: {{videogiocoGiocato.videogioco.titolo}} </p>
+            <p class='voto-scroll'>Voto : {{videogiocoGiocato.recensione.voto}}</p>
+        </div>
+        @if(videogiocoGiocato.recensione.recensione && videogiocoGiocato.recensione.recensione.trim() != ''){
+            <div class="descrizione-rec-div">
+                <p>Recensione : {{videogiocoGiocato.recensione.recensione}}</p>   
+            </div>        
+        }
+    </div>
+    }
+
+    @for(filmVisto of filmRecensiti; track filmVisto.filmVistoId){
+    <div class="user-recensione-card">
+        <div class="rec-img">
+            <img src='{{filmVisto.film.imgUrl}}' class="rec-img">
+        </div>
+        <div class='recensione-title-div'>
+            <p class='titolo-scroll'>Film: {{filmVisto.film.titolo}} </p>
+            <p class='voto-scroll'>Voto : {{filmVisto.recensione.voto}}</p>
+        </div>
+        @if(filmVisto.recensione.recensione && filmVisto.recensione.recensione.trim() != ''){
+            <div class="descrizione-rec-div">
+                <p>Recensione : {{filmVisto.recensione.recensione}}</p>
+            </div>
+        }
+    </div>
+    }
+    
+</div>

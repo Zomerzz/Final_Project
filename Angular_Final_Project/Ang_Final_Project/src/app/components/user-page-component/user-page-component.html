@@ -20,4 +20,7 @@
 </div>
 }
 
+@if(videogiochiGiocati.length > 0 || libriLetti.length > 0 || filmVisti.length > 0){
+    <app-user-recensioni-list [filmRecensiti]="filmRecensiti" [videogiochiRecensiti]="videogiochiRecensiti" [libriRecensiti]="libriRecensiti" ></app-user-recensioni-list>
+}
 
