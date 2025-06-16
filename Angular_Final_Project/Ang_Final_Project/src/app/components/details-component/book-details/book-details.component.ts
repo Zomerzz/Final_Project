@@ -94,6 +94,13 @@ export class BookDetailsComponent implements OnInit {
         });
     }
 
+    addNewRecensione(rec:Recensione){
+        this.recensioni.push(rec);
+        if(this.libroLetto){
+            this.libroLetto.recensione = rec;
+        }
+    }
+
     getBarColor(): string {
         const voto = this.libro.voto;
         if (voto >= 75) return '#30D158';

@@ -92,6 +92,13 @@ export class FilmDetailsComponent implements OnInit{
     });
   }
 
+  addNewRecensione(rec:Recensione){
+        this.recensioni.push(rec);
+        if(this.filmVisto){
+            this.filmVisto.recensione = rec;
+        }
+    }
+
   getBarColor(): string {
     const voto = this.film.voto;
     if (voto >= 75) return '#30D158';

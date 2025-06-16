@@ -39,7 +39,7 @@
 }
 
 @if(isAlreadylogged && libroLetto && !libroLetto.recensione){
-    <app-add-recensione [operaId] = 'libro.id' [type] = 'type'></app-add-recensione>
+    <app-add-recensione [operaId] = 'libro.id' [type] = 'type' (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
 }
 
 @if(isAlreadylogged && libroLetto && libroLetto.recensione){

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, MaxValidator, MinValidator, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RecensioneRequest } from '../../../model/RecensioneRequest';
 import { AuthService } from '../../../services/AuthService';
+import { Recensione } from '../../../model/Recensione';
 
 @Component({
   selector: 'app-add-recensione',
@@ -14,7 +15,7 @@ import { AuthService } from '../../../services/AuthService';
 export class AddRecensioneComponent{
   @Input('operaId') operaId!: number;
   @Input('type') type!: string;
-  @Output('addedRecensione') addedRecensione = new EventEmitter();
+  @Output('addedRecensione') addedRecensione = new EventEmitter<Recensione>();
   formBuilder = inject(FormBuilder);
   recensioneForm: FormGroup;
   private _authService = inject(AuthService);
@@ -38,7 +39,7 @@ export class AddRecensioneComponent{
       "utenteId": Number(this._authService.getUserId())
     };
     this._recensioneService.addRecensione(recensioneRequest).subscribe({
-      next: (recensione) => window.location.reload(),
+      next: recensione => this.addedRecensione.emit(recensione),
       error: e => alert('Errore nella creazione della recensione')
     })
   }

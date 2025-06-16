@@ -43,7 +43,7 @@
 }
 
 @if(isAlreadylogged && filmVisto && !filmVisto.recensione){
-    <app-add-recensione [operaId] = 'film.id' [type] = 'type'></app-add-recensione>
+    <app-add-recensione [operaId] = 'film.id' [type] = 'type'  (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
 }
 
 @if(isAlreadylogged && filmVisto && filmVisto.recensione){

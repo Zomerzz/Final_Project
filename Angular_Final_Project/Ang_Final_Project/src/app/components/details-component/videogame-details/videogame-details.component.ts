@@ -93,6 +93,13 @@ export class VideogameDetailsComponent implements OnInit{
     });
   }
 
+  addNewRecensione(rec:Recensione){
+        this.recensioni.push(rec);
+        if(this.videogiocoGiocato){
+            this.videogiocoGiocato.recensione = rec;
+        }
+    }
+
  getBarColor(): string {
     const voto = this.videogioco.voto;
     if (voto >= 75) return '#30D158';

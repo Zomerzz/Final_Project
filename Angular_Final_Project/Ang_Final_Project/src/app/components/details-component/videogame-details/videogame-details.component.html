@@ -44,7 +44,7 @@
 }
 
 @if(isAlreadylogged && videogiocoGiocato && !videogiocoGiocato.recensione){
-    <app-add-recensione [operaId] = 'videogioco.id' [type] = 'type'></app-add-recensione>
+    <app-add-recensione [operaId] = 'videogioco.id' [type] = 'type'  (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
 }
 
 @if(isAlreadylogged && videogiocoGiocato && videogiocoGiocato.recensione){
