@@ -85,10 +85,9 @@ export class AdvancedSearchComponent implements OnInit{
       const valore = +checkbox.value;
       const idx = selectedTags.indexOf(valore);
       if (idx > -1) {
-        selectedTags.splice(idx, 1)
-      ;
-}
-      
+        selectedTags.splice(idx, 1);
+      }
+      this.tags?.setValue([...selectedTags]); 
     }
   }
 

@@ -89,15 +89,11 @@ export class HomeComponent implements OnInit {
             } else if(isLogged && !hasParams) {
 
             } else{
-
+                const queryObj :Partial<SearchModel>= { ...params }; 
+                this.executeSearch(queryObj);
             }
         })
 
-        
-
-        this._activatedRoute.queryParams.subscribe(params => {
-          
-        });
     }
     fetchPreSearchResults(filters: Partial<SearchModel>): void {
     const queryString = this.createQueryString(filters);
