@@ -1,19 +1,21 @@
-<div class="list-container">
 
-@if (isfilmVuoti()) {
-    <p> Nono sono stati trovati film</p>
-}
 
-@for (film of films; track film.id) {
-    <div class="card">
-        <a [routerLink]="['/films-dettagli', film.id]" [state]="{ film: film }">
-            <h3 class="type-label">Film</h3>
-            <img [src]="film.imgUrl" class="immagine">
-            <div class="title_div">
-                <h2 class="titolo-scroll">{{ film.titolo }}</h2>
-                <p class="voto-scroll">⭐ Voto: {{ film.voto }}</p>
-            </div>
-        </a>
+@if (!isfilmVuoti()) {
+   <div class="list-container">
+        @for (film of films; track film.id) {
+        <div class="card">
+            <a [routerLink]="['/films-dettagli', film.id]" [state]="{ film: film }">
+                <h3 class="type-label">Film</h3>
+                <img [src]="film.imgUrl" class="immagine">
+                <div class="title_div">
+                    <h2 class="titolo-scroll">{{ film.titolo }}</h2>
+                    <p class="voto-scroll">⭐ Voto: {{ film.voto }}</p>
+                </div>
+            </a>
+        </div>
+    }
+
     </div>
 }
-</div>
+
+

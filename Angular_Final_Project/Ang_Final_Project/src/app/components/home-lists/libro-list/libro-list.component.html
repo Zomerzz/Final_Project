@@ -1,19 +1,21 @@
-<div class="list-container">
-@if (isLibriVuoti()) {
-    <p> Nono sono stati trovati libri</p>
-}
 
-@for (libro of libri; track libro.id) {
-    <div class="card">
-        <a [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
-            <h3 class="type-label">Libro</h3>
-            <img [src]="libro.imgUrl" class="immagine">
-            <div class="title_div">
-                <h2 class="titolo-scroll">{{ libro.titolo }}</h2>
-                <p class="voto-scroll">⭐ Voto: {{ libro.voto }}</p>
-            </div>
-        </a>
-        
+@if (!isLibriVuoti()) {
+    <div class="list-container">
+        @for (libro of libri; track libro.id) {
+        <div class="card">
+            <a [routerLink]="['/libro-dettagli', libro.id]" [state]="{ libro: libro }">
+                <h3 class="type-label">Libro</h3>
+                <img [src]="libro.imgUrl" class="immagine">
+                <div class="title_div">
+                    <h2 class="titolo-scroll">{{ libro.titolo }}</h2>
+                    <p class="voto-scroll">⭐ Voto: {{ libro.voto }}</p>
+                </div>
+            </a>
+            
+        </div>
+        }
     </div>
 }
-</div>
+
+
+

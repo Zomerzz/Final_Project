@@ -37,63 +37,63 @@ export class HomeComponent implements OnInit {
     private _router = inject(Router);
 
     ngOnInit(): void {
-        const isLogged = this._authService.isLogged();
 
         this._activatedRoute.queryParams.subscribe(params => {
-            const hasParams = Object.keys(params).length > 0
+            const hasParams = Object.keys(params).length > 0;
+            const numParams = Object.keys(params).length ;
+            const isLogged = this._authService.isLogged();
+            if(numParams ===1 && hasParams){
+                const titolo = params['q'];
+                if (titolo) {
+                    this._libroService.findByName(titolo).subscribe({
+                        next: listaLibroDb => {
+                            this.listaLibri = listaLibroDb;
+                        },
+                        error: e => {
+                            console.log("|====================================================|");
+                            console.log("|la ricerca findByName ha dato degli errori          |");
+                            console.log("|====================================================|");
 
-            const tipoMedia = params['tipoMedia'] || 'tutti';
-            const sort = params['sort'] || 'orderByDataPubblicazioneDesc';
+                        }
+                    });
+                    this._videogiocoService.getByName(titolo).subscribe({
+                        next: listaVideogiocoDb => {
+                            this.listaVideogiochi = listaVideogiocoDb;
+                        },
+                        error: e => {
+                            console.log("|=========================================================|");
+                            console.log("|la ricerca findByName ha dato degli errori|");
+                            console.log("|=========================================================|");
 
-            const filters: Partial<SearchModel> = {tipoMedia, sort}
+                        }
+                    });
+                    this._filmService.findByName(titolo).subscribe({
+                        next: listaFilmDb => {
+                            this.listaFilm = listaFilmDb;
+                        },
+                        error: e => {
+                            console.log("|===================================================|");
+                            console.log("|la ricerca findByName ha dato degli errori|");
+                            console.log("|===================================================|");
 
-            if(!isLogged && !hasParams) {
+                        }
+                    })
+                }
+            } else if(!isLogged && !hasParams){
+                const tipoMedia = params['tipoMedia'] || 'tutti';
+                const sort = params['sort'] || 'orderByDataPubblicazioneDesc';
+                const filters: Partial<SearchModel> = {tipoMedia, sort}
                 this._router.navigate(['/home'], { queryParams: filters });
-            }
+                console.log("pippo");
+                this.fetchPreSearchResults(filters);
+            } else if(isLogged && !hasParams) {
 
-            this.fetchPreSearchResults(filters);
+            } else{
+                const queryObj :Partial<SearchModel>= { ...params }; 
+                this.executeSearch(queryObj);
+            }
         })
 
-        
-
-        this._activatedRoute.queryParams.subscribe(params => {
-            const titolo = params['q'];
-            if (titolo) {
-                this._libroService.findByName(titolo).subscribe({
-                    next: listaLibroDb => {
-                        this.listaLibri = listaLibroDb;
-                    },
-                    error: e => {
-                        console.log("|====================================================|");
-                        console.log("|la ricerca findByName ha dato degli errori          |");
-                        console.log("|====================================================|");
-
-                    }
-                });
-                this._videogiocoService.getByName(titolo).subscribe({
-                    next: listaVideogiocoDb => {
-                        this.listaVideogiochi = listaVideogiocoDb;
-                    },
-                    error: e => {
-                        console.log("|=========================================================|");
-                        console.log("|la ricerca findByName ha dato degli errori|");
-                        console.log("|=========================================================|");
-
-                    }
-                });
-                this._filmService.findByName(titolo).subscribe({
-                    next: listaFilmDb => {
-                        this.listaFilm = listaFilmDb;
-                    },
-                    error: e => {
-                        console.log("|===================================================|");
-                        console.log("|la ricerca findByName ha dato degli errori|");
-                        console.log("|===================================================|");
-
-                    }
-                })
-            }
-        });
     }
     fetchPreSearchResults(filters: Partial<SearchModel>): void {
     const queryString = this.createQueryString(filters);
@@ -128,6 +128,9 @@ export class HomeComponent implements OnInit {
 
 
     executeSearch(filters: Partial<SearchModel>) {
+        this.listaFilm = [];
+        this.listaLibri = [];
+        this.listaVideogiochi = [];
         this._router.navigate(['/home'], { queryParams: filters });
         if (filters.tipoMedia === 'tutti') {
             const queryString = this.createQueryString(filters);
