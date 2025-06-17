@@ -47,7 +47,7 @@ public class Film {
 
     //=== MANY TO MANY ===
 
-    @ManyToMany(mappedBy = "filmSet")
+    @ManyToMany(mappedBy = "filmSet", fetch = FetchType.EAGER)
     private Set<Tag> tagSet = new HashSet<>();
 
     // === COSTRUTTORI ===

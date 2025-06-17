@@ -50,7 +50,7 @@ public class Videogioco {
 
     // === MANY TO MANY ===
 
-    @ManyToMany(mappedBy = "videogiocoSet",cascade = CascadeType.DETACH)
+    @ManyToMany(mappedBy = "videogiocoSet", fetch = FetchType.EAGER)
     private Set<Tag> tagSet = new HashSet<>();
 
     // === COSTRUTTORI ===
