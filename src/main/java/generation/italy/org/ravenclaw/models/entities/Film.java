@@ -66,6 +66,23 @@ public class Film {
         this.imgUrl = imgUrl;
     }
 
+    @Override
+    public int hashCode(){
+        return Objects.hash(filmId, titolo);
+    }
+
+    @Override
+    public boolean equals(Object film){
+        if(this == film){
+            return true;
+        }
+        if(film == null || getClass() != film.getClass()){
+            return false;
+        }
+        Film l = (Film)film;
+        return filmId == l.getFilmId() && titolo.equals(l.getTitolo());
+    }
+
     // === GETTER ===
 
     public int getFilmId() {

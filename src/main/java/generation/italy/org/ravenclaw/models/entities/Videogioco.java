@@ -4,10 +4,7 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "videogiochi")
@@ -67,6 +64,23 @@ public class Videogioco {
         this.descrizione = descrizione;
         this.voto = voto;
         this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(videogiocoId, titolo);
+    }
+
+    @Override
+    public boolean equals(Object videogioco){
+        if(this == videogioco){
+            return true;
+        }
+        if(videogioco == null || getClass() != videogioco.getClass()){
+            return false;
+        }
+        Videogioco l = (Videogioco)videogioco;
+        return videogiocoId == l.getVideogiocoId() && titolo.equals(l.getTitolo());
     }
 
     // === GETTER ===
