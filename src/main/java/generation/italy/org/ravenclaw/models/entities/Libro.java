@@ -62,7 +62,7 @@ public class Libro {
 
     @Override
     public int hashCode(){
-        return Objects.hash(libroId, titolo);
+        return Objects.hash(libroId);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Libro {
             return false;
         }
         Libro l = (Libro)libro;
-        return libroId == l.getLibroId() && titolo.equals(l.getTitolo());
+        return libroId == l.getLibroId();
     }
 
 // === GETTER ===

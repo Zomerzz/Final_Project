@@ -68,7 +68,7 @@ public class Videogioco {
 
     @Override
     public int hashCode(){
-        return Objects.hash(videogiocoId, titolo);
+        return Objects.hash(videogiocoId);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Videogioco {
             return false;
         }
         Videogioco l = (Videogioco)videogioco;
-        return videogiocoId == l.getVideogiocoId() && titolo.equals(l.getTitolo());
+        return videogiocoId == l.getVideogiocoId();
     }
 
     // === GETTER ===

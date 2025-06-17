@@ -68,7 +68,7 @@ public class Film {
 
     @Override
     public int hashCode(){
-        return Objects.hash(filmId, titolo);
+        return Objects.hash(filmId);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Film {
             return false;
         }
         Film l = (Film)film;
-        return filmId == l.getFilmId() && titolo.equals(l.getTitolo());
+        return filmId == l.getFilmId();
     }
 
     // === GETTER ===
