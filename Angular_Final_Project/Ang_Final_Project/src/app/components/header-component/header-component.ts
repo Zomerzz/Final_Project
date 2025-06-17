@@ -22,9 +22,10 @@ export class HeaderComponent {
         return this._router.url.includes('/login') || this._router.url.includes('/register');
     }
 
-    send() {
-        if(this.titolo.trim()){
-            this._router.navigate(['/home'],{ queryParams: { q: this.titolo.trim()}});
-        }
+    send() {this._router.navigate(['/home'],{ queryParams: { q: this.titolo}});
+    }
+
+    navToHome(){
+        this._router.navigate(['/home'],{queryParams: {typeofmedia: "tutti"} })
     }
 }

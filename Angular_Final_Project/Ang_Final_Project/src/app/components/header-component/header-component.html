@@ -1,5 +1,5 @@
 <main>
-    <button id="buttonsDiv" routerLink="/home"></button>
+    <button id="buttonsDiv" (click)="navToHome()"></button>
     <form (ngSubmit) = "send()"> 
         <div>
             <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
@@ -10,7 +10,7 @@
         @if (!isinLoginPage) {
             @if (isAlreadylogged) {
                 <button routerLink="/auth/logout">LogOut</button>
-                <button routerLink="/user">PROFILE</button>
+                <button routerLink="/user" class="profile-Button"></button>
             }
             @else {
                 <button routerLink="/auth/login">Login</button>

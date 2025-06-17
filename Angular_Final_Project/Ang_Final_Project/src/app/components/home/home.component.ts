@@ -41,7 +41,15 @@ export class HomeComponent implements OnInit {
         this._activatedRoute.queryParams.subscribe({
             next: params => {
                 const titolo = params['q'];
+                if(titolo == " "){
+                        console.log("All");
+                        const tipoMedia ='tutti';
+                        const sort = 'orderByDataPubblicazioneDesc';
+                        const filters: Partial<SearchModel> = { tipoMedia, sort };
+                        this.fetchPreSearchResults(filters);
+                        return;}
                 if(titolo){
+                    
                     this.listaLibri = [];
                     this.listaFilm = [];
                     this.listaVideogiochi = [];
@@ -80,21 +88,24 @@ export class HomeComponent implements OnInit {
                         console.log("===================================================");
                         }
                     })
+                }else {
+                    const isLogged = this._authService.isLogged();
+                    if(!isLogged)
+                    {
+                        console.log("All");
+                        const tipoMedia ='tutti';
+                        const sort = 'orderByDataPubblicazioneDesc';
+                        const filters: Partial<SearchModel> = { tipoMedia, sort };
+                        this.fetchPreSearchResults(filters);
+                        return;
+                    }  else if(isLogged){
+                        //fare ricerca per consigliati
+                    }
                 }
             }
+
         })
-        const isLogged = this._authService.isLogged();
-        if(!isLogged)
-        {
-            console.log("All");
-            const tipoMedia ='tutti';
-            const sort = 'orderByDataPubblicazioneDesc';
-            const filters: Partial<SearchModel> = { tipoMedia, sort };
-            this.fetchPreSearchResults(filters);
-            return;
-        }  else{
-            //fare ricerca per consigliati
-        }
+        
     }
     fetchPreSearchResults(filters: Partial<SearchModel>): void {
         const queryString = this.createQueryString(filters);
@@ -133,7 +144,7 @@ export class HomeComponent implements OnInit {
         this.listaLibri = [];
         this.listaVideogiochi = [];
         console.log("Advanced");
-        this._router.navigate(['/home']); //se la scommento funziona
+        // this._router.navigate(['/home']); //se la scommento funziona
         if (filters.tipoMedia === 'tutti') {
             const queryString = this.createQueryString(filters);
             this._libroService.findByFilters(queryString).subscribe({
