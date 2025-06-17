@@ -34,6 +34,13 @@ public class UtenteController {
         return ResponseEntity.ok(utentiDto);
     }
 
+    @GetMapping("/username/{nome}")
+    public ResponseEntity<List<UtenteDto>> searchUtentiByName(@PathVariable String nome){
+        List<Utente> utenti = utenteService.findUtenteByNome(nome);
+        List<UtenteDto> utentiDto = utenti.stream().map(UtenteDto::toDto).toList();
+        return ResponseEntity.ok(utentiDto);
+    }
+
     @Deprecated
     @GetMapping("/{id}")
     public ResponseEntity<?> searchById(@PathVariable int id) {

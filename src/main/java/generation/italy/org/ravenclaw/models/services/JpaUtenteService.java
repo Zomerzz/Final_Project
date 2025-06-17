@@ -55,6 +55,11 @@ public class JpaUtenteService implements UtenteService{
     }
 
     @Override
+    public List<Utente> findUtenteByNome(String nome) {
+        return utenteRepo.findByNomeIgnoreCaseContains(nome.toLowerCase());
+    }
+
+    @Override
     public Utente saveUtente(Utente utente) {
         return utenteRepo.save(utente);
     }
