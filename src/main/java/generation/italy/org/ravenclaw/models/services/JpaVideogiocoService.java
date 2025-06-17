@@ -127,9 +127,9 @@ public class JpaVideogiocoService implements VideogiocoService{
 
     @Override
     public List<Videogioco> findVideogiochiConsigliatiByUtenteId(int utenteId) {
-        List<Integer> favouriteTagsIds = tagRepository.findFavouriteVideogiocoTagsByUtenteId(utenteId);
+        List<Integer> favouriteTagsIds = tagRepository.findFavouriteVideogiocoTagsByUtenteId(utenteId, false);
         var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
-        List<Integer> favouriteGenresIds = tagRepository.findFavouriteVideogiocoGenresByUtenteId(utenteId);
+        List<Integer> favouriteGenresIds = tagRepository.findFavouriteVideogiocoTagsByUtenteId(utenteId, true);
         var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
 
         var giocati = videogiocoRepository.findByUser(utenteId);

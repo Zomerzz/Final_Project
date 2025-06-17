@@ -121,9 +121,9 @@ public class JpaLibroService implements LibroService{
 
     @Override
     public List<Libro> findLibriConsigliatiByUserId(int utenteId) {
-        List<Integer> favouriteTagsIds = tagRepo.findFavouriteLibroTagsByUtenteId(utenteId);
+        List<Integer> favouriteTagsIds = tagRepo.findFavouriteLibroTagsByUtenteId(utenteId, false);
         var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
-        List<Integer> favouriteGenresIds = tagRepo.findFavouriteLibroGenresByUtenteId(utenteId);
+        List<Integer> favouriteGenresIds = tagRepo.findFavouriteLibroTagsByUtenteId(utenteId, true);
         var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
 
         var letti = libroRepo.findByUser(utenteId);

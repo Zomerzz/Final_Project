@@ -120,10 +120,13 @@ public class JpaFilmService implements FilmService {
 
     @Override
     public List<Film> findFilmConsigliatiByUtenteId(int utenteId) {
-        List<Integer> favouriteTagsIds = tagRepo.findFavouriteFilmTagsByUtenteId(utenteId);
+        List<Integer> favouriteTagsIds = tagRepo.findFavouriteFilmTagsByUtenteId(utenteId, false);
         var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
-        List<Integer> favouriteGenresIds = tagRepo.findFavouriteFilmGenresByUtenteId(utenteId);
+        List<Integer> favouriteGenresIds = tagRepo.findFavouriteFilmTagsByUtenteId(utenteId, true);
         var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
+
+        //System.out.println(bestFiveGenres.getFirst()); se li stampo mi da un NoSuchEntityException
+        //System.out.println(bestFiveTags.getFirst());
 
         var visti = filmRepo.findByUser(utenteId);
         List<Film> all = filmRepo.findAll();
