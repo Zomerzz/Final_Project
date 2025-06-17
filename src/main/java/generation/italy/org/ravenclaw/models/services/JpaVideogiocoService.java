@@ -127,9 +127,9 @@ public class JpaVideogiocoService implements VideogiocoService{
 
     @Override
     public List<Videogioco> findVideogiochiConsigliatiByUtenteId(int utenteId) {
-        List<Integer> favouriteTagsIds = tagRepository.findFavouriteTagsByUserId(utenteId);
+        List<Integer> favouriteTagsIds = tagRepository.findFavouriteVideogiocoTagsByUtenteId(utenteId);
         var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
-        List<Integer> favouriteGenresIds = tagRepository.findFavouriteGenresByUserId(utenteId);
+        List<Integer> favouriteGenresIds = tagRepository.findFavouriteVideogiocoGenresByUtenteId(utenteId);
         var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
 
         var giocati = videogiocoRepository.findByUser(utenteId);
@@ -152,7 +152,7 @@ public class JpaVideogiocoService implements VideogiocoService{
                     Set<Integer> videogiocoTagsIds = videogioco.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
                     int counter = 0;
                     int limit = 1;
-                    for(Integer t: bestFiveTags){
+                    for(Integer t : bestFiveTags){
                         if(videogiocoTagsIds.contains(t)){
                             counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
                         }

@@ -120,9 +120,9 @@ public class JpaFilmService implements FilmService {
 
     @Override
     public List<Film> findFilmConsigliatiByUtenteId(int utenteId) {
-        List<Integer> favouriteTagsIds = tagRepo.findFavouriteTagsByUserId(utenteId);
+        List<Integer> favouriteTagsIds = tagRepo.findFavouriteFilmTagsByUtenteId(utenteId);
         var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
-        List<Integer> favouriteGenresIds = tagRepo.findFavouriteGenresByUserId(utenteId);
+        List<Integer> favouriteGenresIds = tagRepo.findFavouriteFilmGenresByUtenteId(utenteId);
         var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
 
         var visti = filmRepo.findByUser(utenteId);
