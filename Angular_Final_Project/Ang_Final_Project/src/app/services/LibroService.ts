@@ -34,4 +34,8 @@ export class LibroService{
         return this._http.get<Libro>(`${this._url}/${id}`);
     }
 
+    getConsigliati(id: number): Observable<Libro[]>{
+        return this._http.get<Libro[]>(`${this._url}/utente/${id}`)
+    }
+
 }

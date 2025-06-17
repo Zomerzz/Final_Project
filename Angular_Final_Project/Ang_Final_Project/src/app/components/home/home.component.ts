@@ -13,6 +13,7 @@ import { VideogiocoListComponent } from '../home-lists/videogioco-list/videogioc
 import { AuthService } from '../../services/AuthService';
 import { AdvancedSearchComponent } from "../advanced-search/advanced-search.component";
 import { SearchModel } from '../../model/SearchModel';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-home',
@@ -41,75 +42,24 @@ export class HomeComponent implements OnInit {
         this._activatedRoute.queryParams.subscribe({
             next: params => {
                 const titolo = params['q'];
-                if(titolo == " "){
-                        console.log("All");
-                        const tipoMedia ='tutti';
-                        const sort = 'orderByDataPubblicazioneDesc';
-                        const filters: Partial<SearchModel> = { tipoMedia, sort };
-                        this.fetchPreSearchResults(filters);
-                        return;}
-                if(titolo){
-                    
-                    this.listaLibri = [];
-                    this.listaFilm = [];
-                    this.listaVideogiochi = [];
-                    console.log("byName");
-                    this._libroService.findByName(titolo).subscribe( {
-                        next: listaLibroDb =>{
-                            this.listaLibri = listaLibroDb;
-                            console.log(this.listaLibri);
-                        },
-                        error: e => {
-                        console.log("====================================================");
-                        console.log("la ricerca findByName libro non ha trovato risultati");
-                        console.log("====================================================");
-
-                        }
-                    });
-                    this._videogiocoService.getByName(titolo).subscribe({
-                    next: listaVideogiocoDb =>{
-                        this.listaVideogiochi = listaVideogiocoDb;
-                        console.log(this.listaVideogiochi);
-                        },
-                    error: e => {
-                        console.log("=========================================================");
-                        console.log("la ricerca findByName videogioco non ha trovato risultati");
-                        console.log("=========================================================");
-                        }
-                    });
-                    this._filmService.findByName(titolo).subscribe({
-                    next: listaFilmDb => {
-                        this.listaFilm= listaFilmDb;
-                        console.log(this.listaFilm);
-                        },
-                    error: e => {
-                        console.log("===================================================");
-                        console.log("la ricerca findByName film non ha trovato risultati");
-                        console.log("===================================================");
-                        }
-                    })
-                }else {
-                    const isLogged = this._authService.isLogged();
-                    if(!isLogged)
-                    {
-                        console.log("All");
-                        const tipoMedia ='tutti';
-                        const sort = 'orderByDataPubblicazioneDesc';
-                        const filters: Partial<SearchModel> = { tipoMedia, sort };
-                        this.fetchPreSearchResults(filters);
-                        return;
-                    }  else if(isLogged){
-                        //fare ricerca per consigliati
+                const isLogged = this._authService.isLogged();
+                this.clearLists();
+                if (titolo) {
+                    this.fetchByName(titolo);
+                } else {
+                    if (!isLogged) {
+                        this.fetchALl();
+                    } else {
+                        this.fetchRecommendedForLoggedUsers();
                     }
                 }
             }
-
         })
         
+
     }
     fetchPreSearchResults(filters: Partial<SearchModel>): void {
         const queryString = this.createQueryString(filters);
-
         this._libroService.findByFilters(queryString).subscribe({
             next: listaLibriDb => {
                 this.listaLibri = listaLibriDb;
@@ -137,8 +87,6 @@ export class HomeComponent implements OnInit {
             }
         });
     }
-
-
     executeSearch(filters: Partial<SearchModel>) {
         this.listaFilm = [];
         this.listaLibri = [];
@@ -240,7 +188,75 @@ export class HomeComponent implements OnInit {
         }
         return queryString;
     }
+    fetchALl() {
+        console.log("All");
+        const tipoMedia = 'tutti';
+        const sort = 'orderByDataPubblicazioneDesc';
+        const filters: Partial<SearchModel> = { tipoMedia, sort };
+        this.fetchPreSearchResults(filters);
+        return;
+    }
+    
+fetchRecommendedForLoggedUsers() {
+    const id = +this._authService.getUserId()!;
+    forkJoin({
+        film: this._filmService.getConsigliati(id),
+        videogiochi: this._videogiocoService.getConsigliati(id),
+        libri: this._libroService.getConsigliati(id)
+    }).subscribe({
+        next: ({ film, videogiochi, libri }) => {
+            this.listaFilm = film;
+            this.listaVideogiochi = videogiochi;
+            this.listaLibri = libri;
+            if (film.length === 0 && videogiochi.length === 0 && libri.length === 0) {
+                this.fetchALl();
+            }
+        },
+        error: e => console.log("Errore in consigliati", e)
+    });
+}
+    fetchByName(titolo: string) {
 
+        console.log("byName");
+        this._libroService.findByName(titolo).subscribe({
+            next: listaLibroDb => {
+                this.listaLibri = listaLibroDb;
+                console.log(this.listaLibri);
+            },
+            error: e => {
+                console.log("====================================================");
+                console.log("la ricerca findByName libro non ha trovato risultati");
+                console.log("====================================================");
 
+            }
+        });
+        this._videogiocoService.getByName(titolo).subscribe({
+            next: listaVideogiocoDb => {
+                this.listaVideogiochi = listaVideogiocoDb;
+                console.log(this.listaVideogiochi);
+            },
+            error: e => {
+                console.log("=========================================================");
+                console.log("la ricerca findByName videogioco non ha trovato risultati");
+                console.log("=========================================================");
+            }
+        });
+        this._filmService.findByName(titolo).subscribe({
+            next: listaFilmDb => {
+                this.listaFilm = listaFilmDb;
+                console.log(this.listaFilm);
+            },
+            error: e => {
+                console.log("===================================================");
+                console.log("la ricerca findByName film non ha trovato risultati");
+                console.log("===================================================");
+            }
+        })
+    }
+    clearLists() {
+        this.listaLibri = [];
+        this.listaFilm = [];
+        this.listaVideogiochi = [];
+    }
 }
 

@@ -31,4 +31,8 @@ export class FilmService{
     getById(id: number): Observable<Film> {
         return this._http.get<Film>(`${this._url}/${id}`);
     }
+
+    getConsigliati(id: number): Observable<Film[]>{
+            return this._http.get<Film[]>(`${this._url}/utente/${id}`)
+        }
 }

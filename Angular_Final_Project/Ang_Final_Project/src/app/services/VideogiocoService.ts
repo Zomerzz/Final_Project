@@ -11,7 +11,7 @@ import { PageResponse } from "../model/PageResponse";
 export class VideogiocoService {
   private _apiUrl = 'http://localhost:8080/api/videogioco';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Videogioco[]> {
     return this.http.get<Videogioco[]>(this._apiUrl);
@@ -20,14 +20,18 @@ export class VideogiocoService {
   getById(id: number): Observable<Videogioco> {
     return this.http.get<Videogioco>(`${this._apiUrl}/${id}`);
   }
-  
-  getByName(titolo: string|undefined): Observable<Videogioco[]>{
+
+  getByName(titolo: string | undefined): Observable<Videogioco[]> {
     return this.http.get<PageResponse<Videogioco>>(`${this._apiUrl}?titolo=${titolo}`)
-                    .pipe(map(page=>page.content));
+      .pipe(map(page => page.content));
   }
 
-  getByFilters(queryString:string): Observable<Videogioco[]>{
+  getByFilters(queryString: string): Observable<Videogioco[]> {
     return this.http.get<PageResponse<Videogioco>>(`${this._apiUrl}${queryString}`)
-                    .pipe(map(page=>page.content));
+      .pipe(map(page => page.content));
+  }
+
+  getConsigliati(id: number): Observable<Videogioco[]> {
+    return this.http.get<Videogioco[]>(`${this._apiUrl}/utente/${id}`)
   }
 }
