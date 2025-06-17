@@ -23,7 +23,7 @@ import { forkJoin } from 'rxjs';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+    Raccomandation!:boolean;
     searchTerm!: string;
     listaLibri!: Libro[];
     listaFilm!: Film[];
@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
                 const titolo = params['q'];
                 const isLogged = this._authService.isLogged();
                 this.clearLists();
+                this.Raccomandation = false;
                 if (titolo) {
                     this.fetchByName(titolo);
                 } else {
@@ -88,6 +89,7 @@ export class HomeComponent implements OnInit {
         });
     }
     executeSearch(filters: Partial<SearchModel>) {
+        this.Raccomandation = false;
         this.listaFilm = [];
         this.listaLibri = [];
         this.listaVideogiochi = [];
@@ -175,6 +177,7 @@ export class HomeComponent implements OnInit {
 
     }
     createQueryString(filters: Partial<SearchModel>): string {
+        this.Raccomandation = false;
         let queryString: string = '?';
         if (filters.tags?.length === 0) {
             filters.tags = undefined;
@@ -210,7 +213,10 @@ fetchRecommendedForLoggedUsers() {
             this.listaLibri = libri;
             if (film.length === 0 && videogiochi.length === 0 && libri.length === 0) {
                 this.fetchALl();
+            }else{
+                this.Raccomandation = true;
             }
+
         },
         error: e => console.log("Errore in consigliati", e)
     });
@@ -221,7 +227,7 @@ fetchRecommendedForLoggedUsers() {
         this._libroService.findByName(titolo).subscribe({
             next: listaLibroDb => {
                 this.listaLibri = listaLibroDb;
-                console.log(this.listaLibri);
+                
             },
             error: e => {
                 console.log("====================================================");
@@ -233,7 +239,7 @@ fetchRecommendedForLoggedUsers() {
         this._videogiocoService.getByName(titolo).subscribe({
             next: listaVideogiocoDb => {
                 this.listaVideogiochi = listaVideogiocoDb;
-                console.log(this.listaVideogiochi);
+                
             },
             error: e => {
                 console.log("=========================================================");
@@ -244,7 +250,7 @@ fetchRecommendedForLoggedUsers() {
         this._filmService.findByName(titolo).subscribe({
             next: listaFilmDb => {
                 this.listaFilm = listaFilmDb;
-                console.log(this.listaFilm);
+                
             },
             error: e => {
                 console.log("===================================================");

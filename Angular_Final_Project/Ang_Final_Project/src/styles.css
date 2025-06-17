@@ -11,7 +11,7 @@ body{
     user-select: none;
     height: 100vh;
     width: 100vw;
-    background-color: black;
+    background-color: rgb(48, 0, 37);
     overflow-y:scroll;
 }
 body::-webkit-scrollbar{
@@ -178,6 +178,18 @@ app-home >main{
 =============================================================================================================================
 */
 
+.Raccomandazioni-title{
+    background-color: rgba(170, 170, 170, 0.25);
+    width: max-content;
+    margin: auto;
+    padding: 1em;
+    border-radius: 1em;
+    color: white;
+    margin-top: 1em;
+    
+}
+
+
 .list-container {
     width: 100%;
     display: flex;
@@ -199,7 +211,7 @@ app-home >main{
 
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(68, 108, 194);
+    background-color: rgba(0, 0, 0, 0.75);
     border-radius: 1em;
 
 
@@ -366,11 +378,14 @@ app-home >main{
 }
 
 .recensioni-details-container{
-    
     border-radius: 1em;
     background-color: rgba(170, 170, 170, 0.25);
     margin: 1em;
     padding: 1em;
+
+}
+.recensioni-details-container h2{ 
+    color: white;
 
 }
 

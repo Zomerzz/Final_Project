@@ -30,7 +30,7 @@ form>input:hover,select:hover {
     scrollbar-arrow-color: transparent;
 }
 
-form>.tag-list {
+form .tag-list {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -65,6 +65,12 @@ form>.tag-list {
     background-color: #30D158;
     color: white;
     border-color: #30D158;
+}/* When checked, style the label differently */
+
+.Generi-list .checkboxtag:checked+.checkbox-button {
+    background-color: #d13030;
+    color: white;
+    border-color: #d13030;
 }
 
 /* Optional: hover effect */

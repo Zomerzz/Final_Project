@@ -87,6 +87,10 @@ export class VideogameDetailsComponent implements OnInit{
  }
 
   loadRecensioni(id: number){
+    console.log("------------------------------------")
+        console.log(this.type);
+        console.log(id);
+        
     this._recensioneService.getRecensioni(this.type, id).subscribe({
       next: list => this.recensioni = list,
       error: e => alert('Errore nel caricamento delle recensioni')

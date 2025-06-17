@@ -15,18 +15,6 @@ export class RecensioneService{
         return this._http.get<Recensione[]>(`${this._url}?mediaType=${mediaType}&mediaId=${mediaId}`);
     }
 
-    // getRecensioniByFilm(filmId: number): Observable<Recensione[]> {
-    //     return this._http.get<Recensione[]>(`${this._url}/film-id=${filmId}`);
-    // }
-
-    // getRecensioniByLibro(libroId: number): Observable<Recensione[]> {
-    //     return this._http.get<Recensione[]>(`${this._url}/libro-id=${libroId}`);
-    // }
-
-    // getRecensioniByVideogioco(videogiocoId: number): Observable<Recensione[]> {
-    //     return this._http.get<Recensione[]>(`${this._url}/videogioco-id=${videogiocoId}`);
-    // }
-
     addRecensione(recensioneRequest: Partial<RecensioneRequest>): Observable<Recensione> {
         return this._http.post<Recensione>(this._url, recensioneRequest);
     }
