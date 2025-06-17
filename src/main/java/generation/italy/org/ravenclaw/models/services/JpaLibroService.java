@@ -142,23 +142,21 @@ public class JpaLibroService implements LibroService{
             }
             return false;
         })
-//                .filter(libro -> {
-//            Set<Integer> libroTagsIds = libro.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
-//            int counter = 0;
-//            int limit = 1;
-//            for(Integer t: bestFiveTags){
-//                if(libroTagsIds.contains(t)){
-//                    counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
-//                }
-//                if(counter >= limit) {
-//                    return true;
-//                }
-//            }
-//            return false;
-//        })
                 .filter(libro -> {
-                    return !letti.contains(libro);
-                }).toList();
+            Set<Integer> libroTagsIds = libro.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+            int counter = 0;
+            int limit = 1;
+            for(Integer t: bestFiveTags){
+                if(libroTagsIds.contains(t)){
+                    counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+                }
+                if(counter >= limit) {
+                    return true;
+                }
+            }
+            return false;
+        })
+                .filter(libro -> !letti.contains(libro)).toList();
 
         return consigliati;
     }

@@ -1,10 +1,7 @@
 package generation.italy.org.ravenclaw.models.services;
 
 import generation.italy.org.ravenclaw.exceptions.EntityNotFoundException;
-import generation.italy.org.ravenclaw.models.entities.Casa;
-import generation.italy.org.ravenclaw.models.entities.Film;
-import generation.italy.org.ravenclaw.models.entities.FilmVisto;
-import generation.italy.org.ravenclaw.models.entities.Recensione;
+import generation.italy.org.ravenclaw.models.entities.*;
 import generation.italy.org.ravenclaw.models.searchCriteria.FilmFilterCriteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +29,6 @@ public interface FilmService {
     boolean deleteFilmVisto(int id);
 
     Optional<FilmVisto> findFilmVistoByFilmIdAndUtenteId(int filmId, int utenteId);
+
+    List<Film> findFilmConsigliatiByUtenteId(int utenteId);
 }

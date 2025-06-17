@@ -107,8 +107,14 @@ public class Videogioco {
         return imgUrl;
     }
 
+    public List<CrewVideogioco> getCrew() {
+        return crew;
+    }
 
-    // === SETTER ===
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+// === SETTER ===
 
     public void setVideogiocoId(int videogiocoId) {
         this.videogiocoId = videogiocoId;

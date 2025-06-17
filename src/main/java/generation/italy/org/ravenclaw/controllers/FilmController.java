@@ -60,6 +60,12 @@ public class FilmController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/utente/{utenteId}")
+    public ResponseEntity<List<FilmDto>> getConsigliati(@PathVariable int utenteId) {
+        List<Film> filmConsigliati = filmService.findFilmConsigliatiByUtenteId(utenteId);
+        return ResponseEntity.ok(filmConsigliati.stream().map(FilmDto::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<?> addFilm(@RequestBody FilmDto fdto) throws EntityNotFoundException {
         Film film = fdto.toFilm();

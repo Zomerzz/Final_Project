@@ -104,7 +104,14 @@ public class Film {
         return imgUrl;
     }
 
-    // === SETTER ===
+    public List<CrewFilm> getCrew() {
+        return crew;
+    }
+
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+// === SETTER ===
 
     public void setCasaDiProduzione(Casa casaDiProduzione) {
         this.casaDiProduzione = casaDiProduzione;

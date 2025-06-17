@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class JpaFilmService implements FilmService {
@@ -20,6 +22,7 @@ public class JpaFilmService implements FilmService {
     private FilmVistoRepository filmVistoRepo;
     private UtenteRepository utenteRepo;
     private RecensioneRepository recensioneRepo;
+    private TagRepository tagRepo;
 
     @Autowired
     public JpaFilmService(FilmRepository filmRepo,
@@ -27,13 +30,15 @@ public class JpaFilmService implements FilmService {
                           CriteriaFilmRepository criteriaFRepo,
                           FilmVistoRepository filmVistoRepo,
                           UtenteRepository utenteRepo,
-                          RecensioneRepository recensioneRepo){
+                          RecensioneRepository recensioneRepo,
+                          TagRepository tagRepo){
         this.filmRepo = filmRepo;
         this.casaRepo = casaRepo;
         this.criteriaFRepo = criteriaFRepo;
         this.filmVistoRepo = filmVistoRepo;
         this.utenteRepo = utenteRepo;
         this.recensioneRepo = recensioneRepo;
+        this.tagRepo = tagRepo;
     }
 
     @Override
@@ -112,4 +117,47 @@ public class JpaFilmService implements FilmService {
     public Optional<FilmVisto> findFilmVistoByFilmIdAndUtenteId(int filmId, int utenteId) {
         return filmVistoRepo.findByUtenteUtenteIdAndFilmFilmId(utenteId, filmId);
     }
+
+    @Override
+    public List<Film> findFilmConsigliatiByUtenteId(int utenteId) {
+        List<Integer> favouriteTagsIds = tagRepo.findFavouriteTagsByUserId(utenteId);
+        var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
+        List<Integer> favouriteGenresIds = tagRepo.findFavouriteGenresByUserId(utenteId);
+        var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
+
+        var visti = filmRepo.findByUser(utenteId);
+        List<Film> all = filmRepo.findAll();
+        var consigliati = all.stream().filter(film -> {
+                    int counter = 0;
+                    int limit = 1;
+                    for(Integer t : bestFiveGenres){
+                        Set<Integer> filmTagsIds = film.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+                        if(filmTagsIds.contains(t)){
+                            counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+                        }
+                        if(counter >= limit) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .filter(film -> {
+                    Set<Integer> filmTagsIds = film.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+                    int counter = 0;
+                    int limit = 1;
+                    for(Integer t: bestFiveTags){
+                        if(filmTagsIds.contains(t)){
+                            counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+                        }
+                        if(counter >= limit) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .filter(libro -> !visti.contains(libro)).toList();
+
+        return consigliati;
+    }
+
 }

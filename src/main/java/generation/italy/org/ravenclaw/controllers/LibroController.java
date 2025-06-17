@@ -48,9 +48,9 @@ public class  LibroController {
         return ResponseEntity.ok(libri.map(LibroDto::toDto));
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<LibroDto>> getConsigliati(@PathVariable int userId) {
-        List<Libro> libriConsigliati = libroService.findLibriConsigliatiByUserId(userId);
+    @GetMapping("/utente/{utenteId}")
+    public ResponseEntity<List<LibroDto>> getConsigliati(@PathVariable int utenteId) {
+        List<Libro> libriConsigliati = libroService.findLibriConsigliatiByUserId(utenteId);
         return ResponseEntity.ok(libriConsigliati.stream().map(LibroDto::toDto).toList());
     }
 

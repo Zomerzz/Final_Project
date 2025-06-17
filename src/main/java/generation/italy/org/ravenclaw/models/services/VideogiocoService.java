@@ -35,4 +35,6 @@ public interface VideogiocoService {
     boolean deleteVideogiocoGiocato(int id);
 
     Optional<VideogiocoGiocato> findVideogiocoGiocatoByVideogiocoIdAndUtenteId(int videogiocoId, int utenteId);
+
+    List<Videogioco> findVideogiochiConsigliatiByUtenteId(int utenteId);
 }
