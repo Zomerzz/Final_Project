@@ -125,9 +125,6 @@ public class JpaFilmService implements FilmService {
         List<Integer> favouriteGenresIds = tagRepo.findFavouriteFilmTagsByUtenteId(utenteId, true);
         var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
 
-        //System.out.println(bestFiveGenres.getFirst()); se li stampo mi da un NoSuchEntityException
-        //System.out.println(bestFiveTags.getFirst());
-
         var visti = filmRepo.findByUser(utenteId);
         List<Film> all = filmRepo.findAll();
         var consigliati = all.stream().filter(film -> {
