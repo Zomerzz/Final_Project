@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -57,6 +58,23 @@ public class Libro {
         this.dataDiPubblicazione = dataDiPubblicazione;
         this.voto = voto;
         this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(libroId);
+    }
+
+    @Override
+    public boolean equals(Object libro){
+        if(this == libro){
+            return true;
+        }
+        if(libro == null || getClass() != libro.getClass()){
+            return false;
+        }
+        Libro l = (Libro)libro;
+        return libroId == l.getLibroId();
     }
 
 // === GETTER ===
