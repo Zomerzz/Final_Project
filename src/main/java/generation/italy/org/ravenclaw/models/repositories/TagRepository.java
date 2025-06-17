@@ -17,17 +17,17 @@ public interface TagRepository  extends JpaRepository<Tag, Integer> {
 
 
     @Query("SELECT tag.tagId FROM FilmVisto fv JOIN fv.film f JOIN f.tagSet tag WHERE fv.utente.id = :utenteId" +
-            " AND tag.isGenere = false GROUP BY tag ORDER BY COUNT(l) DESC")
+            " AND tag.isGenere = false GROUP BY tag ORDER BY COUNT(f) DESC")
     List<Integer> findFavouriteFilmTagsByUtenteId(@Param("utenteId") int utenteId);
     @Query("SELECT tag.tagId FROM FilmVisto fv JOIN fv.film f JOIN f.tagSet tag WHERE fv.utente.id = :utenteId" +
-            " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(l) DESC")
+            " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(f) DESC")
     List<Integer> findFavouriteFilmGenresByUtenteId(int utenteId);
 
 
     @Query("SELECT tag.tagId FROM VideogiocoGiocato vg JOIN vg.videogioco v JOIN v.tagSet tag WHERE vg.utente.id = :utenteId" +
-            " AND tag.isGenere = false GROUP BY tag ORDER BY COUNT(l) DESC")
+            " AND tag.isGenere = false GROUP BY tag ORDER BY COUNT(v) DESC")
     List<Integer> findFavouriteVideogiocoTagsByUtenteId(@Param("utenteId") int utenteId);
     @Query("SELECT tag.tagId FROM VideogiocoGiocato vg JOIN vg.videogioco v JOIN v.tagSet tag WHERE vg.utente.id = :utenteId" +
-            " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(l) DESC")
+            " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(v) DESC")
     List<Integer> findFavouriteVideogiocoGenresByUtenteId(int utenteId);
 }
