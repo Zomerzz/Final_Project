@@ -155,7 +155,7 @@ public class JpaFilmService implements FilmService {
                     }
                     return false;
                 })
-                .filter(libro -> !visti.contains(libro)).toList();
+                .filter(film -> !visti.contains(film)).toList();
 
         return consigliati;
     }

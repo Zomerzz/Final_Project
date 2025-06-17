@@ -13,7 +13,7 @@ public interface TagRepository  extends JpaRepository<Tag, Integer> {
     List<Integer> findFavouriteLibroTagsByUtenteId(@Param("utenteId") int utenteId);
     @Query("SELECT tag.tagId FROM LibroLetto ll JOIN ll.libro l JOIN l.tagSet tag WHERE ll.utente.id = :utenteId" +
             " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(l) DESC")
-    List<Integer> findFavouriteLibroGenresByUtenteId(int utenteId);
+    List<Integer> findFavouriteLibroGenresByUtenteId(@Param("utenteId") int utenteId);
 
 
     @Query("SELECT tag.tagId FROM FilmVisto fv JOIN fv.film f JOIN f.tagSet tag WHERE fv.utente.id = :utenteId" +
@@ -21,7 +21,7 @@ public interface TagRepository  extends JpaRepository<Tag, Integer> {
     List<Integer> findFavouriteFilmTagsByUtenteId(@Param("utenteId") int utenteId);
     @Query("SELECT tag.tagId FROM FilmVisto fv JOIN fv.film f JOIN f.tagSet tag WHERE fv.utente.id = :utenteId" +
             " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(f) DESC")
-    List<Integer> findFavouriteFilmGenresByUtenteId(int utenteId);
+    List<Integer> findFavouriteFilmGenresByUtenteId(@Param("utenteId") int utenteId);
 
 
     @Query("SELECT tag.tagId FROM VideogiocoGiocato vg JOIN vg.videogioco v JOIN v.tagSet tag WHERE vg.utente.id = :utenteId" +
@@ -29,5 +29,5 @@ public interface TagRepository  extends JpaRepository<Tag, Integer> {
     List<Integer> findFavouriteVideogiocoTagsByUtenteId(@Param("utenteId") int utenteId);
     @Query("SELECT tag.tagId FROM VideogiocoGiocato vg JOIN vg.videogioco v JOIN v.tagSet tag WHERE vg.utente.id = :utenteId" +
             " AND tag.isGenere = true GROUP BY tag ORDER BY COUNT(v) DESC")
-    List<Integer> findFavouriteVideogiocoGenresByUtenteId(int utenteId);
+    List<Integer> findFavouriteVideogiocoGenresByUtenteId(@Param("utenteId") int utenteId);
 }
