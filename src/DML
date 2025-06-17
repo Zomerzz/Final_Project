@@ -666,10 +666,8 @@ INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (37, 17, 
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (38, 48, 'Spettacolare.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (39, 28, 'Sorprendente.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (40, 72, 'Deludente.');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (50, 0, 'che merda');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (51, 90, 'la paura');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (52, 100, 'bellissime musiche');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (53, 100, '');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (56, 1, 'non mi piacciono le donne');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (59, 100, 'bellisimo gioco lo rigiocherei');
 
 
 --
@@ -687,13 +685,15 @@ INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (8, 'user_ei
 INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (9, 'user_nine', 'pwd123', 'user9@example.com');
 INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (10, 'user_ten', 'pwd123', 'user10@example.com');
 INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (20, 'Zomerz', '$2a$10$yIGliJkx4qRmhhSXgPHuzu1/xOVKht/nomsT31uO12dxZXDmhKfxu', 'aresufilippo2005@gmail.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (21, 'aaaaaaaaaaaaa', '$2a$10$ysscngKaiBT44DSxUfbfvOflSVixHs/Ugf01s2Fphj0ijCWraouh2', 'sdadsadjsab@dsadsjka.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (22, 'Colum_ahr', '$2a$10$RRhm91ACbodCtvK57zM/Xe4MHED2qaFnmokhkE.HUNkoDCz9WWU1O', 'PirateMail@gmail.com');
 
 
 --
 -- Data for Name: film_visti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
 
-INSERT INTO public.film_visti (film_visto_id, film_id, utente_id, recensione_id) VALUES (55, 18, 20, 50);
+INSERT INTO public.film_visti (film_visto_id, film_id, utente_id, recensione_id) VALUES (102, 18, 22, NULL);
 
 
 --
@@ -957,29 +957,18 @@ INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (8, 8, 8, 8);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (9, 9, 9, 9);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (10, 10, 10, 10);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (11, 11, 9, 25);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (12, 12, 5, 23);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (13, 13, 5, 12);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (14, 14, 5, 36);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (15, 15, 4, 14);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (16, 16, 5, 36);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (17, 17, 4, 11);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (18, 18, 9, 35);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (19, 19, 8, 39);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (20, 20, 7, 28);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (21, 21, 3, 18);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (22, 22, 9, 34);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (23, 23, 8, 20);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (24, 24, 10, 25);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (25, 25, 7, 11);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (26, 26, 1, 17);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (27, 27, 6, 15);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (28, 28, 10, 21);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (29, 29, 1, 40);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (30, 30, 5, 16);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (31, 31, 3, 23);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (32, 32, 6, 37);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (33, 33, 2, 36);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (34, 34, 7, 24);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (35, 35, 3, 15);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (36, 36, 5, 38);
@@ -987,14 +976,16 @@ INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (38, 38, 3, 19);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (39, 39, 1, 22);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (40, 40, 6, 21);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (41, 41, 10, 40);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (42, 42, 1, 21);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (43, 43, 10, 31);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (44, 44, 6, 25);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (45, 45, 4, 20);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (46, 46, 10, 34);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (47, 47, 4, 32);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (51, 38, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (66, 44, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (68, 32, 20, 56);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (70, 9, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (72, 30, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (75, 36, 22, NULL);
 
 
 --
@@ -1055,6 +1046,8 @@ INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (47, 33, 
 --
 
 INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (20, 'ROLE_EMPLOYEE');
+INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (21, 'ROLE_EMPLOYEE');
+INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (22, 'ROLE_EMPLOYEE');
 
 
 --
@@ -1223,9 +1216,7 @@ INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, ut
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (13, 13, 1, 36);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (14, 14, 3, 23);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (15, 15, 4, 21);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (16, 16, 6, 38);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (17, 17, 3, 24);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (18, 18, 2, 18);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (19, 19, 8, 40);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (20, 20, 6, 39);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (21, 21, 6, 34);
@@ -1233,7 +1224,6 @@ INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, ut
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (23, 23, 10, 27);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (24, 24, 8, 13);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (25, 25, 6, 28);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (26, 26, 6, 27);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (27, 27, 7, 38);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (28, 28, 4, 22);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (29, 29, 8, 19);
@@ -1241,28 +1231,15 @@ INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, ut
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (31, 31, 3, 31);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (32, 32, 5, 37);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (33, 33, 1, 14);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (34, 34, 1, 24);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (35, 35, 10, 29);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (36, 36, 3, 26);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (37, 37, 9, 25);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (38, 38, 6, 30);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (39, 39, 6, 22);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (40, 40, 4, 18);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (41, 41, 1, 28);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (42, 42, 7, 12);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (43, 43, 2, 12);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (44, 44, 3, 30);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (45, 45, 2, 13);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (46, 46, 4, 11);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (47, 47, 2, 37);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (48, 48, 3, 35);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (53, 48, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (50, 4, 20, 51);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (52, 42, 20, 52);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (54, 39, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (55, 27, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (56, 37, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (51, 24, 20, 53);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (65, 9, 20, 59);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (67, 47, 22, NULL);
 
 
 --
@@ -1304,7 +1281,7 @@ SELECT pg_catalog.setval('public.film_prodotto_da_prodotto_da_id_seq', 1, false)
 -- Name: film_visti_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.film_visti_seq', 55, true);
+SELECT pg_catalog.setval('public.film_visti_seq', 102, true);
 
 
 --
@@ -1318,7 +1295,7 @@ SELECT pg_catalog.setval('public.libri_assegnamento_tag_assegnamento_id_seq', 1,
 -- Name: libri_letti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.libri_letti_id_seq', 51, true);
+SELECT pg_catalog.setval('public.libri_letti_id_seq', 76, true);
 
 
 --
@@ -1332,7 +1309,7 @@ SELECT pg_catalog.setval('public.libri_libro_id_seq', 1, false);
 -- Name: recensioni_recensioni_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.recensioni_recensioni_id_seq', 53, true);
+SELECT pg_catalog.setval('public.recensioni_recensioni_id_seq', 59, true);
 
 
 --
@@ -1360,7 +1337,7 @@ SELECT pg_catalog.setval('public.tag_tag_id_seq', 1, false);
 -- Name: utente_utente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.utente_utente_id_seq', 20, true);
+SELECT pg_catalog.setval('public.utente_utente_id_seq', 22, true);
 
 
 --
@@ -1374,7 +1351,7 @@ SELECT pg_catalog.setval('public.videogiochi_assegnamento_tag_assegnamento_id_se
 -- Name: videogiochi_giocati_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.videogiochi_giocati_seq', 56, true);
+SELECT pg_catalog.setval('public.videogiochi_giocati_seq', 67, true);
 
 
 --
