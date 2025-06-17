@@ -15,41 +15,41 @@
         <div class="voto-Display">
             <div>Voto: {{libro.voto}}</div>
             <div class="progress-bar-container">
-
-                <div class="progress-bar-fill"
-                    [style.width.%]="libro.voto"
-                    [style.backgroundColor]="getBarColor()">
+                <div class="progress-bar-fill" [style.width.%]="libro.voto" [style.backgroundColor]="getBarColor()">
                 </div>
             </div>
         </div>
+        @if(isAlreadylogged && !libroLetto){
+        <div>
+            <button (click)="registerLibroLetto()" class="Add-To-viewd-button">Segna come letto</button>
+        </div>
+        }
+
+        @if(isAlreadylogged && libroLetto){
+        <div>
+            <button (click)="deleteLibroLetto()" class="Add-To-viewd-button">Rimuovi dai libri letti</button>
+        </div>
+        }
+        @if(isAlreadylogged && libroLetto && !libroLetto.recensione){
+        <app-add-recensione [operaId]='libro.id' [type]='type'
+            (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
+        }
     </div>
 
+
 </div>
 
-@if(isAlreadylogged && !libroLetto){
-<div>
-    <button (click)="registerLibroLetto()">Segna come letto</button>
-</div>
-}
 
-@if(isAlreadylogged && libroLetto){
-<div>
-    <button (click)="deleteLibroLetto()">Rimuovi dai libri letti</button>
-</div>
-}
-
-@if(isAlreadylogged && libroLetto && !libroLetto.recensione){
-    <app-add-recensione [operaId] = 'libro.id' [type] = 'type' (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
-}
-
-@if(isAlreadylogged && libroLetto && libroLetto.recensione){
+@if(recensioni.length >0){
+<div class="recensioni-details-container">
+    @if(isAlreadylogged && libroLetto && libroLetto.recensione){
     <h2>La tua recensione</h2>
-    <app-recensione-card [recensione] = 'libroLetto.recensione'></app-recensione-card>
-}
-
-@if(recensioni.length){
-<div>
-    <h2>Recensioni dei nostri utenti</h2>
-    <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    <app-recensione-card [recensione]='libroLetto.recensione'></app-recensione-card>
+    }
+    <div>
+        <h2>Recensioni dei nostri utenti</h2>
+        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    </div>
 </div>
+
 }

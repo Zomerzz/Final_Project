@@ -19,7 +19,22 @@
                 <div class="progress-bar-fill" [style.width.%]="film.voto" [style.backgroundColor]="getBarColor()">
                 </div>
             </div>
+
         </div>
+        @if(isAlreadylogged && !filmVisto){
+        <div>
+            <button class="Add-To-viewd-button" (click)="registerFilmVisto()">Segna come visto</button>
+        </div>
+        }
+        @if(isAlreadylogged && filmVisto){
+        <div>
+            <button class="Add-To-viewd-button"  (click)="deleteFilmVisto()">Rimuovi dai film visti</button>
+        </div>
+        }
+        @if(isAlreadylogged && filmVisto && !filmVisto.recensione){
+        <app-add-recensione [operaId]='film.id' [type]='type'
+            (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
+        }
 
     </div>
 
@@ -30,25 +45,26 @@
     </div>
 } -->
 
-@if(isAlreadylogged && !filmVisto){
-<div>
-    <button (click)="registerFilmVisto()">Segna come visto</button>
+
+
+@if(recensioni.length >0){
+<div class="recensioni-details-container">
+    @if(isAlreadylogged && filmVisto && filmVisto.recensione){
+    <h2>La tua recensione</h2>
+    <app-recensione-card [recensione]='filmVisto.recensione'></app-recensione-card>
+    }
+    <div>
+        <h2>Recensioni dei nostri utenti</h2>
+        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    </div>
 </div>
+
 }
 
-@if(isAlreadylogged && filmVisto){
-<div>
-    <button (click)="deleteFilmVisto()">Rimuovi dai film visti</button>
-</div>
-}
-
-@if(isAlreadylogged && filmVisto && !filmVisto.recensione){
-    <app-add-recensione [operaId] = 'film.id' [type] = 'type'  (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
-}
 
 @if(isAlreadylogged && filmVisto && filmVisto.recensione){
-    <h2>La tua recensione</h2>
-    <app-recensione-card [recensione] = 'filmVisto.recensione'></app-recensione-card>
+<h2>La tua recensione</h2>
+<app-recensione-card [recensione]='filmVisto.recensione'></app-recensione-card>
 }
 
 @if(recensioni.length){

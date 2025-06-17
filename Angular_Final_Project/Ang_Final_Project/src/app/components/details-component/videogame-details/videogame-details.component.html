@@ -21,40 +21,48 @@
                 </div>
             </div>
         </div>
-        
-    </div>
-
-</div>
-<!-- @if(){  TODO AGGIUNGE IL PULSANTE AGGIUNGI RECENSIONE SE SEI LOGGATO
-    <div>
-
-    </div>
-} -->
-
-
-@if(isAlreadylogged && !videogiocoGiocato){
-            <div>
-                <button (click)="registerVideogiocoGiocato()">Segna come giocato</button>
-            </div>
+        @if(isAlreadylogged && !videogiocoGiocato){
+        <div>
+            <button (click)="registerVideogiocoGiocato()" class="Add-To-viewd-button">Segna come giocato</button>
+        </div>
         }
-@if(isAlreadylogged && videogiocoGiocato){
-<div>
-    <button (click)="deleteVideogiocoGiocato()">Rimuovi dai videogiochi a cui hai giocato</button>
-</div>
-}
+        @if(isAlreadylogged && videogiocoGiocato){
+        <div>
+            <button (click)="deleteVideogiocoGiocato()" class="Add-To-viewd-button">Rimuovi dai videogiochi a cui hai
+                giocato</button>
+        </div>
+        }
 
-@if(isAlreadylogged && videogiocoGiocato && !videogiocoGiocato.recensione){
-    <app-add-recensione [operaId] = 'videogioco.id' [type] = 'type'  (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
-}
+        @if(isAlreadylogged && videogiocoGiocato && !videogiocoGiocato.recensione){
+        <app-add-recensione [operaId]='videogioco.id' [type]='type'
+            (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
+        }
+    </div>
+
+</div>
+
 
 @if(isAlreadylogged && videogiocoGiocato && videogiocoGiocato.recensione){
-    <h2>La tua recensione</h2>
-    <app-recensione-card [recensione] = 'videogiocoGiocato.recensione'></app-recensione-card>
+<h2>La tua recensione</h2>
+<app-recensione-card [recensione]='videogiocoGiocato.recensione'></app-recensione-card>
 }
 
 @if(recensioni.length){
 <div>
     <h2>Recensioni dei nostri utenti</h2>
     <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+</div>
+}
+
+@if(recensioni.length >0){
+<div class="recensioni-details-container">
+    @if(isAlreadylogged && videogiocoGiocato && videogiocoGiocato.recensione){
+    <h2>La tua recensione</h2>
+    <app-recensione-card [recensione]='videogiocoGiocato.recensione'></app-recensione-card>
+    }
+    <div>
+        <h2>Recensioni dei nostri utenti</h2>
+        <app-recensioni-list [recensioni]="recensioni"></app-recensioni-list>
+    </div>
 </div>
 }
