@@ -11,7 +11,7 @@ form {
 
 form>input,select {
     border: 2px solid #8E8E93;
-    background: #2C2C2E;
+    background: #82607b;
     padding: 0.30em;
     border-radius: 1em;
     border-radius: 5px;
@@ -52,7 +52,7 @@ form>.tag-list {
     padding: 0.5em 1.2em;
     border: 2px solid #8E8E93;
     border-radius: 5px;
-    background: #2C2C2E;
+    background: #82607b;
     color: #ffffff;
     font: normal normal normal 14px/14px Poppins, sans-serif;
     cursor: pointer;
@@ -62,9 +62,9 @@ form>.tag-list {
 
 /* When checked, style the label differently */
 .checkboxtag:checked+.checkbox-button {
-    background-color: #30D158;
+    background-color: #4b0132;
     color: white;
-    border-color: #30D158;
+    border-color: #00ffbf;
 }
 
 /* Optional: hover effect */
@@ -73,7 +73,7 @@ form>.tag-list {
 }
 
 #sub{
-    background: #2C2C2E;
+    background: #82607b;
     border: 2px solid #8E8E93;
     border-radius: 5px;
     width: max-content;

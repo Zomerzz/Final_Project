@@ -11,7 +11,11 @@ body{
     user-select: none;
     height: 100vh;
     width: 100vw;
-    background-image: url('https://i.giphy.com/JziYhcncmOJ62exffK.webp');
+    background-image: url('https://wallpaperaccess.com/full/862202.png');
+    background-repeat: no-repeat;     
+    background-size: cover;            
+    background-position: center; 
+    background-attachment: fixed;      
     overflow-y:scroll;
 }
 body::-webkit-scrollbar{
@@ -60,6 +64,7 @@ app-home >main{
     border-radius: 1em;
     background-color: rgba(170, 170, 170, 0.25);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow-y: hidden;
 }
 
 
@@ -91,11 +96,13 @@ app-home >main{
     text-align: center;
     align-items: center;
     transition: transform 0.2s ease-in-out;
+    
 }
 .card-a{
     display: grid;
     grid-template-rows: 7fr 3fr;
-    grid-template-columns: 1fr;}
+    grid-template-columns: 1fr;
+}
 
 
 .card:hover {
@@ -117,7 +124,7 @@ app-home >main{
     display: grid;
     grid-template-rows: 1fr 0.5fr;
     align-items: center;
-    background-color: rgba(170, 170, 170);
+    background-color:#82607b;
     grid-row: 2/3;
     height: 100%;
     border-radius: 1em;
@@ -125,6 +132,7 @@ app-home >main{
     position: relative;
     z-index: 1;
     padding-bottom: 2.5em;
+    
 
 }
 
@@ -135,6 +143,7 @@ app-home >main{
 
 .titolo-scroll {
     margin: 0;
+    color:white
 }
 
 .card-voto-Display{
