@@ -20,4 +20,6 @@ public interface TagRepository  extends JpaRepository<Tag, Integer> {
     @Query("SELECT tag.tagId FROM VideogiocoGiocato vg JOIN vg.videogioco v JOIN v.tagSet tag WHERE vg.utente.id = :utenteId" +
             " AND tag.isGenere = :isGenere GROUP BY tag ORDER BY COUNT(v) DESC")
     List<Integer> findFavouriteVideogiocoTagsByUtenteId(@Param("utenteId") int utenteId, @Param("isGenere") boolean isGenere);
+
+    List<Tag> findByIsGenere(boolean isGenere);
 }

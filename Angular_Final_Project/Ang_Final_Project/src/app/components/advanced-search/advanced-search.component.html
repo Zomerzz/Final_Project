@@ -42,24 +42,25 @@
     @if (maxOreDiGiocoStoriaPrincipale) {
     <input type="number" placeholder="Max ore di Gioco" formControlName="maxOreDiGiocoStoriaPrincipale">
     }
-    @if (tags) {
+    @if (generi) {
 
         <h3>GENERI</h3>
         <div class="tag-list">
-            @for (tag of currentTags; track tag) {
-            @if (tag.isGenre) {
-            <div class="checkbox-wrapper">
-                <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"
-                    [checked]="form.value.tags?.includes(tag.tagId)" [value]="tag.tagId"
-                    (change)="onTagCheckboxChange($event)" />
-                <label class="checkbox-button" [for]="'tag-' + tag.tagId">
-                    {{ tag.nome }}
-                </label>
-            </div>
-            }
-
-            }
+            @for (tag of currentGeneri; track tag) {
+                <div class="checkbox-wrapper">
+                    <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"
+                        [checked]="form.value.tags?.includes(tag.tagId)" [value]="tag.tagId"
+                        (change)="onTagCheckboxChange($event)" />
+                    <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                        {{ tag.nome }}
+                    </label>
+                </div>
+            } 
         </div>
+    }
+    
+        @if (tags) {
+       
         <h3>Tags</h3>
         <div class="tag-list">
             @for (tag of currentTags; track tag) {
@@ -73,7 +74,7 @@
                 </label>
             </div>
             }
-            }
+        }
         </div>
         <!-- div ordinamento -->
         <div class="orderBy">
@@ -102,6 +103,7 @@
         </div>
 
     }
+
 
     <!-- @if (tags) {
         <div class="tag-list">

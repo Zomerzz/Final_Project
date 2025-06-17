@@ -43,4 +43,9 @@ public class JpaTagService implements TagService{
         tagRepo.deleteById(id);
         return true;
     }
+
+    @Override
+    public List<Tag> findByIsGenere(boolean isGenere){
+        return tagRepo.findByIsGenere(isGenere);
+    }
 }
