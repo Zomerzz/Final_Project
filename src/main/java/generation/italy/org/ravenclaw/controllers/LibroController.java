@@ -48,6 +48,12 @@ public class  LibroController {
         return ResponseEntity.ok(libri.map(LibroDto::toDto));
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<LibroDto>> getConsigliati(@PathVariable int userId) {
+        List<Libro> libriConsigliati = libroService.findLibriConsigliatiByUserId(userId);
+        return ResponseEntity.ok(libriConsigliati.stream().map(LibroDto::toDto).toList());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> searchById(@PathVariable Integer id) throws DataException {
         Optional<Libro> opt = libroService.findLibroById(id);

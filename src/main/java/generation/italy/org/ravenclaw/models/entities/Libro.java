@@ -41,7 +41,7 @@ public class Libro {
     @ManyToMany(mappedBy = "libroSet")
     private Set<Autore> autoreSet = new HashSet<>();
 
-    @ManyToMany(mappedBy = "libroSet")
+    @ManyToMany(mappedBy = "libroSet", fetch = FetchType.EAGER)
     private Set<Tag> tagSet = new HashSet<>();
 
     // === CONSTRUTTORI ===

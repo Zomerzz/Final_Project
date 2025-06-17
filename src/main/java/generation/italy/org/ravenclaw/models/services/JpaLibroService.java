@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class JpaLibroService implements LibroService{
@@ -23,6 +25,7 @@ public class JpaLibroService implements LibroService{
     private LibroLettoRepository libroLettoRepo;
     private UtenteRepository utenteRepo;
     private RecensioneRepository recensioneRepo;
+    private TagRepository tagRepo;
 
     @Autowired
     public JpaLibroService(LibroRepository libroRepo,
@@ -30,13 +33,15 @@ public class JpaLibroService implements LibroService{
                            CriteriaLibroRepository criteriaLibroRepo,
                            LibroLettoRepository libroLettoRepo,
                            UtenteRepository utenteRepo,
-                           RecensioneRepository recensioneRepo){
+                           RecensioneRepository recensioneRepo,
+                           TagRepository tagRepo){
         this.libroRepo = libroRepo;
         this.casaRepo = casaRepo;
         this.criteriaLibroRepo = criteriaLibroRepo;
         this.libroLettoRepo = libroLettoRepo;
         this.utenteRepo = utenteRepo;
         this.recensioneRepo = recensioneRepo;
+        this.tagRepo = tagRepo;
     }
 
     @Override
@@ -114,5 +119,49 @@ public class JpaLibroService implements LibroService{
     @Override
     public Optional<LibroLetto> findLibroLettoByLibroIdAndUtenteId(int libroId, int utenteId) {
         return libroLettoRepo.findByUtenteUtenteIdAndLibroLibroId(utenteId,libroId);
+    }
+
+    @Override
+    public List<Libro> findLibriConsigliatiByUserId(int utenteId) {
+        List<Integer> favouriteTagsIds = tagRepo.findFavouriteTagsByUserId(utenteId);
+        var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
+        List<Integer> favouriteGenresIds = tagRepo.findFavouriteGenresByUserId(utenteId);
+        var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
+
+        var letti = libroRepo.findByUser(utenteId);
+        List<Libro> all = libroRepo.findAll();
+        var consigliati = all.stream().filter(libro -> {
+            int counter = 0;
+            int limit = 1;
+            for(Integer t : bestFiveGenres){
+                Set<Integer> libroTagsIds = libro.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+                if(libroTagsIds.contains(t)){
+                    counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+                }
+                if(counter >= limit) {
+                    return true;
+                }
+            }
+            return false;
+        })
+//                .filter(libro -> {
+//            Set<Integer> libroTagsIds = libro.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+//            int counter = 0;
+//            int limit = 1;
+//            for(Integer t: bestFiveTags){
+//                if(libroTagsIds.contains(t)){
+//                    counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+//                }
+//                if(counter >= limit) {
+//                    return true;
+//                }
+//            }
+//            return false;
+//        })
+                .filter(libro -> {
+                    return !letti.contains(libro);
+                }).toList();
+
+        return consigliati;
     }
 }

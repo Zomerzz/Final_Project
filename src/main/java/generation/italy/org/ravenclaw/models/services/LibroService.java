@@ -40,4 +40,6 @@ public interface LibroService {
     boolean deleteLibroLetto(int id);
 
     Optional<LibroLetto> findLibroLettoByLibroIdAndUtenteId(int libroId, int utenteId);
+
+    List<Libro> findLibriConsigliatiByUserId(int userId);
 }
