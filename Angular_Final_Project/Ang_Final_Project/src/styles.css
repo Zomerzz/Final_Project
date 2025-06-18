@@ -604,3 +604,7 @@ app-user-page-component .list-container{
     font-weight: bold;
 }
 
+.utente-card {
+    border-radius: 1em;
+    border: 1px solid black;
+}

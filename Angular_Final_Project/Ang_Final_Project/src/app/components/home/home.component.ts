@@ -14,11 +14,16 @@ import { AuthService } from '../../services/AuthService';
 import { AdvancedSearchComponent } from "../advanced-search/advanced-search.component";
 import { SearchModel } from '../../model/SearchModel';
 import { forkJoin } from 'rxjs';
+import { UtenteNoPass } from '../../model/UtenteNoPass';
+import { UtenteService } from '../../services/UtenteService';
+import { UsersListComponent } from '../users-list/users-list.component';
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [CommonModule, LibroListComponent, FilmListComponent, VideogiocoListComponent, AdvancedSearchComponent],
+    imports: [CommonModule, LibroListComponent, 
+        FilmListComponent, VideogiocoListComponent, 
+        AdvancedSearchComponent, UsersListComponent],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
@@ -28,25 +33,31 @@ export class HomeComponent implements OnInit {
     listaLibri!: Libro[];
     listaFilm!: Film[];
     listaVideogiochi!: Videogioco[];
-
+    listaUtenti!: UtenteNoPass[];
 
     private _activatedRoute = inject(ActivatedRoute);
     private _libroService: LibroService = inject(LibroService);
     private _videogiocoService: VideogiocoService = inject(VideogiocoService);
     private _filmService: FilmService = inject(FilmService);
+    private _utenteService: UtenteService = inject(UtenteService);
     private _authService: AuthService = inject(AuthService);
     private _router = inject(Router);
 
 
     ngOnInit(): void {
+
         this._activatedRoute.queryParams.subscribe({
             next: params => {
                 const titolo = params['q'];
+                const utente = params['utente'];
                 const isLogged = this._authService.isLogged();
                 this.clearLists();
                 this.Raccomandation = false;
                 if (titolo) {
                     this.fetchByName(titolo);
+                } else if (utente) {
+                    this.clearLists();
+                    this.fetchUtentiByName(utente);
                 } else {
                     if (!isLogged) {
                         this.fetchALl();
@@ -176,6 +187,14 @@ export class HomeComponent implements OnInit {
         }
 
     }
+
+    fetchUtentiByName(utente: string){
+        this._utenteService.getUtentiByUsername(utente).subscribe({
+            next: list => this.listaUtenti = list,
+            error: e => console.log('------------ errore nel cariamento utenti ---------------')
+        });
+    }
+
     createQueryString(filters: Partial<SearchModel>): string {
         this.Raccomandation = false;
         let queryString: string = '?';
@@ -263,6 +282,7 @@ fetchRecommendedForLoggedUsers() {
         this.listaLibri = [];
         this.listaFilm = [];
         this.listaVideogiochi = [];
+        this.listaUtenti = [];
     }
 }
 
