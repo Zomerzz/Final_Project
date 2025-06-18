@@ -1,15 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+
 *{
     color:whitesmoke;
     text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Outfit", sans-serif;
 }
 form {
+    font-family: "Outfit", sans-serif;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
 
 form>input,select {
+    font-family: "Outfit", sans-serif;
     border: 2px solid #8E8E93;
     background: #2C2C2E;
     padding: 0.30em;
@@ -19,18 +25,22 @@ form>input,select {
 }
 
 input::placeholder,select::placeholder{
+    font-family: "Outfit", sans-serif;
     color: whitesmoke;
 }
 
 form>input:hover,select:hover {
+    font-family: "Outfit", sans-serif;
     border: 2px solid #8E8E93;
     background-color: #3a3a3c;
 }
 form>input:hover,select:hover {
+    font-family: "Outfit", sans-serif;
     scrollbar-arrow-color: transparent;
 }
 
 form .tag-list {
+    font-family: "Outfit", sans-serif;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -39,22 +49,24 @@ form .tag-list {
 }
 
 .checkbox-wrapper {
+    font-family: "Outfit", sans-serif;
     position: relative;
     margin: 1%;
 }
 
 .checkboxtag {
+    font-family: "Outfit", sans-serif;
     display: none;
 }
 
 .checkbox-button {
+    font-family: "Outfit", sans-serif;
     display: inline-block;
     padding: 0.5em 1.2em;
     border: 2px solid #8E8E93;
     border-radius: 5px;
     background: #2C2C2E;
     color: #ffffff;
-    font: normal normal normal 14px/14px Poppins, sans-serif;
     cursor: pointer;
     user-select: none;
     transition: all 0.2s ease-in-out;
@@ -62,12 +74,14 @@ form .tag-list {
 
 /* When checked, style the label differently */
 .checkboxtag:checked+.checkbox-button {
+    font-family: "Outfit", sans-serif;
     background-color: #30D158;
     color: white;
     border-color: #30D158;
 }/* When checked, style the label differently */
 
 .Generi-list .checkboxtag:checked+.checkbox-button {
+    font-family: "Outfit", sans-serif;
     background-color: #d13030;
     color: white;
     border-color: #d13030;
@@ -75,10 +89,12 @@ form .tag-list {
 
 /* Optional: hover effect */
 .checkbox-button:hover, #sub:hover {
+    font-family: "Outfit", sans-serif;
     background-color: #3a3a3c;
 }
 
 #sub{
+    font-family: "Outfit", sans-serif;
     background: #2C2C2E;
     border: 2px solid #8E8E93;
     border-radius: 5px;
