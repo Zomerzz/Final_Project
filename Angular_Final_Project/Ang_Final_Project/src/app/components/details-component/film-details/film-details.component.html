@@ -2,16 +2,15 @@
     <img class="details-img" [src]="film.imgUrl">
     <div class="details-text">
         <h1>{{film.titolo}}</h1>
-        <p>Descrizione:</p>
-        <p>{{film.descrizione}}</p>
+        <article>
+            <p><b>Descrizione: </b> <br>{{film.descrizione}}</p>
+            <p><b>Data di pubblicazione:</b> <br> {{film.dataDiPubblicazione}}</p>
+            <p><b>Durata:</b> <br>{{film.durata}}</p>
 
-        <p>Data di pubblicazione:</p>
-        <p>{{film.dataDiPubblicazione}}</p>
-
-        <p>Durata: {{film.durata}}</p>
-
-        <p>Casa di produzione: {{film.casaDiProduzione.nome}}</p>
-        <p>Casa di pubblicazione: {{film.casaDiPubblicazione.nome}}</p>
+            <p><b>Casa di produzione:</b> <br>{{film.casaDiProduzione.nome}}</p>
+            <p><b>Casa di pubblicazione:</b> <br> {{film.casaDiPubblicazione.nome}}</p>
+        </article>
+        
         <div class="voto-Display">
             <div>Voto: {{film.voto}}</div>
             <div class="progress-bar-container">
@@ -21,32 +20,35 @@
             </div>
         </div>
 
-         <div class="tag-list">
+        <div class="tag-list">
             @if(tags){
-                @for(tag of tags; track tag.tagId){
-                    <div class="checkbox-wrapper">
-                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId" disabled/>
-                        <label class="checkbox-button" [for]="'tag-' + tag.tagId">
-                            {{ tag.nome }}
-                        </label>
-                    </div>
-                }
-            }
+            @for(tag of tags; track tag.tagId){
+            <div class="checkbox-wrapper">
+                <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId" disabled />
+                <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                    {{ tag.nome }}
+                </label>
             </div>
-        @if(isAlreadylogged && !filmVisto){
-        <div>
-            <button class="Add-To-viewd-button" (click)="registerFilmVisto()">Segna come visto</button>
+            }
+            }
         </div>
-        }
-        @if(isAlreadylogged && filmVisto){
-        <div>
-            <button class="Add-To-viewd-button"  (click)="deleteFilmVisto()">Rimuovi dai film visti</button>
+        <div class="recensione-Area">
+            @if(isAlreadylogged && !filmVisto){
+            <div>
+                <button class="Add-To-viewd-button" (click)="registerFilmVisto()">Segna come visto</button>
+            </div>
+            }
+            @if(isAlreadylogged && filmVisto){
+            <div>
+                <button class="Add-To-viewd-button" (click)="deleteFilmVisto()">Rimuovi dai film visti</button>
+            </div>
+            }
+            @if(isAlreadylogged && filmVisto && !filmVisto.recensione){
+            <app-add-recensione [operaId]='film.id' [type]='type'
+                (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
+            }
+
         </div>
-        }
-        @if(isAlreadylogged && filmVisto && !filmVisto.recensione){
-        <app-add-recensione [operaId]='film.id' [type]='type'
-            (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
-        }
 
     </div>
 

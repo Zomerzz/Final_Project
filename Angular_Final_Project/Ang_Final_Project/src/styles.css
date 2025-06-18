@@ -344,7 +344,7 @@ app-home >main{
     background-color: rgba(170, 170, 170, 0.25);
     padding: 1em;
     display:grid;
-    grid-template-rows: 1fr 2fr 0.25fr 2fr;
+    grid-template-rows: 1fr 2fr 0.25fr 1fr;
     grid-template-columns: 1fr 1fr;
 }
 

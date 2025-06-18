@@ -10,17 +10,17 @@
 
             <p><b>Casa Editrice:</b> <br>{{libro.casaEditrice.nome}}</p>
         </article>
-        
+
         <div class="tag-list">
             @if(tags){
-                @for(tag of tags; track tag.tagId){
-                    <div class="checkbox-wrapper">
-                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId" disabled/>
-                        <label class="checkbox-button" [for]="'tag-' + tag.tagId">
-                            {{ tag.nome }}
-                        </label>
-                    </div>
-                }
+            @for(tag of tags; track tag.tagId){
+            <div class="checkbox-wrapper">
+                <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId" disabled />
+                <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                    {{ tag.nome }}
+                </label>
+            </div>
+            }
             }
         </div>
 
@@ -33,23 +33,23 @@
         </div>
         <div class="recensione-Area">
             @if(isAlreadylogged && !libroLetto){
-        <div>
-            <button (click)="registerLibroLetto()" class="Add-To-viewd-button">Segna come letto</button>
-        </div>
-        }
+            <div>
+                <button (click)="registerLibroLetto()" class="Add-To-viewd-button">Segna come letto</button>
+            </div>
+            }
 
-        @if(isAlreadylogged && libroLetto){
-        <div>
-            <button (click)="deleteLibroLetto()" class="Add-To-viewd-button">Rimuovi dai libri letti</button>
+            @if(isAlreadylogged && libroLetto){
+            <div>
+                <button (click)="deleteLibroLetto()" class="Add-To-viewd-button">Rimuovi dai libri letti</button>
+            </div>
+            }
+            @if(isAlreadylogged && libroLetto && !libroLetto.recensione){
+            <app-add-recensione [operaId]='libro.id' [type]='type'
+                (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
+            }
         </div>
-        }
-        @if(isAlreadylogged && libroLetto && !libroLetto.recensione){
-        <app-add-recensione [operaId]='libro.id' [type]='type'
-            (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
-        }
     </div>
-</div>
-        
+
 </div>
 
 
