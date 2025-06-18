@@ -269,7 +269,6 @@ app-home>main {
     overflow: scroll;
     padding: 1rem;
     padding-right: 0;
-    border: 2px solid #292929;
     border-radius: 1em;
     background-color: rgba(255, 255, 255, 0.25);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -423,7 +422,7 @@ app-home>main {
     background-color: rgba(255, 255, 255, 0.25);
     padding: 1em;
     display: grid;
-    grid-template-rows: 10% 45% 5% 40%;
+    grid-template-rows: 10% 47% 5% 32%;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -817,3 +816,28 @@ app-user-page-component .list-container {
     margin: 1em;
     padding: 1em;
 }
+
+
+.CARMINE-CONTAINER {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .CARMINE {
+      height: 200vh;
+      background-image: url('https://i.imgur.com/1J1Wvde.png');
+      background-size: cover;
+      background-repeat: repeat-y;
+      animation: scroll 10s linear infinite;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-100vh);
+      }
+    }

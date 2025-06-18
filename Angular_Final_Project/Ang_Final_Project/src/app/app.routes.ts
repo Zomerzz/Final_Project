@@ -9,6 +9,7 @@ import { FilmDetailsComponent } from './components/details-component/film-detail
 import { VideogameDetailsComponent } from './components/details-component/videogame-details/videogame-details.component';
 import { BookDetailsComponent } from './components/details-component/book-details/book-details.component';
 import { CreazioneDatiComponent } from './creazione-dati/creazione-dati.component';
+import { CarminxComponent } from './compoenents/carminx/carminx.component';
 
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'home', component: HomeComponent },
@@ -25,8 +26,8 @@ export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full'
 { path: 'videogiochi-dettagli/:id', component: VideogameDetailsComponent },
 
 
-{ path: 'creazioneDati', component: CreazioneDatiComponent }
+{ path: 'creazioneDati', component: CreazioneDatiComponent },
 
-
+{ path: 'Carmine', component: CarminxComponent }
 ];
 
