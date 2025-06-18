@@ -13,4 +13,8 @@ export class UtenteService {
     getUtentiByUsername(username: string):Observable<UtenteNoPass[]>{
         return this._http.get<UtenteNoPass[]>(`${this._url}/username/${username}`);
     }
+
+    getUtenteByUtenteId(utenteId: number):Observable<UtenteNoPass>{
+        return this._http.get<UtenteNoPass>(`${this._url}/${utenteId}`);
+    }
 }

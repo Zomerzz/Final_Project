@@ -1,8 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FilmVisto } from '../../../model/FilmVisto';
 import { LibroLetto } from '../../../model/LibroLetto';
 import { VideogiocoGiocato } from '../../../model/VideogiocoGiocato';
 import { Videogioco } from '../../../model/Videogioco';
+import { Utente } from '../../../model/Utente';
+import { UtenteNoPass } from '../../../model/UtenteNoPass';
+import { AuthService } from '../../../services/AuthService';
 
 @Component({
   selector: 'app-user-recensioni-list',
@@ -10,10 +13,19 @@ import { Videogioco } from '../../../model/Videogioco';
   templateUrl: './user-recensioni-list.component.html',
   styleUrl: './user-recensioni-list.component.css'
 })
-export class UserRecensioniListComponent {
+export class UserRecensioniListComponent implements OnInit {
+  
   @Input("filmRecensiti") filmRecensiti!: FilmVisto[];
   @Input("libriRecensiti") libriRecensiti!: LibroLetto[];
   @Input("videogiochiRecensiti") videogiochiRecensiti!: VideogiocoGiocato[];
+  @Input("utente") utente!: UtenteNoPass;
+  utenteLoggatoId!: number;
+
+  private _authService = inject(AuthService);
+
+  ngOnInit(): void {
+    this.utenteLoggatoId = Number(this._authService.getUserId);
+  }
 
 
   getBarColor(id:number): string {

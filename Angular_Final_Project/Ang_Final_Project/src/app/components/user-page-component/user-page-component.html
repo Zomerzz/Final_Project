@@ -1,3 +1,4 @@
+<h1  class="Raccomandazioni-title">{{utente.nome}}'s Profile</h1>
 
 @if (films.length > 0) {
 <div class="utente-list-container-with-title">
@@ -21,6 +22,6 @@
 }
 
 @if(videogiochiGiocati.length > 0 || libriLetti.length > 0 || filmVisti.length > 0){
-    <app-user-recensioni-list [filmRecensiti]="filmRecensiti" [videogiochiRecensiti]="videogiochiRecensiti" [libriRecensiti]="libriRecensiti" ></app-user-recensioni-list>
+    <app-user-recensioni-list [filmRecensiti]="filmRecensiti" [videogiochiRecensiti]="videogiochiRecensiti" [libriRecensiti]="libriRecensiti" [utente]="utente"></app-user-recensioni-list>
 }
 

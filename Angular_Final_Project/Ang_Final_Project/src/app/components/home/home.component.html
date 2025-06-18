@@ -4,11 +4,11 @@
     </div>
     <div class="close-advSe"><button (click)="CloseAdv()">◀</button></div>
     <div id="viewArea">
-    @if (listaUtenti) {
+    @if (listaUtenti.length) {
         <app-users-list [utenti]='this.listaUtenti'></app-users-list>
     }
     <div class="container-of-the-lists">
-        @if (listaLibri) {
+        @if (listaLibri.length) {
         @if (Raccomandation) {
             <h3 class="Raccomandazioni-title">Libri raccomandati per te</h3>
         }
@@ -16,7 +16,7 @@
             <app-libro-list [libri] = 'this.listaLibri'></app-libro-list>
         </div>
     }
-    @if (listaFilm) {
+    @if (listaFilm.length) {
         @if (Raccomandation) {
             <h3 class="Raccomandazioni-title">Film raccomandati per te</h3>
         }
@@ -24,7 +24,7 @@
             <app-film-list [films] = 'this.listaFilm'></app-film-list>
         </div>
     }
-    @if (listaVideogiochi) {
+    @if (listaVideogiochi.length) {
         @if (Raccomandation) {
             <h3 class="Raccomandazioni-title">videogiochi raccomandati per te</h3>
         }

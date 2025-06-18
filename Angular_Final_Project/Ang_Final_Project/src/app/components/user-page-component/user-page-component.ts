@@ -12,6 +12,8 @@ import { MediaRegistratoService } from '../../services/MediaRegistratoService';
 import { AuthService } from '../../services/AuthService';
 import { UserRecensioniListComponent } from '../recensioni/user-recensioni-list/user-recensioni-list.component';
 import { ActivatedRoute } from '@angular/router';
+import { UtenteService } from '../../services/UtenteService';
+import { UtenteNoPass } from '../../model/UtenteNoPass';
 
 @Component({
   selector: 'app-user-page-component',
@@ -21,6 +23,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserPageComponent implements OnInit{
   utenteId!: number;
+  utente!: UtenteNoPass;
   //filmVisti ha dentro i film e le recensioni se ci sono
   filmVisti: FilmVisto[] = [];
   //films ha dentro solo i film visti
@@ -38,12 +41,21 @@ export class UserPageComponent implements OnInit{
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
   private _activatedRoute = inject(ActivatedRoute)
+  private _utenteService = inject(UtenteService);
 
   ngOnInit(): void {
     if(this._activatedRoute.snapshot.paramMap.get('id')){
       this.utenteId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
+      this._utenteService.getUtenteByUtenteId(this.utenteId).subscribe({
+        next: utente => this.utente = utente,
+        error: e => console.log('errore nel caricamento dell utente')
+      });
     } else {
       this.utenteId = Number(this._authService.getUserId());
+      this._utenteService.getUtenteByUtenteId(this.utenteId).subscribe({
+        next: utente => this.utente = utente,
+        error: e => console.log('errore nel caricamento dell utente')
+      });
     }
     this._mediaRegistratoService.getFilmVisti(this.utenteId).subscribe({
       next: list => {

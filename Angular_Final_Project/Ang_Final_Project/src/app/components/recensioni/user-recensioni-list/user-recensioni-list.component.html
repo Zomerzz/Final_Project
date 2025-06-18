@@ -18,7 +18,11 @@
 
         @if(libroLetto.recensione.recensione && libroLetto.recensione.recensione.trim() != ''){
         <div class="descrizione-rec-div">
-            <p>La tua recensione:</p>
+            @if(utente.id == utenteLoggatoId){
+                <p>La tua recensione:</p>
+            } @else {
+                <p>La recensione di {{utente.nome}}</p>
+            }
             <p>{{libroLetto.recensione.recensione}}</p>
         </div>
         }
@@ -43,7 +47,11 @@
         </div>
         @if(videogiocoGiocato.recensione.recensione && videogiocoGiocato.recensione.recensione.trim() != ''){
         <div class="descrizione-rec-div">
-            <p>La tua recensione:</p>
+            @if(utente.id == utenteLoggatoId){
+                <p>La tua recensione:</p>
+            } @else {
+                <p>La recensione di {{utente.nome}}</p>
+            }
             <p>{{videogiocoGiocato.recensione.recensione}}</p>
         </div>
         }
@@ -68,7 +76,11 @@
         </div>
         @if(filmVisto.recensione.recensione && filmVisto.recensione.recensione.trim() != ''){
         <div class="descrizione-rec-div">
-            <p>La tua recensione:</p>
+            @if(utente.id == utenteLoggatoId){
+                <p>La tua recensione:</p>
+            } @else {
+                <p>La recensione di {{utente.nome}}</p>
+            }
             <p>{{filmVisto.recensione.recensione}}</p>
         </div>
         }
