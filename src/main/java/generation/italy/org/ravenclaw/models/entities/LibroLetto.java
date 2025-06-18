@@ -15,11 +15,11 @@ public class LibroLetto {
 
     // === MANY TO MANY ===
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne()
     @JoinColumn( name = "libro_id")
     private Libro libro;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @ManyToOne()
     @JoinColumn( name = "utente_id")
     private Utente utente;
 

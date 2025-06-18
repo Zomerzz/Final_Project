@@ -12,16 +12,20 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<String> handleEntityNotFoundException(EntityNotFoundException e){
+        e.printStackTrace();
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ExceptionHandler(DataException.class)
-    public ResponseEntity<String> handleDataException(){
+    public ResponseEntity<String> handleDataException(DataException e){
+        e.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore interno del server nella connessione ai dati");
+
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(){
+    public ResponseEntity<String> handleException(Exception e){
+        e.printStackTrace();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Errore interno del server");
     }
 }

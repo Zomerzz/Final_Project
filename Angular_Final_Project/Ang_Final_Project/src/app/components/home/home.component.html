@@ -4,19 +4,31 @@
     </div>
     <div id="viewArea">
     @if (listaLibri) {
+        @if (Raccomandation) {
+            <h3 class="Raccomandazioni-title">Libri raccomandati per te</h3>
+        }
         <div class="scroll-container" >
             <app-libro-list [libri] = 'this.listaLibri'></app-libro-list>
         </div>
     }
     @if (listaFilm) {
+        @if (Raccomandation) {
+            <h3 class="Raccomandazioni-title">Film raccomandati per te</h3>
+        }
         <div class="scroll-container" >
             <app-film-list [films] = 'this.listaFilm'></app-film-list>
         </div>
     }
     @if (listaVideogiochi) {
+        @if (Raccomandation) {
+            <h3 class="Raccomandazioni-title">videogiochi raccomandati per te</h3>
+        }
         <div class="scroll-container" >
             <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
         </div>
+    }
+    @if (listaUtenti) {
+        <app-users-list [utenti]='this.listaUtenti'></app-users-list>
     }
     </div>
 </main>

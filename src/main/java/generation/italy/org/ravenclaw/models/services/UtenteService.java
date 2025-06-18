@@ -27,4 +27,7 @@ public interface UtenteService {
 
     @Transactional
     void updatePassword(PasswordUpdateRequest passwordUpdateRequest);
+
+    List<Utente> findUtenteByNome(String nome);
+
 }

@@ -7,10 +7,10 @@
         <div class='recensione-title-div'>
             <p class='titolo-scroll'>Libro: {{libroLetto.libro.titolo}} </p>
             <div class="card-voto-Display">
-                    <div class="voto-scroll">⭐Voto: {{libroLetto.libro.voto}}</div>
+                    <div class="voto-scroll">⭐Voto: {{libroLetto.recensione.voto}}</div>
                     <div class="progress-bar-container">
-                        <div class="progress-bar-fill" [style.width.%]="libroLetto.libro.voto"
-                            [style.backgroundColor]="getBarColor(libroLetto.libro.voto)">
+                        <div class="progress-bar-fill" [style.width.%]="libroLetto.recensione.voto"
+                            [style.backgroundColor]="getBarColor(libroLetto.recensione.voto)">
                         </div>
                     </div>
                 </div>
@@ -18,7 +18,7 @@
 
         @if(libroLetto.recensione.recensione && libroLetto.recensione.recensione.trim() != ''){
         <div class="descrizione-rec-div">
-            <p>Descrizione</p>
+            <p>La tua recensione:</p>
             <p>{{libroLetto.recensione.recensione}}</p>
         </div>
         }
@@ -33,17 +33,17 @@
         <div class='recensione-title-div'>
             <p class='titolo-scroll'>Videogioco: {{videogiocoGiocato.videogioco.titolo}} </p>
             <div class="card-voto-Display">
-                    <div class="voto-scroll">⭐Voto: {{videogiocoGiocato.videogioco.voto}}</div>
+                    <div class="voto-scroll">⭐Voto: {{videogiocoGiocato.recensione.voto}}</div>
                     <div class="progress-bar-container">
-                        <div class="progress-bar-fill" [style.width.%]="videogiocoGiocato.videogioco.voto"
-                            [style.backgroundColor]="getBarColor(videogiocoGiocato.videogioco.voto)">
+                        <div class="progress-bar-fill" [style.width.%]="videogiocoGiocato.recensione.voto"
+                            [style.backgroundColor]="getBarColor(videogiocoGiocato.recensione.voto)">
                         </div>
                     </div>
                 </div>
         </div>
         @if(videogiocoGiocato.recensione.recensione && videogiocoGiocato.recensione.recensione.trim() != ''){
         <div class="descrizione-rec-div">
-            <p>Descrizione</p>
+            <p>La tua recensione:</p>
             <p>{{videogiocoGiocato.recensione.recensione}}</p>
         </div>
         }
@@ -58,17 +58,17 @@
         <div class='recensione-title-div'>
             <p class='titolo-scroll'>Film: {{filmVisto.film.titolo}} </p>
             <div class="card-voto-Display">
-                    <div class="voto-scroll">⭐Voto: {{filmVisto.film.voto}}</div>
+                    <div class="voto-scroll">⭐Voto: {{filmVisto.recensione.voto}}</div>
                     <div class="progress-bar-container">
-                        <div class="progress-bar-fill" [style.width.%]="filmVisto.film.voto"
-                            [style.backgroundColor]="getBarColor(filmVisto.film.voto)">
+                        <div class="progress-bar-fill" [style.width.%]="filmVisto.recensione.voto"
+                            [style.backgroundColor]="getBarColor(filmVisto.recensione.voto)">
                         </div>
                     </div>
                 </div>
         </div>
         @if(filmVisto.recensione.recensione && filmVisto.recensione.recensione.trim() != ''){
         <div class="descrizione-rec-div">
-            <p>Descrizione</p>
+            <p>La tua recensione:</p>
             <p>{{filmVisto.recensione.recensione}}</p>
         </div>
         }

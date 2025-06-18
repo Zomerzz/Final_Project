@@ -16,4 +16,8 @@ public interface TagService {
     Tag updateTag(Tag tag);
 
     boolean deleteTag(int id);
+
+    List<Tag> findByIsGenere(boolean isGenere);
+
+    List<Tag> findByMedaIdAndType(int id, String mediaType);
 }

@@ -61,6 +61,12 @@ public class VideogiocoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/utente/{utenteId}")
+    public ResponseEntity<List<VideogiocoDto>> getConsigliati(@PathVariable int utenteId) {
+        List<Videogioco> videogiochiConsigliati = videogiocoService.findVideogiochiConsigliatiByUtenteId(utenteId);
+        return ResponseEntity.ok(videogiochiConsigliati.stream().map(VideogiocoDto::toDto).toList());
+    }
+
     @PostMapping
     public ResponseEntity<?> saveGioco (@RequestBody VideogiocoDto vdto) throws EntityNotFoundException {
         Videogioco v = vdto.toVideogioco();

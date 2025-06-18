@@ -26,11 +26,18 @@ public class TagController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TagDto>> searchTags(@RequestParam(defaultValue = "all") String mediaType){
+    public ResponseEntity<List<TagDto>> searchTags(){
         List<Tag> tagList = tagService.findAllTags();
         List<TagDto> tagDto = tagList.stream().map(TagDto::toDto).toList();
         return ResponseEntity.ok(tagDto);
-    } //TODO fare implementazione nel back end per i tag, fare tabella nel db
+    }
+
+    @GetMapping("/genere/{isGenere}")
+    public ResponseEntity<List<TagDto>> searchTagByIsGenere(@PathVariable boolean isGenere){
+        List<Tag> tags = tagService.findByIsGenere(isGenere);
+        List<TagDto> tagDto = tags.stream().map(TagDto::toDto).toList();
+        return ResponseEntity.ok(tagDto);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> searchById (@PathVariable int id){
@@ -39,6 +46,11 @@ public class TagController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(TagDto.toDto(tagOpt.get()));
+    }
+    @GetMapping("/{mediaType}/{id}")
+    public ResponseEntity<List<TagDto>> searchByIdAndMediaType(@PathVariable String mediaType,@PathVariable int id){
+        List<Tag> tagList = tagService.findByMedaIdAndType(id, mediaType);
+        return ResponseEntity.ok(tagList.stream().map(TagDto::toDto).toList());
     }
 
     @DeleteMapping("/{id}")

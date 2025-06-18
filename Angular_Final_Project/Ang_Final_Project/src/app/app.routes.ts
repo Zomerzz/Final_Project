@@ -13,6 +13,7 @@ import { CreazioneDatiComponent } from './creazione-dati/creazione-dati.componen
 export const routes: Routes = [{ path: '', redirectTo: 'home', pathMatch: 'full' },
 { path: 'home', component: HomeComponent },
 { path: 'user', component: UserPageComponent },
+{ path: 'user/:id', component: UserPageComponent},
 { path: 'auth/login', component: LoginAreaComponent },
 { path: 'auth/logout', component: LogOutComponent },
 { path: 'auth/register', component: RegisterAreaComponent },

@@ -21,7 +21,7 @@ public interface LibroService {
 
     List<Libro> findAllLibri() throws DataException;
 
-    Libro saveLibro(Libro libro, Casa casaEditrice) throws DataException, EntityNotFoundException;
+    Libro saveLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
 
     Libro updateLibro(Libro libro, int casaEditriceId) throws DataException, EntityNotFoundException;
 
@@ -40,4 +40,6 @@ public interface LibroService {
     boolean deleteLibroLetto(int id);
 
     Optional<LibroLetto> findLibroLettoByLibroIdAndUtenteId(int libroId, int utenteId);
+
+    List<Libro> findLibriConsigliatiByUserId(int userId);
 }

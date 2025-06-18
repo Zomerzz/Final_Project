@@ -14,6 +14,7 @@ import { TagService } from '../../services/searchService';
 export class AdvancedSearchComponent implements OnInit{
   @Output('search') search = new EventEmitter<Partial<SearchModel>>();
   currentTags: Tag[] = [];
+  currentGeneri: Tag[] = [];
   form!: FormGroup;
   mediaTypes = ['tutti', 'libri', 'film', 'videogiochi'];
   currentMedia = 'tutti';
@@ -22,18 +23,22 @@ export class AdvancedSearchComponent implements OnInit{
   ngOnInit(): void {
     this.form = this.fb.group({
       tipoMedia: [this.currentMedia],
-      tags: new FormControl<number[]>([])
+      tags: new FormControl<number[]>([]),
+      generi: new FormControl<number[]>([])
     });
     this.form.get('tipoMedia')!.valueChanges.subscribe(value => {
       this.currentMedia = value;
       this.configureFormControls(value);
-      this.loadTagsForMedia(value);
+      this.loadTagsByGenere(true);
+      this.loadTagsByGenere(false);
     });
     this.configureFormControls(this.currentMedia);
-    this.loadTagsForMedia(this.currentMedia);
+    console.log("ciao")
+    this.loadTagsByGenere(true);
+    this.loadTagsByGenere(false);
   }
   configureFormControls(tipoMedia: string) {
-    const keepAlways = ['tipoMedia', 'tags'];
+    const keepAlways = ['tipoMedia', 'genres', 'tags'];
     const allControls = {
       titolo: new FormControl(''),
       numeroPagine: new FormControl(null),
@@ -47,10 +52,11 @@ export class AdvancedSearchComponent implements OnInit{
       maxVoto: new FormControl(null),
       minOreDiGiocoStoriaPrincipale: new FormControl(null),
       maxOreDiGiocoStoriaPrincipale: new FormControl(null),
+      generi: new FormControl(null),
       tags: new FormControl(null),
       sort: new FormControl('')
     };
-    const all: (keyof typeof allControls) [] = ['titolo', 'minData', 'maxData', 'minVoto', 'maxVoto', 'tags', 'sort'];
+    const all: (keyof typeof allControls) [] = ['titolo', 'minData', 'maxData', 'minVoto', 'maxVoto', 'generi', 'tags', 'sort'];
     const allowed: { [key: string]: (keyof typeof allControls) [] } = {
       tutti: all,
       libri: [...all, 'numeroPagine', 'casaEditriceNome', 'autoreNome'],
@@ -67,12 +73,26 @@ export class AdvancedSearchComponent implements OnInit{
       this.form.addControl(key, allControls[key]);
     });
   }
-  loadTagsForMedia(tipoMedia: string) {
-    this.searchService.loadTagByMedia(tipoMedia).subscribe({
-      next: tags => this.currentTags = tags,
+  loadTagsByGenere(isGenere:boolean) {
+    console.log("inizio metodo");
+    
+    this.searchService.loadByIsGenere(isGenere).subscribe({
+      next: tags => {
+        if(!isGenere){
+          this.currentTags = tags;
+          console.log(this.currentTags);
+          
+        }else {
+          this.currentGeneri = tags;
+          console.log(this.currentGeneri);
+        }
+      },
+
       error: er => alert(er)
     });
   }
+  
+
   onSubmit() {
     console.log(this.form.value)
     this.search.emit(this.form.value);
@@ -132,6 +152,9 @@ export class AdvancedSearchComponent implements OnInit{
   }
   get tags() {
     return this.form.get("tags");
+  }
+  get generi(){
+    return this.form.get("generi");
   }
 
 }

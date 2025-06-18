@@ -16,10 +16,10 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
--- CIAO MI CHIAMO GIORNO GIOVANNA
+
 --
 -- Data for Name: autori; Type: TABLE DATA; Schema: public; Owner: postgresMaster
----
+--
 
 INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (1, 'J.K.', NULL, 'Rowling', '1965-07-31', 'Regno Unito');
 INSERT INTO public.autori (autore_id, nome, secondo_nome, cognome, data_di_nascita, nazionalita) VALUES (2, 'Stephen', NULL, 'King', '1947-09-21', 'USA');
@@ -434,51 +434,192 @@ INSERT INTO public.tag (tag_id, tag_name, genere) VALUES (50, 'Tecnologia', fals
 
 INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (1, 3, 1);
 INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (2, 8, 1);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (3, 9, 2);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (4, 9, 3);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (5, 8, 4);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (6, 9, 5);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (7, 8, 6);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (8, 3, 7);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (9, 4, 8);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (10, 7, 9);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (11, 37, 11);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (12, 27, 12);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (13, 34, 13);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (14, 24, 14);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (15, 33, 15);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (16, 25, 16);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (17, 42, 17);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (18, 28, 18);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (19, 43, 19);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (20, 13, 20);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (21, 24, 21);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (22, 48, 22);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (23, 20, 23);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (24, 35, 24);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (25, 39, 25);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (26, 17, 26);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (27, 12, 27);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (28, 38, 28);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (29, 26, 29);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (30, 33, 30);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (31, 42, 31);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (32, 21, 32);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (33, 27, 33);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (34, 39, 34);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (35, 42, 35);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (36, 34, 36);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (37, 44, 37);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (38, 47, 38);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (39, 39, 39);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (40, 29, 40);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (41, 14, 41);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (42, 28, 42);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (43, 33, 43);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (44, 38, 44);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (45, 41, 45);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (46, 11, 46);
-INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (47, 49, 47);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (3, 44, 1);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (4, 27, 1);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (5, 9, 2);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (6, 32, 2);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (7, 38, 2);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (8, 24, 2);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (9, 8, 3);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (10, 21, 3);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (11, 41, 3);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (12, 24, 3);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (13, 3, 4);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (14, 16, 4);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (15, 43, 4);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (16, 23, 4);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (17, 9, 5);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (18, 8, 5);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (19, 44, 5);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (20, 24, 5);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (21, 9, 6);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (22, 10, 6);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (23, 12, 6);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (24, 27, 6);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (25, 3, 7);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (26, 8, 7);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (27, 35, 7);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (28, 39, 7);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (29, 3, 8);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (30, 7, 8);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (31, 18, 8);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (32, 24, 8);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (33, 11, 9);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (34, 7, 9);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (35, 12, 9);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (36, 22, 9);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (37, 9, 10);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (38, 11, 10);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (39, 22, 10);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (40, 38, 10);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (41, 3, 11);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (42, 7, 11);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (43, 36, 11);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (44, 37, 11);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (45, 6, 12);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (46, 9, 12);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (47, 24, 12);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (48, 12, 12);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (49, 16, 13);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (50, 7, 13);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (51, 43, 13);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (52, 3, 13);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (53, 3, 14);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (54, 7, 14);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (55, 22, 14);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (56, 29, 14);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (57, 7, 15);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (58, 8, 15);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (59, 24, 15);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (60, 12, 15);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (61, 16, 16);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (62, 3, 16);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (63, 23, 16);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (64, 43, 16);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (65, 15, 17);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (66, 4, 17);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (67, 24, 17);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (68, 8, 17);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (69, 15, 18);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (70, 16, 18);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (71, 24, 18);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (72, 47, 18);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (73, 6, 19);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (74, 4, 19);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (75, 29, 19);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (76, 24, 19);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (77, 3, 20);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (78, 7, 20);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (79, 16, 20);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (80, 12, 20);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (81, 16, 21);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (82, 3, 21);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (83, 43, 21);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (84, 24, 21);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (85, 4, 22);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (86, 7, 22);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (87, 29, 22);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (88, 48, 22);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (89, 15, 23);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (90, 9, 23);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (91, 24, 23);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (92, 22, 23);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (93, 3, 24);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (94, 8, 24);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (95, 16, 24);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (96, 43, 24);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (97, 15, 25);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (98, 10, 25);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (99, 23, 25);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (100, 24, 25);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (101, 9, 26);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (102, 8, 26);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (103, 44, 26);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (104, 16, 26);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (105, 15, 27);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (106, 9, 27);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (107, 24, 27);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (108, 27, 27);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (109, 7, 28);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (110, 4, 28);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (111, 36, 28);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (112, 22, 28);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (113, 15, 29);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (114, 7, 29);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (115, 23, 29);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (116, 46, 29);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (117, 15, 30);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (118, 21, 30);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (119, 43, 30);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (120, 23, 30);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (121, 4, 31);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (122, 7, 31);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (123, 49, 31);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (124, 17, 31);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (125, 4, 32);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (126, 7, 32);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (127, 27, 32);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (128, 22, 32);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (129, 16, 33);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (130, 3, 33);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (131, 43, 33);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (132, 34, 33);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (133, 3, 34);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (134, 12, 34);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (135, 43, 34);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (136, 17, 34);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (137, 4, 35);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (138, 7, 35);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (139, 27, 35);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (140, 23, 35);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (141, 15, 36);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (142, 10, 36);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (143, 24, 36);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (144, 47, 36);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (145, 15, 37);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (146, 7, 37);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (147, 36, 37);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (148, 22, 37);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (149, 7, 38);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (150, 8, 38);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (151, 24, 38);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (152, 37, 38);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (153, 16, 39);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (154, 3, 39);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (155, 43, 39);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (156, 12, 39);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (157, 15, 40);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (158, 10, 40);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (159, 24, 40);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (160, 44, 40);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (161, 7, 41);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (162, 3, 41);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (163, 50, 41);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (164, 38, 41);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (165, 7, 42);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (166, 8, 42);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (167, 33, 42);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (168, 43, 42);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (169, 7, 43);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (170, 8, 43);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (171, 3, 43);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (172, 36, 43);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (173, 7, 44);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (174, 3, 44);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (175, 16, 44);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (176, 43, 44);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (177, 17, 45);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (178, 7, 45);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (179, 43, 45);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (180, 12, 45);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (181, 6, 46);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (182, 9, 46);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (183, 44, 46);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (184, 24, 46);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (185, 16, 47);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (186, 10, 47);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (187, 41, 47);
+INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALUES (188, 8, 47);
 
 
 --
@@ -525,11 +666,8 @@ INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (37, 17, 
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (38, 48, 'Spettacolare.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (39, 28, 'Sorprendente.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (40, 72, 'Deludente.');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (50, 0, 'che merda');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (51, 90, 'la paura');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (52, 100, 'bellissime musiche');
-
-
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (56, 1, 'non mi piacciono solo le donne');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (59, 100, 'bellisimo gioco lo rigiocherei');
 --
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
@@ -545,13 +683,15 @@ INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (8, 'user_ei
 INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (9, 'user_nine', 'pwd123', 'user9@example.com');
 INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (10, 'user_ten', 'pwd123', 'user10@example.com');
 INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (20, 'Zomerz', '$2a$10$yIGliJkx4qRmhhSXgPHuzu1/xOVKht/nomsT31uO12dxZXDmhKfxu', 'aresufilippo2005@gmail.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (21, 'aaaaaaaaaaaaa', '$2a$10$ysscngKaiBT44DSxUfbfvOflSVixHs/Ugf01s2Fphj0ijCWraouh2', 'sdadsadjsab@dsadsjka.com');
+INSERT INTO public.utenti (utente_id, nome, password, email) VALUES (22, 'Colum_ahr', '$2a$10$RRhm91ACbodCtvK57zM/Xe4MHED2qaFnmokhkE.HUNkoDCz9WWU1O', 'PirateMail@gmail.com');
 
 
 --
 -- Data for Name: film_visti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
 
-INSERT INTO public.film_visti (film_visto_id, film_id, utente_id, recensione_id) VALUES (55, 18, 20, 50);
+INSERT INTO public.film_visti (film_visto_id, film_id, utente_id, recensione_id) VALUES (102, 18, 22, NULL);
 
 
 --
@@ -611,53 +751,194 @@ INSERT INTO public.libri (libro_id, titolo, numero_di_pagine, casa_editrice_id, 
 -- Data for Name: libri_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
 
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (1, 4, 1);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (2, 5, 2);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (3, 4, 3);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (4, 2, 4);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (5, 3, 5);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (6, 6, 6);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (7, 7, 7);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (8, 4, 8);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (9, 4, 9);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (10, 6, 10);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (11, 46, 11);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (12, 36, 12);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (13, 15, 13);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (14, 38, 14);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (15, 11, 15);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (16, 44, 16);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (17, 33, 17);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (18, 45, 18);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (19, 40, 19);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (20, 34, 20);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (21, 42, 21);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (22, 19, 22);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (23, 13, 23);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (24, 27, 24);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (25, 30, 25);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (26, 40, 26);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (27, 39, 27);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (28, 42, 28);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (29, 32, 29);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (30, 44, 30);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (31, 37, 31);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (32, 25, 32);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (33, 21, 33);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (34, 35, 34);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (35, 41, 35);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (36, 13, 36);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (37, 42, 37);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (38, 27, 38);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (39, 21, 39);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (40, 20, 40);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (41, 27, 41);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (42, 30, 42);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (43, 21, 43);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (44, 48, 44);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (45, 46, 45);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (46, 43, 46);
-INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (47, 18, 47);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (1, 1, 1);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (2, 29, 1);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (3, 24, 1);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (4, 38, 1);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (5, 5, 2);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (6, 23, 2);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (7, 28, 2);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (8, 42, 2);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (9, 4, 3);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (10, 32, 3);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (11, 47, 3);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (12, 35, 3);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (13, 2, 4);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (14, 43, 4);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (15, 28, 4);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (16, 44, 4);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (17, 3, 5);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (18, 35, 5);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (19, 49, 5);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (20, 27, 5);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (21, 17, 6);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (22, 42, 6);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (23, 36, 6);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (24, 30, 6);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (25, 21, 7);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (26, 23, 7);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (27, 29, 7);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (28, 49, 7);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (29, 9, 8);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (30, 27, 8);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (31, 40, 8);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (32, 34, 8);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (33, 4, 9);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (34, 29, 9);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (35, 37, 9);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (36, 46, 9);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (37, 6, 10);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (38, 24, 10);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (39, 28, 10);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (40, 42, 10);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (41, 2, 11);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (42, 32, 11);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (43, 38, 11);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (44, 44, 11);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (45, 8, 12);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (46, 23, 12);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (47, 27, 12);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (48, 49, 12);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (49, 13, 13);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (50, 25, 13);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (51, 28, 13);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (52, 42, 13);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (53, 1, 14);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (54, 23, 14);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (55, 44, 14);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (56, 47, 14);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (57, 7, 15);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (58, 26, 15);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (59, 28, 15);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (60, 42, 15);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (61, 7, 16);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (62, 36, 16);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (63, 27, 16);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (64, 40, 16);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (65, 9, 17);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (66, 24, 17);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (67, 28, 17);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (68, 44, 17);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (69, 9, 18);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (70, 46, 18);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (71, 23, 18);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (72, 38, 18);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (73, 9, 19);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (74, 26, 19);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (75, 28, 19);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (76, 42, 19);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (77, 17, 20);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (78, 47, 20);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (79, 32, 20);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (80, 44, 20);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (81, 17, 21);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (82, 23, 21);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (83, 28, 21);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (84, 42, 21);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (85, 17, 22);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (86, 39, 22);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (87, 32, 22);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (88, 48, 22);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (89, 17, 23);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (90, 26, 23);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (91, 28, 23);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (92, 42, 23);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (93, 9, 24);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (94, 48, 24);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (95, 23, 24);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (96, 44, 24);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (97, 9, 25);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (98, 28, 25);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (99, 30, 25);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (100, 48, 25);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (101, 6, 26);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (102, 36, 26);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (103, 28, 26);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (104, 44, 26);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (105, 13, 27);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (106, 28, 27);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (107, 23, 27);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (108, 49, 27);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (109, 8, 28);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (110, 44, 28);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (111, 23, 28);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (112, 47, 28);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (113, 9, 29);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (114, 23, 29);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (115, 27, 29);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (116, 44, 29);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (117, 4, 30);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (118, 46, 30);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (119, 23, 30);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (120, 49, 30);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (121, 9, 31);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (122, 42, 31);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (123, 28, 31);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (124, 44, 31);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (125, 4, 32);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (126, 49, 32);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (127, 29, 32);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (128, 44, 32);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (129, 9, 33);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (130, 38, 33);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (131, 23, 33);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (132, 42, 33);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (133, 17, 34);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (134, 42, 34);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (135, 23, 34);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (136, 48, 34);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (137, 3, 35);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (138, 35, 35);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (139, 29, 35);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (140, 49, 35);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (141, 7, 36);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (142, 27, 36);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (143, 36, 36);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (144, 40, 36);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (145, 3, 37);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (146, 34, 37);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (147, 27, 37);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (148, 42, 37);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (149, 11, 38);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (150, 36, 38);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (151, 27, 38);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (152, 49, 38);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (153, 4, 39);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (154, 49, 39);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (155, 29, 39);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (156, 42, 39);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (157, 8, 40);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (158, 32, 40);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (159, 23, 40);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (160, 44, 40);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (161, 10, 41);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (162, 41, 41);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (163, 28, 41);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (164, 32, 41);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (165, 9, 42);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (166, 41, 42);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (167, 23, 42);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (168, 48, 42);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (169, 9, 43);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (170, 30, 43);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (171, 28, 43);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (172, 42, 43);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (173, 4, 44);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (174, 49, 44);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (175, 23, 44);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (176, 27, 44);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (177, 9, 45);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (178, 24, 45);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (179, 28, 45);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (180, 42, 45);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (181, 9, 46);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (182, 46, 46);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (183, 23, 46);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (184, 44, 46);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (185, 17, 47);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (186, 31, 47);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (187, 28, 47);
+INSERT INTO public.libri_assegnamento_tag (assegnamento_id, tag_id, libro_id) VALUES (188, 42, 47);
 
 
 --
@@ -674,29 +955,18 @@ INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (8, 8, 8, 8);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (9, 9, 9, 9);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (10, 10, 10, 10);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (11, 11, 9, 25);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (12, 12, 5, 23);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (13, 13, 5, 12);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (14, 14, 5, 36);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (15, 15, 4, 14);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (16, 16, 5, 36);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (17, 17, 4, 11);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (18, 18, 9, 35);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (19, 19, 8, 39);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (20, 20, 7, 28);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (21, 21, 3, 18);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (22, 22, 9, 34);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (23, 23, 8, 20);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (24, 24, 10, 25);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (25, 25, 7, 11);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (26, 26, 1, 17);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (27, 27, 6, 15);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (28, 28, 10, 21);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (29, 29, 1, 40);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (30, 30, 5, 16);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (31, 31, 3, 23);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (32, 32, 6, 37);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (33, 33, 2, 36);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (34, 34, 7, 24);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (35, 35, 3, 15);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (36, 36, 5, 38);
@@ -704,14 +974,16 @@ INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (38, 38, 3, 19);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (39, 39, 1, 22);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (40, 40, 6, 21);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (41, 41, 10, 40);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (42, 42, 1, 21);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (43, 43, 10, 31);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (44, 44, 6, 25);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (45, 45, 4, 20);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (46, 46, 10, 34);
 INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (47, 47, 4, 32);
-INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (51, 38, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (66, 44, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (68, 32, 20, 56);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (70, 9, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (72, 30, 20, NULL);
+INSERT INTO public.libri_letti (libro_letto_id, libro_id, utente_id, recensione_id) VALUES (75, 36, 22, NULL);
 
 
 --
@@ -772,60 +1044,155 @@ INSERT INTO public.scritto_da (made_by_id, autore_id, libro_id) VALUES (47, 33, 
 --
 
 INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (20, 'ROLE_EMPLOYEE');
+INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (21, 'ROLE_EMPLOYEE');
+INSERT INTO public.utenti_authorities (utente_id, authority) VALUES (22, 'ROLE_EMPLOYEE');
 
 
 --
 -- Data for Name: videogiochi_assegnamento_tag; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
 
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (1, 7, 1);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (2, 7, 2);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (3, 7, 3);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (4, 8, 4);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (5, 7, 5);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (6, 7, 6);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (7, 7, 7);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (8, 4, 8);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (9, 3, 9);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (10, 7, 10);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (11, 31, 11);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (12, 37, 12);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (13, 23, 13);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (14, 46, 14);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (15, 35, 15);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (16, 47, 16);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (17, 36, 17);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (18, 38, 18);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (19, 27, 19);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (20, 36, 20);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (21, 14, 21);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (22, 30, 22);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (23, 25, 23);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (24, 33, 24);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (25, 23, 25);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (26, 27, 26);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (27, 34, 27);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (28, 39, 28);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (29, 11, 29);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (30, 47, 30);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (31, 17, 31);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (32, 36, 32);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (33, 29, 33);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (34, 39, 34);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (35, 23, 35);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (36, 25, 36);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (37, 23, 37);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (38, 20, 38);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (39, 21, 39);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (40, 26, 40);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (41, 13, 41);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (42, 49, 42);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (43, 44, 43);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (44, 24, 44);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (45, 30, 45);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (46, 36, 46);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (47, 41, 47);
-INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (48, 24, 48);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (1, 26, 6);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (2, 39, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (3, 50, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (4, 32, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (5, 17, 1);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (6, 4, 1);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (7, 1, 1);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (8, 15, 2);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (9, 10, 2);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (10, 4, 2);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (11, 11, 3);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (12, 8, 3);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (13, 7, 3);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (14, 1, 4);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (15, 9, 4);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (16, 18, 4);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (17, 12, 5);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (18, 25, 5);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (19, 1, 5);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (20, 4, 7);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (21, 20, 7);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (22, 9, 7);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (23, 4, 8);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (24, 27, 8);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (25, 36, 8);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (26, 39, 9);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (27, 3, 9);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (28, 50, 9);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (29, 31, 10);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (30, 10, 10);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (31, 22, 10);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (32, 4, 11);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (33, 9, 11);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (34, 1, 11);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (35, 12, 12);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (36, 25, 12);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (37, 1, 12);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (38, 3, 13);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (39, 4, 13);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (40, 7, 13);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (41, 15, 14);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (42, 10, 14);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (43, 24, 14);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (44, 3, 15);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (45, 44, 15);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (46, 17, 15);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (47, 39, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (48, 3, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (49, 50, 16);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (50, 11, 17);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (51, 4, 17);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (52, 7, 17);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (53, 5, 19);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (54, 3, 19);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (55, 22, 19);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (56, 16, 20);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (57, 1, 20);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (58, 8, 20);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (59, 1, 21);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (60, 9, 21);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (61, 25, 21);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (62, 4, 22);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (63, 22, 22);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (64, 7, 22);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (65, 4, 23);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (66, 15, 23);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (67, 28, 23);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (68, 20, 24);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (69, 9, 24);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (70, 1, 24);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (71, 4, 25);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (72, 27, 25);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (73, 36, 25);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (74, 9, 26);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (75, 44, 26);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (76, 17, 26);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (77, 4, 27);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (78, 22, 27);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (79, 7, 27);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (80, 3, 28);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (81, 44, 28);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (82, 17, 28);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (83, 5, 29);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (84, 12, 29);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (85, 50, 29);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (86, 3, 30);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (87, 34, 30);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (88, 35, 30);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (89, 31, 31);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (90, 30, 31);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (91, 12, 32);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (92, 3, 32);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (93, 50, 32);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (94, 12, 33);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (95, 8, 33);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (96, 33, 33);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (97, 39, 34);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (98, 26, 34);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (99, 34, 34);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (100, 23, 35);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (101, 28, 35);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (102, 10, 35);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (103, 3, 36);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (104, 4, 36);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (105, 15, 36);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (106, 3, 37);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (107, 22, 37);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (108, 35, 37);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (109, 5, 38);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (110, 28, 38);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (111, 17, 38);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (112, 1, 39);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (113, 7, 39);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (114, 8, 39);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (115, 7, 40);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (116, 22, 40);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (117, 10, 40);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (118, 4, 41);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (119, 1, 41);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (120, 25, 41);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (121, 4, 42);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (122, 28, 42);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (123, 36, 42);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (124, 28, 43);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (125, 1, 43);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (126, 44, 43);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (127, 10, 44);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (128, 15, 44);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (129, 19, 44);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (130, 4, 45);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (131, 26, 45);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (132, 7, 45);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (133, 5, 46);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (134, 21, 46);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (135, 33, 46);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (136, 10, 47);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (137, 31, 47);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (138, 23, 47);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (139, 4, 48);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (140, 29, 48);
+INSERT INTO public.videogiochi_assegnamento_tag (assegnamento_id, tag_id, videogioco_id) VALUES (141, 7, 48);
 
 
 --
@@ -847,9 +1214,7 @@ INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, ut
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (13, 13, 1, 36);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (14, 14, 3, 23);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (15, 15, 4, 21);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (16, 16, 6, 38);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (17, 17, 3, 24);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (18, 18, 2, 18);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (19, 19, 8, 40);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (20, 20, 6, 39);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (21, 21, 6, 34);
@@ -857,7 +1222,6 @@ INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, ut
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (23, 23, 10, 27);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (24, 24, 8, 13);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (25, 25, 6, 28);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (26, 26, 6, 27);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (27, 27, 7, 38);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (28, 28, 4, 22);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (29, 29, 8, 19);
@@ -865,28 +1229,15 @@ INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, ut
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (31, 31, 3, 31);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (32, 32, 5, 37);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (33, 33, 1, 14);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (34, 34, 1, 24);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (35, 35, 10, 29);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (36, 36, 3, 26);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (37, 37, 9, 25);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (38, 38, 6, 30);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (39, 39, 6, 22);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (40, 40, 4, 18);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (41, 41, 1, 28);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (42, 42, 7, 12);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (43, 43, 2, 12);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (44, 44, 3, 30);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (45, 45, 2, 13);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (46, 46, 4, 11);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (47, 47, 2, 37);
 INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (48, 48, 3, 35);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (51, 24, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (53, 48, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (50, 4, 20, 51);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (52, 42, 20, 52);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (54, 39, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (55, 27, 20, NULL);
-INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (56, 37, 20, NULL);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (65, 9, 20, 59);
+INSERT INTO public.videogiochi_giocati (videogioco_giocato_id, videogioco_id, utente_id, recensione_id) VALUES (67, 47, 22, NULL);
 
 
 --
@@ -907,7 +1258,7 @@ SELECT pg_catalog.setval('public.casa_casa_id_seq', 1, false);
 -- Name: film_assegnamento_tag_assegnamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.film_assegnamento_tag_assegnamento_id_seq', 1, false);
+SELECT pg_catalog.setval('public.film_assegnamento_tag_assegnamento_id_seq', 2, true);
 
 
 --
@@ -928,7 +1279,7 @@ SELECT pg_catalog.setval('public.film_prodotto_da_prodotto_da_id_seq', 1, false)
 -- Name: film_visti_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.film_visti_seq', 55, true);
+SELECT pg_catalog.setval('public.film_visti_seq', 102, true);
 
 
 --
@@ -942,7 +1293,7 @@ SELECT pg_catalog.setval('public.libri_assegnamento_tag_assegnamento_id_seq', 1,
 -- Name: libri_letti_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.libri_letti_id_seq', 51, true);
+SELECT pg_catalog.setval('public.libri_letti_id_seq', 76, true);
 
 
 --
@@ -956,7 +1307,7 @@ SELECT pg_catalog.setval('public.libri_libro_id_seq', 1, false);
 -- Name: recensioni_recensioni_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.recensioni_recensioni_id_seq', 52, true);
+SELECT pg_catalog.setval('public.recensioni_recensioni_id_seq', 59, true);
 
 
 --
@@ -984,7 +1335,7 @@ SELECT pg_catalog.setval('public.tag_tag_id_seq', 1, false);
 -- Name: utente_utente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.utente_utente_id_seq', 20, true);
+SELECT pg_catalog.setval('public.utente_utente_id_seq', 22, true);
 
 
 --
@@ -998,7 +1349,7 @@ SELECT pg_catalog.setval('public.videogiochi_assegnamento_tag_assegnamento_id_se
 -- Name: videogiochi_giocati_seq; Type: SEQUENCE SET; Schema: public; Owner: postgresMaster
 --
 
-SELECT pg_catalog.setval('public.videogiochi_giocati_seq', 56, true);
+SELECT pg_catalog.setval('public.videogiochi_giocati_seq', 67, true);
 
 
 --

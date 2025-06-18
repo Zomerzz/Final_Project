@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/AuthService';
 import { SearchByProductNameComponent } from "../search-by-product-name_component/search-by-product-name.component";
@@ -14,6 +14,8 @@ export class HeaderComponent {
     private _router = inject(Router);
     private _authService = inject(AuthService);
     titolo!: string;
+    utente!: string;
+    selectedSearch: string = 'titoli';
 
     get isAlreadylogged() {
         return this._authService.isLogged();
@@ -23,8 +25,17 @@ export class HeaderComponent {
     }
 
     send() {
-        if(this.titolo.trim()){
-            this._router.navigate(['/home'],{ queryParams: { q: this.titolo.trim()}});
+        if (this.selectedSearch == 'titoli') {
+            this._router.navigate(['/home'], { queryParams: { q: this.titolo } });
+        } else if (this.selectedSearch == 'utenti') {
+            this._router.navigate(['/home'], { queryParams: { utente: this.utente } });
         }
+        this.selectedSearch = 'titoli';
+        this.titolo = '';
+        this.utente = '';
+    }
+
+    navToHome(){
+        this._router.navigate(['/home'],{queryParams: {typeofmedia: "tutti"} })
     }
 }

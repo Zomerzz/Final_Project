@@ -4,10 +4,7 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "videogiochi")
@@ -50,7 +47,7 @@ public class Videogioco {
 
     // === MANY TO MANY ===
 
-    @ManyToMany(mappedBy = "videogiocoSet")
+    @ManyToMany(mappedBy = "videogiocoSet", fetch = FetchType.EAGER)
     private Set<Tag> tagSet = new HashSet<>();
 
     // === COSTRUTTORI ===
@@ -67,6 +64,23 @@ public class Videogioco {
         this.descrizione = descrizione;
         this.voto = voto;
         this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(videogiocoId);
+    }
+
+    @Override
+    public boolean equals(Object videogioco){
+        if(this == videogioco){
+            return true;
+        }
+        if(videogioco == null || getClass() != videogioco.getClass()){
+            return false;
+        }
+        Videogioco l = (Videogioco)videogioco;
+        return videogiocoId == l.getVideogiocoId();
     }
 
     // === GETTER ===
@@ -107,8 +121,14 @@ public class Videogioco {
         return imgUrl;
     }
 
+    public List<CrewVideogioco> getCrew() {
+        return crew;
+    }
 
-    // === SETTER ===
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+// === SETTER ===
 
     public void setVideogiocoId(int videogiocoId) {
         this.videogiocoId = videogiocoId;

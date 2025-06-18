@@ -47,7 +47,7 @@ public class Film {
 
     //=== MANY TO MANY ===
 
-    @ManyToMany(mappedBy = "filmSet")
+    @ManyToMany(mappedBy = "filmSet", fetch = FetchType.EAGER)
     private Set<Tag> tagSet = new HashSet<>();
 
     // === COSTRUTTORI ===
@@ -64,6 +64,23 @@ public class Film {
         this.casaDiPubblicazione = casaDiPubblicazione;
         this.voto = voto;
         this.imgUrl = imgUrl;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(filmId);
+    }
+
+    @Override
+    public boolean equals(Object film){
+        if(this == film){
+            return true;
+        }
+        if(film == null || getClass() != film.getClass()){
+            return false;
+        }
+        Film l = (Film)film;
+        return filmId == l.getFilmId();
     }
 
     // === GETTER ===
@@ -104,7 +121,14 @@ public class Film {
         return imgUrl;
     }
 
-    // === SETTER ===
+    public List<CrewFilm> getCrew() {
+        return crew;
+    }
+
+    public Set<Tag> getTagSet() {
+        return tagSet;
+    }
+// === SETTER ===
 
     public void setCasaDiProduzione(Casa casaDiProduzione) {
         this.casaDiProduzione = casaDiProduzione;

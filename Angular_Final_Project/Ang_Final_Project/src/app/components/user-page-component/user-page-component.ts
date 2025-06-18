@@ -11,6 +11,7 @@ import { VideogiocoGiocato } from '../../model/VideogiocoGiocato';
 import { MediaRegistratoService } from '../../services/MediaRegistratoService';
 import { AuthService } from '../../services/AuthService';
 import { UserRecensioniListComponent } from '../recensioni/user-recensioni-list/user-recensioni-list.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-page-component',
@@ -36,8 +37,14 @@ export class UserPageComponent implements OnInit{
 
   private _authService = inject(AuthService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
+  private _activatedRoute = inject(ActivatedRoute)
 
-  ngOnInit(): void {this.utenteId = Number(this._authService.getUserId());
+  ngOnInit(): void {
+    if(this._activatedRoute.snapshot.paramMap.get('id')){
+      this.utenteId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
+    } else {
+      this.utenteId = Number(this._authService.getUserId());
+    }
     this._mediaRegistratoService.getFilmVisti(this.utenteId).subscribe({
       next: list => {
         this.filmVisti = list;

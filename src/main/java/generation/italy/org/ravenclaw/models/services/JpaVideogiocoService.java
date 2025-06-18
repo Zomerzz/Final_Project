@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class JpaVideogiocoService implements VideogiocoService{
@@ -20,6 +22,7 @@ public class JpaVideogiocoService implements VideogiocoService{
     private VideogiocoGiocatoRepository videogiocoGiocatoRepository;
     private UtenteRepository utenteRepository;
     private RecensioneRepository recensioneRepository;
+    private TagRepository tagRepository;
 
 
     @Autowired
@@ -28,13 +31,15 @@ public class JpaVideogiocoService implements VideogiocoService{
                                 CriteriaVideogiocoRepository criteriaVideogiocoRepository,
                                 VideogiocoGiocatoRepository videogiocoGiocatoRepository,
                                 UtenteRepository utenteRepository,
-                                RecensioneRepository recensioneRepository) {
+                                RecensioneRepository recensioneRepository,
+                                TagRepository tagRepository) {
         this.videogiocoRepository = videogiocoRepository;
         this.casaRepository = casaRepository;
         this.criteriaVideogiocoRepository = criteriaVideogiocoRepository;
         this.videogiocoGiocatoRepository = videogiocoGiocatoRepository;
         this.utenteRepository = utenteRepository;
         this.recensioneRepository = recensioneRepository;
+        this.tagRepository = tagRepository;
     }
 
     @Override
@@ -118,6 +123,48 @@ public class JpaVideogiocoService implements VideogiocoService{
     @Override
     public Optional<VideogiocoGiocato> findVideogiocoGiocatoByVideogiocoIdAndUtenteId(int videogiocoId, int utenteId) {
         return videogiocoGiocatoRepository.findByUtenteUtenteIdAndVideogiocoVideogiocoId(utenteId, videogiocoId);
+    }
+
+    @Override
+    public List<Videogioco> findVideogiochiConsigliatiByUtenteId(int utenteId) {
+        List<Integer> favouriteTagsIds = tagRepository.findFavouriteVideogiocoTagsByUtenteId(utenteId, false);
+        var bestFiveTags = favouriteTagsIds.stream().limit(5).toList();
+        List<Integer> favouriteGenresIds = tagRepository.findFavouriteVideogiocoTagsByUtenteId(utenteId, true);
+        var bestFiveGenres = favouriteGenresIds.stream().limit(5).toList();
+
+        var giocati = videogiocoRepository.findByUser(utenteId);
+        List<Videogioco> all = videogiocoRepository.findAll();
+        var consigliati = all.stream().filter(videogioco -> {
+                    int counter = 0;
+                    int limit = 1;
+                    for(Integer t : bestFiveGenres){
+                        Set<Integer> videogiocoTagsIds = videogioco.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+                        if(videogiocoTagsIds.contains(t)){
+                            counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+                        }
+                        if(counter >= limit) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .filter(videogioco -> {
+                    Set<Integer> videogiocoTagsIds = videogioco.getTagSet().stream().map(Tag::getTagId).collect(Collectors.toSet());
+                    int counter = 0;
+                    int limit = 1;
+                    for(Integer t : bestFiveTags){
+                        if(videogiocoTagsIds.contains(t)){
+                            counter ++; //al momento lasciamo il limit a uno ma potremmo aumentare in futuro
+                        }
+                        if(counter >= limit) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .filter(videogioco -> !giocati.contains(videogioco)).toList();
+
+        return consigliati;
     }
 
 }
