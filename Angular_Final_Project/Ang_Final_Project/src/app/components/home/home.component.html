@@ -2,8 +2,13 @@
     <div id="advSe">
         <app-advanced-search (search)="executeSearch($event)"></app-advanced-search>
     </div>
+    <div class="close-advSe"><button (click)="CloseAdv()">◀</button></div>
     <div id="viewArea">
-    @if (listaLibri) {
+    @if (listaUtenti) {
+        <app-users-list [utenti]='this.listaUtenti'></app-users-list>
+    }
+    <div class="container-of-the-lists">
+        @if (listaLibri) {
         @if (Raccomandation) {
             <h3 class="Raccomandazioni-title">Libri raccomandati per te</h3>
         }
@@ -27,8 +32,7 @@
             <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
         </div>
     }
-    @if (listaUtenti) {
-        <app-users-list [utenti]='this.listaUtenti'></app-users-list>
-    }
+    </div>
+    
     </div>
 </main>

@@ -2,26 +2,34 @@
     text-decoration: none;
     color: black;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    transition: all 0.2s ease-in-out;
+
 }
 
-body{
+
+body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     user-select: none;
-    height: 100vh;
+    height: fit-content;
     width: 100vw;
-    background-color: rgb(48, 0, 37);
-    overflow-y:scroll;
+    background-color: rgb(39, 39, 39);
+    overflow-y: scroll;
+    background-image: url(https://i.imgur.com/aWFEdZM.png);
+    background-size: 50%;
+
+
 }
-body::-webkit-scrollbar{
+
+body::-webkit-scrollbar {
     visibility: none;
     width: 0;
 }
 
 
 
-button{
+button {
     display: inline-block;
     padding: 0.5em 1.2em;
     border: 2px solid #8E8E93;
@@ -46,13 +54,13 @@ button:active {
 /* Chrome, Safari, Edge, Opera */
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 /*
@@ -61,7 +69,7 @@ input[type=number] {
 =============================================================================================================================
 */
 
-.profile-Button{
+.profile-Button {
     background-image: url(https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png);
     height: 6vh;
     width: 6vh;
@@ -74,7 +82,7 @@ input[type=number] {
 }
 
 app-header-component main {
-    background-color:rgba(170, 170, 170, 0.30);
+    background-color: rgba(65, 65, 65, 0.6);
     padding: 1em;
     height: 10vh;
     display: grid;
@@ -82,31 +90,74 @@ app-header-component main {
     align-items: center;
 }
 
-app-header-component main form {
-    grid-column: 2;
 
-}
-app-header-component main form div {
+.search-zone {
     display: flex;
+    gap: 0;
     align-items: center;
     justify-content: center;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+
 }
 
-app-header-component main form input {
+.search-zone input {
     padding: 1em 2em;
     border-radius: 1em;
-    width: 70%;
+    width: 40vw;
     margin-right: -4.5em;
     padding-right: 4.5em;
     text-align: center;
+    height: 2em;
+    border: 0 solid transparent;
+
 }
+
+.search-by-name-media-type {
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 4em;
+    border: 0 solid transparent;
+
+    width: 6em;
+    margin-right: -1em;
+    padding: 1em;
+}
+
+.search-by-name-media-type {
+    content: '▼';
+}
+
+.search-zone *:hover {
+    border: 0 solid transparent;
+}
+
+.search-zone *:focus-visible {
+    border: 0 solid transparent;
+    outline: none;
+}
+
+.search-by-name-media-type {
+    appearance: none;
+    /* toglie la freccia di default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('https://www.shutterstock.com/image-vector/down-triangle-icon-600nw-609000503.jpg') no-repeat left center;
+    padding-left: 1.5em;
+    /* spazio per la freccia */
+}
+
+
 
 app-header-component main form button {
     background-color: transparent;
     border: transparent;
 }
 
-app-header-component #authDiv > button:first-child {
+.Auth-Button {
     background-color: rgba(0, 0, 0, 0.2);
     border: black solid 2px;
     border-radius: 1em;
@@ -129,23 +180,24 @@ app-header-component main #authDiv {
 
 app-header-component #buttonsDiv {
     grid-column: 1;
-    height: 6vh;
-    width: 6vh;
+    height: 7vh;
+    width: 7vh;
     transform: scale(1.6);
-    border-radius: 100em;
     margin: auto;
-    background-image: url('https://i.imgur.com/4q0TQSI.png');
+    background-image: url('https://i.imgur.com/eFl70X2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
     border: none;
+    background-color: transparent;
 
 }
+
 app-header-component #buttonsDiv:hover {
-    transform: scale(1.65);
+    transform: scale(1.65) rotate(720deg);
     cursor: grab;
-}
 
+}
 
 
 /*
@@ -153,23 +205,56 @@ app-header-component #buttonsDiv:hover {
                                                         HOME PAGE
 =============================================================================================================================
 */
-app-home >main{
+app-home>main {
     width: inherit;
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 20% 3% 77%;
 }
-#advSe{
-    padding:1em;
+
+#advSe {
+    padding: 1em;
     height: 100%;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgb(14, 14, 14);
     grid-column: 1;
+    overflow: hidden;
+    transition: 0.3s ease;
 }
+
 .scroll-container {
     overflow: hidden;
     gap: 1rem;
     padding: 1rem;
     justify-items: center;
-    grid-column: 2;
+    grid-column: 1;
+    width: 100%;
+    border-radius: 1em;
+}
+
+#viewArea {
+    grid-column: 3;
+    width: 74vw;
+}
+
+.close-advSe {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.close-advSe button {
+
+    border: none;
+    border-radius: 1em;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 25%;
+    background-color: rgb(14, 14, 14);
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999; /* Make sure it's above normal content */
+
 }
 
 /*
@@ -177,19 +262,6 @@ app-home >main{
                                                         HOME PAGE LISTS
 =============================================================================================================================
 */
-
-.Raccomandazioni-title{
-    background-color: rgba(170, 170, 170, 0.25);
-    width: max-content;
-    margin: auto;
-    padding: 1em;
-    border-radius: 1em;
-    color: white;
-    margin-top: 1em;
-    
-}
-
-
 .list-container {
     width: 100%;
     display: flex;
@@ -197,9 +269,10 @@ app-home >main{
     gap: 1rem;
     overflow: scroll;
     padding: 1rem;
+    padding-right: 0;
     border: 2px solid #292929;
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     overflow-y: hidden;
 }
@@ -224,7 +297,7 @@ app-home >main{
 .card {
     width: 30vh;
     height: 50vh;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 1em;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     display: grid;
@@ -234,10 +307,12 @@ app-home >main{
     align-items: center;
     transition: transform 0.2s ease-in-out;
 }
-.card-a{
+
+.card-a {
     display: grid;
     grid-template-rows: 7fr 3fr;
-    grid-template-columns: 1fr;}
+    grid-template-columns: 1fr;
+}
 
 
 .card:hover {
@@ -247,7 +322,7 @@ app-home >main{
 .immagine {
     width: 30vh;
     height: 35vh;
-    grid-row:1/2;
+    grid-row: 1/2;
     margin: 0 auto;
     object-fit: cover;
     border-top-right-radius: 1em;
@@ -259,7 +334,7 @@ app-home >main{
     display: grid;
     grid-template-rows: 1fr 0.5fr;
     align-items: center;
-    background-color: rgba(170, 170, 170);
+    background-color: rgb(49, 49, 49);
     grid-row: 2/3;
     height: 100%;
     border-radius: 1em;
@@ -267,6 +342,11 @@ app-home >main{
     position: relative;
     z-index: 1;
     padding-bottom: 2.5em;
+
+}
+
+.title_div * {
+    color: white;
 
 }
 
@@ -279,7 +359,7 @@ app-home >main{
     margin: 0;
 }
 
-.card-voto-Display{
+.card-voto-Display {
     width: 100%;
     display: flex;
     gap: 0.5em;
@@ -291,7 +371,7 @@ app-home >main{
 .card-voto-Display .progress-bar-container {
     width: 90%;
     height: 2em;
-    background-color: rgba(255, 255, 255, 0.25)  ;
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 0.5em;
     overflow: hidden;
 }
@@ -311,9 +391,9 @@ app-home >main{
 
 
 .details {
-    
+
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     margin: 1em;
     padding: 1em;
     display: grid;
@@ -326,9 +406,9 @@ app-home >main{
 
 
 .details-img {
-    
+
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     padding: 1em;
     width: 40vh;
     height: 94.5%;
@@ -341,16 +421,20 @@ app-home >main{
 
 .details-text {
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     padding: 1em;
-    display:grid;
-    grid-template-rows: 1fr 2fr 0.25fr 1fr;
+    display: grid;
+    grid-template-rows: 10% 45% 5% 40%;
     grid-template-columns: 1fr 1fr;
 }
 
-.Add-To-viewd-button{
+.details-text * {
+    color: white;
+}
+
+.Add-To-viewd-button {
     margin-top: 2em;
-    
+
 }
 
 
@@ -359,13 +443,15 @@ app-home >main{
     text-align: center;
     grid-column: 1/3;
     grid-row: 1;
+
 }
-.details-text article{
+
+.details-text article {
     grid-row: 2;
     grid-column: 1;
 }
 
-.voto-Display{
+.voto-Display {
     display: flex;
     gap: 1em;
     grid-row: 3;
@@ -376,7 +462,7 @@ app-home >main{
     width: 70%;
     /* or fixed like 200px */
     height: 20px;
-    background-color: rgba(255, 255, 255, 0.5  );
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 0.5em;
     overflow: hidden;
 }
@@ -387,35 +473,36 @@ app-home >main{
     transition: width 0.3s ease-in-out;
 }
 
-.recensioni-details-container{
+.recensioni-details-container {
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     margin: 1em;
     padding: 1em;
 
 }
-.recensioni-details-container h2{ 
+
+.recensioni-details-container h2 {
     color: white;
 
 }
 
-app-add-recensione div{
+app-add-recensione div {
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
 
-app-add-recensione div p{
+app-add-recensione div p {
     margin: auto;
 }
 
-.recensione-error-div{
+.recensione-error-div {
     grid-row: 1;
     grid-column: 1;
-    
+
 }
 
-.recensione-inputs-div{
+.recensione-inputs-div {
     display: grid;
     grid-template-columns: 1fr 10fr;
     grid-template-rows: 1fr 1fr;
@@ -423,10 +510,11 @@ app-add-recensione div p{
 
 
 }
+
 .recensione-inputs-div input {
     display: flex;
     flex-direction: row;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 0.5em;
     height: 2em;
     border: transparent;
@@ -436,10 +524,11 @@ app-add-recensione div p{
     grid-row: 1;
     grid-column: 1;
 }
+
 .recensione-inputs-div textarea {
     display: flex;
     flex-direction: row;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 0.5em;
     height: 6em;
     border: transparent;
@@ -449,59 +538,67 @@ app-add-recensione div p{
     grid-row: 1/3;
     grid-column: 2;
 }
-.recensione-inputs-div > input::placeholder {
+
+.recensione-inputs-div>input::placeholder {
     color: rgb(185, 185, 185);
 }
 
 
-.recensioni-details-container p{
+.recensioni-details-container p {
     color: white;
 }
-.recensioni-details-container{
+
+.recensioni-details-container {
     padding: 1em;
     display: flex;
     flex-direction: column;
 }
-.recensioni-details-container  h2 {
+
+.recensioni-details-container h2 {
     text-align: center;
 }
-.recensioni-details-container  app-recensione-card >div {
+
+.recensioni-details-container app-recensione-card>div {
     padding: 1em;
     display: grid;
     grid-template-columns: 1fr 10fr;
     grid-template-rows: 1fr 1fr;
-    
+
 }
-.recensioni-details-container  app-recensione-card >div >div:first-child{
+
+.recensioni-details-container app-recensione-card>div>div:first-child {
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     grid-column: 1;
     grid-row: 1;
 }
-.recensioni-details-container  app-recensione-card >div >div:last-child{
+
+.recensioni-details-container app-recensione-card>div>div:last-child {
     display: flex;
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     margin-left: 1em;
     grid-column: 2;
     grid-row: 1/3;
     padding: 1em;
 }
 
-app-add-recensione button{
+app-add-recensione button {
     width: max-content;
     height: 4em;
     margin: auto;
     grid-row: 2;
     grid-column: 1;
 }
-.recensione-Area{
+
+.recensione-Area {
     grid-row: 4;
     grid-column: 1/3;
 }
+
 /*
 =============================================================================================================================
                                                         TAG DETAILS
@@ -544,7 +641,9 @@ app-add-recensione button{
     background-color: #30D158;
     color: white;
     border-color: #30D158;
-}/* When checked, style the label differently */
+}
+
+/* When checked, style the label differently */
 
 .Generi-list .checkboxtag:checked+.checkbox-button {
     background-color: #d13030;
@@ -553,25 +652,26 @@ app-add-recensione button{
 }
 
 /* Optional: hover effect */
-.checkbox-button:hover, #sub:hover {
+.checkbox-button:hover,
+#sub:hover {
     background-color: #3a3a3c;
 }
 
-#sub{
+#sub {
     background: #2C2C2E;
     border: 2px solid #8E8E93;
     border-radius: 5px;
     width: max-content;
     margin: auto;
     margin-top: 2em;
-    
+
     padding: 1em 2em;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 
@@ -580,7 +680,7 @@ input::-webkit-inner-spin-button {
                                                         USER PAGE
 =============================================================================================================================
 */
-app-user-page-component{
+app-user-page-component {
     padding-top: 1em;
     display: flex;
     flex-direction: column;
@@ -588,23 +688,24 @@ app-user-page-component{
     gap: 1em;
 }
 
-app-user-page-component .list-container{
+app-user-page-component .list-container {
     width: 95vw;
 }
 
-.category-title{
-    background-color: rgba(170, 170, 170, 0.25);
+.category-title {
+    background-color: rgba(255, 255, 255, 0.25);
     width: 30em;
     text-align: center;
     padding: 0.2em 2em;
     border-radius: 1em;
     font-weight: bold;
 }
-.category-title >*{
+
+.category-title>* {
     color: white;
 }
 
-.utente-list-container-with-title{
+.utente-list-container-with-title {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -619,14 +720,14 @@ app-user-page-component .list-container{
     padding: 1rem;
     border: 2px solid #292929;
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .user-recensione-card {
-    padding:1em;
+    padding: 1em;
     border-radius: 1em;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     width: 47%;
     display: grid;
     grid-template-columns: 40% 60%;
@@ -651,46 +752,69 @@ app-user-page-component .list-container{
 .descrizione-rec-div {
     grid-column: 2;
     grid-row: 2;
-    background-color: rgba(170, 170, 170, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
     border-radius: 1em;
 
 }
 
-.recensione-title-div{
+.recensione-title-div {
     display: flex;
     flex-direction: column;
     gap: 2em;
 
 }
 
-.recensione-title-div .titolo-scroll{
+.recensione-title-div .titolo-scroll {
     text-align: center;
     font-weight: bold;
 
 }
 
-.recensione-title-div .progress-bar-container{
+.recensione-title-div .progress-bar-container {
     display: flex;
 
     justify-content: left;
     align-items: left;
 }
 
-.recensione-title-div .card-voto-Display{
+.recensione-title-div .card-voto-Display {
     display: flex;
 
 }
 
-.descrizione-rec-div{
+.descrizione-rec-div {
     padding: 1em;
 }
 
-.descrizione-rec-div p:first-child{
+.descrizione-rec-div p:first-child {
     text-align: center;
     font-weight: bold;
 }
 
 .utente-card {
     border-radius: 1em;
-    border: 1px solid black;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin: 1em;
+    padding: 1em;
+}
+
+.utente-card:hover {
+    border-radius: 1em;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 1em;
+    padding: 1em;
+}
+
+.utente-card p {
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+
+}
+
+.user-card-container {
+    border-radius: 1em;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin: 1em;
+    padding: 1em;
 }

@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
     listaFilm!: Film[];
     listaVideogiochi!: Videogioco[];
     listaUtenti!: UtenteNoPass[];
+    isAdvClosed=false;
 
     private _activatedRoute = inject(ActivatedRoute);
     private _libroService: LibroService = inject(LibroService);
@@ -45,7 +46,6 @@ export class HomeComponent implements OnInit {
 
 
     ngOnInit(): void {
-
         this._activatedRoute.queryParams.subscribe({
             next: params => {
                 const titolo = params['q'];
@@ -284,5 +284,29 @@ fetchRecommendedForLoggedUsers() {
         this.listaVideogiochi = [];
         this.listaUtenti = [];
     }
+    CloseAdv() {
+    const advDiv = document.querySelector('#advSe') as HTMLElement;
+    const main = document.querySelector('app-home>main ') as HTMLElement;
+    const liste = document.querySelector('#viewArea ') as HTMLElement; 
+    this.isAdvClosed = !this.isAdvClosed;
+
+    if (this.isAdvClosed) {
+        advDiv.style.width = '0px'; // Hide it
+        advDiv.style.opacity = "0";
+        main.style.gridTemplateColumns = '0% 3% 97%'
+        advDiv.hidden =true;
+        liste.style.width = '93vw'
+        advDiv.style.left = "0px";
+
+    } else {
+        advDiv.style.width = ''; // Reset to CSS default
+        main.style.gridTemplateColumns = '20% 3% 77%'
+        advDiv.style.opacity = "1";
+        advDiv.hidden =false;
+        liste.style.width = '74vw'
+        advDiv.style.left = "100px";
+        
+    }
+}
 }
 

@@ -1,7 +1,10 @@
 @if(utenti.length > 0){
+<div class="user-card-container">
     @for(utente of utenti; track utente.id){
-        <div class="utente-card" [routerLink]="['/user', utente.id]">
-            <p>{{utente.nome}}</p>
-        </div>
+    <div class="utente-card" [routerLink]="['/user', utente.id]">
+        <p>{{utente.nome}}</p>
+    </div>
     }
+</div>
+
 }

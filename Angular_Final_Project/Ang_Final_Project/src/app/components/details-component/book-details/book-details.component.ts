@@ -79,8 +79,10 @@ export class BookDetailsComponent implements OnInit {
         if (this.libroLetto) {
             this._mediaRegistratoService.deleteLibroLetto(this.libroLetto.libroLettoId).subscribe({
                 next: () => {
-                    this.recensioni = this.recensioni.
+                    if(this.libroLetto?.recensione){
+                        this.recensioni = this.recensioni.
                         filter(recensione => recensione.recensioneId != this.libroLetto?.recensione.recensioneId);
+                    }
                     this.libroLetto = null;
                 },
                 error: e => alert('errore nella registrazione del libro letto: ' + e)
