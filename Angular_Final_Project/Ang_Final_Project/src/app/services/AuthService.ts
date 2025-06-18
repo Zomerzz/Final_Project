@@ -33,7 +33,6 @@ export class AuthService{
     logout(){
         localStorage.removeItem('jwt');
         console.log("Logged out");
-        
     }
 
     

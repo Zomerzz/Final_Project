@@ -1,11 +1,11 @@
 <main>
     <button id="buttonsDiv" (click)="navToHome()"></button>
     <form (ngSubmit) = "send()"> 
-        <div>
+        <div class="search-zone">
             @if(isAlreadylogged){
-                <select [(ngModel)] ="selectedSearch" name="searchType">
-                    <option value="titoli">Titoli</option>
-                    <option value="utenti">Utenti</option>
+                <select class="search-by-name-media-type" [(ngModel)] ="selectedSearch" name="searchType">
+                    <option value="titoli">Titoli </option>
+                    <option value="utenti">Utenti </option>
                 </select>
             }
             @if(selectedSearch == "titoli" || !isAlreadylogged){
@@ -19,12 +19,12 @@
     <div id="authDiv">
         @if (!isinLoginPage) {
             @if (isAlreadylogged) {
-                <button routerLink="/auth/logout">LogOut</button>
+                <button class="Auth-Button" routerLink="/auth/logout">LogOut</button>
                 <button routerLink="/user" class="profile-Button"></button>
             }
             @else {
-                <button routerLink="/auth/login">Login</button>
-                <button routerLink="/auth/register">Register</button>
+                <button class="Auth-Button" routerLink="/auth/login">Login</button>
+                <button class="Auth-Button" routerLink="/auth/register">Register</button>
             }
         }
     </div>
