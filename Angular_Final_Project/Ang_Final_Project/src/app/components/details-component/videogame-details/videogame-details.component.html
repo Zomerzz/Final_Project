@@ -21,6 +21,19 @@
                 </div>
             </div>
         </div>
+        
+         <div>
+            @if(tags){
+                @for(tag of tags; track tag.tagId){
+                    <div class="checkbox-wrapper">
+                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"/>
+                        <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                            {{ tag.nome }}
+                        </label>
+                    </div>
+                }
+            }
+            </div>
         @if(isAlreadylogged && !videogiocoGiocato){
         <div>
             <button (click)="registerVideogiocoGiocato()" class="Add-To-viewd-button">Segna come giocato</button>

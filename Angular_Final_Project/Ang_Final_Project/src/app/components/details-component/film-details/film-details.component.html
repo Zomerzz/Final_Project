@@ -19,8 +19,20 @@
                 <div class="progress-bar-fill" [style.width.%]="film.voto" [style.backgroundColor]="getBarColor()">
                 </div>
             </div>
-
         </div>
+
+         <div>
+            @if(tags){
+                @for(tag of tags; track tag.tagId){
+                    <div class="checkbox-wrapper">
+                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"/>
+                        <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                            {{ tag.nome }}
+                        </label>
+                    </div>
+                }
+            }
+            </div>
         @if(isAlreadylogged && !filmVisto){
         <div>
             <button class="Add-To-viewd-button" (click)="registerFilmVisto()">Segna come visto</button>

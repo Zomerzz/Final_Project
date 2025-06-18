@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FilmService } from '../../../services/FilmService';
 import { AddRecensioneComponent } from '../../recensioni/add-recensione/add-recensione.component';
 import { RecensioneCardComponent } from '../../recensioni/recensione-card/recensione-card.component';
+import { TagService } from '../../../services/searchService';
+import { Tag } from '../../../model/Tag';
 
 @Component({
   selector: 'app-film-details',
@@ -18,30 +20,36 @@ import { RecensioneCardComponent } from '../../recensioni/recensione-card/recens
   styleUrl: './film-details.component.css'
 })
 export class FilmDetailsComponent implements OnInit{
+  filmId!: number;
   film!: Film;
   filmVisto!: FilmVisto | null;
   type = 'films';
   recensioni: Recensione[] = [];
+  tags:Tag[] = [];
 
   private _activatedRoute = inject(ActivatedRoute);
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
   private _filmService = inject(FilmService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
+  private _tagService = inject(TagService);
 
   ngOnInit(): void {
     if(history.state && history.state.film){
       this.film = history.state.film;
-      this.loadRecensioni(this.film.id);
+      this.filmId = this.film.id;
+      this.loadRecensioni(this.filmId);
+      this.loadTags();
     } else {
       const id = this._activatedRoute.snapshot.paramMap.get("id");
         if(id != null){
-          const filmId = Number(id);
-          if (filmId > 0 && !isNaN(filmId)){
-            this._filmService.getById(filmId).subscribe({
+          this.filmId = Number(id);
+          if (this.filmId > 0 && !isNaN(this.filmId)){
+            this._filmService.getById(this.filmId).subscribe({
               next: f => {
                 this.film = f;
-                this.loadRecensioni(filmId);
+                this.loadRecensioni(this.filmId);
+                this.loadTags();
               },
               error: e => alert('errore nel caricamento del film')
             });
@@ -105,6 +113,12 @@ export class FilmDetailsComponent implements OnInit{
     if (voto >= 50) return '#FFD60A';
     if (voto >= 25) return '#FF9F0A';
     return '#FF453A';
-}
+  }
+loadTags(){
+        this._tagService.loadTagsByOperaId(this.filmId, this.type).subscribe({   
+            next: tagDb => this.tags = tagDb,
+            error:e => alert("errore caricamento tags")
+        });
+    }
 }
 

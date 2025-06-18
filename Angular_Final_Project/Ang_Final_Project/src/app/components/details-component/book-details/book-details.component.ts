@@ -38,7 +38,8 @@ export class BookDetailsComponent implements OnInit {
     ngOnInit(): void {
         if (history.state && history.state.libro) {
             this.libro = history.state.libro;
-            this.loadRecensioni(this.libro.id);
+            this.libroId = this.libro.id;
+            this.loadRecensioni(this.libroId);
             this.getLibroLetto();
             this.loadTags();
         } else {
@@ -120,7 +121,7 @@ export class BookDetailsComponent implements OnInit {
     }
 
     loadTags(){
-        this._tagService.loadTagsByOperaId(this.libroId, this.type).subscribe({
+        this._tagService.loadTagsByOperaId(this.libroId, this.type).subscribe({   
             next: tagDb => this.tags = tagDb,
             error:e => alert("errore caricamento tags")
         });

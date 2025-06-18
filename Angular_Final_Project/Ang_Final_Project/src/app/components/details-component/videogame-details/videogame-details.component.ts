@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { VideogiocoService } from '../../../services/VideogiocoService';
 import { AddRecensioneComponent } from '../../recensioni/add-recensione/add-recensione.component';
 import { RecensioneCardComponent } from '../../recensioni/recensione-card/recensione-card.component';
+import { TagService } from '../../../services/searchService';
+import { Tag } from '../../../model/Tag';
 
 @Component({
   selector: 'app-videogame-details',
@@ -18,30 +20,36 @@ import { RecensioneCardComponent } from '../../recensioni/recensione-card/recens
   styleUrl: './videogame-details.component.css'
 })
 export class VideogameDetailsComponent implements OnInit{
+  videogiocoId!:number;
   videogioco!: Videogioco;
   videogiocoGiocato!: VideogiocoGiocato | null;
   type = 'videogiochi';
   recensioni: Recensione[] = [];
+  tags: Tag[] = [];
 
   private _activatedRoute = inject(ActivatedRoute);
   private _recensioneService = inject(RecensioneService);
   private _authService = inject(AuthService);
   private _videogiocoService = inject(VideogiocoService);
   private _mediaRegistratoService = inject(MediaRegistratoService);
+  private _tagService = inject(TagService);
 
   ngOnInit(): void {
     if(history.state && history.state.videogioco){
       this.videogioco = history.state.videogioco;
       this.loadRecensioni(this.videogioco.id);
+      this.videogiocoId = this.videogioco.id
+      this.loadTags();
     } else {
       const id = this._activatedRoute.snapshot.paramMap.get("id");
         if(id != null){
-          const videogiocoId = Number(id);
-          if (videogiocoId > 0 && !isNaN(videogiocoId)){
-            this._videogiocoService.getById(videogiocoId).subscribe({
+          this.videogiocoId = Number(id);
+          if (this.videogiocoId > 0 && !isNaN(this.videogiocoId)){
+            this._videogiocoService.getById(this.videogiocoId).subscribe({
               next: v => {
                 this.videogioco = v;
-                this.loadRecensioni(videogiocoId);
+                this.loadRecensioni(this.videogiocoId);
+                this.loadTags();
               },
               error: e => alert('errore nel caricamento del film')
             });
@@ -109,7 +117,14 @@ export class VideogameDetailsComponent implements OnInit{
     if (voto >= 75) return '#30D158';
     if (voto >= 50) return '#FFD60A';
     if (voto >= 25) return '#FF9F0A';
-    return '#FF453A';
-}
+    return '#FF453A';   
+  }
+
+  loadTags(){
+        this._tagService.loadTagsByOperaId(this.videogiocoId, this.type).subscribe({   
+            next: tagDb => this.tags = tagDb,
+            error:e => alert("errore caricamento tags")
+        });
+    }
 
 }
