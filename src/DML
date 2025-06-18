@@ -666,7 +666,7 @@ INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (37, 17, 
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (38, 48, 'Spettacolare.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (39, 28, 'Sorprendente.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (40, 72, 'Deludente.');
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (56, 1, 'non mi piacciono le donne');
+INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (56, 1, 'non mi piacciono solo le donne');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (59, 100, 'bellisimo gioco lo rigiocherei');
 --
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
