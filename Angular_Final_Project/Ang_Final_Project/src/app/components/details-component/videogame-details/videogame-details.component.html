@@ -22,11 +22,11 @@
             </div>
         </div>
         
-         <div>
+         <div class="tag-list">
             @if(tags){
                 @for(tag of tags; track tag.tagId){
                     <div class="checkbox-wrapper">
-                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"/>
+                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId" disabled/>
                         <label class="checkbox-button" [for]="'tag-' + tag.tagId">
                             {{ tag.nome }}
                         </label>

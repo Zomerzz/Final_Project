@@ -1,22 +1,24 @@
 <div class="details">
     <img class="details-img" [src]="libro.imgUrl">
     <div class="details-text">
-        <h1>{{libro.titolo}}</h1>
-        <p>Descrizione:</p>
-        <p>{{libro.descrizione}}</p>
+        <article>
+            <h1>{{libro.titolo}}</h1>
+            <p>Descrizione:</p>
+            <p>{{libro.descrizione}}</p>
 
-        <p>Data di pubblicazione:</p>
-        <p>{{libro.dataDiPubblicazione}}</p>
+            <p>Data di pubblicazione:</p>
+            <p>{{libro.dataDiPubblicazione}}</p>
 
-        <p>Numero di pagine: {{libro.numeroPagine}}</p>
+            <p>Numero di pagine: {{libro.numeroPagine}}</p>
 
-        <p>Casa Editrice: {{libro.casaEditrice.nome}}</p>
-
-        <div>
+            <p>Casa Editrice: {{libro.casaEditrice.nome}}</p>
+        </article>
+        
+        <div class="tag-list">
             @if(tags){
                 @for(tag of tags; track tag.tagId){
                     <div class="checkbox-wrapper">
-                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"/>
+                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId" disabled/>
                         <label class="checkbox-button" [for]="'tag-' + tag.tagId">
                             {{ tag.nome }}
                         </label>
@@ -32,7 +34,8 @@
                 </div>
             </div>
         </div>
-        @if(isAlreadylogged && !libroLetto){
+        <div class="recensione-Area">
+            @if(isAlreadylogged && !libroLetto){
         <div>
             <button (click)="registerLibroLetto()" class="Add-To-viewd-button">Segna come letto</button>
         </div>
@@ -48,6 +51,8 @@
             (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
         }
     </div>
+</div>
+        
 </div>
 
 
