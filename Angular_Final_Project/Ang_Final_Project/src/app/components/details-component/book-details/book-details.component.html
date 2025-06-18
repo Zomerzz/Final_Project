@@ -12,6 +12,19 @@
 
         <p>Casa Editrice: {{libro.casaEditrice.nome}}</p>
 
+        <div>
+            @if(tags){
+                @for(tag of tags; track tag.tagId){
+                    <div class="checkbox-wrapper">
+                        <input class="checkboxtag" type="checkbox" [id]="'tag-' + tag.tagId"/>
+                        <label class="checkbox-button" [for]="'tag-' + tag.tagId">
+                            {{ tag.nome }}
+                        </label>
+                    </div>
+                }
+            }
+        </div>
+
         <div class="voto-Display">
             <div>Voto: {{libro.voto}}</div>
             <div class="progress-bar-container">
@@ -35,8 +48,6 @@
             (addedRecensione)="addNewRecensione($event)"></app-add-recensione>
         }
     </div>
-
-
 </div>
 
 

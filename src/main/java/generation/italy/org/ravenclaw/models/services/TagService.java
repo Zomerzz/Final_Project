@@ -18,4 +18,6 @@ public interface TagService {
     boolean deleteTag(int id);
 
     List<Tag> findByIsGenere(boolean isGenere);
+
+    List<Tag> findByMedaIdAndType(int id, String mediaType);
 }

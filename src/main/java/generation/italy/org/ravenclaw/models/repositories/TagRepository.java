@@ -22,4 +22,13 @@ public interface TagRepository  extends JpaRepository<Tag, Integer> {
     List<Integer> findFavouriteVideogiocoTagsByUtenteId(@Param("utenteId") int utenteId, @Param("isGenere") boolean isGenere);
 
     List<Tag> findByIsGenere(boolean isGenere);
+
+    @Query("SELECT tag FROM Tag tag JOIN tag.filmSet f WHERE f.filmId = :id")
+    List<Tag> findByFilmId(@Param("id")int id);
+
+    @Query("SELECT tag FROM Tag tag JOIN tag.libroSet f WHERE f.libroId = :id")
+    List<Tag> findByLibroId(@Param("id")int id);
+
+    @Query("SELECT tag FROM Tag tag JOIN tag.videogiocoSet f WHERE f.videogiocoId = :id")
+    List<Tag> findByVideogiocoId(@Param("id")int id);
 }

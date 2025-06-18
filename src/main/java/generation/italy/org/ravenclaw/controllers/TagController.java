@@ -47,6 +47,11 @@ public class TagController {
         }
         return ResponseEntity.ok(TagDto.toDto(tagOpt.get()));
     }
+    @GetMapping("/{mediaType}/{id}")
+    public ResponseEntity<List<TagDto>> searchByIdAndMediaType(@PathVariable int id,@PathVariable String mediaType){
+        List<Tag> tagList = tagService.findByMedaIdAndType(id, mediaType);
+        return ResponseEntity.ok(tagList.stream().map(TagDto::toDto).toList());
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable int id){

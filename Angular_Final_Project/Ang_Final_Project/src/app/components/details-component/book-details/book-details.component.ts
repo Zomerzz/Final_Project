@@ -11,6 +11,8 @@ import { LibroLetto } from '../../../model/LibroLetto';
 import { AddRecensioneComponent } from '../../recensioni/add-recensione/add-recensione.component';
 import { RecensioneCardComponent } from "../../recensioni/recensione-card/recensione-card.component";
 import { LibroService } from '../../../services/LibroService';
+import { Tag } from '../../../model/Tag';
+import { TagService } from '../../../services/searchService';
 
 @Component({
     selector: 'app-book-details',
@@ -20,40 +22,42 @@ import { LibroService } from '../../../services/LibroService';
 })
 export class BookDetailsComponent implements OnInit {
     type = 'libro';
+    libroId !:number;
     libro!: Libro;
     libroLetto!: LibroLetto | null;
     recensioni: Recensione[] = [];
+    tags:Tag[] = [];
 
     private _activatedRoute = inject(ActivatedRoute);
     private _recensioneService = inject(RecensioneService);
     private _authService = inject(AuthService);
     private _libroService = inject(LibroService);
     private _mediaRegistratoService = inject(MediaRegistratoService);
+    private _tagService = inject(TagService);
 
     ngOnInit(): void {
-        // Recupera i dati direttamente da history.state
         if (history.state && history.state.libro) {
             this.libro = history.state.libro;
             this.loadRecensioni(this.libro.id);
             this.getLibroLetto();
+            this.loadTags();
         } else {
             const id = this._activatedRoute.snapshot.paramMap.get("id");
             if (id != null) {
-                const libroId = Number(id);
-                if (libroId > 0 && !isNaN(libroId)) {
-                    this._libroService.getById(libroId).subscribe({
+                this.libroId = Number(id);
+                if (this.libroId > 0 && !isNaN(this.libroId)) {
+                    this._libroService.getById(this.libroId).subscribe({
                         next: l => {
                             this.libro = l;
-                            this.loadRecensioni(libroId);
+                            this.loadRecensioni(this.libroId);
                             this.getLibroLetto();
+                            this.loadTags();
                         },
                         error: e => alert('errore nel caricamento del libro')
                     });
                 }
             }
         }
-
-
     }
 
     get isAlreadylogged() {
@@ -84,10 +88,6 @@ export class BookDetailsComponent implements OnInit {
     }
 
     loadRecensioni(id: number) {
-        console.log("------------------------------------")
-        console.log(this.type);
-        console.log(id);
-        
         this._recensioneService.getRecensioni(this.type, id).subscribe({
             next: list => this.recensioni = list,
             error: e => alert('Errore nel caricamento delle recensioni')
@@ -117,5 +117,12 @@ export class BookDetailsComponent implements OnInit {
                     error: e => this.libroLetto = null
                 });
         }
+    }
+
+    loadTags(){
+        this._tagService.loadTagsByOperaId(this.libroId, this.type).subscribe({
+            next: tagDb => this.tags = tagDb,
+            error:e => alert("errore caricamento tags")
+        });
     }
 }
