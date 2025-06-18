@@ -625,7 +625,7 @@ INSERT INTO public.film_assegnamento_tag (assegnamento_id, tag_id, film_id) VALU
 --
 -- Data for Name: recensioni; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
-INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (1, 25, 'Nei sogni dei sogni dei miei sogni c'è molta più gnocca');
+
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (1, 95, 'Assolutamente fantastico. Un capolavoro.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (2, 80, 'Abbastanza solido, ma presenta dei difetti.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (3, 60, 'Mah, è stato così così.');
@@ -668,8 +668,6 @@ INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (39, 28, 
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (40, 72, 'Deludente.');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (56, 1, 'non mi piacciono le donne');
 INSERT INTO public.recensioni (recensione_id, voto, recensione) VALUES (59, 100, 'bellisimo gioco lo rigiocherei');
-
-
 --
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgresMaster
 --
