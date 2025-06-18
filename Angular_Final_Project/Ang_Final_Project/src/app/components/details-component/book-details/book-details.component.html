@@ -1,17 +1,14 @@
 <div class="details">
     <img class="details-img" [src]="libro.imgUrl">
     <div class="details-text">
+        <h1>{{libro.titolo}}</h1>
         <article>
-            <h1>{{libro.titolo}}</h1>
-            <p>Descrizione:</p>
-            <p>{{libro.descrizione}}</p>
+            <p><b>Descrizione:</b> <br>{{libro.descrizione}}</p>
+            <p><b>Data di pubblicazione:</b> <br>{{libro.dataDiPubblicazione}}</p>
 
-            <p>Data di pubblicazione:</p>
-            <p>{{libro.dataDiPubblicazione}}</p>
+            <p><b>Numero di pagine:</b> <br>{{libro.numeroPagine}}</p>
 
-            <p>Numero di pagine: {{libro.numeroPagine}}</p>
-
-            <p>Casa Editrice: {{libro.casaEditrice.nome}}</p>
+            <p><b>Casa Editrice:</b> <br>{{libro.casaEditrice.nome}}</p>
         </article>
         
         <div class="tag-list">

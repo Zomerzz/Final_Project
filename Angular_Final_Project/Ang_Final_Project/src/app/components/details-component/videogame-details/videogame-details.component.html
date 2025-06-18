@@ -2,16 +2,16 @@
     <img class="details-img" [src]="videogioco.imgUrl">
     <div class="details-text">
         <h1>{{videogioco.titolo}}</h1>
-        <p>Descrizione:</p>
-        <p>{{videogioco.descrizione}}</p>
+        <article>
+            <p><b>Descrizione:</b><br>{{videogioco.descrizione}}</p>
 
-        <p>Data di pubblicazione:</p>
-        <p>{{videogioco.dataDiPubblicazione}}</p>
+            <p><b>Data di pubblicazione:</b><br>{{videogioco.dataDiPubblicazione}}</p>
 
-        <p>Ore storia principale: {{videogioco.oreStoriaPrincipale}}</p>
+            <p><b>Ore storia principale:</b> <br> {{videogioco.oreStoriaPrincipale}}</p>
 
-        <p>Casa di produzione: {{videogioco.casaDiProduzione.nome}}</p>
-        <p>Casa di pubblicazione: {{videogioco.casaDiPubblicazione.nome}}</p>
+            <p><b>Casa di produzione:</b> <br>{{videogioco.casaDiProduzione.nome}}</p>
+            <p><b>Casa di pubblicazione:</b> <br>{{videogioco.casaDiPubblicazione.nome}}</p>
+        </article>
         <div class="voto-Display">
             <div>Voto: {{videogioco.voto}}</div>
             <div class="progress-bar-container">
