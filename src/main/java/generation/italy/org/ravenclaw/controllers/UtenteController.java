@@ -1,5 +1,6 @@
 package generation.italy.org.ravenclaw.controllers;
 
+import generation.italy.org.ravenclaw.models.dtos.UtenteNoPassDto;
 import generation.italy.org.ravenclaw.models.dtos.UtenteDto;
 import generation.italy.org.ravenclaw.models.entities.Utente;
 import generation.italy.org.ravenclaw.models.services.UtenteService;
@@ -35,9 +36,9 @@ public class UtenteController {
     }
 
     @GetMapping("/username/{nome}")
-    public ResponseEntity<List<UtenteDto>> searchUtentiByName(@PathVariable String nome){
+    public ResponseEntity<List<UtenteNoPassDto>> searchUtentiByName(@PathVariable String nome){
         List<Utente> utenti = utenteService.findUtenteByNome(nome);
-        List<UtenteDto> utentiDto = utenti.stream().map(UtenteDto::toDto).toList();
+        List<UtenteNoPassDto> utentiDto = utenti.stream().map(UtenteNoPassDto::toDto).toList();
         return ResponseEntity.ok(utentiDto);
     }
 

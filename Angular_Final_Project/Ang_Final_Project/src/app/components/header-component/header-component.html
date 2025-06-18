@@ -2,7 +2,17 @@
     <button id="buttonsDiv" (click)="navToHome()"></button>
     <form (ngSubmit) = "send()"> 
         <div>
-            <input type="text" id="titolo" #name="ngModel" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
+            @if(isAlreadylogged){
+                <select [(ngModel)] ="selectedSearch" name="searchType">
+                    <option value="titoli">Titoli</option>
+                    <option value="utenti">Utenti</option>
+                </select>
+            }
+            @if(selectedSearch == "titoli" || !isAlreadylogged){
+                <input type="text" id="titolo" name="titolo" [(ngModel)]="titolo" placeholder="Titolo opera">
+            } @else if (isAlreadylogged) {
+                <input type="text" id="utente" name="utente" [(ngModel)]="utente" placeholder="Utente">
+            }
             <button>🔍</button>
         </div> 
     </form>

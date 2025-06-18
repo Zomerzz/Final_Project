@@ -1,0 +1,7 @@
+@if(utenti.length > 0){
+    @for(utente of utenti; track utente.id){
+        <div class="utente-card" [routerLink]="['/user', utente.id]">
+            <p>{{utente.nome}}</p>
+        </div>
+    }
+}

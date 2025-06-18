@@ -27,5 +27,8 @@
             <app-videogioco-list [videogiochi]='this.listaVideogiochi'></app-videogioco-list>
         </div>
     }
+    @if (listaUtenti) {
+        <app-users-list [utenti]='this.listaUtenti'></app-users-list>
+    }
     </div>
 </main>
