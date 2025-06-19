@@ -9,4 +9,5 @@ export interface Libro {
     casaEditrice:Casa;
     voto:number;
     imgUrl:string;
+    autori:string[];
 }

@@ -39,7 +39,7 @@ public class Libro {
 
     // === MANY TO MANY ===
 
-    @ManyToMany(mappedBy = "libroSet")
+    @ManyToMany(mappedBy = "libroSet", fetch = FetchType.EAGER)
     private Set<Autore> autoreSet = new HashSet<>();
 
     @ManyToMany(mappedBy = "libroSet", fetch = FetchType.EAGER)

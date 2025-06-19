@@ -42,6 +42,8 @@ export class BookDetailsComponent implements OnInit {
             this.loadRecensioni(this.libroId);
             this.getLibroLetto();
             this.loadTags();
+            console.log(this.libro.autori);
+            
         } else {
             const id = this._activatedRoute.snapshot.paramMap.get("id");
             if (id != null) {
@@ -53,6 +55,7 @@ export class BookDetailsComponent implements OnInit {
                             this.loadRecensioni(this.libroId);
                             this.getLibroLetto();
                             this.loadTags();
+                            console.log(this.libro.autori);   
                         },
                         error: e => alert('errore nel caricamento del libro')
                     });

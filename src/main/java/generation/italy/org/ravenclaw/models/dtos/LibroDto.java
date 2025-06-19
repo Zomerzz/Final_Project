@@ -1,8 +1,12 @@
 package generation.italy.org.ravenclaw.models.dtos;
 
+import generation.italy.org.ravenclaw.models.entities.Autore;
 import generation.italy.org.ravenclaw.models.entities.Libro;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LibroDto {
     private int id;
@@ -13,11 +17,12 @@ public class LibroDto {
     private CasaDto casaEditrice;
     private int voto;
     private String imgUrl;
+    private Set<String> autori;
 
     public LibroDto() {
     }
 
-    public LibroDto(int id, String titolo, int numeroPagine, String descrizione,LocalDate dataDiPubblicazione, CasaDto casaEditrice, int voto, String imgUrl) {
+    public LibroDto(int id, String titolo, int numeroPagine, String descrizione, LocalDate dataDiPubblicazione, CasaDto casaEditrice, int voto, String imgUrl, Set<Autore> autori) {
         this.id = id;
         this.titolo = titolo;
         this.numeroPagine = numeroPagine;
@@ -26,6 +31,9 @@ public class LibroDto {
         this.voto = voto;
         this.casaEditrice = casaEditrice;
         this.imgUrl = imgUrl;
+        this.autori = autori.stream().map(autore->{
+            return autore.getNome()+" "+autore.getCognome()+" ";
+        }).collect(Collectors.toSet());
     }
 
     public static LibroDto toDto(Libro libro){
@@ -36,7 +44,8 @@ public class LibroDto {
                 libro.getDataDiPubblicazione(),
                 CasaDto.toDto(libro.casaDiProduzione()),
                 libro.getVoto(),
-                libro.getImgUrl());
+                libro.getImgUrl(),
+                libro.getAutoreSet());
     }
 
     public Libro toLibro(){
@@ -105,5 +114,13 @@ public class LibroDto {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public Set<String> getAutori() {
+        return autori;
+    }
+
+    public void setAutori(Set<String> autori) {
+        this.autori = autori;
     }
 }
